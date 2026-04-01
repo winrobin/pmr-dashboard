@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+# Generate bilingual PMR Daily Brief HTML
+
+html = r"""<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -449,4 +452,9 @@ var now=new Date();
 document.getElementById('date').textContent=now.toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})+' '+now.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
 </script>
 </body>
-</html>
+</html>"""
+
+fpath = '/Users/oc/.openclaw/workspace/index.html'
+with open(fpath, 'w', encoding='utf-8') as f:
+    f.write(html)
+print(f"Written {len(html)} bytes")
