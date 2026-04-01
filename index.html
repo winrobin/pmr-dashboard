@@ -591,8 +591,8 @@ function tog(){
   lang=(lang==='en')?'zh':'en';
   var btn=document.querySelector('.lng-btn');
   btn.textContent=(lang==='zh')?'中文':'EN';
-  document.querySelectorAll('.en').forEach(function(e){e.style.display=lang==='zh'?'none':''});
-  document.querySelectorAll('.zh').forEach(function(e){e.style.display=lang==='zh'?'':'none'});
+  document.querySelectorAll('.en').forEach(function(e){e.style.display=lang==='zh'?'none':'block'});
+  document.querySelectorAll('.zh').forEach(function(e){e.style.display=lang==='zh'?'block':'none'});
   if(lang==='zh'){
     document.getElementById('sub').textContent='布里斯班 + 黄金海岸 | 20物业';
     document.getElementById('tab1').textContent='第1档';
