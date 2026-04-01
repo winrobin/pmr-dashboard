@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PMR Daily Brief</title>
 <style>
+.lng-btn{position:fixed;top:8px;right:8px;z-index:200;background:#1d4ed8;color:#fff;border:none;font-size:11px;font-weight:bold;padding:7px 12px;border-radius:6px;cursor:pointer;opacity:0.95}.lng-btn:hover{opacity:1}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#0a0b0f;color:#fff;font-family:-apple-system,sans-serif;padding-bottom:20px}
-.hd{background:#111827;padding:14px 10px;border-bottom:2px solid #1e2635;text-align:center}
+.hd{background:#111827;padding:14px 10px;padding-right:70px;border-bottom:2px solid #1e2635;text-align:center}
 .hd h1{font-size:14px;margin:0 0 4px 0}
 .s{font-size:10px;color:#6b7b8d;margin-top:2px}
 .tabs{display:flex;border-bottom:1px solid #232d3d;position:sticky;top:0;z-index:10;background:#111827;flex-wrap:wrap}
@@ -67,6 +68,7 @@ td{padding:5px 6px;border-bottom:1px solid #232d3d;color:#cbd5e1}
 </style>
 </head>
 <body>
+<button class="lng-btn" onclick="toggleLang()">EN</button>
 <div class="hd">
 <h1>PMR Daily Brief</h1>
 <div class="s">Brisbane + Gold Coast | 20 Properties | 3 Tiers</div>
@@ -83,10 +85,10 @@ td{padding:5px 6px;border-bottom:1px solid #232d3d;color:#cbd5e1}
 <div class="leg">
 <h3>ABBREVIATIONS</h3>
 <div class="row">
-<span class="item"><b>BC%</b> = Body Corp Salary % (ideal 60-70%, &gt;80% = risk)</span>
-<span class="item"><b>$/wk</b> = Commission per unit per week (normal $60-85)</span>
-<span class="item"><b>Mult</b> = Price / Net Income (lower = better, ideal 3-5x)</span>
-<span class="item"><b>Pool</b> = Units in letting pool</span>
+<span class="item"><b>BC%</b> = Body Corp薪资占比 (ideal 60-70%, &gt;80% = risk)</span>
+<span class="item"><b>$/wk</b> = 每单元周佣金 (normal $60-85)</span>
+<span class="item"><b>Mult</b> = 价格/净收入 (lower = better, ideal 3-5x)</span>
+<span class="item"><b>Pool</b> = Letting Pool单元数</span>
 <span class="item"><b>Cont</b> = Contract years</span>
 <span class="item"><b>GC</b> = Gold Coast</span>
 <span class="item"><b>Bris</b> = Brisbane</span>
@@ -468,6 +470,48 @@ td{padding:5px 6px;border-bottom:1px solid #232d3d;color:#cbd5e1}
 <div class="ft">pmr-data-latest.json | 20 Props | <span id="foot"></span></div>
 
 <script>
+
+var lang='en';
+function toggleLang(){
+  lang=(lang==='en')?'zh':'en';
+  var btn=document.querySelector('.lng-btn');
+  btn.textContent=(lang==='zh')?'中文':'EN';
+  if(lang==='zh'){
+    document.getElementById('sub').textContent='布里斯班 + 黄金海岸 | 20 物业 | 3个档位';
+    document.getElementById('leg_h').textContent='缩写说明';
+    document.getElementById('leg1').textContent='= Body Corp薪资占比 (理想60-70%,>80%=风险)';
+    document.getElementById('leg2').textContent='= 每单元周佣金 (正常$60-85)';
+    document.getElementById('leg3').textContent='= 价格/净收入 (越低越好,理想3-5x)';
+    document.getElementById('leg4').textContent='= Letting Pool单元数';
+    document.getElementById('leg5').textContent='= 合同年限';
+    document.getElementById('leg_g').textContent='🟢=良好';
+    document.getElementById('leg_y').textContent='🟡=注意';
+    document.getElementById('leg_r').textContent='🔴=风险';
+    document.getElementById('tab1').textContent='第1档';
+    document.getElementById('tab2').textContent='第2档';
+    document.getElementById('tab3').textContent='第3档';
+    document.getElementById('taba').textContent='全部';
+    document.getElementById('tab4').textContent='指南';
+    document.getElementById('foot').textContent='通过GitHub Pages自动更新';
+  } else {
+    document.getElementById('sub').textContent='Brisbane + Gold Coast | 20 Properties | 3 Tiers';
+    document.getElementById('leg_h').textContent='ABBREVIATIONS LEGEND';
+    document.getElementById('leg1').textContent='= Body Corp Salary % (ideal 60-70%, >80% = risk)';
+    document.getElementById('leg2').textContent='= Commission per unit per week (normal $60-85)';
+    document.getElementById('leg3').textContent='= Price / Net Income multiplier (lower = better, ideal 3-5x)';
+    document.getElementById('leg4').textContent='= Units in letting pool';
+    document.getElementById('leg5').textContent='= Contract years remaining';
+    document.getElementById('leg_g').textContent='🟢 = Good / Healthy';
+    document.getElementById('leg_y').textContent='🟡 = Acceptable / Caution';
+    document.getElementById('leg_r').textContent='🔴 = Risk / Problem';
+    document.getElementById('tab1').textContent='Tier 1 (13)';
+    document.getElementById('tab2').textContent='Tier 2 (3)';
+    document.getElementById('tab3').textContent='Tier 3 (4)';
+    document.getElementById('taba').textContent='All';
+    document.getElementById('tab4').textContent='Guide';
+    document.getElementById('foot').textContent='Auto-updated via GitHub Pages';
+  }
+}
 function show(id){
   document.querySelectorAll('.tp').forEach(function(t){t.classList.remove('act')});
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('act')});
