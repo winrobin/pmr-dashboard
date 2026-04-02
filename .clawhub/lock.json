@@ -4,6 +4,10 @@
     "frontend-design-3": {
       "version": "0.1.0",
       "installedAt": 1775044597482
+    },
+    "pr-reviewer": {
+      "version": "1.0.1",
+      "installedAt": 1775097644538
     }
   }
 }
