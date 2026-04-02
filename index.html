@@ -53,13 +53,25 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.95);backdrop-filt
 .gh{padding:14px 16px;cursor:pointer;font-weight:600;font-size:12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--bd)}
 .ha{font-size:9px;transition:.2s;color:var(--t3)}.gh.open .ha{transform:rotate(90deg);color:var(--ac)}
 .gc{padding:16px;display:none}.gc.open{display:block}
-.gc h4{font-size:10px;font-weight:700;color:var(--ac);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.6px}
-.gc p,.gc li{font-size:11px;color:var(--t2);margin-bottom:4px}
-.gc ul{padding-left:14px;margin-bottom:6px}
-.gc table{width:100%;border-collapse:collapse;margin:8px 0;font-size:10px}
-.gc th{background:var(--bg);padding:5px 8px;text-align:left;color:var(--tx);font-weight:600}
-.gc td{padding:5px 8px;border-bottom:1px solid var(--bd);color:var(--t2)}
-.fm{background:var(--bg);padding:8px 10px;border-radius:6px;font-family:'JetBrains Mono',monospace;color:var(--g);margin:6px 0;font-size:10px}
+.gc h4{font-size:11px;font-weight:700;color:var(--ac);margin:16px 0 8px;text-transform:uppercase;letter-spacing:.6px}
+.gc h4:first-child{margin-top:0}
+.gc p,.gc li{font-size:12px;color:var(--t2);margin-bottom:6px;line-height:1.6}
+.gc ul,.gc ol{padding-left:20px;margin-bottom:10px}
+.gc li{margin-bottom:4px;line-height:1.5}
+.gc table{width:100%;border-collapse:collapse;margin:10px 0;font-size:11px}
+.gc th{background:var(--bg);padding:8px;text-align:left;color:var(--tx);font-weight:600}
+.gc td{padding:8px;border-bottom:1px solid var(--bd);color:var(--t2)}
+.fm{background:var(--bg);padding:10px 12px;border-radius:6px;font-family:'JetBrains Mono',monospace;color:var(--g);margin:10px 0;font-size:11px;line-height:1.8}
+.tip{background:rgba(74,158,255,.06);border-left:3px solid var(--ac);padding:10px 12px;margin:8px 0;border-radius:0 6px 6px 0;font-size:11px;color:#93c5fd;line-height:1.5}
+.warn{background:rgba(239,68,68,.06);border-left:3px solid var(--r);padding:10px 12px;margin:8px 0;border-radius:0 6px 6px 0;font-size:11px;color:#fca5a5;line-height:1.5}
+.step{margin:12px 0}
+.step h4{font-size:12px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.step .num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:var(--ac);color:#000;border-radius:50%;font-size:11px;font-weight:700;flex-shrink:0}
+.step ul{padding-left:20px;margin-bottom:8px}
+.step li{margin-bottom:4px;font-size:12px;color:var(--t2);line-height:1.5}
+.checklist{list-style:none;padding-left:0}
+.checklist li{padding-left:24px;position:relative}
+.checklist li::before{content:'☐';position:absolute;left:0;color:var(--ac)}
 .ft{text-align:center;padding:20px 8px;font-size:9px;color:var(--t3);border-top:1px solid var(--bd);margin-top:16px}
 .ft b{color:var(--ac)}
 </style>
@@ -69,8 +81,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.95);backdrop-filt
 <div class="leg">
 <span><b>NI</b> <span class="en">Net Income</span><span class="zh">净收入</span></span>
 <span><b>BC%</b> <span class="en">Salary/Net (ideal 60-70%)</span><span class="zh">薪资占比(理想60-70%)</span></span>
-<span><b>MULT</b> <span class="en">Price/Net (lower=better)</span><span class="zh">价格/净收入(越低越好)</span></span>
-<span><b>POOL</b> <span class="en">Letting pool units</span><span class="zh">出租单元数</span></span>
+<span><b>MULT</b> <span class="en">Price/Net (lower=better)</span><span class="zh">价格/净利(越低越好)</span></span>
+<span><b>POOL</b> <span class="en">Letting pool units</span><span class="zh">出租单元</span></span>
 <span><b>CONT</b> <span class="en">Contract years</span><span class="zh">合同年限</span></span>
 </div>
 <div class="tabs">
@@ -87,381 +99,412 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.95);backdrop-filt
 <div class="sec-h"><span class="en">Tier 1: $500K-$1M</span><span class="zh">第一档：$500K-$1M</span><span class="b"></span></div>
 
 <div class="card"><div class="card-h"><span class="rk g">1</span><span class="nm">The Gap</span><a class="lk" href="https://accomproperties.com.au/business-display/business-the-gap,19190" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc g"><div class="v">$790K</div><div class="l">价格</div></div>
-<div class="mc g"><div class="v">$128K</div><div class="l">NI</div></div>
-<div class="mc g"><div class="v">61.5%</div><div class="l">BC%</div></div>
-<div class="mc g"><div class="v">6.17x</div><div class="l">Mult</div></div>
-<div class="mc g"><div class="v">14</div><div class="l">Pool</div></div>
-<div class="mc g"><div class="v">23yr</div><div class="l">Cont</div></div>
-</div>
+<div class="cb"><div class="mg"><div class="mc g"><div class="v">$790K</div><div class="l">价格</div></div><div class="mc g"><div class="v">$128K</div><div class="l">NI</div></div><div class="mc g"><div class="v">61.5%</div><div class="l">BC%</div></div><div class="mc g"><div class="v">6.17x</div><div class="l">Mult</div></div><div class="mc g"><div class="v">14</div><div class="l">Pool</div></div><div class="mc g"><div class="v">23yr</div><div class="l">Cont</div></div></div>
 <div class="notes"><span class="en">BC 61.5% ideal. 23yr secure. $68/wk normal (60-85). Multiple external units recoverable.</span><span class="zh">BC61.5%理想。23年极安全。$68/周正常(60-85)。多个外部单元可收回。</span></div>
 <div class="risks"><span class="en">Total unit count unknown. 12 external units need written BC recovery confirmation.</span><span class="zh">总套数未知。12个外部单元需BC书面确认收回。</span></div>
 <div class="action"><span class="en">→ Request total unit count + written BC external unit confirmation.</span><span class="zh">→ 获取总套数 + BC书面确认12个外部单元收回。</span></div>
 </div></div>
 
 <div class="card"><div class="card-h"><span class="rk g">2</span><span class="nm">West End</span><a class="lk" href="https://accomproperties.com.au/business-display/business-west-end,19008" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc g"><div class="v">$750K</div><div class="l">价格</div></div>
-<div class="mc g"><div class="v">$125K</div><div class="l">NI</div></div>
-<div class="mc g"><div class="v">61.1%</div><div class="l">BC%</div></div>
-<div class="mc g"><div class="v">5.99x</div><div class="l">Mult</div></div>
-<div class="mc r"><div class="v">?</div><div class="l">Pool</div></div>
-<div class="mc r"><div class="v">?</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">BC 61.1% healthy. CPI annual increases. New building = low maintenance.</span><span class="zh">BC61.1%健康。CPI年增。新建筑低维护。</span></div>
-<div class="risks"><span class="en">Pool and contract years completely undisclosed — biggest risk for any PMR deal.</span><span class="zh">Pool和合同年限完全未披露 — PMR投资最大风险。</span></div>
-<div class="action"><span class="en">→ Must request Pool + contract term + BC financials before any offer.</span><span class="zh">→ 必须要求Pool + 合同 + BC财务。</span></div>
+<div class="cb"><div class="mg"><div class="mc g"><div class="v">$750K</div><div class="l">价格</div></div><div class="mc g"><div class="v">$125K</div><div class="l">NI</div></div><div class="mc g"><div class="v">61.1%</div><div class="l">BC%</div></div><div class="mc g"><div class="v">5.99x</div><div class="l">Mult</div></div><div class="mc r"><div class="v">?</div><div class="l">Pool</div></div><div class="mc r"><div class="v">?</div><div class="l">Cont</div></div></div>
+<div class="notes"><span class="en">BC 61.1% healthy. CPI annual. New building low maintain.</span><span class="zh">BC61.1%健康。CPI年增。新建筑低维护。</span></div>
+<div class="risks"><span class="en">Pool/contract completely undisclosed — max risk.</span><span class="zh">Pool/合同完全未披露 — 最大风险。</span></div>
+<div class="action"><span class="en">→ Must request Pool + contract + BC financials.</span><span class="zh">→ 必须获取Pool + 合同 + BC财务。</span></div>
 </div></div>
 
 <div class="card"><div class="card-h"><span class="rk g">3</span><span class="nm">Burleigh Waters</span><a class="lk" href="https://accomproperties.com.au/business-display/business-burleigh-waters,19099" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc g"><div class="v">$850K</div><div class="l">价格</div></div>
-<div class="mc g"><div class="v">$210K</div><div class="l">NI</div></div>
-<div class="mc g"><div class="v">66.6%</div><div class="l">BC%</div></div>
-<div class="mc g"><div class="v">4.05x</div><div class="l">Mult</div></div>
-<div class="mc r"><div class="v">?</div><div class="l">Pool</div></div>
-<div class="mc r"><div class="v">?</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">BC 66.6% excellent balance. $210K net. 4.05x = recoup in ~4yr. Could be #1 if Pool/contract confirm.</span><span class="zh">BC66.6%极优秀。$210K净利。4.05x=~4年回本。若Pool/合同确认可是#1。</span></div>
-<div class="risks"><span class="en">Pool size and contract years unverified. Missing details = hidden risk.</span><span class="zh">Pool规模和合同年限未核实。缺失=隐藏风险。</span></div>
-<div class="action"><span class="en">→ Verify Pool + contract term + building age. Priority: confirm $210K holds.</span><span class="zh">→ 核实Pool + 合同 + 楼龄。优先确认$210K是否真实。</span></div>
+<div class="cb"><div class="mg"><div class="mc g"><div class="v">$850K</div><div class="l">价格</div></div><div class="mc g"><div class="v">$210K</div><div class="l">NI</div></div><div class="mc g"><div class="v">66.6%</div><div class="l">BC%</div></div><div class="mc g"><div class="v">4.05x</div><div class="l">Mult</div></div><div class="mc r"><div class="v">?</div><div class="l">Pool</div></div><div class="mc r"><div class="v">?</div><div class="l">Cont</div></div></div>
+<div class="notes"><span class="en">BC 66.6% excellent. $210K net. 4.05x=~4yr recoup. Could be #1 if Pool/contract confirm.</span><span class="zh">BC66.6%极优秀。$210K净利。4.05x=~4年回本。若Pool/合同确认可是#1。</span></div>
+<div class="risks"><span class="en">Pool/contract unverified = hidden risk.</span><span class="zh">Pool/合同未核实=隐藏风险。</span></div>
+<div class="action"><span class="en">→ Verify Pool + contract + building age. Priority: confirm $210K.</span><span class="zh">→ 核实Pool + 合同 + 楼龄。优先确认$210K。</span></div>
 </div></div>
 
 <div class="card"><div class="card-h"><span class="rk y">4</span><span class="nm">Chermside / Lutwyche</span><a class="lk" href="https://theonsitemanager.com.au/" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc y"><div class="v">$652K</div><div class="l">价格</div></div>
-<div class="mc r"><div class="v">$178K?</div><div class="l">NI</div></div>
-<div class="mc"><div class="v">—</div><div class="l">BC%</div></div>
-<div class="mc r"><div class="v">3.66x?</div><div class="l">Mult</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Pool</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">Two complexes ~4km apart. Very cheap $652K. If $178K net real, 3.66x fantastic — but ALL data from portal, not broker. May be rumor.</span><span class="zh">两栋~4km。$652K极便宜。若$178K属实3.66x极好 — 但数据来自门户非经纪人。可能是谣言。</span></div>
-<div class="risks"><span class="en">ALL data unverified. Source is portal, not broker. Net income and multiplier unknown.</span><span class="zh">所有数据未核实。来源门户非经纪人。净利和倍数未知。</span></div>
-<div class="action"><span class="en">→ Contact broker directly. If they cannot confirm $178K net, treat as unknown.</span><span class="zh">→ 直接联系经纪人。若无法确认$178K，视为未知。</span></div>
+<div class="cb"><div class="mg"><div class="mc y"><div class="v">$652K</div><div class="l">价格</div></div><div class="mc r"><div class="v">$178K?</div><div class="l">NI</div></div><div class="mc"><div class="v">—</div><div class="l">BC%</div></div><div class="mc r"><div class="v">3.66x?</div><div class="l">Mult</div></div><div class="mc"><div class="v">—</div><div class="l">Pool</div></div><div class="mc"><div class="v">—</div><div class="l">Cont</div></div></div>
+<div class="notes"><span class="en">2 complexes~4km. $652K cheap. If $178K real, 3.66x fantastic — but data from portal, not broker. May be rumor.</span><span class="zh">两栋~4km。$652K便宜。若$178K属实3.66x极好 — 但数据来自门户非经纪人。可能是谣言。</span></div>
+<div class="risks"><span class="en">ALL data unverified. Net income/multiplier unknown.</span><span class="zh">所有数据未核实。净利/倍数未知。</span></div>
+<div class="action"><span class="en">→ Contact broker. If cannot confirm $178K, treat as unknown.</span><span class="zh">→ 联系经纪人。若无法确认$178K，视为未知。</span></div>
 </div></div>
 
 <div class="card"><div class="card-h"><span class="rk r">5</span><span class="nm">Main Beach (2x)</span><a class="lk" href="https://accomproperties.com.au/business-display/business-main-beach,19111" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc g"><div class="v">$375K</div><div class="l">价格</div></div>
-<div class="mc g"><div class="v">$94K</div><div class="l">NI</div></div>
-<div class="mc r"><div class="v">83.7%</div><div class="l">BC%</div></div>
-<div class="mc g"><div class="v">4.0x</div><div class="l">Mult</div></div>
-<div class="mc g"><div class="v">8</div><div class="l">Pool</div></div>
-<div class="mc g"><div class="v">16yr</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">Two complexes $375K cheap. But BC 83.7% = mostly fixed salary = pure caretaker. Only $16K/yr from letting.</span><span class="zh">两栋$375K便宜。但BC83.7%=大部分固定薪资=纯caretaker。仅$16K/年letting。</span></div>
-<div class="risks"><span class="en">BC 83.7% = borderline caretaker trap! Cannot grow without pool expansion.</span><span class="zh">BC83.7%=接近caretaker陷阱！无Pool扩张无法增长。</span></div>
-<div class="action"><span class="en">→ Only consider if pool expansion possible. Verify total units and adding letting pool.</span><span class="zh">→ 仅当Pool可扩张时考虑。核实总单元及可加入更多。</span></div>
+<div class="cb"><div class="mg"><div class="mc g"><div class="v">$375K</div><div class="l">价格</div></div><div class="mc g"><div class="v">$94K</div><div class="l">NI</div></div><div class="mc r"><div class="v">83.7%</div><div class="l">BC%</div></div><div class="mc g"><div class="v">4.0x</div><div class="l">Mult</div></div><div class="mc g"><div class="v">8</div><div class="l">Pool</div></div><div class="mc g"><div class="v">16yr</div><div class="l">Cont</div></div></div>
+<div class="notes"><span class="en">2 complexes $375K cheap. BC 83.7%=mostly fixed salary=pure caretaker. Only $16K/yr letting.</span><span class="zh">两栋$375K便宜。BC83.7%=大部分固定薪资=纯caretaker。仅$16K/年letting。</span></div>
+<div class="risks"><span class="en">BC 83.7%=borderline caretaker trap!</span><span class="zh">BC83.7%=接近caretaker陷阱！</span></div>
+<div class="action"><span class="en">→ Only if pool expansion possible. Verify total units.</span><span class="zh">→ 仅当Pool可扩张。核实总单元。</span></div>
 </div></div>
 
 <div class="card"><div class="card-h"><span class="rk d">6</span><span class="nm">Wakerley (MR+U)</span><a class="lk" href="https://accomproperties.com.au/business-display/business-wakerley,19073" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc y"><div class="v">$1.67M</div><div class="l">合计</div></div>
-<div class="mc"><div class="v">—</div><div class="l">NI</div></div>
-<div class="mc"><div class="v">—</div><div class="l">BC%</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Mult</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Pool</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">MR $729K + Unit $950K = $1.67M. 'Massively reduced' — quick sale. Already topped up.</span><span class="zh">MR $729K + Unit $950K = $1.67M。大幅降价。已续签。</span></div>
-<div class="risks"><span class="en">ALL data missing — no net income, no BC%, no contract, no pool. Cannot evaluate.</span><span class="zh">所有数据缺失 — 无净利、BC%、合同、Pool。无法评估。</span></div>
-<div class="action"><span class="en">→ Request complete financial disclosure. If broker has no data, skip.</span><span class="zh">→ 要求完整财务披露。若经纪人无数据则跳过。</span></div>
+<div class="cb"><div class="mg"><div class="mc y"><div class="v">$1.67M</div><div class="l">Total</div></div><div class="mc"><div class="v">—</div><div class="l">NI</div></div><div class="mc"><div class="v">—</div><div class="l">BC%</div></div><div class="mc"><div class="v">—</div><div class="l">Mult</div></div><div class="mc"><div class="v">—</div><div class="l">Pool</div></div><div class="mc"><div class="v">—</div><div class="l">C</div></div></div>
+<div class="notes"><span class="en">MR $729K+Unit $950K=$1.67M. Reduced quick sale. Topped up.</span><span class="zh">MR$729K+Unit$950K=$1.67M。降价急售。已续签。</span></div>
+<div class="risks"><span class="en">ALL data missing — no NI, BC%, contract, pool.</span><span class="zh">所有数据缺失 — 无净利、BC%、合同、Pool。</span></div>
+<div class="action"><span class="en">→ Full disclosure required. Skip if no data.</span><span class="zh">→ 要求完整披露。无数据则跳过。</span></div>
 </div></div>
 
-<div class="card"><div class="card-h"><span class="rk r">7</span><span class="nm">Kangaroo Point CT</span><a class="lk" href="https://accomproperties.com.au/business-display/business-kangaroo-point,19029" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc g"><div class="v">$105K</div><div class="l">价格</div></div>
-<div class="mc g"><div class="v">$25K</div><div class="l">NI</div></div>
-<div class="mc r"><div class="v">100%</div><div class="l">BC%</div></div>
-<div class="mc g"><div class="v">4.1x</div><div class="l">Mult</div></div>
-<div class="mc r"><div class="v">0</div><div class="l">Pool</div></div>
-<div class="mc g"><div class="v">9yr</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">Pure caretaking — zero letting. 21 units, 20 owner-occupied. $25K/year but 100% from BC salary.</span><span class="zh">纯caretaker — 零letting。21单元20自住。$25K/年但100%来自BC薪资。</span></div>
-<div class="risks"><span class="en">🚨 Not a PMR investment! Just a job. Zero growth. If BC cuts caretaker role, lose everything.</span><span class="zh">🚨 不是PMR投资！只是份工作。零增长。若BC削减什么都没了。</span></div>
-<div class="action"><span class="en">→ SKIP — only portfolio add-on if already managing nearby.</span><span class="zh">→ 跳过 — 仅已管理附近portfolio时考虑附加。</span></div>
+<div class="card"><div class="card-h"><span class="rk r">7</span><span class="nm">Kangaroo Pt CT</span><a class="lk" href="https://accomproperties.com.au/business-display/business-kangaroo-point,19029" target="_blank">🔗</a></div>
+<div class="cb"><div class="mg"><div class="mc g"><div class="v">$105K</div><div class="l">Price</div></div><div class="mc g"><div class="v">$25K</div><div class="l">NI</div></div><div class="mc r"><div class="v">100%</div><div class="l">BC%</div></div><div class="mc g"><div class="v">4.1x</div><div class="l">Mult</div></div><div class="mc r"><div class="v">0</div><div class="l">Pool</div></div><div class="mc g"><div class="v">9yr</div><div class="l">Cont</div></div></div>
+<div class="notes"><span class="en">Pure caretaker — zero letting. 21 units 20 owner-occ. $25K 100% BC salary.</span><span class="zh">纯caretaker — 零letting。21单元20自住。$25K 100%BC薪资。</span></div>
+<div class="risks"><span class="en">🚨 Not a PMR! Just a job. Zero growth. If BC cuts, lose everything.</span><span class="zh">🚨 不是PMR！只是工作。零增长。若BC削减全没了。</span></div>
+<div class="action"><span class="en">→ SKIP — only portfolio add-on nearby.</span><span class="zh">→ 跳过 — 仅附近portfolio附加。</span></div>
 </div></div>
 
-<div class="card"><div class="card-h"><span class="rk d">8</span><span class="nm">Brisbane City</span><a class="lk" href="https://accomproperties.com.au/business-display/business-brisbane-city,19124" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc g"><div class="v">$608K</div><div class="l">价格</div></div>
-<div class="mc g"><div class="v">$116K</div><div class="l">NI</div></div>
-<div class="mc y"><div class="v">62.5%</div><div class="l">BC%</div></div>
-<div class="mc g"><div class="v">5.23x</div><div class="l">Mult</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Pool</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">Lowest entry $608K. Now confirmed: NI $116K, BC $72.4K+CPI. No on-site, no pool. Spare time management.</span><span class="zh">最低入门$608K。已确认：NI $116K, BC $72.4K+CPI。无需onsite和泳池。业余时间管理。</span></div>
-<div class="risks"><span class="en">Pool size and contract term unknown. Data recently updated by agent but still incomplete.</span><span class="zh">Pool规模和合同条款未知。代理人更新了数据但仍不完整。</span></div>
-<div class="action"><span class="en">→ Request Pool schedule + contract term + BC financials. Good potential if BC% stays ~62.5%.</span><span class="zh">→ 获取Pool + 合同 + BC财务。若BC%如62.5%显示则潜力很好。</span></div>
+<div class="card"><div class="card-h"><span class="rk d">8</span><span class="nm">Brisbane City</span><a class="lk" href="https://accomproperties.com.au/business-display/business-brisbane-city,19124" target="_blank">🔗</a><span class="new-badge">🆕 4/2</span></div>
+<div class="cb"><div class="mg"><div class="mc g"><div class="v">$608K</div><div class="l">Price</div></div><div class="mc g"><div class="v">$116K</div><div class="l">NI</div></div><div class="mc y"><div class="v">62.5%</div><div class="l">BC%</div></div><div class="mc g"><div class="v">5.23x</div><div class="l">Mult</div></div><div class="mc"><div class="v">—</div><div class="l">Pool</div></div><div class="mc"><div class="v">—</div><div class="l">C</div></div></div>
+<div class="notes"><span class="en">$608K lowest entry. Confirmed: NI $116K, BC $72.4K+CPI. Spare time mgmt.</span><span class="zh">$608K最低。确认：NI $116K, BC $72.4K+CPI。业余时间管理。</span></div>
+<div class="risks"><span class="en">Pool/contract unknown. Updated by agent but still incomplete.</span><span class="zh">Pool/合同未知。代理人更新了但仍不完整。</span></div>
+<div class="action"><span class="en">→ Pool+contract+BC financials. Good potential with BC% ~62.5%.</span><span class="zh">→ Pool/合同/BC财务。若BC%如62.5%潜力好。</span></div>
 </div></div>
 
 <div class="card"><div class="card-h"><span class="rk r">9</span><span class="nm">Silver Quays</span><a class="lk" href="https://accomproperties.com.au/business-display/business-kangaroo-point,19211" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc g"><div class="v">$691K</div><div class="l">价格</div></div>
-<div class="mc g"><div class="v">$138K</div><div class="l">NI</div></div>
-<div class="mc r"><div class="v">93.6%</div><div class="l">BC%</div></div>
-<div class="mc g"><div class="v">5.0x</div><div class="l">Mult</div></div>
-<div class="mc y"><div class="v">5</div><div class="l">Pool</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">BC 93.6% = only ~$9K from letting business. Classic caretaker trap.</span><span class="zh">BC93.6%=仅~$9K来自letting。经典caretaker陷阱。</span></div>
-<div class="risks"><span class="en">🚨 $34/wk absurdly low (normal $60-85). No growth. If BC cuts caretaker, income crashes from $138K to ~$9K/yr.</span><span class="zh">🚨 $34/周极低（正常$60-85）。无法增长。若BC削减，收入从$138K暴跌至~$9K/年。</span></div>
-<div class="action"><span class="en">→ AVOID — structure means no real letting business.</span><span class="zh">→ 避免 — 无真正letting业务。</span></div>
+<div class="cb"><div class="mg"><div class="mc g"><div class="v">$691K</div><div class="l">Price</div></div><div class="mc g"><div class="v">$138K</div><div class="l">NI</div></div><div class="mc r"><div class="v">93.6%</div><div class="l">BC%</div></div><div class="mc g"><div class="v">5.0x</div><div class="l">Mult</div></div><div class="mc y"><div class="v">5</div><div class="l">Pool</div></div><div class="mc"><div class="v">—</div><div class="l">C</div></div></div>
+<div class="notes"><span class="en">BC 93.6%=only ~$9K from letting. Classic caretaker trap.</span><span class="zh">BC93.6%=仅~$9K来自letting。经典caretaker陷阱。</span></div>
+<div class="risks"><span class="en">🚨 $34/wk extremely low. If BC cuts, income crashes to ~$9K/yr.</span><span class="zh">🚨 $34/周极低。若BC削减收入跌至~$9K/年。</span></div>
+<div class="action"><span class="en">→ AVOID — no real letting business.</span><span class="zh">→ 避免 — 无真正letting业务。</span></div>
 </div></div>
 
 <div class="card"><div class="card-h"><span class="rk d">10</span><span class="nm">Mermaid Waters</span></div>
-<div class="cb"><div class="mg">
-<div class="mc y"><div class="v">$1.6M</div><div class="l">价格</div></div>
-<div class="mc g"><div class="v">$80K</div><div class="l">NI</div></div>
-<div class="mc r"><div class="v">89.5%</div><div class="l">BC%</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Mult</div></div>
-<div class="mc y"><div class="v">5</div><div class="l">Pool</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">GC. $80K net, BC89.5%=borderline caretaker. Only 5 Pool. Manager estate included in $1.6M.</span><span class="zh">GC。$80K净利但BC89.5%=接近caretaker。仅5Pool。含经理房产($1.6M)。</span></div>
-<div class="risks"><span class="en">BC 89.5% high. Over Tier 1 budget. Very little letting income. Not standalone.</span><span class="zh">BC89.5%偏高。超Tier1预算。letting收入极少。不适合独立。</span></div>
+<div class="cb"><div class="mg"><div class="mc y"><div class="v">$1.6M</div><div class="l">Price</div></div><div class="mc g"><div class="v">$80K</div><div class="l">NI</div></div><div class="mc r"><div class="v">89.5%</div><div class="l">BC%</div></div><div class="mc"><div class="v">—</div><div class="l">Mult</div></div><div class="mc y"><div class="v">5</div><div class="l">Pool</div></div><div class="mc"><div class="v">—</div><div class="l">C</div></div></div>
+<div class="notes"><span class="en">GC. $80K, BC89.5%=caretaker. 5 Pool. $1.6M incl estate.</span><span class="zh">GC。$80K, BC89.5%=接近caretaker。5池。含房产$1.6M。</span></div>
+<div class="risks"><span class="en">BC89.5% high. Over budget. Not standalone.</span><span class="zh">BC89.5%偏高。超预算。不适合独立。</span></div>
 </div></div>
 
 <div class="card"><div class="card-h"><span class="rk d">11</span><span class="nm">Broadbeach Waters</span><a class="lk" href="https://accomproperties.com.au/management-rights-for-sale-gold-coast" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc r"><div class="v">?</div><div class="l">价格</div></div>
-<div class="mc g"><div class="v">$115K</div><div class="l">NI</div></div>
-<div class="mc r"><div class="v">?</div><div class="l">BC%</div></div>
-<div class="mc r"><div class="v">?</div><div class="l">Mult</div></div>
-<div class="mc r"><div class="v">?</div><div class="l">Pool</div></div>
-<div class="mc r"><div class="v">?</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">$115K net/yr. No RE buy, no onsite, no office hours. Asking price TBD.</span><span class="zh">净$115K/年。无需购房、onsite、办公。要价待询。</span></div>
-<div class="risks"><span class="en">Price/BC%/Pool all unknown. Many unknowns = must get details.</span><span class="zh">价格/BC%/Pool均未知。多个未知=必须获取详情。</span></div>
-<div class="action"><span class="en">→ Must get price + BC% + pool numbers before evaluation.</span><span class="zh">→ 必须获取价格+BC%+Pool数字才能评估。</span></div>
+<div class="cb"><div class="mg"><div class="mc r"><div class="v">?</div><div class="l">Price</div></div><div class="mc g"><div class="v">$115K</div><div class="l">NI</div></div><div class="mc r"><div class="v">?</div><div class="l">BC%</div></div><div class="mc r"><div class="v">?</div><div class="l">Mult</div></div><div class="mc r"><div class="v">?</div><div class="l">Pool</div></div><div class="mc r"><div class="v">?</div><div class="l">C</div></div></div>
+<div class="notes"><span class="en">$115K/yr. No RE buy, no onsite. Asking TBD.</span><span class="zh">$115K/年。无需购房无onsite。要价待询。</span></div>
+<div class="risks"><span class="en">Price/BC%/Pool unknown. Must get details.</span><span class="zh">价格/BC%/Pool未知。必须获取详情。</span></div>
+<div class="action"><span class="en">→ Get price + BC% + pool before evaluating.</span><span class="zh">→ 获取价格+BC%+Pool才能评估。</span></div>
 </div></div>
 
-<div class="card"><div class="card-h"><span class="rk r">12</span><span class="nm">Mermaid Beach $220K</span></div>
-<div class="cb"><div class="mg">
-<div class="mc g"><div class="v">$220K</div><div class="l">价格</div></div>
-<div class="mc y"><div class="v">~$22K</div><div class="l">NI</div></div>
-<div class="mc r"><div class="v">~100%</div><div class="l">BC%</div></div>
-<div class="mc r"><div class="v">~10x</div><div class="l">Mult</div></div>
-<div class="mc r"><div class="v">0</div><div class="l">Pool</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">Pure caretaking — zero letting. $220K for $22K/yr job at ~10x multiplier. Bad value.</span><span class="zh">纯caretaker — 零letting。$220K买$22K/年工作。价值太差。</span></div>
-<div class="risks"><span class="en">🚨 Skip — not an investment property, just a bad-return job.</span><span class="zh">🚨 跳过 — 不是投资物业，只是差回报工作。</span></div>
+<div class="card"><div class="card-h"><span class="rk r">12</span><span class="nm">Mrd Beach $220K</span></div>
+<div class="cb"><div class="mg"><div class="mc g"><div class="v">$220K</div><div class="l">Price</div></div><div class="mc y"><div class="v">~$22K</div><div class="l">NI</div></div><div class="mc r"><div class="v">~100%</div><div class="l">BC%</div></div><div class="mc r"><div class="v">~10x</div><div class="l">Mult</div></div><div class="mc r"><div class="v">0</div><div class="l">Pool</div></div><div class="mc"><div class="v">—</div><div class="l">C</div></div></div>
+<div class="notes"><span class="en">Pure caretaker. $220K for $22K/yr job at ~10x. Bad value.</span><span class="zh">纯caretaker。$220K买$22K/年~10x。价值差。</span></div>
+<div class="risks"><span class="en">🚨 Skip — bad-return job, not investment.</span><span class="zh">🚨 跳过 — 差回报工作非投资。</span></div>
 </div></div>
 
 <div class="card"><div class="card-h"><span class="rk d">13</span><span class="nm">Brisbane Tender</span><a class="lk" href="https://accomproperties.com.au/business-display/business-brisbane-city,19103" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc r"><div class="v">TBD</div><div class="l">价格</div></div>
-<div class="mc"><div class="v">—</div><div class="l">NI</div></div>
-<div class="mc"><div class="v">—</div><div class="l">BC%</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Mult</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Pool</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">Tender closes Apr 17, 4PM AEST. Service provider + letting. No data.</span><span class="zh">截止4/17 4PM。服务协议+租赁代理。无数据。</span></div>
-<div class="action"><span class="en">→ Request Tender Pack. Deadline firm.</span><span class="zh">→ 索取Tender Pack。截止日期固定。</span></div>
+<div class="cb"><div class="mg"><div class="mc r"><div class="v">TBD</div><div class="l">Price</div></div><div class="mc"><div class="v">—</div><div class="l">NI</div></div><div class="mc"><div class="v">—</div><div class="l">BC%</div></div><div class="mc"><div class="v">—</div><div class="l">Mult</div></div><div class="mc"><div class="v">—</div><div class="l">Pool</div></div><div class="mc"><div class="v">—</div><div class="l">C</div></div></div>
+<div class="notes"><span class="en">Closes Apr 17 4PM. Service+letting. No data.</span><span class="zh">截止4/17 4PM。服务+租赁。无数据。</span></div>
+<div class="action"><span class="en">→ Get Tender Pack. Deadline firm.</span><span class="zh">→ 获取Tender Pack。截止固定。</span></div>
 </div></div>
 </div>
 
 <!-- TIER 2 -->
 <div class="tp" id="t2"><div class="sec-h"><span class="en">Tier 2: $1M-$1.5M</span><span class="zh">第二档：$1M-$1.5M</span><span class="b"></span></div>
-<div class="card new"><div class="card-h"><span class="rk g" style="background:#22c55e"><span class="new-badge">🆕 NEW</span>T1</span><span class="nm">Margate "Nautica" (Off-Plan)</span><a class="lk" href="https://www.resortbrokers.com.au/management-rights-for-sale/queensland/redcliffe/OTP008991/" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc y"><div class="v">$500K+</div><div class="l">起价</div></div>
-<div class="mc g"><div class="v">$125K</div><div class="l">NI</div></div>
-<div class="mc g"><div class="v">50.4%</div><div class="l">BC%</div></div>
-<div class="mc g"><div class="v">&lt;4x</div><div class="l">Mult</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Pool</div></div>
-<div class="mc g"><div class="v">25yr</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">🆕 DISCOVERED TODAY! 42-townhouse "Nautica" development, Redcliffe. Projected NI $125K, BC $63K, 25yr Accommodation Module. Business only, no RE purchase. Low maintenance. Expected mid-2026 completion.</span><span class="zh">🆕 今天新发现！42镇屋"Nautica"项目，Redcliffe。预计NI $125K, BC $63K, 25年协议。纯商业无房产。低维护。预计2026年中完成。</span></div>
-<div class="risks"><span class="en">⚠️ Off-the-plan — projected figures NOT proven. No physical building yet. Must verify projected vs actual. BC 50.4% looks healthy on paper but unverified.</span><span class="zh">⚠️ 期房 — 预计数字未经验证。无实际建筑。必须核实预计vs实际。BC50.4%纸面看起来健康但未核实。</span></div>
-<div class="action"><span class="en">→ Contact Resort Brokers for full details and construction progress. Get developer track record. Verify 25yr contract terms.</span><span class="zh">→ 联系Resort Brokers获取完整详情和建造进度。获取开发商记录。核实25年合同条款。</span></div>
+<div class="card new"><div class="card-h"><span class="rk g"><span class="new-badge">🆕 NEW</span></span><span class="nm">Margate "Nautica"</span><a class="lk" href="https://www.resortbrokers.com.au/management-rights-for-sale/queensland/redcliffe/OTP008991/" target="_blank">🔗</a></div>
+<div class="cb"><div class="mg"><div class="mc y"><div class="v">$500K+</div><div class="l">Price</div></div><div class="mc g"><div class="v">$125K</div><div class="l">NI</div></div><div class="mc g"><div class="v">50.8%</div><div class="l">BC%</div></div><div class="mc g"><div class="v">&lt;4x</div><div class="l">Mult</div></div><div class="mc"><div class="v">—</div><div class="l">Pool</div></div><div class="mc g"><div class="v">25yr</div><div class="l">Cont</div></div></div>
+<div class="notes"><span class="en">DISCOVERED TODAY! 42-townhouse "Nautica" Redcliffe. NI $125K, BC $63K, 25yr. Business only, no RE. Mid-2026 completion.</span><span class="zh">今天新发现！42镇屋"Nautica"Redcliffe。NI $125K, BC $63K, 25年。纯商业无房产。2026年中完成。</span></div>
+<div class="risks"><span class="en">⚠️ Off-plan — projected figures UNPROVEN. Must verify projected vs actual.</span><span class="zh">⚠️ 期房 — 预计数字未经验证。必须核实预计vs实际。</span></div>
+<div class="action"><span class="en">→ Contact Resort Brokers for details + developer track record.</span><span class="zh">→ 联系Resort Brokers获取详情+开发商记录。</span></div>
 </div></div>
-<div class="card"><div class="card-h"><span class="rk d">T2</span><span class="nm">Teneriffe</span><a class="lk" href="https://accomproperties.com.au/business-display/business-teneriffe,19064" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc y"><div class="v">$1.4M</div><div class="l">价格</div></div>
-<div class="mc"><div class="v">—</div><div class="l">NI</div></div>
-<div class="mc"><div class="v">—</div><div class="l">BC%</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Mult</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Pool</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">Blue-chip CBD+Riverwalk. All data missing. $1.357M asking.</span><span class="zh">蓝钻CBD+Riverwalk地段。全数据缺失。$1.357M要价。</span></div>
+<div class="card"><div class="card-h"><span class="rk d">T1</span><span class="nm">Teneriffe</span><a class="lk" href="https://accomproperties.com.au/business-display/business-teneriffe,19064" target="_blank">🔗</a></div>
+<div class="cb"><div class="mg"><div class="mc y"><div class="v">$1.4M</div><div class="l">Price</div></div><div class="mc"><div class="v">—</div><div class="l">NI</div></div><div class="mc"><div class="v">—</div><div class="l">BC%</div></div><div class="mc"><div class="v">—</div><div class="l">Mult</div></div><div class="mc"><div class="v">—</div><div class="l">Pool</div></div><div class="mc"><div class="v">—</div><div class="l">C</div></div></div>
+<div class="notes"><span class="en">Blue-chip CBD+Riverwalk. All missing. $1.357M.</span><span class="zh">蓝钻CBD+Riverwalk。全缺失。$1.357M。</span></div>
 <div class="action"><span class="en">→ Get full disclosure from Resort Brokers.</span><span class="zh">→ 从Resort Brokers获取完整披露。</span></div>
 </div></div>
-<div class="card"><div class="card-h"><span class="rk d">T3</span><span class="nm">Bulimba</span><a class="lk" href="https://accomproperties.com.au/business-display/business-bulimba,18986" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc y"><div class="v">$2.1M</div><div class="l">Total</div></div>
-<div class="mc g"><div class="v">$257K</div><div class="l">NI</div></div>
-<div class="mc"><div class="v">—</div><div class="l">BC%</div></div>
-<div class="mc g"><div class="v">5.25x</div><div class="l">Mult</div></div>
-<div class="mc"><div class="v">—</div><div class="l">P</div></div>
-<div class="mc"><div class="v">—</div><div class="l">C</div></div>
-</div>
-<div class="notes"><span class="en">$257K net healthy. 5.25x fair. But total $2.14M (MR+Unit) — serious consideration.</span><span class="zh">$257K净利健康。5.25x合理。但总投入$2.14M (MR+Unit) — 需认真考虑。</span></div>
-<div class="action"><span class="en">→ Full DD required. Verify BC% and Pool size before committing.</span><span class="zh">→ 需要完整尽调。核实BC%和Pool。</span></div>
+<div class="card"><div class="card-h"><span class="rk d">T2</span><span class="nm">Bulimba</span><a class="lk" href="https://accomproperties.com.au/business-display/business-bulimba,18986" target="_blank">🔗</a></div>
+<div class="cb"><div class="mg"><div class="mc y"><div class="v">$2.1M</div><div class="l">Total</div></div><div class="mc g"><div class="v">$257K</div><div class="l">NI</div></div><div class="mc"><div class="v">—</div><div class="l">BC%</div></div><div class="mc g"><div class="v">5.25x</div><div class="l">Mult</div></div><div class="mc"><div class="v">—</div><div class="l">P</div></div><div class="mc"><div class="v">—</div><div class="l">C</div></div></div>
+<div class="notes"><span class="en">$257K healthy. 5.25x fair. Total $2.14M.</span><span class="zh">$257K健康。5.25x合理。总计$2.14M。</span></div>
+<div class="action"><span class="en">→ Full DD. Verify BC% and Pool size.</span><span class="zh">→ 完整尽调。核实BC%和Pool。</span></div>
 </div></div>
-<div class="card"><div class="card-h"><span class="rk d">T4</span><span class="nm">Clontarf</span><a class="lk" href="https://www.resortbrokers.com.au/management-rights-for-sale/queensland/" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc y"><div class="v">$1.1M</div><div class="l">价格</div></div>
-<div class="mc"><div class="v">—</div><div class="l">NI</div></div>
-<div class="mc"><div class="v">—</div><div class="l">BC%</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Mult</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Pool</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">Moreton Bay region. Zero data disclosed. Resort Brokers listing.</span><span class="zh">Moreton Bay区。零数据披露。Resort Brokers挂牌。</span></div>
+<div class="card"><div class="card-h"><span class="rk d">T3</span><span class="nm">Clontarf</span><a class="lk" href="https://www.resortbrokers.com.au/management-rights-for-sale/queensland/" target="_blank">🔗</a></div>
+<div class="cb"><div class="mg"><div class="mc y"><div class="v">$1.1M</div><div class="l">Price</div></div><div class="mc"><div class="v">—</div><div class="l">NI</div></div><div class="mc"><div class="v">—</div><div class="l">BC%</div></div><div class="mc"><div class="v">—</div><div class="l">Mult</div></div><div class="mc"><div class="v">—</div><div class="l">Pool</div></div><div class="mc"><div class="v">—</div><div class="l">C</div></div></div>
+<div class="notes"><span class="en">Moreton Bay. Zero data. Resort Brokers.</span><span class="zh">Moreton Bay。零数据。Resort Brokers。</span></div>
 <div class="action"><span class="en">→ Request full disclosure.</span><span class="zh">→ 获取完整披露。</span></div>
 </div></div>
 </div>
 
 <!-- TIER 3 -->
 <div class="tp" id="t3"><div class="sec-h"><span class="en">Tier 3: $1.5M+</span><span class="zh">第三档：$1.5M+</span><span class="b"></span></div>
-<div class="card"><div class="card-h"><span class="rk d">T5</span><span class="nm">Brisbane CBD Waterfront</span><a class="lk" href="https://accomproperties.com.au/business-display/business-brisbane-city,19147" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc r"><div class="v">$2.9M</div><div class="l">价格</div></div>
-<div class="mc g"><div class="v">$431K</div><div class="l">NI</div></div>
-<div class="mc g"><div class="v">58%</div><div class="l">BC%</div></div>
-<div class="mc y"><div class="v">6.7x</div><div class="l">Mult</div></div>
-<div class="mc g"><div class="v">52</div><div class="l">Pool</div></div>
-<div class="mc y"><div class="v">8yr</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">$431K net, BC 58% healthy, 52Pool, multiple top-up history. Outstanding — but $2.9M is 5x Tier 1 budget.</span><span class="zh">$431K净利，BC58%健康，52Pool，多次top-up历史。极优秀 — 但$2.9M是Tier1预算5倍大。</span></div>
-<div class="risks"><span class="en">⚠️ $2.9M too huge. 8yr contract short for this price.</span><span class="zh">⚠️ $2.9M太大。8年合同对此价格太短。</span></div>
+<div class="card"><div class="card-h"><span class="rk d">T4</span><span class="nm">Brisbane CBD Waterfront</span><a class="lk" href="https://accomproperties.com.au/business-display/business-brisbane-city,19147" target="_blank">🔗</a></div>
+<div class="cb"><div class="mg"><div class="mc r"><div class="v">$2.9M</div><div class="l">Price</div></div><div class="mc g"><div class="v">$431K</div><div class="l">NI</div></div><div class="mc g"><div class="v">58%</div><div class="l">BC%</div></div><div class="mc y"><div class="v">6.7x</div><div class="l">Mult</div></div><div class="mc g"><div class="v">52</div><div class="l">Pool</div></div><div class="mc y"><div class="v">8yr</div><div class="l">Cont</div></div></div>
+<div class="notes"><span class="en">$431K, BC58%, 52Pool, top-up history. Outstanding.</span><span class="zh">$431K, BC58%, 52Pool, top-up历史。极优秀。</span></div>
+<div class="risks"><span class="en">⚠️ $2.9M huge. 8yr contract short.</span><span class="zh">⚠️ $2.9M太大。8年合同太短。</span></div>
 </div></div>
-<div class="card"><div class="card-h"><span class="rk d">T6</span><span class="nm">Mermaid Beach Premium</span><a class="lk" href="https://accomproperties.com.au/business-display-business-mermaid-beach,18815" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc r"><div class="v">$1.9M</div><div class="l">价格</div></div>
-<div class="mc g"><div class="v">$240K</div><div class="l">NI</div></div>
-<div class="mc g"><div class="v">52%</div><div class="l">BC%</div></div>
-<div class="mc y"><div class="v">7.9x</div><div class="l">Mult</div></div>
-<div class="mc g"><div class="v">18</div><div class="l">Pool</div></div>
-<div class="mc g"><div class="v">21yr</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">Best in T3+: BC 52%, 21yr, $240K net, 18Pool, Holiday+Permanent mix. Manager unit $850K extra. Zero onsite.</span><span class="zh">T3+最佳：BC52%，21年，$240K，18Pool，假日长租混合。经理unit $850K额外。零onsite。</span></div>
-<div class="risks"><span class="en">⚠️ $1.9M over budget. 7.9x multiplier high.</span><span class="zh">⚠️ $1.9M超预算。7.9x倍数偏高。</span></div>
+<div class="card"><div class="card-h"><span class="rk d">T5</span><span class="nm">Mermaid Bch Premium</span><a class="lk" href="https://accomproperties.com.au/business-display-business-mermaid-beach,18815" target="_blank">🔗</a></div>
+<div class="cb"><div class="mg"><div class="mc r"><div class="v">$1.9M</div><div class="l">Price</div></div><div class="mc g"><div class="v">$240K</div><div class="l">NI</div></div><div class="mc g"><div class="v">52%</div><div class="l">BC%</div></div><div class="mc y"><div class="v">7.9x</div><div class="l">Mult</div></div><div class="mc g"><div class="v">18</div><div class="l">Pool</div></div><div class="mc g"><div class="v">21yr</div><div class="l">Cont</div></div></div>
+<div class="notes"><span class="en">Best T3+: BC52%, 21yr, $240K, 18Pool, 0 onsite.</span><span class="zh">T3+最佳：BC52%, 21年, $240K, 18Pool, 零onsite。</span></div>
+<div class="risks"><span class="en">⚠️ $1.9M over budget. 7.9x high.</span><span class="zh">⚠️ $1.9M超预算。7.9x偏高。</span></div>
 </div></div>
-<div class="card"><div class="card-h"><span class="rk d">T7</span><span class="nm">Palm Beach Mixed</span><a class="lk" href="https://accomproperties.com.au/business-display/business-palm-beach,19062" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc r"><div class="v">$1.6M</div><div class="l">价格</div></div>
-<div class="mc"><div class="v">—</div><div class="l">NI</div></div>
-<div class="mc"><div class="v">—</div><div class="l">BC%</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Mult</div></div>
-<div class="mc g"><div class="v">16/28</div><div class="l">Pool</div></div>
-<div class="mc g"><div class="v">18yr</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">16/28 Pool=57% excellent. 18yr contract strong. But all financials unknown.</span><span class="zh">16/28 Pool=57%极佳。18年合同强。但所有财务未知。</span></div>
+<div class="card"><div class="card-h"><span class="rk d">T6</span><span class="nm">Palm Beach</span><a class="lk" href="https://accomproperties.com.au/business-display/business-palm-beach,19062" target="_blank">🔗</a></div>
+<div class="cb"><div class="mg"><div class="mc r"><div class="v">$1.6M</div><div class="l">Price</div></div><div class="mc"><div class="v">—</div><div class="l">NI</div></div><div class="mc"><div class="v">—</div><div class="l">BC%</div></div><div class="mc"><div class="v">—</div><div class="l">Mult</div></div><div class="mc g"><div class="v">16/28</div><div class="l">Pool</div></div><div class="mc g"><div class="v">18yr</div><div class="l">Cont</div></div></div>
+<div class="notes"><span class="en">16/28=57% excellent. 18yr. Financials unknown.</span><span class="zh">16/28=57%极佳。18年。财务未知。</span></div>
 </div></div>
-<div class="card"><div class="card-h"><span class="rk d">T8</span><span class="nm">Mansfield</span><a class="lk" href="https://www.resortbrokers.com.au/management-rights-for-sale/queensland/" target="_blank">🔗</a></div>
-<div class="cb"><div class="mg">
-<div class="mc r"><div class="v">$1.6M</div><div class="l">价格</div></div>
-<div class="mc"><div class="v">—</div><div class="l">NI</div></div>
-<div class="mc"><div class="v">—</div><div class="l">BC%</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Mult</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Pool</div></div>
-<div class="mc"><div class="v">—</div><div class="l">Cont</div></div>
-</div>
-<div class="notes"><span class="en">$1.6M. Zero data. Resort Brokers listing.</span><span class="zh">$1.6M。零数据。Resort Brokers挂牌。</span></div>
+<div class="card"><div class="card-h"><span class="rk d">T7</span><span class="nm">Mansfield</span><a class="lk" href="https://www.resortbrokers.com.au/management-rights-for-sale/queensland/" target="_blank">🔗</a></div>
+<div class="cb"><div class="mg"><div class="mc r"><div class="v">$1.6M</div><div class="l">Price</div></div><div class="mc"><div class="v">—</div><div class="l">NI</div></div><div class="mc"><div class="v">—</div><div class="l">BC%</div></div><div class="mc"><div class="v">—</div><div class="l">Mult</div></div><div class="mc"><div class="v">—</div><div class="l">Pool</div></div><div class="mc"><div class="v">—</div><div class="l">C</div></div></div>
+<div class="notes"><span class="en">$1.6M. Zero data. Resort Brokers.</span><span class="zh">$1.6M。零数据。Resort Brokers。</span></div>
 </div></div>
 </div>
 
 <!-- ALL TABLE -->
 <div class="tp" id="ta"><div class="sec-h"><span class="en">All Properties</span><span class="zh">全部物业</span><span class="b"></span></div>
-<div class="tw"><table class="t"><thead><tr>
-<th>T</th><th>#</th><th>Name</th><th>Pr</th><th>NI</th><th>BC%</th><th>Mult</th><th>P</th><th>C</th><th>Flag</th><th>🔗</th>
-</tr></thead><tbody>
-<tr><td>T1</td><td>1</td><td>The Gap</td><td class="tg">$790K</td><td class="tg">$128K</td><td class="tg">61.5%</td><td class="ty">6.17x</td><td class="tg">14</td><td class="tg">23yr</td><td class="tg">✅</td><td><a href="https://accomproperties.com.au/business-display/business-the-gap,19190" target="_blank">🔗</a></td></tr>
-<tr><td>T1</td><td>2</td><td>West End</td><td class="tg">$750K</td><td class="tg">$125K</td><td class="tg">61.1%</td><td class="tg">5.99x</td><td class="ty">?</td><td class="ty">?</td><td class="ty">⚠️</td><td><a href="https://accomproperties.com.au/business-display/business-west-end,19008" target="_blank">🔗</a></td></tr>
-<tr><td>T1</td><td>3</td><td>Burleigh Wt</td><td class="tg">$850K</td><td class="tg">$210K</td><td class="tg">66.6%</td><td class="tg">4.05x</td><td class="ty">?</td><td class="ty">?</td><td class="tg">🔍</td><td><a href="https://accomproperties.com.au/business-display/business-burleigh-waters,19099" target="_blank">🔗</a></td></tr>
-<tr><td>T1</td><td>4</td><td>Chermside</td><td class="tg">$652K</td><td class="ty">$178K?</td><td class="ty">—</td><td class="ty">3.66x?</td><td class="ty">—</td><td class="ty">—</td><td class="ty">⚠️</td><td><a href="https://theonsitemanager.com.au/" target="_blank">🔗</a></td></tr>
-<tr><td>T1</td><td>5</td><td>Main Bch 2x</td><td class="tg">$375K</td><td class="tg">$94K</td><td class="tr">83.7%</td><td class="tg">4.0x</td><td class="tg">8</td><td class="tg">16yr</td><td class="tr">⚠️BC%</td><td><a href="https://accomproperties.com.au/business-display/business-main-beach,19111" target="_blank">🔗</a></td></tr>
-<tr><td>T1</td><td>6</td><td>Wakerley</td><td class="ty">$1.67M</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">无数据</td><td><a href="https://accomproperties.com.au/business-display/business-wakerley,19073" target="_blank">🔗</a></td></tr>
-<tr><td>T1</td><td>7</td><td>Kangaroo Pt CT</td><td class="tg">$105K</td><td class="tg">$25K</td><td class="tr">100%</td><td class="tg">4.1x</td><td class="tr">0</td><td class="tg">9yr</td><td class="tr">🚨</td><td><a href="https://accomproperties.com.au/business-display/business-kangaroo-point,19029" target="_blank">🔗</a></td></tr>
-<tr><td>T1</td><td class="td" style="background:rgba(34,197,94,.08)">8</td><td>Brisbane City <span class="new-badge" style="font-size:8px;padding:0 3px">🆕 4/2</span></td><td class="tg">$608K</td><td class="tg">$116K</td><td class="ty">62.5%</td><td class="tg">5.23x</td><td class="ty">—</td><td class="ty">—</td><td class="ty">✅已更新</td><td><a href="https://accomproperties.com.au/business-display/business-brisbane-city,19124" target="_blank">🔗</a></td></tr>
-<tr><td>T1</td><td>9</td><td>Silver Quays</td><td class="tg">$691K</td><td class="tg">$138K</td><td class="tr">93.6%</td><td class="tg">5.0x</td><td class="ty">5</td><td class="ty">—</td><td class="tr">🚨Trap</td><td><a href="https://accomproperties.com.au/business-display/business-kangaroo-point,19211" target="_blank">🔗</a></td></tr>
-<tr><td>T1</td><td>10</td><td>Mermaid Waters</td><td class="ty">$1.6M</td><td class="tg">$80K</td><td class="tr">89.5%</td><td class="ty">—</td><td class="ty">5</td><td class="ty">—</td><td class="ty">超预算</td><td></td></tr>
-<tr><td>T1</td><td>11</td><td>Broadbeach</td><td class="ty">?</td><td class="tg">$115K</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">未知</td><td><a href="https://accomproperties.com.au/management-rights-for-sale-gold-coast" target="_blank">🔗</a></td></tr>
-<tr><td>T1</td><td>12</td><td>Mrd Bch CT</td><td class="tg">$220K</td><td class="ty">~$22K</td><td class="tr">~100%</td><td class="ty">~10x</td><td class="tr">0</td><td class="ty">—</td><td class="tr">🚨</td><td></td></tr>
-<tr><td>T1</td><td>13</td><td>Tender</td><td class="ty">TBD</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">4/17</td><td><a href="https://accomproperties.com.au/business-display/business-brisbane-city,19103" target="_blank">🔗</a></td></tr>
-<tr style="border-top:2px solid var(--a)"><td class="tg" style="background:rgba(239,68,68,.08)">T2</td><td style="background:rgba(239,68,68,.08)">🆕</td><td style="background:#111318">Margate "Nautica"</td><td class="ty">$500K+</td><td class="tg">$125K</td><td class="tg">50.4%</td><td class="ty">~4x</td><td class="ty">—</td><td class="tg">25yr</td><td class="tg">✅极佳</td><td><a href="https://www.resortbrokers.com.au/management-rights-for-sale/queensland/redcliffe/OTP008991/" target="_blank">🔗</a></td></tr>
-<tr><td>T2</td><td>T2</td><td>Teneriffe</td><td class="ty">$1.4M</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">⚠️</td><td><a href="https://accomproperties.com.au/business-display/business-teneriffe,19064" target="_blank">🔗</a></td></tr>
-<tr><td>T2</td><td>T3</td><td>Bulimba</td><td class="ty">$2.1M</td><td class="tg">$257K</td><td class="ty">—</td><td class="tg">5.25x</td><td class="ty">—</td><td class="ty">—</td><td class="ty">⚠️</td><td><a href="https://accomproperties.com.au/business-display/business-bulimba,18986" target="_blank">🔗</a></td></tr>
-<tr style="border-bottom:2px solid var(--a)"><td>T2</td><td>T4</td><td>Clontarf</td><td class="ty">$1.1M</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">⚠️</td><td><a href="https://www.resortbrokers.com.au/management-rights-for-sale/queensland/" target="_blank">🔗</a></td></tr>
-<tr style="border-top:2px solid var(--r)"><td>T3</td><td>T5</td><td>Bris CBD Wtr</td><td class="tr">$2.9M</td><td class="tg">$431K</td><td class="tg">58%</td><td class="ty">6.7x</td><td class="tg">52</td><td class="ty">8yr</td><td class="tg">✅</td><td><a href="https://accomproperties.com.au/business-display/business-brisbane-city,19147" target="_blank">🔗</a></td></tr>
-<tr><td>T3</td><td>T6</td><td>Mermaid Bch</td><td class="tr">$1.9M</td><td class="tg">$240K</td><td class="tg">52%</td><td class="ty">7.9x</td><td class="tg">18</td><td class="tg">21yr</td><td class="tg">✅</td><td><a href="https://accomproperties.com.au/business-display-business-mermaid-beach,18815" target="_blank">🔗</a></td></tr>
-<tr><td>T3</td><td>T7</td><td>Palm Beach</td><td class="tr">$1.6M</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="tg">16/28</td><td class="tg">18yr</td><td class="ty">⚠️</td><td><a href="https://accomproperties.com.au/business-display/business-palm-beach,19062" target="_blank">🔗</a></td></tr>
-<tr style="border-bottom:2px solid var(--r)"><td>T3</td><td>T8</td><td>Mansfield</td><td class="tr">$1.6M</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">⚠️</td><td><a href="https://www.resortbrokers.com.au/management-rights-for-sale/queensland/" target="_blank">🔗</a></td></tr>
+<div class="tw"><table class="t"><thead><tr><th>T</th><th>#</th><th>Name</th><th>Price</th><th>NI</th><th>BC%</th><th>Mult</th><th>P</th><th>C</th><th>Flag</th></tr></thead><tbody>
+<tr><td>T1</td><td>1</td><td>The Gap</td><td class="tg">$790K</td><td class="tg">$128K</td><td class="tg">61.5%</td><td class="ty">6.17x</td><td class="tg">14</td><td class="tg">23yr</td><td class="tg">✅</td></tr>
+<tr><td>T1</td><td>2</td><td>West End</td><td class="tg">$750K</td><td class="tg">$125K</td><td class="tg">61.1%</td><td class="tg">5.99x</td><td class="ty">?</td><td class="ty">?</td><td class="ty">⚠️</td></tr>
+<tr><td>T1</td><td>3</td><td>Burleigh</td><td class="tg">$850K</td><td class="tg">$210K</td><td class="tg">66.6%</td><td class="tg">4.05x</td><td class="ty">?</td><td class="ty">?</td><td class="tg">🔍</td></tr>
+<tr><td>T1</td><td>4</td><td>Chermside</td><td class="tg">$652K</td><td class="ty">$178K?</td><td class="ty">—</td><td class="ty">3.66x?</td><td class="ty">—</td><td class="ty">—</td><td class="ty">⚠️</td></tr>
+<tr><td>T1</td><td>5</td><td>Main Bch 2x</td><td class="tg">$375K</td><td class="tg">$94K</td><td class="tr">83.7%</td><td class="tg">4.0x</td><td class="tg">8</td><td class="tg">16yr</td><td class="tr">⚠️BC%</td></tr>
+<tr><td>T1</td><td>6</td><td>Wakerley</td><td class="ty">$1.67M</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">无数据</td></tr>
+<tr><td>T1</td><td>7</td><td>Kangaroo Pt CT</td><td class="tg">$105K</td><td class="tg">$25K</td><td class="tr">100%</td><td class="tg">4.1x</td><td class="tr">0</td><td class="tg">9yr</td><td class="tr">🚨</td></tr>
+<tr><td>T1</td><td>8</td><td>Bris City <span class="new-badge" style="font-size:8px;padding:0 3px">🆕4/2</span></td><td class="tg">$608K</td><td class="tg">$116K</td><td class="ty">62.5%</td><td class="tg">5.23x</td><td class="ty">—</td><td class="ty">—</td><td class="ty">✅已更新</td></tr>
+<tr><td>T1</td><td>9</td><td>Silver Quays</td><td class="tg">$691K</td><td class="tg">$138K</td><td class="tr">93.6%</td><td class="tg">5.0x</td><td class="ty">5</td><td class="ty">—</td><td class="tr">🚨Trap</td></tr>
+<tr><td>T1</td><td>10</td><td>Mrd Wtrs</td><td class="ty">$1.6M</td><td class="tg">$80K</td><td class="tr">89.5%</td><td class="ty">—</td><td class="ty">5</td><td class="ty">—</td><td class="ty">超预算</td></tr>
+<tr><td>T1</td><td>11</td><td>Broadbeach</td><td class="ty">?</td><td class="tg">$115K</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">未知</td></tr>
+<tr><td>T1</td><td>12</td><td>Mrd Beach CT</td><td class="tg">$220K</td><td class="ty">~$22K</td><td class="tr">~100%</td><td class="ty">~10x</td><td class="tr">0</td><td class="ty">—</td><td class="tr">🚨</td></tr>
+<tr><td>T1</td><td>13</td><td>Tender</td><td class="ty">TBD</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">4/17</td></tr>
+<tr style="border-top:2px solid var(--a)"><td style="background:rgba(239,68,68,.08)">T2</td><td style="background:rgba(239,68,68,.08)">🆕</td><td>Margate</td><td class="ty">$500K+</td><td class="tg">$125K</td><td class="tg">50.8%</td><td class="ty">~4x</td><td class="ty">—</td><td class="tg">25yr</td><td class="tg">✅极佳</td></tr>
+<tr><td>T2</td><td>T1</td><td>Teneriffe</td><td class="ty">$1.4M</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">⚠️</td></tr>
+<tr><td>T2</td><td>T2</td><td>Bulimba</td><td class="ty">$2.1M</td><td class="tg">$257K</td><td class="ty">—</td><td class="tg">5.25x</td><td class="ty">—</td><td class="ty">—</td><td class="ty">⚠️</td></tr>
+<tr style="border-bottom:2px solid var(--a)"><td>T2</td><td>T3</td><td>Clontarf</td><td class="ty">$1.1M</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">⚠️</td></tr>
+<tr style="border-top:2px solid var(--r)"><td>T3</td><td>T4</td><td>Bris CBD Wtr</td><td class="tr">$2.9M</td><td class="tg">$431K</td><td class="tg">58%</td><td class="ty">6.7x</td><td class="tg">52</td><td class="ty">8yr</td><td class="tg">✅</td></tr>
+<tr><td>T3</td><td>T5</td><td>Mermaid Bch</td><td class="tr">$1.9M</td><td class="tg">$240K</td><td class="tg">52%</td><td class="ty">7.9x</td><td class="tg">18</td><td class="tg">21yr</td><td class="tg">✅</td></tr>
+<tr><td>T3</td><td>T6</td><td>Palm Beach</td><td class="tr">$1.6M</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="tg">16/28</td><td class="tg">18yr</td><td class="ty">⚠️</td></tr>
+<tr style="border-bottom:2px solid var(--r)"><td>T3</td><td>T7</td><td>Mansfield</td><td class="tr">$1.6M</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">—</td><td class="ty">⚠️</td></tr>
 </tbody></table></div></div>
 
 <!-- GUIDE -->
-<div class="tp" id="t4"><div class="sec-h"><span class="en">Guide</span><span class="zh">指南</span><span class="b"></span></div>
-<div class="gs"><div class="gh open" onclick="tg(this)"><span class="ha">▶</span><span class="en">1. What is PMR?</span><span class="zh">1.什么是PMR?</span></div>
-<div class="gc open"><p><b>PMR</b> — uniquely Australian, QLD dominant. You buy the <b>agreement</b> — <b>NOT the property</b>.</p>
-<ul><li><b><span class="en">Caretaking</span><span class="zh">物业管理</span>:</b> maintaining common areas</li><li><b><span class="en">Letting</span><span class="zh">租赁管理</span>:</b> managing rentals for owners</li></ul>
-<h4><span class="en">Three Types</span><span class="zh">三种类型</span></h4>
-<table><tr><th>Type</th><th>What</th><th>Price</th></tr>
-<tr><td>Business Only</td><td>Caretaking + Letting</td><td>$500K-$1.5M</td></tr>
-<tr><td>MR + Unit</td><td>PMR biz + apartment</td><td>$1M-$3M+</td></tr>
-<tr><td>MR + Freehold</td><td>PMR biz + own unit</td><td>$2M-$5M+</td></tr></table></div></div>
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">2. Key Metrics</span><span class="zh">2.关键指标</span></div>
-<div class="gc"><h4>BC% = BC Salary / Net Income × 100</h4>
-<table><tr><th style="color:var(--g)">50-70%</th><td>Ideal — healthy balance</td></tr>
-<tr><th style="color:var(--a)">70-80%</th><td>Caution — leaning caretaker</td></tr>
-<tr><th style="color:var(--r)">&gt;80%</th><td>🚨 Caretaker trap! AVOID</td></tr></table>
-<h4>Multiplier = Price / Net Profit</h4>
-<table><tr><th style="color:var(--g)">3-5x</th><td>Excellent — recoup in 3-5yr</td></tr>
-<tr><th style="color:var(--a)">5-6x</th><td>Fair market</td></tr>
-<tr><th style="color:var(--r)">&gt;6x</th><td>Overpriced</td></tr></table>
-<h4>$/wk = (Net − BC) / Pool / 52</h4>
-<table><tr><th style="color:var(--g)">$60-85/wk</th><td>Normal</td></tr>
-<tr><th style="color:var(--a)">$40-60/wk</th><td>Below avg</td></tr>
-<tr><th style="color:var(--r)">&lt;$40/wk</th><td>🚨 Too low!</td></tr></table></div></div>
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">3. Financial</span><span class="zh">3.财务分析</span></div>
-<div class="gc"><div class="fm">Cash = Net − Mortgage</div>
-<p>$800K, 70% LVR @ 6% = $33K/yr → $128K-$33K=<b>$95K</b> free cash</p>
-<p style="background:rgba(245,158,11,.08);padding:8px;border-radius:6px">💡 <b>BC grows by CPI only (~2-3%/yr). Letting GROWS with occupancy!</b></p></div></div>
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">4. Market</span><span class="zh">4.市场概况</span></div>
-<div class="gc"><table><tr><th></th><th>Brisbane</th><th>Gold Coast</th></tr>
-<tr><th>Complexes</th><td>~600+</td><td>~1,200+</td></tr>
-<tr><th>Dominant</th><td>Permanent</td><td>Holiday</td></tr>
-<tr><th>Net Yield</th><td>15-20%</td><td>18-25%</td></tr></table></div></div>
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">5. Red Flags</span><span class="zh">5.红旗警告</span></div>
-<div class="gc">
-<div style="background:rgba(239,68,68,.08);border-left:3px solid #ef4444;padding:8px;margin:6px 0;border-radius:0 6px">🚨 BC &gt;80% = Caretaker trap</div>
-<div style="background:rgba(239,68,68,.08);border-left:3px solid #ef4444;padding:8px;margin:6px 0;border-radius:0 6px">🚨 Contract &lt;8 years</div>
-<div style="background:rgba(239,68,68,.08);border-left:3px solid #ef4444;padding:8px;margin:6px 0;border-radius:0 6px">🚨 Owner-occupiers &gt;60%</div>
-<div style="background:rgba(34,197,94,.08);border-left:3px solid #22c55e;padding:8px;margin:6px 0;border-radius:0 6px">✅ Successful top-ups = supportive BC</div>
+<div class="tp" id="t4"><div class="sec-h"><span class="en">Guide: How to Buy PMR</span><span class="zh">指南：如何购买PMR</span><span class="b"></span></div>
+
+<!-- What is PMR -->
+<div class="gs"><div class="gh open" onclick="tg(this)"><span class="ha">▶</span><span class="en">1. What is PMR?</span><span class="zh">1. 什么是PMR?</span></div>
+<div class="gc open">
+<p><b>Property Management Rights (PMR)</b> is a uniquely Australian business model — most common in Queensland. You buy the right to manage a strata complex — <b>not the building itself</b>.</p>
+<p>In this model:</p>
+<ul>
+<li><b>Caretaking</b>" — you maintain common areas: gardens, pools, BBQ, clean, minor repairs</li>
+<li><b><span class="en">Letting</span><span class="zh">租赁管理</span>:</b> you manage short-term or long-term rentals for unit owners — earn commission on each booking or lease</li>
+<li><b>You are paid</b> by the Body Corporate (for caretaking) AND by unit owners (for letting)</li>
+</ul>
+<h4>Three Types</h4>
+<table><tr><th>Type</th><th>What You Buy</th><th>Price</th></tr>
+<tr><td><span class="en">Business Only</span><span class="zh">纯商业</span></td><td>Caretaking + Letting agreement only</td><td>$500K-$1.5M</td></tr>
+<tr><td>MR + Unit</td><td>Management rights + manager's apartment</td><td>$1M-$3M+</td></tr>
+<tr><td>MR + Freehold</td><td>Management rights + own a unit (you own the property too)</td><td>$2M-$5M+</td></tr></table>
+<h4>Permanent vs Holiday vs Mixed</h4>
+<ul>
+<li><b>Permanent (长租)</b>: 6-12 month leases, stable income, lower returns, less work</li>
+<li><b>Holiday (短租)</b>: Airbnb-style, higher returns (~2-3x permanent), more work, seasonal</li>
+<li><b>Mixed (混合)</b>: Both types, balance of stable income + higher returns, most common</li>
+</ul>
 </div></div>
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">6. Resources</span><span class="zh">6.资源</span></div>
-<div class="gc"><ul><li><b>AccomProperties.com.au</b></li><li><b>ResortBrokers.com.au</b></li><li><b>TheOnsiteManager.com.au</b></li></ul></div></div>
+
+<!-- Step-by-Step Process -->
+<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">2. Step-by-Step Process</span><span class="zh">2. 购买流程</span></div>
+<div class="gc">
+
+<h4>Phase 1: Preparation (Weeks 1-4)</h4>
+<div class="step"><h4><span class="num">1</span><span class="en">Research & Self-Assessment</span><span class="zh">调研与自我评估</span></h4>
+<ul>
+<li>Define your budget: How much can you afford? 30-40% deposit minimum for most lenders</li>
+<li>Decide: Do you want to live on-site (MR+Unit) or just run the business?</li>
+<li>Consider: Holiday vs Permanent — holiday earns more but requires more work/time; permanent is more passive</li>
+<li>Skill check: communication, organisation, basic maintenance/handyman skills are very helpful</li>
+</ul></div>
+
+<div class="step"><h4><span class="num">2</span><span class="en">Assemble Your Professional Team</span><span class="zh">组建专业团队</span></h4>
+<p><b>Four professionals you MUST engage:</b></p>
+<ul>
+<li><b>Management Rights Broker</b> — Specialised broker who finds listings, negotiates, guides you through process. Most brokers charge 3-5% commission paid by seller, not you.</li>
+<li><b>Management Rights Financier</b> — Specialist lender who understands PMR loans. Most major banks (CBA, NAB, ANZ) + specialist lenders (MRM, Fundd). Expect 30-40% deposit.</li>
+<li><b>Management Rights Accountant</b> — NOT a regular accountant! They verify the seller's profit figures, advise on tax/structure (sole trader, company, trust?), assess cash flow. This is critical — they are your safety net.</li>
+<li><b>Management Rights Lawyer/Solicitor</b> — Reviews care-taking agreements, letting agreements, Body Corporate by-laws and minutes, manages BC approval process.</li>
+</ul>
+<div class="tip">💡 <b>Tip:</b> Ask each professional specifically about their management rights experience. A regular accountant or lawyer who hasn't done PMR deals before can miss critical issues.</div>
+</div>
+
+<div class="step"><h4><span class="num">3</span><span class="en">Get Pre-Approved for Finance</span><span class="zh">获得贷款预批准</span></h4>
+<ul>
+<li>Most lenders require 30-40% deposit (some may go as low as 20% if you have strong serviceable income)</li>
+<li>Lenders will assess if the business's net income can service the loan</li>
+<li>Pre-approval gives you buying power and credibility with sellers</li>
+<li>Factor in additional costs: stamp duty (~3-4%), legal fees ($3-5K), accountant fees ($3-5K), broker fees (covered by seller for most)</li>
+</ul>
+</div>
+
+<h4>Phase 2: Finding & Evaluating (Weeks 5-12)</h4>
+<div class="step"><h4><span class="num">4</span><span class="en">Search & Shortlist</span><span class="zh">搜索与筛选</span></h4>
+<ul>
+<li>Your broker will present opportunities matching your criteria</li>
+<li><b>Key websites:</b> AccomProperties.com.au, ResortBrokers.com.au, TheOnsiteManager.com.au</li>
+<li>Focus on: BC% ratio (60-70% ideal), multiplier (3-5x ideal), contract length (10+ yrs), letting pool size and composition</li>
+<li>Attend inspections — look at the complex, the manager's unit, common areas, relationship with current owners/tenants</li>
+</ul>
+</div>
+
+<div class="step"><h4><span class="num">5</span><span class="en">Make an Offer</span><span class="zh">出价</span></h4>
+<ul>
+<li>Submit your offer through your broker to the seller's agent</li>
+<li>Once accepted, contracts (residential + business) are prepared</li>
+<li>Contracts include conditions: pest/building inspections, accounting due diligence, finance approval, Body Corporate approval</li>
+</ul>
+</div>
+
+<div class="step"><h4><span class="num">6</span><span class="en">Due Diligence (CRITICAL — Don't Skip This!)</span><span class="zh">尽职调查（关键！）</span></h4>
+<p>This is the <b>most important</b> phase. Your professional team does this:</p>
+<ul>
+<li><b>Accounting:</b> Your accountant independently verifies all income — BC salary, letting commissions, pool fees, cleaning income. They check trust account records, occupancy rates, historical financial statements, and cash flow projections</li>
+<li><b>Legal:</b> Your lawyer reviews caretaking agreement (what you must do, what you're paid, term length, renewal options, CPI increases), letting agreement (commission rates, terms), Body Corporate by-laws, past minutes (look for disputes, special levies, upcoming major expenses)</li>
+<li><b>Physical:</b> Building/pest inspections on manager unit + common areas. Check pool condition, gym equipment, common area wear</li>
+<li><b>Letting Pool Analysis:</b> How many units currently in your pool? Composition (permanent vs holiday)? Occupancy rate? Growth potential? Risk of losing units? How many are owner-occupied, how many are let by you, how many use outside agents?</li>
+<li><b>Body Corporate Relationship:</b> Review recent minutes. Are there personality clashes, disputes, unresolved issues? A good relationship with the BC committee is essential for long-term success</li>
+</ul>
+<div class="warn">🚨 <b>WARNING:</b> Many first-time buyers skip adequate due diligence. Never buy based solely on the seller's financial statements — always have your own specialist PMR accountant verify everything.</div>
+</div>
+
+<h4>Phase 3: Approval & Settlement (Weeks 12-20)</h4>
+<div class="step"><h4><span class="num">7</span><span class="en">Final Finance Approval</span><span class="zh">最终贷款批准</span></h4>
+<ul><li>After successful due diligence, your financier provides final approval based on accountant's profit verification</li></ul>
+</div>
+
+<div class="step"><h4><span class="num">8</span><span class="en">Body Corporate Approval</span><span class="zh">业主大会批准</span></h4>
+<ul><li>The Body Corporate must approve the assignment of management rights to you. Your lawyer manages this. The BC will interview you — they want to like you and trust you.</li></ul>
+</div>
+
+<div class="step"><h4><span class="num">9</span><span class="en">Licensing</span><span class="zh">执照</span></h4>
+<ul>
+<li>You need a <b>Resident Letting Agent (RLA) licence</b> in QLD to manage rentals if you live on-site</li>
+<li>This can often be obtained during the settlement period — start early</li>
+<li>Caretaking duties do NOT require a separate licence</li>
+<li>Your lawyer/broker can guide you on specific requirements</li>
+</ul>
+</div>
+
+<div class="step"><h4><span class="num">10</span><span class="en">Settlement</span><span class="zh">交割</span></h4>
+<ul>
+<li>Transfer of management rights and manager unit ownership</li>
+<li>You receive the keys, contracts, letting agreements, and trust account</li>
+<li>Introduce yourself to Body Corporate committee and unit owners</li>
+<li>Start managing the business!</li>
+</ul>
+</div>
+</div></div>
+
+<!-- Due Diligence Checklist -->
+<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">3. Due Diligence Checklist</span><span class="zh">3. 尽职调查清单</span></div>
+<div class="gc">
+<h4>Financial</h4>
+<ul class="checklist">
+<li>Verify net income independently (don't trust seller's figures)</li>
+<li>Check all sources of income: BC salary, all letting commissions, pool fees, cleaning income, other revenue</li>
+<li>Review 3+ years financial statements</li>
+<li>Check trust account records — any discrepancies?</li>
+<li>Review current occupancy rates (permanent: 95%+ expected; holiday: varies 60-70% average)</li>
+<li>Calculate actual net profit after all operating expenses</li>
+<li>Confirm CPI increase clauses in contracts</li>
+</ul>
+<h4>Legal</h4>
+<ul class="checklist">
+<li>Review caretaking agreement: duties, responsibilities, remuneration, term, renewal options, CPI increases</li>
+<li>Review letting agreement: commission rates, terms, obligations</li>
+<li>Review Body Corporate by-laws</li>
+<li>Review past 2 years Body Corporate meeting minutes — any disputes, special levies, maintenance issues?</li>
+<li>Confirm all legal obligations are current and in order</li>
+<li>Check for any outstanding disputes or legal claims</li>
+</ul>
+<h4>Physical</h4>
+<ul class="checklist">
+<li>Building inspection on manager's unit</li>
+<li>Pest inspection</li>
+<li>Inspect common areas: pool condition, gym, BBQ, gardens, lifts</li>
+<li>Check if any major capital expenditure is upcoming (special levies?)</li>
+<li>Assess maintenance backlog — how much work is behind?</li>
+</ul>
+<h4>Letting Pool</h4>
+<ul class="checklist">
+<li>Count actual units currently in your pool</li>
+<li>Composition: permanent vs holiday lets?</li>
+<li>Occupancy rate average over 12 months</li>
+<li>Growth potential: Can you add more units? How many outside agent units could you convert?</li>
+<li>Risk of loss: Any owners considering leaving the pool? Using outside agents?</li>
+</ul>
+<h4>Body Corporate Relationship</h4>
+<ul class="checklist">
+<li>Meet the BC committee — do you like them? Do they like you?</li>
+<li>Review relationship history — are there ongoing disputes?</li>
+<li>Confirm the BC supports the manager and the business</li>
+<li>Check if the caretaking remuneration is competitive</li>
+</ul>
+</div></div>
+
+<!-- Common Pitfalls -->
+<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">4. Common Pitfalls (READ CAREFULLY)</span><span class="zh">4. 常见陷阱（仔细阅读）</span></div>
+<div class="gc">
+
+<div class="warn"><b>🚨 Pitfall 1: Inadequate Due Diligence</b>
+The #1 reason management rights purchases fail. Never rely on seller's figures alone — always have a specialist PMR accountant independently verify every number. Many buyers skip this to save $3-5K and lose hundreds of thousands.</div>
+
+<div class="warn"><b>🚨 Pitfall 2: Poor Body Corporate Relationship</b>
+Your entire income depends on the BC committee. They can make your life miserable or beautiful. A deteriorating relationship = stress, reduced income, and potentially losing the contract. Review past BC minutes carefully — look for disputes, personality clashes, unresolved issues.</div>
+
+<div class="warn"><b>🚨 Pitfall 3: Ambiguous or Outdated Agreements</b>
+Poorly written caretaking agreements can mean more work for the same pay. Ensure your duties and remuneration are clearly defined. Check: Can the BC increase your workload without increasing your pay? Are renewal terms clearly defined?</div>
+
+<div class="warn"><b>🚨 Pitfall 4: Loss of Letting Pool Units</b>
+While usually stable, units can leave the pool if owners decide to: live in the unit themselves, use outside letting agents, leave them untenanted, or sell to someone who doesn't want a letting manager. Check how stable the current letting pool is and what risk there is of losing units.</div>
+
+<div class="warn"><b>🚨 Pitfall 5: Underestimating Workload</b>
+Many buyers underestimate the daily workload and responsibilities. Day-to-day operations include: cleaning, minor maintenance, garden maintenance, tenant management, emergency calls. Be realistic about how many hours per week this takes.</div>
+
+<div class="warn"><b>🚨 Pitfall 6: Insufficient Capital</b>
+Ensure you have enough for: purchase price + deposit + stamp duty (~3-4%) + legal fees ($3-5K) + accountant fees ($3-5K) + broker fees (usually covered by seller) + buffer for unexpected expenses. Don't run out of cash in the first few months.</div>
+
+<div class="warn"><b>🚨 Pitfall 7: Changes in Market Conditions</b>
+Holiday letting is particularly sensitive to tourism fluctuations, economic downturns, and unexpected events (like pandemics). Don't rely too heavily on peak season income — plan for the worst case scenario.</div>
+
+<div class="warn"><b>🚨 Pitfall 8: Choosing the Wrong Advisors</b>
+Using a regular accountant or lawyer who has never done PMR deals is a major risk. Ensure all your advisors have specific experience in management rights. They will catch issues that a generalist would miss.</div>
+
+</div></div>
+
+<!-- Tips & Online Resources -->
+<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">5. Tips & Online Resources</span><span class="zh">5. 心得与在线资源</span></div>
+<div class="gc">
+<h4>Key Tips From Industry Experts</h4>
+<ul>
+<li><b>The "30/40 Rule":</b> You need at least 30-40% deposit for most PMR loans. Some specialist lenders may go lower, but expect higher interest rates</li>
+<li><b>The "Multiplier Rule":</b> A good PMR has a multiplier of 3-5x. Above 6x starts to look overpriced</li>
+<li><b>The "BC Ratio Rule":</b> BC salary as % of net income should be 50-70%. Above 80% = caretaker trap (your income is mostly fixed, no real growth)</li>
+<li><b>The "Pool Stability Check"</b> Before buying, ask: How many units are currently in the pool? How long have they been in the pool? Are any considering leaving?</li>
+<li><b>The "Body Corporate Test"</b> If you don't like and trust the BC committee, DON'T BUY. A bad BC relationship can destroy your business</li>
+<li><b>The "Workload Estimate"</b> Permanent letting: ~15-20 hrs/week. Holiday letting: ~25-40 hrs/week. Holiday earns more but requires significantly more time</li>
+</ul>
+
+<h4>Best Online Resources</h4>
+<ul>
+<li><b>AccomProperties.com.au</b> — Largest PMR listing portal in QLD</li>
+<li><b>ResortBrokers.com.au</b> — Management Rights and hospitality brokerage</li>
+<li><b>TheOnsiteManager.com.au</b> — Industry portal with education + listings</li>
+<li><b>StrataMastery.com.au</b> — Management Rights buyer guides</li>
+<li><b>MRM Finance</b> — Management Rights specialist lender</li>
+<li><b>Fundd</b> — PMR finance specialists</li>
+<li><b>Amity Law</b> — PMR specialist lawyer</li>
+</ul>
+
+<h4>Important Things to Ask the Seller</h4>
+<ul>
+<li>What is the current Body Corporate relationship like?</li>
+<li>How many units are currently in the letting pool, and how long have they been there?</li>
+<li>Are any units likely to leave the pool after the sale?</li>
+<li>What major maintenance or capital expenditure is upcoming?</li>
+<li>How many hours per week does the business take?</li>
+<li>Are there any disputes or issues with unit owners?</li>
+<li>Has the BC ever threatened to reduce the manager's remuneration?</li>
+<li>What percentage of income is from caretaking vs letting?</li>
+<li>Is the manager's unit included in the sale price?</li>
+</ul>
+
+<div class="tip">💡 <b>Pro Tip:</b> Talk to CURRENT or FORMER management rights owners. They will give you the real picture — not the broker's polished version. Ask about the BC relationship, the workload, the money, the stress, the good and the bad.</div>
+
+</div></div>
+
 </div>
 
 </div>
 <div class="ft"><b>pmr-dashboard</b> · winrobin.github.io</div>
 
 <script>
-function sw(id){
-  document.querySelectorAll('.tp').forEach(function(e){e.classList.remove('ac')});
-  document.querySelectorAll('.ti').forEach(function(e){e.classList.remove('ac')});
-  document.getElementById(id).classList.add('ac');
-  event.currentTarget.classList.add('ac');
-}
-function tg(el){
-  el.classList.toggle('open');
-  var c=el.nextElementSibling;
-  if(c){if(el.classList.contains('open')){c.classList.add('open');c.style.display='block';}else{c.classList.remove('open');c.style.display='none';}}
-}
-function tog(){
-  var b=document.body,btn=document.querySelector('.lb');
-  if(b.classList.contains('cn')){b.classList.remove('cn');btn.textContent='EN';}
-  else{b.classList.add('cn');btn.textContent='中文';}
-}
-var now=new Date();
-document.getElementById('dt').textContent=now.toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})+' '+now.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
+function sw(id){document.querySelectorAll('.tp').forEach(function(e){e.classList.remove('ac')});document.querySelectorAll('.ti').forEach(function(e){e.classList.remove('ac')});document.getElementById(id).classList.add('ac');event.currentTarget.classList.add('ac');}
+function tg(el){el.classList.toggle('open');var c=el.nextElementSibling;if(c){if(el.classList.contains('open')){c.classList.add('open');c.style.display='block';}else{c.classList.remove('open');c.style.display='none';}}}
+function tog(){var b=document.body;var btn=document.querySelector('.lb');if(b.classList.contains('cn')){b.classList.remove('cn');btn.textContent='EN';}else{b.classList.add('cn');btn.textContent='中文';}}
+var now=new Date();document.getElementById('dt').textContent=now.toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})+' '+now.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
 </script>
 </body>
 </html>
