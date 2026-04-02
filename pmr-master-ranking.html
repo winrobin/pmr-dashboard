@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PMR Master Ranking</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0b0f;color:#fff;font-family:-apple-system,sans-serif}
+.hd{background:#111827;padding:14px 10px;border-bottom:1px solid #1e2635;text-align:center}
+.hd h1{font-size:14px;margin:0 0 4px 0}
+.s{font-size:10px;color:#6b7b8d}
+.legend{font-size:9px;color:#6b7b8d;padding:4px 8px;display:flex;gap:12px;flex-wrap:wrap;background:#0e1117;border-bottom:1px solid #1e2635}
+.legend .item{display:flex;align-items:center;gap:3px}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.dot.g{background:#22c55e}.dot.y{background:#fbbf24}.dot.r{background:#ef4444}
+.nb{padding:8px}
+.tl{font-size:12px;font-weight:bold;padding:12px 0 6px;border-bottom:1px solid #232d3d;margin-bottom:8px;margin-top:12px;color:#4a9eff}
+.c{background:#141922;border-radius:8px;margin-bottom:8px;border:1px solid #232d3d}
+.ch{display:flex;align-items:center;padding:8px;gap:6px}
+.rk{font-weight:bold;font-size:10px;padding:2px 5px;border-radius:7px;color:#fff}
+.r1{background:#f59e0b}.r2{background:#6b7b8d}.r3{background:#b45309}.r5{background:#ef4444}
+.rk.n{background:#3b4a5c}
+.nm{font-size:13px;font-weight:bold;flex:1}
+.lk{background:#1d4ed8;color:#fff;font-size:10px;padding:2px 4px;border-radius:3px;text-decoration:none}
+.badge{font-size:8px;padding:1px 4px;border-radius:3px;margin-left:4px;font-weight:bold}
+.badge.g{background:rgba(34,197,94,.15);color:#22c55e}
+.badge.y{background:rgba(251,191,36,.15);color:#fbbf24}
+.badge.r{background:rgba(239,68,68,.15);color:#ef4444}
+.badge.b{background:rgba(96,165,250,.15);color:#60a5fa}
+.pr{font-size:13px;color:#4a9eff;font-weight:bold;padding:2px 8px 0;text-align:center}
+.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:0 8px;margin-top:4px;margin-bottom:4px}
+.mi{background:#0e1117;border-radius:4px;padding:4px 2px;text-align:center}
+.mi .v{font-size:11px;font-weight:bold}.g{color:#22c55e}.y{color:#fbbf24}.r{color:#ef4444}.n{color:#4b5563}
+.mi .l{font-size:7px;color:#6b7b8d;text-transform:uppercase}
+.ss{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:4px 8px;background:rgba(30,41,59,.3);border-radius:4px;margin:0 8px 4px}
+.si{text-align:center}
+.si .l{font-size:7px;color:#6b7b8d}
+.si .v{font-size:10px;font-weight:bold}
+.bx{font-size:10px;color:#aaa;background:#0e1117;padding:4px 8px;margin:4px;border-left:2px solid #f59e0b;line-height:1.3}
+.rw{font-size:9px;color:#f87171;padding:0 8px;margin-bottom:2px}
+.rw.g{color:#22c55e}
+.ab{font-size:10px;color:#c9d1d9;background:rgba(37,99,235,.1);border-left:2px solid #2563eb;padding:3px 8px;margin:4px 8px 0}
+.ab b{color:#60a5fa}
+.st2{font-size:12px;font-weight:bold;padding:10px 0 4px;margin-top:8px;border-top:1px solid #222}
+.tw{overflow-x:auto;padding-bottom:3px}
+.t{width:100%;border-collapse:collapse;font-size:9px;min-width:480px}
+.t th{background:#1a1f2e;padding:3px 1px;text-align:center;color:#666}
+.t td{padding:3px 1px;text-align:center;border-bottom:1px solid #191919}
+.t td:first-child{text-align:left;font-weight:600;color:#fff}
+.ft{text-align:center;padding:12px 6px;color:#4b5563;font-size:9px}
+.tip{font-size:9px;color:#6b7b8d;padding:4px 8px;background:rgba(30,41,59,.5);margin:4px;border-radius:4px;line-height:1.4}
+.tip b{color:#4a9eff}
+</style>
+</head>
+<body>
+<div class="hd">
+<h1>🏆 PMR Master Ranking</h1>
+<div class="s">Brisbane + Gold Coast | 10 Properties Analyzed</div>
+<div class="dt">2026-03-31 21:07 AEST</div>
+</div>
+
+<div class="legend">
+  <span class="item"><span class="dot g"></span> Healthy</span>
+  <span class="item"><span class="dot y"></span> Acceptable</span>
+  <span class="item"><span class="dot r"></span> Risk</span>
+  <span class="item">BC% 60-70%🟢 | $/wk $60-85🟢 | Mult 3-5x🟢</span>
+  <span class="item">🚨 Caretaker Trap = BC% >80%</span>
+</div>
+
+<div class="nb">
+
+<div class="tip">
+<b>💡 How to Read This Report:</b> Look for properties with BC% 60-70% (not >80%), 
+letting contribution >30%, and contract >10 years.
+Avoid caretaker traps where BC salary >80% of net income.
+</div>
+
+<div class="tl">Gold Coast Only — 3 Properties</div>
+
+<div class="c">
+<div class="ch">
+  <span class="rk r3">#3</span>
+  <span class="nm">Burleigh Waters</span>
+  <a class="lk" href="https://accomproperties.com.au/business-display/business-burleigh-waters,19099">🔗</a>
+  <span class="badge g">REAL PMR</span>
+</div>
+<div class="pr">$850K</div>
+<div class="mg">
+  <div class="mi"><div class="v g">$850K</div><div class="l">Price</div></div>
+  <div class="mi"><div class="v g">$210K</div><div class="l">NetInc</div></div>
+  <div class="mi"><div class="v g">4.05x</div><div class="l">Mult</div></div>
+  <div class="mi"><div class="v y">$140K</div><div class="l">BC Salary</div></div>
+  <div class="mi"><div class="v g">66.6%</div><div class="l">BC%</div></div>
+  <div class="mi"><div class="v y">$70K/yr</div><div class="l">Letting</div></div>
+</div>
+<div class="ss">
+  <div class="si"><div class="l">Stability</div><div class="v g">4.0</div></div>
+  <div class="si"><div class="l">Growth</div><div class="v y">3.5</div></div>
+  <div class="si"><div class="l">Contract</div><div class="v y">2.5</div></div>
+  <div class="si"><div class="l">Data</div><div class="v y">3.5</div></div>
+  <div class="si"><div class="l">Simple</div><div class="v g">4.0</div></div>
+</div>
+<div class="rw g">✅ 33.4% income from letting — real rental business</div>
+<div class="rw g">✅ BC 66.6% — healthy balance</div>
+<div class="rw">⚠️ Contract years unknown</div>
+<div class="rw">⚠️ Pool/TotalUnits unknown</div>
+<div class="bx">
+Multiplier 4.05x excellent; $210K net income; ROI 24.7%. Manager residency $610/wk additional income ($31.8K/yr).
+Close to beach, Miami Lake. Well-documented procedures.
+</div>
+<div class="ab"><b>🔍 Action:</b> Verify contract years + Pool details. If BC% stays <70 and contract >10yr, this could be #1.</div>
+</div>
+
+<div class="c">
+<div class="ch">
+  <span class="rk n">#5</span>
+  <span class="nm">Main Beach Two Complexes</span>
+  <a class="lk" href="https://accomproperties.com.au/business-display/business-main-beach,19111">🔗</a>
+  <span class="badge r">CARETAKER</span>
+</div>
+<div class="pr">$375K</div>
+<div class="mg">
+  <div class="mi"><div class="v g">$375K</div><div class="l">Price</div></div>
+  <div class="mi"><div class="v g">$94K</div><div class="l">NetInc</div></div>
+  <div class="mi"><div class="v g">4.0x</div><div class="l">Mult</div></div>
+  <div class="mi"><div class="v y">$78K</div><div class="l">BC Salary</div></div>
+  <div class="mi"><div class="v r">83.7%</div><div class="l">BC%</div></div>
+  <div class="mi"><div class="v r">$24/wk</div><div class="l">$/wk</div></div>
+</div>
+<div class="ss">
+  <div class="si"><div class="l">Stability</div><div class="v y">3.5</div></div>
+  <div class="si"><div class="l">Growth</div><div class="v y">3.5</div></div>
+  <div class="si"><div class="l">Contract</div><div class="v y">4.0</div></div>
+  <div class="si"><div class="l">Data</div><div class="v g">4.5</div></div>
+  <div class="si"><div class="l">Simple</div><div class="v y">3.0</div></div>
+</div>
+<div class="rw r">⚠️ 16.1% from letting — very low rental business</div>
+<div class="rw">⚠️ $24/unit/week extremely low (normal $60-85)</div>
+<div class="rw g">✅ 42 units, 8 in pool (19%) — letting growth possible</div>
+<div class="bx">
+Two adjoining caretaker complexes sold together. $375K super affordable, $94K net, 16yr contract. 
+But $24/wk is terrible. 8/42 units in pool could grow with effort.
+</div>
+<div class="ab"><b>🔍 Action:</b> Confirm if letting pool can grow. If BC votes to add more letting units, this becomes attractive.</div>
+</div>
+
+<div class="tl">Brisbane — 7 Properties (3 from original list)</div>
+
+<div class="c">
+<div class="ch">
+  <span class="rk r1">#1</span>
+  <span class="nm">The Gap · Townhouse</span>
+  <a class="lk" href="https://accomproperties.com.au/business-display/business-the-gap,19190">🔗</a>
+  <span class="badge g">BEST PMR</span>
+</div>
+<div class="pr">$790K</div>
+<div class="mg">
+  <div class="mi"><div class="v g">$790K</div><div class="l">Price</div></div>
+  <div class="mi"><div class="v g">$128K</div><div class="l">NetInc</div></div>
+  <div class="mi"><div class="v y">6.17x</div><div class="l">Mult</div></div>
+  <div class="mi"><div class="v g">$79K</div><div class="l">BC Salary</div></div>
+  <div class="mi"><div class="v g">61.5%</div><div class="l">BC%</div></div>
+  <div class="mi"><div class="v g">$68/wk</div><div class="l">$/wk</div></div>
+</div>
+<div class="ss">
+  <div class="si"><div class="l">Stability</div><div class="v g">4.5</div></div>
+  <div class="si"><div class="l">Growth</div><div class="v g">4.2</div></div>
+  <div class="si"><div class="l">Contract</div><div class="v g">5.0</div></div>
+  <div class="si"><div class="l">Data</div><div class="v g">4.0</div></div>
+  <div class="si"><div class="l">Simple</div><div class="v g">4.5</div></div>
+</div>
+<div class="rw g">✅ 38.5% from letting — real rental business</div>
+<div class="rw g">✅ BC 61.5% — perfect 60-70% range</div>
+<div class="rw g">✅ 23yr contract — excellent security</div>
+<div class="rw g">✅ $68/week — normal commission</div>
+<div class="rw">⚠️ Multiplier 6.17x slightly above ideal (3-5x)</div>
+<div class="rw">⚠️ Total units unknown</div>
+<div class="bx">
+14 units in letting pool + 12 external units recoverable. Extreme simplicity — no gate, no pool maintenance.
+38.5% from letting = genuine PMR business. 23yr remaining contract provides excellent security.
+</div>
+<div class="ab"><b>🔍 Action:</b> Confirm total unit count + 12 external unit recovery probability. Get written BC confirmation.</div>
+</div>
+
+<div class="c">
+<div class="ch">
+  <span class="rk r2">#2</span>
+  <span class="nm">West End Business-Only</span>
+  <a class="lk" href="https://accomproperties.com.au/business-display/business-west-end,19008">🔗</a>
+  <span class="badge g">REAL PMR</span>
+</div>
+<div class="pr">$750K</div>
+<div class="mg">
+  <div class="mi"><div class="v g">$750K</div><div class="l">Price</div></div>
+  <div class="mi"><div class="v g">$125K</div><div class="l">NetInc</div></div>
+  <div class="mi"><div class="v y">5.99x</div><div class="l">Mult</div></div>
+  <div class="mi"><div class="v g">$76K</div><div class="l">BC Salary</div></div>
+  <div class="mi"><div class="v g">61.1%</div><div class="l">BC%</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">$/wk</div></div>
+</div>
+<div class="ss">
+  <div class="si"><div class="l">Stability</div><div class="v g">4.0</div></div>
+  <div class="si"><div class="l">Growth</div><div class="v y">3.5</div></div>
+  <div class="si"><div class="l">Contract</div><div class="v y">2.5</div></div>
+  <div class="si"><div class="l">Data</div><div class="v y">3.0</div></div>
+  <div class="si"><div class="l">Simple</div><div class="v g">4.0</div></div>
+</div>
+<div class="rw g">✅ BC 61.1% — perfect 60-70% range</div>
+<div class="rw g">✅ New building — low maintenance risk</div>
+<div class="rw r">⚠️ Pool data completely missing — MAIN RISK</div>
+<div class="rw r">⚠️ Contract years unknown</div>
+<div class="bx">
+$750K asking. $125K net. BC $76K + CPI increases. 38.9% estimated from letting.
+New building construction (2018-2021) means low maintenance. But Pool/contract/total units all unknown.
+</div>
+<div class="ab"><b>🔍 Action:</b> Get Pool numbers, contract term, and total units. If Pool >10 units, this could be #1.</div>
+</div>
+
+<div class="c">
+<div class="ch">
+  <span class="rk r3">#4</span>
+  <span class="nm">Chermside/Lutwyche Dual</span>
+  <a class="lk" href="https://theonsitemanager.com.au/">🔗</a>
+  <span class="badge y">UNVERIFIED</span>
+</div>
+<div class="pr">$652K</div>
+<div class="mg">
+  <div class="mi"><div class="v g">$652K</div><div class="l">Price</div></div>
+  <div class="mi"><div class="v n">Rumor</div><div class="l">NetInc</div></div>
+  <div class="mi"><div class="v n">Est.</div><div class="l">Mult</div></div>
+  <div class="mi"><div class="v y">$90K</div><div class="l">BC Salary</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">BC%</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">$/wk</div></div>
+</div>
+<div class="ss">
+  <div class="si"><div class="l">Stability</div><div class="v y">3.0</div></div>
+  <div class="si"><div class="l">Growth</div><div class="v y">3.0</div></div>
+  <div class="si"><div class="l">Contract</div><div class="v y">2.0</div></div>
+  <div class="si"><div class="l">Data</div><div class="v y">2.0</div></div>
+  <div class="si"><div class="l">Simple</div><div class="v g">4.0</div></div>
+</div>
+<div class="rw g">✅ $652K lowest entry point</div>
+<div class="rw g">✅ Two buildings, minimal facilities</div>
+<div class="rw r">⚠️ Net income $178K UNVERIFIED</div>
+<div class="rw r">⚠️ If real net income < $130K, multiplier rises to 5x+</div>
+<div class="bx">
+$652K entry for TWO complexes ~4km apart. Net income rumored $178K (unverified). 
+Estimated multiplier 3.66x IF $178K is real. BC salary $90K confirmed.
+If actual net is $130K, multiplier = 5x. If actual is $100K, multiplier = 6.5x (poor).
+</div>
+<div class="ab"><b>🔍 Action:</b> VERIFY $178K net income FIRST. This is the make-or-break data point.</div>
+</div>
+
+<div class="c">
+<div class="ch">
+  <span class="rk n">#7</span>
+  <span class="nm">Brisbane City</span>
+  <a class="lk" href="https://accomproperties.com.au/business-display/business-brisbane-city,19124">🔗</a>
+  <span class="badge r">NO DATA</span>
+</div>
+<div class="pr">$608K</div>
+<div class="mg">
+  <div class="mi"><div class="v g">$608K</div><div class="l">Price</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">NetInc</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">Mult</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">BC</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">BC%</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">$/wk</div></div>
+</div>
+<div class="ss">
+  <div class="si"><div class="l">Stability</div><div class="v r">1.0</div></div>
+  <div class="si"><div class="l">Growth</div><div class="v r">2.0</div></div>
+  <div class="si"><div class="l">Contract</div><div class="v r">1.0</div></div>
+  <div class="si"><div class="l">Data</div><div class="v r">1.0</div></div>
+  <div class="si"><div class="l">Simple</div><div class="v g">3.0</div></div>
+</div>
+<div class="rw r">⚠️ All business data completely missing</div>
+<div class="bx">
+$608K lowest entry, spare time management. But net/BC/contract/Pool ALL undisclosed.
+Cannot assess risk or return without basic financials.
+</div>
+<div class="ab"><b>🔍 Action:</b> Request full info package. If data still refused, ignore this listing.</div>
+</div>
+
+<div class="c">
+<div class="ch">
+  <span class="rk r5">#6</span>
+  <span class="nm">Silver Quays 🚨</span>
+  <a class="lk" href="https://accomproperties.com.au/business-display/business-kangaroo-point,19211">🔗</a>
+  <span class="badge r">CARETAKER</span>
+</div>
+<div class="pr">$691K</div>
+<div class="mg">
+  <div class="mi"><div class="v g">$691K</div><div class="l">Price</div></div>
+  <div class="mi"><div class="v g">$138K</div><div class="l">NetInc</div></div>
+  <div class="mi"><div class="v g">5.0x</div><div class="l">Mult</div></div>
+  <div class="mi"><div class="v r">$129K</div><div class="l">BC Salary</div></div>
+  <div class="mi"><div class="v r">93.6%</div><div class="l">BC%</div></div>
+  <div class="mi"><div class="v r">$34/wk</div><div class="l">$/wk</div></div>
+</div>
+<div class="ss">
+  <div class="si"><div class="l">Stability</div><div class="v y">2.5</div></div>
+  <div class="si"><div class="l">Growth</div><div class="v r">1.0</div></div>
+  <div class="si"><div class="l">Contract</div><div class="v y">2.0</div></div>
+  <div class="si"><div class="l">Data</div><div class="v y">3.5</div></div>
+  <div class="si"><div class="l">Simple</div><div class="v r">3.0</div></div>
+</div>
+<div class="rw r">⚠️ ONLY 6.4% from letting ($8,836/yr)</div>
+<div class="rw r">⚠️ $34/week/unit is absurdly low (normal $60-85)</div>
+<div class="rw r">⚠️ 49 units only 5 in pool (10.2%)</div>
+<div class="rw">⚠️ 93.6% BC = you're a janitor, not an investor</div>
+<div class="bx">
+Net income $138K but ONLY $8,836 comes from letting (6.4%). 
+The other $129,395 is just BC salary for cleaning/maintenance. 
+If BC votes to reduce caretaker duties, income drops to $8,836 = $34/week/unit from 5 units = $8,836/year.
+$34/week is 57% below the $60-85 normal range for Brisbane.
+</div>
+<div class="ab"><b>🔍 Action:</b> Ignore unless you want a caretaker job. This is not PMR investment.</div>
+</div>
+
+<!-- Over Budget Properties -->
+
+<div class="tl">Over Budget — For Reference Only (Tier 2: $1M-$2M)</div>
+
+<div class="c">
+<div class="ch">
+  <span class="rk n">—</span>
+  <span class="nm">Palm Beach Mixed MR</span>
+  <a class="lk" href="https://accomproperties.com.au/business-display/business-palm-beach,19062">🔗</a>
+  <span class="badge y">OVER $1.5M</span>
+</div>
+<div class="pr">$1,550K</div>
+<div class="mg">
+  <div class="mi"><div class="v y">$1,550K</div><div class="l">Price</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">NetInc</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">Mult</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">BC</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">BC%</div></div>
+  <div class="mi"><div class="v y">16</div><div class="l">Pool</div></div>
+</div>
+<div class="bx">28 units, 16 in pool (57%) — excellent pool ratio. 18yr contract. But net income unknown + $1.55M too high.</div>
+</div>
+
+<div class="c">
+<div class="ch">
+  <span class="rk n">—</span>
+  <span class="nm">Broadbeach Established</span>
+  <a class="lk" href="https://accomproperties.com.au/business-display/business-broadbeach,18907">🔗</a>
+  <span class="badge y">OVER $1.5M</span>
+</div>
+<div class="pr">$1,675K</div>
+<div class="mg">
+  <div class="mi"><div class="v y">$1,675K</div><div class="l">Price</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l">All Data</div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l"></div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l"></div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l"></div></div>
+  <div class="mi"><div class="v n">N/A</div><div class="l"></div></div>
+</div>
+<div class="bx">Broadbeach core location. $1.675M. All data missing. Ignore until disclosure.</div>
+</div>
+
+<div class="tw"><table class="t"><thead><tr>
+<th>#</th><th>Name</th><th>Region</th><th>Price</th><th>NetInc</th><th>Mult</th><th>BC%</th><th>Pool</th><th>Cont</th><th>Trap?</th><th>Score</th>
+</tr></thead><tbody>
+<tr><td>1</td><td>The Gap</td><td>Bris</td><td class="g">$790K</td><td class="g">$128K</td><td class="y">6.17x</td><td class="g">61.5%</td><td class="g">14</td><td class="g">23yr</td><td class="g">N</td><td class="g">4.2</td></tr>
+<tr><td>2</td><td>West End</td><td>Bris</td><td class="g">$750K</td><td class="g">$125K</td><td class="y">5.99x</td><td class="g">61.0%</td><td class="n">?</td><td class="n">?</td><td class="g">N</td><td class="g">3.9</td></tr>
+<tr><td>3</td><td>Burleigh Waters</td><td class="y">GC</td><td class="g">$850K</td><td class="g">$210K</td><td class="g">4.05x</td><td class="g">66.6%</td><td class="n">?</td><td class="n">?</td><td class="g">N</td><td class="g">3.9</td></tr>
+<tr><td>4</td><td>Chermside</td><td>Bris</td><td class="g">$652K</td><td class="n">Rumor</td><td class="n">Est.</td><td class="n">?</td><td class="n">?</td><td class="n">?</td><td class="y">?</td><td class="y">3.5</td></tr>
+<tr><td>5</td><td>Main Beach 2x</td><td class="y">GC</td><td class="g">$375K</td><td class="g">$94K</td><td class="g">4.0x</td><td class="r">83.7%</td><td class="y">8</td><td class="g">16yr</td><td class="r">YES</td><td class="y">3.2</td></tr>
+<tr><td>6</td><td>Silver Quays</td><td>Bris</td><td class="g">$691K</td><td class="g">$138K</td><td class="g">5.0x</td><td class="r">93.6%</td><td class="y">5</td><td class="n">?</td><td class="r">YES</td><td class="r">2.0</td></tr>
+<tr><td>7</td><td>Bris City</td><td>Bris</td><td class="g">$608K</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">?</td><td class="n">?</td><td class="r">2.5</td></tr>
+<tr><td>—</td><td colspan="9" style="color:#666;font-style:italic">Over Budget / Tier 2</td></tr>
+<tr><td>—</td><td>Palm Beach</td><td class="y">GC</td><td class="y">$1,550K</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="y">16</td><td class="g">18yr</td><td class="y">?</td><td class="n">-</td></tr>
+<tr><td>—</td><td>Broadbeach</td><td class="y">GC</td><td class="y">$1,675K</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">-</td><td class="n">?</td><td class="n">?</td><td class="n">-</td></tr>
+</tbody></table></div>
+<div class="ft">pmr-master-ranking.json | 10 properties ranked | 2026-03-31 21:07 AEST</div>
+</div>
+</body>
+</html>

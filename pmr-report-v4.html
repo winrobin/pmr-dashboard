@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>PMR V4</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0b0f;color:#c9d1d9;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.5}
+.hd{background:#111827;padding:16px 14px 12px;border-bottom:1px solid #1e2635;text-align:center;position:sticky;top:0;z-index:10}
+.hd h1{font-size:1.05em;font-weight:700;color:#fff}
+.hd .s{font-size:.65em;color:#6b7b8d;margin-top:2px}
+.ctn{padding:10px;max-width:640px;margin:0 auto}
+.cd{background:#141922;border-radius:12px;margin-bottom:12px;border:1px solid #232d3d}
+.ct{display:flex;align-items:center;padding:10px 10px 2px;gap:6px}
+.bg{font-weight:800;font-size:.65em;padding:3px 8px;border-radius:14px;color:#fff;flex-shrink:0}
+.bg.g{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.bg.s{background:linear-gradient(135deg,#94a3b8,#4b5563)}
+.bg.b{background:linear-gradient(135deg,#b45309,#92400e)}
+.bg.n{background:#3b4a5c}
+.bg.h{background:linear-gradient(135deg,#ef4444,#b91c1c)}
+.tt{font-size:.88em;font-weight:700;color:#fff;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lk{display:flex;align-items:center;background:#1d4ed8;color:#fff;font-size:.62em;padding:3px 7px;border-radius:5px;text-decoration:none;flex-shrink:0}
+.pr{padding:2px 10px 4px;font-size:.8em;color:#60a5fa;font-weight:600}
+.pb{display:flex;align-items:center;padding:0 10px 5px;gap:5px}
+.pl{font-size:.58em;color:#6b7b8d;flex-shrink:0}
+.pt{flex:1;height:5px;background:#1e2635;border-radius:3px;overflow:hidden}
+.pf{height:100%;border-radius:3px}
+.pf.h{background:#10b981}.pf.m{background:#f59e0b}.pf.l{background:#ef4444}
+.pv{font-size:.58em;color:#6b7b8d;flex-shrink:0;min-width:24px;text-align:right}
+.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:0 8px 4px}
+.mc{background:#0e1117;border-radius:6px;padding:7px 3px;text-align:center}
+.mc .v{font-size:.85em;font-weight:700;color:#fff}
+.mc .vg{color:#34d399}.mc .vy{color:#fbbf24}.mc .vr{color:#f87171}.mc .vb{color:#60a5fa}.mc .vn{color:#4b5563;font-style:italic}
+.mc .l{font-size:.54em;color:#6b7b8d;margin-top:1px;text-transform:uppercase;letter-spacing:.1px}
+.rw{padding:2px 10px 2px}
+.ri{display:flex;gap:8px;align-items:baseline}
+.rs{color:#fbbf24;font-size:.8em}.rc{font-size:.72em;color:#60a5fa;font-weight:700}
+.rb{font-size:.68em;color:#9ca3af;background:#0e1117;padding:4px 6px;border-radius:5px;margin:3px 10px;border-left:3px solid #f59e0b;line-height:1.4}
+.rr{font-size:.62em;color:#f87171;background:rgba(248,113,113,.08);border-radius:4px;padding:3px 8px;margin:2px 10px 0;line-height:1.3}
+.gp{padding:0 10px}
+.gp summary{font-size:.65em;color:#f87171;cursor:pointer;padding:2px 0}
+.gp ul{font-size:.6em;color:#9ca3af;padding:2px 0 6px 10px;margin:0}
+.gp li{margin:1px 0;line-height:1.3}
+.ax{padding:0 10px 10px}
+.abx{font-size:.65em;color:#c9d1d9;background:rgba(37,99,235,.1);border-left:3px solid #2563eb;padding:4px 6px;border-radius:0 5px 5px 0}
+.ax b{color:#60a5fa}
+.st2{font-size:.8em;font-weight:700;color:#fff;padding:14px 4px 5px;border-bottom:1px solid #232d3d;margin-bottom:8px;margin-top:14px}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.t{width:100%;min-width:720px;border-collapse:collapse;font-size:.6em}
+.t th{background:#1a1f2e;padding:5px 2px;text-align:center;font-weight:600;color:#6b7b8d;border-bottom:1px solid #232d3d;white-space:nowrap}
+.t td{padding:4px 2px;text-align:center;border-bottom:1px solid #1a1f2e;white-space:nowrap}
+.t td:first-child{text-align:left;font-weight:600;color:#c9d1d9;padding-left:6px}
+.t tr:hover td{background:#1a1f2e}
+.tg{color:#34d399}.ty{color:#fbbf24}.tr2{color:#f87171}.tb{color:#60a5fa}.tn{color:#4b5563;font-style:italic}
+.ft{text-align:center;padding:14px 8px 18px;color:#4b5563;font-size:.62em}
+.lg{padding:0 8px 4px;font-size:.58em;color:#6b7b8d;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="hd">
+<h1>📊 Brisbane PMR V4</h1>
+<div class="s">第一档 $500k-$1M · Business Only · 2026-03-31</div>
+<div class="s">BC占比 · 每单元佣金 · 评分有据 · JSON同步</div>
+</div>
+<div class="ctn">
+<div id="cds"></div>
+<div class="st2">📋 横向对比表</div>
+<div class="lg">🟢BC 60-70% 🟡BC 70-80% 🔴BC >80% | 佣金 $60-85/wk 🟢 $40-60/wk 🟡 <$40/wk 🔴 | 倍数 3-5x 🟢</div>
+<div class="tw"><table class="t"><thead><tr>
+<th>物业</th><th>要价</th><th>净收入</th><th>倍数</th><th>CYR</th><th>BC薪资</th><th>BC%</th><th>Pool</th><th>$/wk</th><th>评分</th>
+</tr></thead><tbody id="tb"></tbody></table></div>
+<div class="ft"><p>JSON: pmr-data-v4.json · Accom Properties · TheOnsiteManager · ResortBrokers · OpenClaw</p></div>
+</div>
+<script>
+var P=[
+{id:1,n:"The Gap Townhouse",l:"The Gap",p:790000,ni:128133,m:6.17,c:23,bc:78819,bcp:61.5,pu:14,tu:null,wli:68,ey:16.2,r:4.2,
+basis:"#1。BC占61.5%健康(60-70%理想); 合同23年极安全; $68/单元/周佣金合理; Pool 13+1另有12外部可收回; 极简无Gate。倍数6.17x略高",
+rw:[],g:["楼龄:未知","总套数:未知","12外部单元收回:非保证"],
+url:"https://accomproperties.com.au/business-display/business-the-gap,19190",a:"获总套数算Pool%; 确认12单元收回"},
+{id:2,n:"West End MR",l:"West End",p:750000,ni:125078,m:5.99,c:null,bc:76478,bcp:61.1,pu:null,tu:null,wli:null,ey:16.7,r:3.9,
+basis:"#2。BC61.1%健康; CPI递增; 楼龄新。但Pool数据全无=主要风险",
+rw:[],g:["Pool:未披露","套数:未知","合同:未知","楼龄:需核实"],
+url:"https://accomproperties.com.au/business-display/business-west-end,19008",a:"索取Pool+合同+楼龄"},
+{id:3,n:"Chermside/Lutwyche",l:"Chermside&Lutwyche",p:652000,ni:null,m:null,c:null,bc:90000,bcp:null,pu:null,tu:null,wli:null,ey:null,r:3.5,
+basis:"#3。$652K门槛低; BC$90K+。但净利未官方披露(网传$178K)，估算倍数3.66x仅供参考",
+rw:[],g:["净利:网传$178K未确认","倍数:估3.66x参考","合同:未知","Pool:未知","套数:未知"],
+url:"https://theonsitemanager.com.au/",a:"联系Accom获完整信息表"},
+{id:4,n:"Brisbane City MR",l:"Brisbane City",p:608000,ni:null,m:null,c:null,bc:null,bcp:null,pu:null,tu:null,wli:null,ey:null,r:2.5,
+basis:"#4。门槛$608K低; Spare Time灵活; 但全数据未披露需财报",
+rw:[],g:["净利:未披露","BC:未知","合同:未知","Pool:未知","套数:未知","楼龄:未知"],
+url:"https://accomproperties.com.au/business-display/business-brisbane-city,19124",a:"向经纪人索取完整信息包"},
+{id:5,n:"Silver Quays",l:"Kangaroo Pt",p:691155,ni:138231,m:5.0,c:null,bc:129395,bcp:93.6,pu:5,tu:49,wli:34,ey:20.0,r:2.0,
+basis:"#5🚨从V3的#1降级。BC93.6%=caretaker非PMR。Pool仅5/49=10.2%。$34/单元/wk极低(应$60-85)。几无增长",
+rw:["BC 93.6%远超60-70%——本质caretaker不是PMR","$34/wk极不正常——可能BC薪资高估或净利计算有误"],
+g:["合同:未披露","楼龄:未知","3年财报:需索取","BC$129K含GST?未明确","$34/wk准确?:需财报"],
+url:"https://accomproperties.com.au/business-display/business-kangaroo-point,19211",a:"要3年财报验证BC/出租数据"},
+{id:6,n:"Teneriffe",l:"Teneriffe",p:1356768,ni:null,m:null,c:null,bc:null,bcp:null,pu:null,tu:null,wli:null,ey:null,r:2.5,
+basis:"#6。地段优; $1.36M超第一档; 数据全无",
+rw:[],g:["净利:未披露","BC:未知","合同:未知","Pool:未知","套数:未知"],
+url:"https://accomproperties.com.au/business-display/business-teneriffe,19064",a:"要完整披露包"},
+{id:7,n:"Brisbane Tender",l:"Brisbane City",p:null,pn:"🔨 4/17",ni:null,m:null,c:null,bc:null,bcp:null,pu:null,tu:null,wli:null,ey:null,r:null,
+basis:"#7。招标无数据无法评估",
+rw:[],g:["全无数据需Tender Pack"],
+url:"https://accomproperties.com.au/business-display/business-brisbane-city,19103",a:"获取Tender Pack; 截止4/17"}
+];
+
+var TF=8,K=["p","ni","m","c","bc","bcp","pu","r"];
+function co(x){var n=0;for(var i=0;i<K.length;i++){if(x[K[i]]!==null&&x[K[i]]!==undefined)n++}return n}
+function sta(n){if(n===null)return'<span class="tn">N/A</span>';var s='';for(var i=0;i<5;i++)s+=i<Math.round(n)?'\u2605':'\u2606';return s+' <span style="color:#60a5fa;font-weight:700">'+n.toFixed(1)+'</span>'}
+
+var h='',bgs=['<span class="bg g">\u{1F947} #1</span>','<span class="bg s">\u{1F948} #2</span>','<span class="bg b">\u{1F949} #3</span>','<span class="bg n">#4</span>','<span class="bg h">\u26A0\uFE0F #5</span>','<span class="bg n">#6</span>','<span class="bg h">\u{1F528} #7</span>'];
+for(var i=0;i<P.length;i++){
+var x=P[i],cv=co(x),pct=Math.round((cv/TF)*100),cc=pct>=67?'h':pct>=44?'m':'l';
+h+='<div class="cd">';
+h+='<div class="ct">'+bgs[i]+'<span class="tt">'+x.n+'</span><a class="lk" href="'+x.url+'" target="_blank">\u{1F517}</a></div>';
+var pv=x.p?'$'+x.p.toLocaleString():(x.pn||'N/A');
+h+='<div class="pr">'+pv+'</div>';
+h+='<div class="pb"><span class="pl">数据完整</span><div class="pt"><div class="pf '+cc+'" style="width:'+pct+'%"></div></div><span class="pv">'+cv+'/'+TF+'</span></div>';
+
+h+='<div class="mg">';
+var vc=x.p?'vg':'vn',v0=x.p?'$'+x.p.toLocaleString():'N/A';
+h+='<div class="mc"><div class="v '+vc+'">'+v0+'</div><div class="l">要价</div></div>';
+vc=x.ni?'vg':'vn';v0=x.ni?'$'+x.ni.toLocaleString():'N/A';
+h+='<div class="mc"><div class="v '+vc+'">'+v0+'</div><div class="l">净收入</div></div>';
+vc=x.m!==null?(x.m>6?'vr':x.m>5?'vy':'vg'):'vn';v0=x.m?x.m+'x':'N/A';
+h+='<div class="mc"><div class="v '+vc+'">'+v0+'</div><div class="l">倍数</div></div>';
+vc=x.c?'vg':'vn';v0=x.c?x.c+'年':'N/A';
+h+='<div class="mc"><div class="v '+vc+'">'+v0+'</div><div class="l">合同</div></div>';
+vc=x.bc?'vg':'vn';v0=x.bc?'$'+x.bc.toLocaleString():'N/A';
+h+='<div class="mc"><div class="v '+vc+'">'+v0+'</div><div class="l">BC薪资</div></div>';
+vc=x.bcp!==null?(x.bcp>80?'vr':x.bcp>70?'vy':'vg'):'vn';v0=x.bcp!==null?x.bcp+'%':'N/A';
+h+='<div class="mc"><div class="v '+vc+'">'+v0+'</div><div class="l">BC%</div></div>';
+vc=x.pu?'vb':'vn';v0=x.pu?x.pu+'u':'N/A';
+h+='<div class="mc"><div class="v '+vc+'">'+v0+'</div><div class="l">Pool</div></div>';
+vc=x.wli!==null?(x.wli<40?'vr':x.wli<60?'vy':'vg'):'tn';v0=x.wli?x.wli+'/wk':'N/A';
+h+='<div class="mc"><div class="v '+vc+'">'+v0+'</div><div class="l">$/wk/单元</div></div>';
+h+='</div>';
+
+h+='<div class="rw"><div class="ri">'+sta(x.r)+'</div></div>';
+h+='<div class="rb">'+x.basis+'</div>';
+if(x.rw&&x.rw.length>0){for(var ri=0;ri<x.rw.length;ri++)h+='<div class="rr">\u{1F6A8} '+x.rw[ri]+'</div>'}
+
+h+='<div class="gp"><details><summary>\u274C 缺失 '+x.g.length+' 项</summary><ul>';
+for(var gi=0;gi<x.g.length;gi++)h+='<li>'+x.g[gi]+'</li>';
+h+='</ul></details></div>';
+h+='<div class="ax"><div class="abx"><b>\u2192 下一步:</b> '+x.a+'</div></div>';
+h+='</div>';
+}
+document.getElementById('cds').innerHTML=h;
+
+/* Table */
+var th='';
+for(var i=0;i<P.length;i++){
+var x=P[i];
+th+='<tr>';
+th+='<td>'+x.n+'</td>';
+th+='<td class="'+(x.p?'tg':'tn')+'">'+(x.p?'$'+x.p.toLocaleString():(x.pn||'N/A'))+'</td>';
+th+='<td class="'+(x.ni?'tg':'tn')+'">'+(x.ni?'$'+x.ni.toLocaleString():'N/A')+'</td>';
+th+='<td class="'+(x.m!==null?(x.m>6?'tr2':x.m>5?'ty':'tg'):'tn')+'">'+(x.m?x.m+'x':'N/A')+'</td>';
+th+='<td class="'+(x.c?'tg':'tn')+'">'+(x.c?x.c+'年':'N/A')+'</td>';
+th+='<td class="'+(x.bc?'tg':'tn')+'">'+(x.bc?'$'+x.bc.toLocaleString():'N/A')+'</td>';
+th+='<td class="'+(x.bcp!==null?(x.bcp>80?'tr2':x.bcp>70?'ty':'tg'):'tn')+'">'+(x.bcp!==null?x.bcp+'%':'N/A')+'</td>';
+th+='<td class="'+(x.pu!==null?'tb':'tn')+'">'+(x.pu||'N/A')+'</td>';
+th+='<td class="'+(x.wli!==null?(x.wli<40?'tr2':x.wli<60?'ty':'tg'):'tn')+'">'+(x.wli?x.wli+'/wk':'N/A')+'</td>';
+th+='<td class="'+(x.r!==null?(x.r>=4?'tg':x.r>=3.5?'ty':'tr2'):'tn')+'">'+(x.r!==null?x.r.toFixed(1):'N/A')+'</td>';
+th+='</tr>';
+}
+document.getElementById('tb').innerHTML=th;
+</script>
+</body>
+</html>

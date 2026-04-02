@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width">
+<title>PMR V5 Test</title>
+<style>
+body{background:#000;color:#fff;font-family:-apple-system,sans-serif;padding:20px}
+.c{background:#222;border-radius:8px;padding:15px;margin-bottom:10px}
+.r1{color:#f59e0b;font-weight:bold}.r2{color:#888}.r3{color:#b45309}
+.n{font-size:16px;font-weight:bold;margin:10px 0}
+.d{font-size:13px;color:#aaa;line-height:1.6}
+.t{background:#333;border-radius:5px;padding:8px;margin-top:10px}
+.tk{color:#888;font-size:11px}.tv{color:#4a9eff;font-weight:bold}
+</style>
+</head>
+<body>
+<h1>📊 PMR V5</h1>
+<p style="color:#888;font-size:12px">$500k-$1M | 2026-03-31</p>
+
+<div id="cards"></div>
+
+<h2 style="margin-top:30px;border-top:1px solid #333;padding-top:15px">📋 对比表</h2>
+<div style="overflow-x:auto">
+<table style="width:100%;font-size:11px;border-collapse:collapse;min-width:500px">
+<tr style="background:#222">
+<th style="padding:8px;text-align:left">#</th>
+<th style="padding:8px">物业</th>
+<th style="padding:8px">价格</th>
+<th style="padding:8px">评分</th>
+</tr>
+<tr><td style="padding:8px;border-bottom:1px solid #333">1</td><td style="padding:8px;border-bottom:1px solid #333">The Gap</td><td style="padding:8px;border-bottom:1px solid #333">$790k</td><td style="padding:8px;border-bottom:1px solid #333;color:#22c55e">4.2</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #333">2</td><td style="padding:8px;border-bottom:1px solid #333">West End</td><td style="padding:8px;border-bottom:1px solid #333">$750k</td><td style="padding:8px;border-bottom:1px solid #333;color:#fbbf24">3.9</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #333">3</td><td style="padding:8px;border-bottom:1px solid #333">Chermside</td><td style="padding:8px;border-bottom:1px solid #333">$652k</td><td style="padding:8px;border-bottom:1px solid #333;color:#fbbf24">3.5</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #333">4</td><td style="padding:8px;border-bottom:1px solid #333">Brisbane City</td><td style="padding:8px;border-bottom:1px solid #333">$608k</td><td style="padding:8px;border-bottom:1px solid #333;color:#ef4444">2.5</td></tr>
+<tr><td style="padding:8px;border-bottom:1px solid #333">5</td><td style="padding:8px;border-bottom:1px solid #333">Silver Quays</td><td style="padding:8px;border-bottom:1px solid #333">$691k</td><td style="padding:8px;border-bottom:1px solid #333;color:#ef4444">2.0</td></tr>
+</table>
+</div>
+
+<p style="text-align:center;color:#555;font-size:11px;margin-top:30px">pmr-data-latest.json</p>
+
+<script>
+var data = [
+{r:"🥇",n:"The Gap",p:"$790k",d:"BC61.5% 健康 | 合同 23 年 | $68/周合理"},
+{r:"🥈",n:"West End",p:"$750k",d:"BC61.1% 健康 | 楼龄新 | Pool 未披露"},
+{r:"🥉",n:"Chermside",p:"$652k",d:"门槛低 | 净利网传$178K 未确认"},
+{r:"#4",n:"Brisbane City",p:"$608k",d:"门槛最低 | 全数据缺失"},
+{r:"⚠️#5",n:"Silver Quays",p:"$691k",d:"BC93.6% 极高 | $34/周极低"},
+{r:"#6",n:"Teneriffe",p:"$1.36M",d:"地段优 | 超预算 | 数据全无"},
+{r:"🔨#7",n:"Tender",p:"招标",d:"无数据 | 截止 4/17"}
+];
+
+var h = "";
+for(var i=0;i<data.length;i++){
+  var x = data[i];
+  var rc = i===0?"r1":i===1?"r2":i===2?"r3":"";
+  h += '<div class="c">';
+  h += '<div class="'+rc+'">'+x.r+'</div>';
+  h += '<div class="n">'+x.n+' <span style="color:#4a9eff">'+x.p+'</span></div>';
+  h += '<div class="d">'+x.d+'</div>';
+  h += '<div class="t"><span class="tk">下一步 →</span> <span class="tv">联系经纪人获取财报</span></div>';
+  h += '</div>';
+}
+document.getElementById("cards").innerHTML = h;
+</script>
+</body>
+</html>

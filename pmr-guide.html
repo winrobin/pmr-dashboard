@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PMR Learning Guide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0b0f;color:#e2e8f0;font-family:-apple-system,sans-serif;padding-bottom:30px}
+.hd{background:#111827;padding:16px 10px;border-bottom:2px solid #1e2635;text-align:center}
+.hd h1{font-size:15px;margin:0 0 4px 0}
+.s{font-size:10px;color:#6b7b8d;margin-top:2px}
+.nb{padding:8px;max-width:800px;margin:0 auto}
+.sec{background:#141922;border-radius:8px;margin-bottom:10px;border:1px solid #232d3d;overflow:hidden}
+.sh{padding:12px;cursor:pointer;font-weight:bold;font-size:13px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #232d3d}
+.sh:hover{background:#1a2030}
+.sh .arrow{transition:transform .2s;font-size:10px}
+.sh.open .arrow{transform:rotate(90deg)}
+.sc{padding:12px;display:none;line-height:1.6}
+.sc.open{display:block}
+h3{font-size:12px;color:#60a5fa;margin:12px 0 6px;font-weight:bold}
+h3:first-child{margin-top:0}
+p{font-size:12px;color:#94a3b8;margin-bottom:8px}
+ul{padding-left:18px;margin-bottom:10px}
+li{font-size:12px;color:#94a3b8;margin-bottom:4px}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11px}
+th{background:#1e2635;padding:6px 8px;text-align:left;color:#fbbf24;font-weight:bold}
+td{padding:6px 8px;border-bottom:1px solid #232d3d;color:#cbd5e1}
+.note{background:rgba(245,158,11,.08);border-left:3px solid #f59e0b;padding:8px;border-radius:0 4px 4px 0;margin:8px 0;font-size:12px;color:#fbbf24}
+.good{background:rgba(34,197,94,.08);border-left:3px solid #22c55e;padding:8px;border-radius:0 4px 4px 0;margin:8px 0;font-size:12px;color:#4ade80}
+.bad{background:rgba(239,68,68,.08);border-left:3px solid #ef4444;padding:8px;border-radius:0 4px 4px 0;margin:8px 0;font-size:12px;color:#f87171}
+.formula{background:#0e1117;padding:8px;border-radius:4px;font-family:monospace;color:#4ade80;margin:6px 0;font-size:11px}
+.ft{text-align:center;padding:12px 6px;color:#4b5563;font-size:9px}
+</style>
+</head>
+<body>
+<div class="hd">
+<h1>PMR Learning Guide</h1>
+<div class="s">Property Management Rights — Complete Reference</div>
+</div>
+<div class="nb">
+
+<!-- 1 -->
+<div class="sec">
+<div class="sh open" onclick="toggle(this)"><span class="arrow">&#x25B6;</span>1. What is PMR?</div>
+<div class="sc open">
+<p>PMR (Property Management Rights) is a uniquely Australian business model, most common in Queensland. It combines two roles:</p>
+<ul>
+<li><b>Caretaking</b> — maintaining the common areas of a residential complex (gardens, pools, BBQ, laundry)</li>
+<li><b>Letting</b> — managing short-term or long-term rentals for unit owners</li>
+</ul>
+<h3>How It Works</h3>
+<p>The Body Corporate (strata committee) appoints a manager via a Management Rights Agreement. The manager receives:</p>
+<ul>
+<li><b>BC Salary</b> — fixed annual payment from the Body Corporate for caretaking duties</li>
+<li><b>Letting Commission</b> — percentage of rental income when managing units</li>
+</ul>
+<div class="note">💡 Think of it as a turnkey business: buy the agreement, move in (optional), run the operations.</div>
+
+<h3>Three Types of PMR</h3>
+<table><tr><th>Type</th><th>What You Buy</th><th>Typical Price</th></tr>
+<tr><td><b>Business Only</b></td><td>Caretaking + Letting agreement only</td><td>$500K - $1.5M</td></tr>
+<tr><td><b>Business + Residential (MLU)</b></td><td>PMR business + manager's apartment</td><td>$1M - $3M+</td></tr>
+<tr><td><b>Business + Freehold</b></td><td>PMR business + own a unit in the complex</td><td>$2M - $5M+</td></tr></table>
+
+<h3>Key Distinction: Permanent vs Holiday</h3>
+<ul>
+<li><b>Permanent</b> — long-term rentals (6-12 months), stable income, lower returns</li>
+<li><b>Holiday</b> — short-term bookings (Airbnb-style), higher returns, more work</li>
+<li><b>Mixed</b> — combination of both (most common in Gold Coast)</li>
+</ul>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="sec">
+<div class="sh" onclick="toggle(this)"><span class="arrow">&#x25B6;</span>2. Key Terms & Jargon</div>
+<div class="sc">
+<table><tr><th>Term</th><th>Meaning</th></tr>
+<tr><td><b>Body Corporate (BC)</b></td><td>The strata committee that owns the complex</td></tr>
+<tr><td><b>Caretaking</b></td><td>Maintaining common areas; earns fixed salary</td></tr>
+<tr><td><b>Letting Pool</b></td><td>Units available for rental in the complex</td></tr>
+<tr><td><b>Net Profit</b></td><td>BC Salary + Letting Income minus operating costs</td></tr>
+<tr><td><b>Multiplier</b></td><td>Price / Net Profit (lower = better deal)</td></tr>
+<tr><td><b>Accommodation Module</b></td><td>The legislative framework governing the agreement</td></tr>
+<tr><td><b>BCCM Act</b></td><td>Body Corporate and Community Management Act QLD</td></tr>
+<tr><td><b>Top-Up</b></td><td>Extending the management agreement with BC vote</td></tr>
+<tr><td><b>Standard Module</b></td><td>Most common module type for residential complexes</td></tr>
+<tr><td><b>RLA</b></td><td>Resident Letting Agent license (required for letting)</td></tr>
+<tr><td><b>Management Letting Rights (MLR)</b></td><td>Permanent rights, non-renewable, expire with agreement</td></tr>
+</table>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="sec">
+<div class="sh" onclick="toggle(this)"><span class="arrow">&#x25B6;</span>3. How to Evaluate a PMR Deal</div>
+<div class="sc">
+<h3>The 6-Point Checklist</h3>
+
+<h3>① BC Salary % of Net Income</h3>
+<p>This is THE most important metric. It shows what % of your income comes from fixed salary vs letting business.</p>
+<table><tr><th>BC%</th><th>Meaning</th><th>Action</th></tr>
+<tr><td style="color:#22c55e"><b>50-70%</b></td><td style="color:#22c55e">Healthy balance</td><td style="color:#22c55e">✅ Good PMR investment</td></tr>
+<tr><td style="color:#fbbf24"><b>70-80%</b></td><td style="color:#fbbf24">Leaning caretaker</td><td style="color:#fbbf24">⚠️ Acceptable with caution</td></tr>
+<tr><td style="color:#ef4444"><b>80%+</b></td><td style="color:#ef4444">Caretaker trap</td><td style="color:#ef4444">❌ Avoid — no real letting business</td></tr></table>
+<div class="formula">BC% = BC Salary / Net Income × 100</div>
+
+<h3>② Multiplier (Price / Net Income)</h3>
+<div class="formula">Multiplier = Asking Price / Annual Net Profit</div>
+<table><tr><th>Multiplier</th><th>Meaning</th></tr>
+<tr><td style="color:#22c55e"><b>3-5x</b></td><td style="color:#22c55e">Excellent value</td></tr>
+<tr><td style="color:#fbbf24"><b>5-6x</b></td><td style="color:#fbbf24">Fair market value</td></tr>
+<tr><td style="color:#ef4444"><b>6x+</b></td><td style="color:#ef4444">Overpriced</td></tr></table>
+<div class="note">💡 A 4x multiplier means you recoup your investment in 4 years.</div>
+
+<h3>③ Letting Pool Size & Ratio</h3>
+<p>Total units in the complex and how many are in the letting pool.</p>
+<div class="formula">Pool Ratio = Pool Units / Total Units × 100</div>
+<div class="good">✅ Higher ratio = more letting income potential. Ideal: 30-60%</div>
+<div class="bad">🚨 Below 15% = minimal letting income; Above 70% = high management workload</div>
+
+<h3>④ Per-Unit Weekly Commission</h3>
+<div class="formula">$/wk = (Net Income - BC Salary) / Pool Units / 52</div>
+<table><tr><th>$/week</th><th>Meaning</th></tr>
+<tr><td style="color:#22c55e"><b>$60-85</b></td><td style="color:#22c55e">Normal Brisbane range</td></tr>
+<tr><td style="color:#fbbf24"><b>$40-60</b></td><td style="color:#fbbf24">Below average</td></tr>
+<tr><td style="color:#ef4444"><b>&lt;$40</b></td><td style="color:#ef4444">Abnormally low — investigate!</td></tr></table>
+<div class="bad">🚨 If per-unit commission is under $40/week, the letting business may be unprofitable or the BC salary inflated.</div>
+
+<h3>⑤ Contract Years Remaining</h3>
+<table><tr><th>Years</th><th>Meaning</th></tr>
+<tr><td style="color:#22c55e"><b>15+ years</b></td><td style="color:#22c55e">Excellent security</td></tr>
+<tr><td style="color:#fbbf24"><b>10-15 years</b></td><td style="color:#fbbf24">Good — verify top-up history</td></tr>
+<tr><td style="color:#ef4444"><b>&lt;10 years</b></td><td style="color:#ef4444">Risk — needs top-up strategy</td></tr></table>
+<div class="note">💡 "Top-up" means extending the agreement via Body Corporate vote. A history of successful top-ups signals a supportive BC.</div>
+
+<h3>⑥ Operational Burden</h3>
+<ul>
+<li><b>On-site required?</b> — Must you live in the complex?</li>
+<li><b>Office hours?</b> — Fixed reception hours vs flexible contactable</li>
+<li><b>Facilities</b> — Pool, gym, BBQ, lift? More facilities = more caretaking work</li>
+<li><b>Sub-contractors</b> — Can you outsource gardening/cleaning? (Ideal)</li>
+</ul>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="sec">
+<div class="sh" onclick="toggle(this)"><span class="arrow">&#x25B6;</span>4. Financial Analysis</div>
+<div class="sc">
+<h3>Return on Investment (ROI)</h3>
+<div class="formula">ROI = (Net Income / Asking Price) × 100</div>
+<table><tr><th>ROI</th><th>Assessment</th></tr>
+<tr><td style="color:#22c55e"><b>15-25%</b></td><td style="color:#22c55e">Strong return</td></tr>
+<tr><td style="color:#fbbf24"><b>10-15%</b></td><td style="color:#fbbf24">Market average</td></tr>
+<tr><td style="color:#ef4444"><b>&lt;10%</b></td><td style="color:#ef4444">Weak — reconsider</td></tr></table>
+
+<h3>Leveraged Return (With Mortgage)</h3>
+<div class="formula">Cash Flow = Net Income - Annual Mortgage Payments</div>
+<p>Example: $800K deal, 70% LVR loan @ 6% = ~$33K/yr mortgage</p>
+<div class="formula">Net Income $128K - Mortgage $33K = $95K cash flow</div>
+
+<h3>Income Breakdown Example</h3>
+<table><tr><th>Source</th><th>Amount</th><th>%</th></tr>
+<tr><td>BC Salary (fixed)</td><td>$78,000</td><td>61%</td></tr>
+<tr><td>Letting Commission (variable)</td><td>$50,000</td><td>39%</td></tr>
+<tr><td><b>Total Net Income</b></td><td><b>$128,000</b></td><td><b>100%</b></td></tr></table>
+
+<div class="note">💡 Key insight: The letting portion is GROWTH income. BC salary increases by CPI only. But letting grows with occupancy, rates, and pool expansion.</div>
+
+<h3>Operating Costs (Typical)</h3>
+<ul>
+<li>Cleaning/maintenance: $5,000-$15,000/yr</li>
+<li>Marketing/advertising: $3,000-$8,000/yr</li>
+<li>Insurance: $2,000-$5,000/yr</li>
+<li>Software/accounting: $2,000-$4,000/yr</li>
+<li>Staff (if employed): $40,000-$80,000/yr</li>
+</ul>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="sec">
+<div class="sh" onclick="toggle(this)"><span class="arrow">&#x25B6;</span>5. Legal & Regulatory</div>
+<div class="sc">
+<h3>Governing Law</h3>
+<p>Queensland: <b>Body Corporate and Community Management Act 1997 (BCCM Act)</b></p>
+<p>This sets rules for:</p>
+<ul>
+<li>How management agreements are structured</li>
+<li>What rights the manager has</li>
+<li>How top-ups and renewals work</li>
+<li>Dispute resolution processes</li>
+</ul>
+
+<h3>Licensing Requirements</h3>
+<ul>
+<li><b>Caretaking only</b> — No license needed</li>
+<li><b>Letting + caretaking</b> — Resident Letting Agent (RLA) license required</li>
+<li><b>Property management</b> — Full real estate license if managing off-complex properties</li>
+</ul>
+
+<h3>Agreement Modules</h3>
+<table><tr><th>Module</th><th>Typical Use</th><th>Term</th></tr>
+<tr><td><b>Standard Module</b></td><td>Permanent residential complexes</td><td>Up to 25 years</td></tr>
+<tr><td><b>Accommodation Module</b></td><td>Holiday/tourist complexes</td><td>Up to 25 years</td></tr>
+<tr><td><b>Commercial Module</b></td><td>Mixed-use buildings</td><td>Varies</td></tr></table>
+
+<h3>Due Diligence Checklist</h3>
+<ul>
+<li>☐ Full management agreement (all terms)</li>
+<li>☐ 3 years financial statements (audited)</li>
+<li>☐ Body Corporate meeting minutes (last 3 years)</li>
+<li>☐ Current letting pool schedule</li>
+<li>☐ Top-up history and next due date</li>
+<li>☐ Maintenance backlog report</li>
+<li>☐ Insurance certificate</li>
+<li>☐ Competing management rights nearby</li>
+<li>☐ Occupancy rates and trends</li>
+</ul>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="sec">
+<div class="sh" onclick="toggle(this)"><span class="arrow">&#x25B6;</span>6. Market Overview — Brisbane & Gold Coast</div>
+<div class="sc">
+<h3>Brisbane Market</h3>
+<ul>
+<li>~600+ management rights complexes</li>
+<li>Strong demand due to 2032 Olympics</li>
+<li>Typical multiplier: 5-7x for permanent</li>
+<li>Focus: Suburbs within 10km of CBD</li>
+<li>Average net yield: 15-20%</li>
+</ul>
+
+<h3>Gold Coast Market</h3>
+<ul>
+<li>~1,200+ complexes (largest in Australia)</li>
+<li>Holiday/short-term dominant</li>
+<li>Higher volatility but higher returns</li>
+<li>Key suburbs: Surfers Paradise, Broadbeach, Burleigh, Mermaid Beach, Main Beach</li>
+<li>Average net yield: 18-25%</li>
+</ul>
+
+<h3>Market Trends (2026)</h3>
+<ul>
+<li>Interest rates stabilizing at ~5.8-6.2%</li>
+<li>Olympics infrastructure driving Brisbane growth</li>
+<li>Tourism recovery boosting Gold Coast holiday lets</li>
+<li>Airbnb/short-term regulation tightening</li>
+<li>Management rights prices up ~8% year-on-year</li>
+</ul>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="sec">
+<div class="sh" onclick="toggle(this)"><span class="arrow">&#x25B6;</span>7. Buying Process — Step by Step</div>
+<div class="sc">
+<table><tr><th>Step</th><th>What to Do</th><th>Time</th></tr>
+<tr><td><b>1. Research</b></td><td>Study the market, define budget, identify locations</td><td>2-4 weeks</td></tr>
+<tr><td><b>2. Engage a Broker</b></td><td>Accom Properties, Resort Brokers, TheOnsiteManager</td><td>Ongoing</td></tr>
+<tr><td><b>3. Shortlist & Visit</b></td><td>View properties, inspect complexes, meet the BC</td><td>2-6 weeks</td></tr>
+<tr><td><b>4. Due Diligence</b></td><td>Financials, agreement review, occupancy checks</td><td>2-4 weeks</td></tr>
+<tr><td><b>5. Finance</b></td><td>Apply for loan (LVR 50-70%, specialist lenders)</td><td>3-6 weeks</td></tr>
+<tr><td><b>6. Offer & Contract</b></td><td>Negotiate price, sign contract, settlement conditions</td><td>1-2 weeks</td></tr>
+<tr><td><b>7. Settlement</b></td><td>Complete purchase, handover, training period</td><td>4-8 weeks</td></tr>
+</table>
+<div class="note">💡 Total timeline: ~3-6 months from start to settlement.</div>
+
+<h3>Key Specialists You'll Need</h3>
+<ul>
+<li><b>PMR Broker</b> — Finds deals, negotiates price</li>
+<li><b>PMR Solicitor</b> — Agreement review, compliance</li>
+<li><b>PMR Accountant</b> — Financial verification, structuring</li>
+<li><b>PMR Finance Broker</b> — Loan application, best rates</li>
+</ul>
+</div>
+</div>
+
+<!-- 8 -->
+<div class="sec">
+<div class="sh" onclick="toggle(this)"><span class="arrow">&#x25B6;</span>8. Common Pitfalls & Red Flags</div>
+<div class="sc">
+<div class="bad">🚨 BC Salary >80% of net income = Caretaker trap
+<div style="font-size:11px;color:#94a3b8;margin-top:4px">You're a janitor with no real letting business. No growth potential.</div></div>
+
+<div class="bad">🚨 Contract &lt;8 years remaining
+<div style="font-size:11px;color:#94a3b8;margin-top:4px">Top-up may fail. If BC votes "no," your income drops to $0.</div></div>
+
+<div class="bad">🚨 Negative or weak Body Corporate relationship
+<div style="font-size:11px;color:#94a3b8;margin-top:4px">Check meeting minutes for disputes. A hostile BC = future nightmare.</div></div>
+
+<div class="bad">🚨 High maintenance backlog
+<div style="font-size:11px;color:#94a3b8;margin-top:4px">If the complex needs $500K in repairs, YOUR caretaking workload doubles.</div></div>
+
+<div class="bad">🚨 Owner-occupier majority (>60%)
+<div style="font-size:11px;color:#94a3b8;margin-top:4px">Owner-occupiers hate short-term lets and often vote against letting pool expansion.</div></div>
+
+<div class="bad">🚨 Competing management rights next door
+<div style="font-size:11px;color:#94a3b8;margin-top:4px">Another manager across the street can steal your letting pool.</div></div>
+
+<h3>Questions to ALWAYS Ask</h3>
+<ul>
+<li>How many successful top-ups in the last 10 years?</li>
+<li>What's the current occupancy rate?</li>
+<li>Are there any maintenance disputes or litigations?</li>
+<li>How many units are currently owner-occupied vs rented?</li>
+<li>Is there a competing management company operating nearby?</li>
+<li>Can I outsource the caretaking duties?</li>
+</ul>
+</div>
+</div>
+
+<!-- 9 -->
+<div class="sec">
+<div class="sh" onclick="toggle(this)"><span class="arrow">&#x25B6;</span>9. Resources & Further Reading</div>
+<div class="sc">
+<h3>Key Industry Resources</h3>
+<ul>
+<li><b>ARAMA QLD</b> (Australian Resident Accommodation Managers Association) — Industry body for PMR operators</li>
+<li><b>BCCM Act 1997 QLD</b> — The governing legislation for all PMR in Queensland</li>
+<li><b>QRV (Queensland Regulatory Body)</b> — Handles disputes and regulatory advice</li>
+</ul>
+
+<h3>Brokerage Firms</h3>
+<ul>
+<li><b>Accomproperties.com.au</b> — Largest QLD PMR broker</li>
+<li><b>ResortBrokers.com.au</b> — Major hospitality/PMR broker</li>
+<li><b>TheOnsiteManager.com.au</b> — Industry portal with listings</li>
+<li><b>HotelResortSales.com.au</b> — Gold Coast specialist</li>
+</ul>
+
+<h3>Further Reading</h3>
+<ul>
+<li><b>"Management Rights Buyers Guide"</b> — Free PDF from AMRTA (www.amrta.org.au)</li>
+<li><b>"The Strata Community" magazine</b> — Industry news and trends</li>
+<li><b>Property Management Forums</b> — Reddit r/AusFinance, PMR Facebook groups</li>
+<li><b>AMRTA (Accredited Management Rights Training Academy)</b> — Training and certification</li>
+</ul>
+</div>
+</div>
+
+</div>
+
+<div class="ft">Updated: <span id="date"></span> | pmr-data-latest.json | winrobin.github.io/pmr-dashboard</div>
+
+<script>
+function toggle(el){
+  el.classList.toggle('open');
+  var sc=el.nextElementSibling;
+  sc.classList.toggle('open');
+}
+document.getElementById('date').textContent=new Date().toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
+</script>
+</body>
+</html>
