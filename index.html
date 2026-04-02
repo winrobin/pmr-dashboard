@@ -10,7 +10,7 @@
 body{background:var(--bg);color:var(--txt);font-family:-apple-system,sans-serif;font-size:13px;line-height:1.6;padding-bottom:40px}
 a{color:inherit;text-decoration:none}
 .zn{display:none}
-nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd);padding:0 16px}
+nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.96);border-bottom:1px solid var(--bd);padding:0 16px}
 .nh{display:flex;align-items:center;justify-content:space-between;height:48px}
 .nb{font-size:10px;color:var(--t2)}
 .lb{background:rgba(74,158,255,.1);color:var(--ac);border:1px solid rgba(74,158,255,.2);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600}
@@ -18,8 +18,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.96);backdrop-filt
 .tab{flex:1;padding:10px;text-align:center;font-size:11px;font-weight:600;color:var(--t2);cursor:pointer;border-bottom:2px solid transparent}
 .tab.ac{border-bottom-color:var(--ac);color:var(--ac)}
 .app{max-width:960px;margin:0 auto;padding:0 16px}
-.sh{font-size:11px;font-weight:700;color:var(--t2);padding:14px 0 8px;display:flex;align-items:center;gap:8px}
-.sh .b{flex:1;height:1px;background:var(--bd)}
+.sh{font-size:11px;font-weight:700;color:var(--t2);padding:14px 0 8px}
 .tp{display:none}.tp.ac{display:block}
 .card{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;margin-bottom:10px;overflow:hidden}
 .card.new{border:2px solid var(--r)}
@@ -36,7 +35,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.96);backdrop-filt
 .mi.g .v{color:var(--g)}.mi.y .v{color:var(--a)}.mi.r .v{color:var(--r)}
 .no{font-size:11px;color:var(--t2);margin-bottom:6px}
 .rs{background:rgba(239,68,68,.06);border-left:3px solid var(--r);padding:8px 10px;margin:6px 0;border-radius:0 6px;font-size:11px;color:#f87171}
-.ac{background:rgba(74,158,255,.06);border-left:3px solid var(--ac);padding:8px 10px;margin:6px 0;border-radius:0 6px;font-size:11px;color:#93c5fd}
+.ac2{background:rgba(74,158,255,.06);border-left:3px solid var(--ac);padding:8px 10px;margin:6px 0;border-radius:0 6px;font-size:11px;color:#93c5fd}
 .tw{overflow-x:auto;padding-bottom:4px}
 .t{width:100%;border-collapse:collapse;font-size:9px;min-width:400px}
 .t th{background:var(--bg2);padding:7px 3px;text-align:center;color:var(--t2);font-weight:600;font-size:8px}
@@ -44,13 +43,15 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.96);backdrop-filt
 .t td:first-child{text-align:left;font-weight:600}
 .g{color:var(--g)}.y{color:var(--a)}.r{color:var(--r)}
 .gs{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;margin-bottom:6px}
-.gh{padding:12px 14px;cursor:pointer;font-weight:600;font-size:12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--bd)}
-.ha{font-size:10px;transition:.2s;color:var(--t2)}.gh.open .ha{transform:rotate(90deg);color:var(--ac)}
+.gh{padding:12px 14px;cursor:pointer;font-weight:600;font-size:12px;border-bottom:1px solid var(--bd)}
+.gh .arr{font-size:10px;color:var(--t2);margin-right:8px;transition:.2s;display:inline-block}
+.gh.open .arr{transform:rotate(90deg);color:var(--ac)}
 .gc{padding:14px;display:none}.gc.open{display:block}
 .gc h4{font-size:11px;font-weight:700;color:var(--ac);margin:14px 0 8px}
 .gc h4:first-child{margin-top:0}
-.gc p,.gc li{font-size:12px;color:var(--t2);margin-bottom:4px}
+.gc p{font-size:12px;color:var(--t2);margin-bottom:6px}
 .gc ul{padding-left:18px;margin-bottom:8px}
+.gc li{font-size:12px;color:var(--t2);margin-bottom:4px;line-height:1.5}
 .gc table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11px}
 .gc th{background:var(--bg);padding:6px;text-align:left;color:var(--txt);font-weight:600}
 .gc td{padding:6px;border-bottom:1px solid var(--bd);color:var(--t2)}
@@ -59,154 +60,156 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.96);backdrop-filt
 .wr{background:rgba(239,68,68,.06);border-left:3px solid var(--r);padding:8px;border-radius:0 6px;font-size:11px;color:#f87171;margin:6px 0}
 .ft{text-align:center;padding:16px;font-size:10px;color:var(--t2);border-top:1px solid var(--bd)}
 .badge-new{background:#ef4444;color:#fff;font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700;display:inline-block;margin-left:4px}
-.leg{background:var(--bg2);border-bottom:1px solid var(--bd);padding:8px 14px;font-size:10px;color:var(--t2);display:flex;gap:14px;flex-wrap:wrap}
-.leg b{color:var(--txt)}
 </style>
 </head>
 <body>
 <nav><div class="nh"><div><div style="font-size:15px;font-weight:700">PMR Dashboard</div><div class="nb" id="dt"></div></div><button class="lb" onclick="tog()">EN / 中文</button></div></nav>
-<div class="leg"><span><b>NI</b>=Net Income</span><span><b>BC%</b>=Salary/Net (ideal 60-70%)</span><span><b>MULT</b>=Price/Net</span><span><b>POOL</b>=Letting units</span><span><b>CONT</b>=Contract yrs</span></div>
 <div class="tabs"><div class="tab ac" onclick="sw('t1')">Tier 1</div><div class="tab" onclick="sw('t2')">Tier 2</div><div class="tab" onclick="sw('t3')">Tier 3</div><div class="tab" onclick="sw('ta')">All</div><div class="tab" onclick="sw('t4')">Guide</div></div>
 <div class="app">
-
-<div class="tp ac" id="t1"><div class="sh"><span>Tier 1: $500K-$1M</span><div class="b"></div></div>
-
+<div class="tp ac" id="t1"><div class="sh">Tier 1: $500K-$1M</div>
 <div class="card"><div class="ch"><span class="rk g">1</span><span class="nm">The Gap</span><a class="lk" href="https://accomproperties.com.au/business-display/business-the-gap,19190" target="_blank">🔗</a></div>
 <div class="cb"><div class="mg"><div class="mi g"><div class="v">$790K</div><div class="l">Price</div></div><div class="mi g"><div class="v">$128K</div><div class="l">NI</div></div><div class="mi g"><div class="v">61.5%</div><div class="l">BC%</div></div><div class="mi g"><div class="v">6.17x</div><div class="l">Mult</div></div><div class="mi g"><div class="v">14</div><div class="l">Pool</div></div><div class="mi g"><div class="v">23yr</div><div class="l">Cont</div></div></div>
-<div class="no">BC 61.5% ideal. 23yr contract secure. $68/wk normal (60-85). Multiple external units recoverable.</div>
-<div class="rs">Total unit count unknown. 12 ext units written BC confirmation needed.</div>
-<div class="ac">Request total count + written BC confirmation.</div></div></div>
-
+<div class="no">BC 61.5% ideal. 23yr secure. $68/wk normal (60-85).</div>
+<div class="rs">Total unit count unknown. 12 ext units need BC confirmation.</div>
+<div class="ac2">Request total count + written BC confirmation.</div></div></div>
 <div class="card"><div class="ch"><span class="rk g">2</span><span class="nm">West End</span><a class="lk" href="https://accomproperties.com.au/business-display/business-west-end,19008" target="_blank">🔗</a></div>
 <div class="cb"><div class="mg"><div class="mi g"><div class="v">$750K</div><div class="l">Price</div></div><div class="mi g"><div class="v">$125K</div><div class="l">NI</div></div><div class="mi g"><div class="v">61.1%</div><div class="l">BC%</div></div><div class="mi g"><div class="v">5.99x</div><div class="l">Mult</div></div><div class="mi r"><div class="v">?</div><div class="l">Pool</div></div><div class="mi r"><div class="v">?</div><div class="l">Cont</div></div></div>
-<div class="no">BC 61.1% healthy. CPI annual. New building low maintain.</div>
-<div class="rs">Pool/contract completely undisclosed — max risk.</div>
-<div class="ac">Must request Pool + contract + BC financials.</div></div></div>
-
+<div class="no">BC 61.1% healthy. CPI annual. New building.</div>
+<div class="rs">Pool/contract undisclosed — max risk.</div>
+<div class="ac2">Must request Pool + contract + BC financials.</div></div></div>
 <div class="card"><div class="ch"><span class="rk g">3</span><span class="nm">Burleigh Waters</span><a class="lk" href="https://accomproperties.com.au/business-display/business-burleigh-waters,19099" target="_blank">🔗</a></div>
 <div class="cb"><div class="mg"><div class="mi g"><div class="v">$850K</div><div class="l">Price</div></div><div class="mi g"><div class="v">$210K</div><div class="l">NI</div></div><div class="mi g"><div class="v">66.6%</div><div class="l">BC%</div></div><div class="mi g"><div class="v">4.05x</div><div class="l">Mult</div></div><div class="mi r"><div class="v">?</div><div class="l">Pool</div></div><div class="mi r"><div class="v">?</div><div class="l">Cont</div></div></div>
-<div class="no">BC 66.6% excellent. $210K net, 4.05x=~4yr recoup.</div>
+<div class="no">BC 66.6% excellent. $210K net. 4.05x = ~4yr recoup.</div>
 <div class="rs">Pool/contract unverified = hidden risk.</div>
-<div class="ac">Verify Pool + contract + age.</div></div></div>
-
-<div class="card"><div class="ch"><span class="rk y">4</span><span class="nm">Chermside/Lutwyche</span><a class="lk" href="https://theonsitemanager.com.au/" target="_blank">🔗</a></div>
+<div class="ac2">Verify Pool + contract + building age.</div></div></div>
+<div class="card"><div class="ch"><span class="rk y">4</span><span class="nm">Chermside</span><a class="lk" href="https://theonsitemanager.com.au/" target="_blank">🔗</a></div>
 <div class="cb"><div class="mg"><div class="mi g"><div class="v">$652K</div><div class="l">Price</div></div><div class="mi r"><div class="v">$178K?</div><div class="l">NI</div></div><div class="mi"><div class="v">—</div><div class="l">BC%</div></div><div class="mi r"><div class="v">3.66x?</div><div class="l">Mult</div></div><div class="mi"><div class="v">—</div><div class="l">Pool</div></div><div class="mi"><div class="v">—</div><div class="l">Cont</div></div></div>
-<div class="no">2 complexes ~4km. $652K cheap. If $178K real, 3.66x excellent.</div>
-<div class="rs">ALL unverified. Net income/multiplier unknown.</div>
-<div class="ac">Contact broker. Cannot confirm = unknown.</div></div></div>
-
+<div class="no">2 complexes ~4km apart. If $178K real, 3.66x excellent.</div>
+<div class="rs">ALL data unverified. May be rumor not fact.</div>
+<div class="ac2">Contact broker. Cannot confirm = skip.</div></div></div>
 </div>
-
-<div class="tp" id="t2"><div class="sh"><span>Tier 2: $1M-$1.5M</span><div class="b"></div></div>
-
+<div class="tp" id="t2"><div class="sh">Tier 2: $1M-$1.5M</div>
 <div class="card new"><div class="ch"><span class="rk g"><span class="badge-new">🆕 NEW</span></span><span class="nm">Margate "Nautica"</span><a class="lk" href="https://www.resortbrokers.com.au/management-rights-for-sale/queensland/redcliffe/OTP008991/" target="_blank">🔗</a></div>
 <div class="cb"><div class="mg"><div class="mi y"><div class="v">$500K+</div><div class="l">Price</div></div><div class="mi g"><div class="v">$125K</div><div class="l">NI</div></div><div class="mi g"><div class="v">50.8%</div><div class="l">BC%</div></div><div class="mi g"><div class="v">&lt;4x</div><div class="l">Mult</div></div><div class="mi"><div class="v">—</div><div class="l">Pool</div></div><div class="mi g"><div class="v">25yr</div><div class="l">Cont</div></div></div>
-<div class="no">42-townhouse "Nautica" Redcliffe. NI $125K, BC $63K, 25yr. Mid-2026 completion.</div>
-<div class="rs">Off-plan - figures unproven. Must verify projected vs actual.</div>
-<div class="ac">Get details + developer track record.</div></div></div>
-
+<div class="no">42-townhouse Redcliffe. NI $125K, BC $63K, 25yr contract.</div>
+<div class="rs">Off-plan — projected figures unproven.</div>
+<div class="ac2">Get details + developer track record.</div></div></div>
 <div class="card"><div class="ch"><span class="rk d">Teneriffe</span><a class="lk" href="https://accomproperties.com.au/business-display/business-teneriffe,19064" target="_blank">🔗</a></div>
 <div class="cb"><div class="mg"><div class="mi y"><div class="v">$1.4M</div><div class="l">Price</div></div><div class="mi"><div class="v">—</div><div class="l">NI</div></div><div class="mi"><div class="v">—</div><div class="l">BC%</div></div><div class="mi"><div class="v">—</div><div class="l">Mult</div></div><div class="mi"><div class="v">—</div><div class="l">Pool</div></div><div class="mi"><div class="v">—</div><div class="l">Cont</div></div></div>
 <div class="no">Blue-chip CBD + Riverwalk. All missing.</div>
-<div class="ac">Full disclosure from Resort Brokers.</div></div></div>
-
+<div class="ac2">Full disclosure from Resort Brokers.</div></div></div>
 <div class="card"><div class="ch"><span class="rk d">Bulimba</span><a class="lk" href="https://accomproperties.com.au/business-display/business-bulimba,18986" target="_blank">🔗</a></div>
 <div class="cb"><div class="mg"><div class="mi y"><div class="v">$2.1M</div><div class="l">Total</div></div><div class="mi g"><div class="v">$257K</div><div class="l">NI</div></div><div class="mi"><div class="v">—</div><div class="l">BC%</div></div><div class="mi g"><div class="v">5.25x</div><div class="l">Mult</div></div><div class="mi"><div class="v">—</div><div class="l">P</div></div><div class="mi"><div class="v">—</div><div class="l">C</div></div></div>
 <div class="no">$257K net healthy. 5.25x fair. Total $2.14M.</div>
-<div class="ac">Full DD. Verify BC% and Pool.</div></div></div>
-
+<div class="ac2">Full DD. Verify BC% and Pool.</div></div></div>
 <div class="card"><div class="ch"><span class="rk d">Clontarf</span><a class="lk" href="https://www.resortbrokers.com.au" target="_blank">🔗</a></div>
 <div class="cb"><div class="mg"><div class="mi y"><div class="v">$1.1M</div><div class="l">Price</div></div><div class="mi"><div class="v">—</div><div class="l">NI</div></div><div class="mi"><div class="v">—</div><div class="l">BC%</div></div><div class="mi"><div class="v">—</div><div class="l">Mult</div></div><div class="mi"><div class="v">—</div><div class="l">P</div></div><div class="mi"><div class="v">—</div><div class="l">C</div></div></div>
 <div class="no">Moreton Bay. Zero data.</div>
-<div class="ac">Full disclosure.</div></div></div>
+<div class="ac2">Full disclosure.</div></div></div>
 </div>
-
-<div class="tp" id="t3"><div class="sh"><span>Tier 3: $1.5M+</span><div class="b"></div></div>
-<div class="card"><div class="ch"><span class="rk d">Brisbane CBD Waterfront</span><a class="lk" href="https://accomproperties.com.au/business-display/business-brisbane-city,19147" target="_blank">🔗</a></div>
+<div class="tp" id="t3"><div class="sh">Tier 3: $1.5M+</div>
+<div class="card"><div class="ch"><span class="rk d">Brisbane CBD</span><a class="lk" href="https://accomproperties.com.au/business-display/business-brisbane-city,19147" target="_blank">🔗</a></div>
 <div class="cb"><div class="mg"><div class="mi r"><div class="v">$2.9M</div><div class="l">Price</div></div><div class="mi g"><div class="v">$431K</div><div class="l">NI</div></div><div class="mi g"><div class="v">58%</div><div class="l">BC%</div></div><div class="mi y"><div class="v">6.7x</div><div class="l">Mult</div></div><div class="mi g"><div class="v">52</div><div class="l">Pool</div></div><div class="mi y"><div class="v">8yr</div><div class="l">Cont</div></div></div>
-<div class="no">$431K. BC58%. 52Pool. Top-up history. Outstanding fundamentals. But $2.9M huge.</div>
-<div class="rs">8yr contract short for $2.9M price point.</div>
-<div class="ac">Consider when scaling up.</div></div></div>
+<div class="no">$431K net, BC 58%, 52 Pool, top-up history. Outstanding but $2.9M huge.</div>
+<div class="rs">8yr contract short for this price.</div>
+<div class="ac2">Consider when scaling up.</div></div></div>
 </div>
-
-<div class="tp" id="ta"><div class="sh"><span>All Properties</span><div class="b"></div></div>
+<div class="tp" id="ta"><div class="sh">All Properties</div>
 <div class="tw"><table class="t"><thead><tr><th>#</th><th>Name</th><th>Price</th><th>NI</th><th>Mult</th><th>Verdict</th></tr></thead><tbody>
 <tr><td>1</td><td>The Gap</td><td>$790K</td><td class="g">$128K</td><td class="y">6.17x</td><td class="g">#1 Best</td></tr>
-<tr><td>2</td><td>West End</td><td>$750K</td><td class="g">$125K</td><td class="g">5.99x</td><td class="y">#2 Verify Pool</td></tr>
-<tr><td>3</td><td>Burleigh</td><td>$850K</td><td class="g">$210K</td><td class="g">4.05x</td><td class="g">#3 If verified</td></tr>
+<tr><td>2</td><td>West End</td><td>$750K</td><td class="g">$125K</td><td class="g">5.99x</td><td class="y">#2 Verify</td></tr>
+<tr><td>3</td><td>Burleigh</td><td>$850K</td><td class="g">$210K</td><td class="g">4.05x</td><td class="g">#3 Good</td></tr>
 <tr><td>4</td><td>Chermside</td><td>$652K</td><td class="y">$178K?</td><td class="y">3.66x?</td><td class="y">Unverified</td></tr>
-<tr><td style="background:rgba(239,68,68,.08)">NEW</td><td>Margate</td><td class="y">$500K+</td><td class="g">$125K</td><td class="g">&lt;4x</td><td class="g">Excellent</td></tr>
+<tr><td class="r">NEW</td><td>Margate</td><td class="y">$500K+</td><td class="g">$125K</td><td class="g">&lt;4x</td><td class="g">Excellent</td></tr>
 <tr><td>T1</td><td>Teneriffe</td><td class="y">$1.4M</td><td>—</td><td>—</td><td class="y">Missing</td></tr>
-<tr><td>T1</td><td>Bulimba</td><td class="y">$2.1M</td><td class="g">$257K</td><td class="g">5.25x</td><td class="y">Full DD</td></tr>
-<tr><td>T1</td><td>Clontarf</td><td class="y">$1.1M</td><td>—</td><td>—</td><td class="y">Missing</td></tr>
-<tr><td>T2</td><td>Bris CBD Wtr</td><td class="r">$2.9M</td><td class="g">$431K</td><td class="y">6.7x</td><td class="g">Scale-up</td></tr>
+<tr><td>T2</td><td>Bulimba</td><td class="y">$2.1M</td><td class="g">$257K</td><td class="g">5.25x</td><td class="y">Full DD</td></tr>
+<tr><td>T3</td><td>Clontarf</td><td class="y">$1.1M</td><td>—</td><td>—</td><td class="y">Missing</td></tr>
+<tr><td>T4</td><td>Bris CBD</td><td class="r">$2.9M</td><td class="g">$431K</td><td class="y">6.7x</td><td class="g">Scale-up</td></tr>
 </tbody></table></div></div>
+<div class="tp" id="t4"><div class="sh">Guide: Buying PMR</div>
 
-<div class="tp" id="t4"><div class="sh"><span>Guide</span><div class="b"></div></div>
-
-<div class="gs"><div class="gh open" onclick="tg(this)"><span class="ha">▶</span><span class="en">What is PMR?</span><span class="zn">什么是PMR?</span></div>
+<div class="gs">
+<div class="gh open" onclick="tg(this)"><span class="arr">▶</span><span class="en">What is PMR?</span><span class="zn">什么是PMR？</span></div>
 <div class="gc open">
-<p><b>Property Management Rights (PMR)</b> — uniquely Australian. Buy the agreement, NOT the property.</p>
-<ul><li><b>Caretaking</b>: Maintain common areas (gardens, pool, BBQ, cleaning)</li><li><b><span class="en">Letting</span><span class="zn">租赁管理</span></b>: Manage rentals for unit owners, earn commission</li></ul>
-<h4>Three Types</h4>
-<table><tr><th>Type</th><th>What</th><th>Price</th></tr>
-<tr><td>Business Only</td><td>Caretaking + Letting only</td><td>$500K-$1.5M</td></tr>
-<tr><td>MR + Unit</td><td>PMR + manager apartment</td><td>$1M-$3M+</td></tr>
-<tr><td>MR + Freehold</td><td>PMR + own the unit</td><td>$2M-$5M+</td></tr></table>
+<p><span class="en"><b>Property Management Rights (PMR)</b> is a uniquely Australian business model — most common in Queensland. You buy the agreement to manage a strata complex, NOT the building itself.</span><span class="zn"><b>物业管理权(PMR)</b>是澳大利亚独特的商业模式，最常见于昆州。你购买管理协议，而不是建筑本身。</span></p>
+<p><span class="en"><b>Caretaking:</b> Maintain common areas — gardens, pools, BBQ, cleaning</span><span class="zn"><b>物业管理:</b> 维护公共区域 — 花园、泳池、烧烤区、清洁</span></p>
+<p><span class="en"><b>Letting:</b> Manage rentals for unit owners — earn commission on each rental</span><span class="zn"><b>租赁管理:</b> 为业主管理出租 — 从每次租赁中赚取佣金</span></p>
+<h4><span class="en">Three Types</span><span class="zn">三种类型</span></h4>
+<table><tr><th><span class="en">Type</span><span class="zn">类型</span></th><th><span class="en">What</span><span class="zn">内容</span></th><th><span class="en">Price</span><span class="zn">价格</span></th></tr>
+<tr><td><span class="en">Business Only</span><span class="zn">纯商业</span></td><td><span class="en">Caretaking + Letting only</span><span class="zn">仅管理+租赁</span></td><td>$500K-$1.5M</td></tr>
+<tr><td><span class="en">MR + Unit</span><span class="zn">MR+公寓</span></td><td><span class="en">PMR business + manager apartment</span><span class="zn">PMR业务+经理公寓</span></td><td>$1M-$3M+</td></tr>
+<tr><td><span class="en">MR + Freehold</span><span class="zn">MR+产权</span></td><td><span class="en">PMR + own the property</span><span class="zn">PMR+拥有产权</span></td><td>$2M-$5M+</td></tr></table>
 </div></div>
 
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">How to Buy</span><span class="zn">购买流程</span></div>
+<div class="gs">
+<div class="gh" onclick="tg(this)"><span class="arr">▶</span><span class="en">How to Buy (Step-by-Step)</span><span class="zn">购买流程</span></div>
 <div class="gc">
-<h4>Phase 1: Prep (Wks 1-4)</h4>
-<ol><li>Set budget (30-40% deposit needed)</li><li>Choose type (holiday vs permanent)</li><li>Build team (broker, financier, accountant, lawyer)</li><li>Get pre-approved</li></ol>
-<h4>Phase 2: Search (Wks 5-12)</h4>
-<ol><li>Broker shows listings matching criteria</li><li>Focus on: BC% 60-70%, mult 3-5x, contract 10yr+</li><li>Inspect complex, manager unit, common areas</li><li>Submit offer</li></ol>
-<h4>Phase 3: Due Diligence</h4>
-<ul><li><b>Accountant</b>: Verify all income figures independently</li><li><b>Lawyer</b>: Review care-taking agreement, letting agreement, BC by-laws, past minutes</li><li><b>Physical</b>: Pest/building, pool condition, maintenance backlog</li><li><b>Letting Pool</b>: Count units, check stability, growth potential</li><li><b>BC Relationship</b>: Meet committee, review minutes for disputes</li></ol>
-<h4>Phase 4: Approval &amp; Settle (Wks 12-20)</h4>
-<ol><li>Final finance approval</li><li>Body Corporate approval</li><li>Get RLA licence (during settlement)</li><li>Settlement - own the business!</li></ol>
-</div></div>
-
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">Checklist</span><span class="zn">尽职调查清单</span></div>
-<div class="gc">
-<h4>Financial</h4>
-<ul><li>Verify net income independently</li><li>Check: BC salary, letting commissions, pool fees, cleaning</li><li>3+ years financial statements</li><li>Trust account records</li><li>Occupancy rates (perm 95%+, holiday 60-70%)</li></ul>
-<h4>Legal</h4>
-<ul><li>Care-taking agreement (duties, pay, term, renewal)</li><li>Letting agreement (commission, terms)</li><li>BC by-laws + 2 years minutes</li><li>Outstanding disputes or legal claims</li></ul>
-<h4>Physical</h4>
-<ul><li>Building/pest inspection on unit</li><li>Pool, gym, BBQ, common areas</li><li>Maintenance backlog? Major upcoming expenditure?</li></ul>
-<h4>Letting Pool</h4>
-<ul><li>Count current pool units</li><li>Perm vs holiday? Growth potential?</li><li>Risk of losing units? Outside agents?</li></ul>
-</div></div>
-
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">Pitfalls</span><span class="zn">常见陷阱</span></div>
-<div class="gc">
-<div class="wr"><b>Inadequate DD</b> - #1 reason PMR purchases fail. Never rely on seller's figures. Pay $3-5K for accountant verification.</div>
-<div class="wr"><b>Poor BC relationship</b> - BC makes your life good or bad. Review minutes carefully for disputes.</div>
-<div class="wr"><b>Outdated agreements</b> - Ensure duties and pay clearly defined. Can BC add work without more pay?</div>
-<div class="wr"><b>Losing pool units</b> - Owners can leave pool, live in unit, or use outside agents. Check stability.</div>
-<div class="wr"><b>Underestimate workload</b> - Perm: ~15-20 hrs/wk. Holiday: ~25-40 hrs/wk. Be realistic.</div>
-<div class="wr"><b>Wrong advisors</b> - Use only PMR-specialised accountant and lawyer. Generalists miss critical issues.</div>
-</div></div>
-
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">Tips</span><span class="zn">心得</span></div>
-<div class="gc">
-<p><b>Rules:</b></p>
+<h4><span class="en">Phase 1: Preparation (Weeks 1-4)</span><span class="zn">阶段1：准备（第1-4周）</span></h4>
+<p><span class="en">1. Research — understand what PMR entails, define budget, choose holiday vs permanent</span><span class="zn">1. 调研 — 了解PMR内容、确定预算、选择短租或长租</span></p>
+<p><span class="en">2. Build your team — specialist broker, PMR financier, PMR accountant, PMR lawyer</span><span class="zn">2. 组建团队 — 专业经纪人、PMR贷款专家、PMR会计师、PMR律师</span></p>
+<p><span class="en">3. Get pre-approved for finance (30-40% deposit typically required)</span><span class="zn">3. 贷款预批准（通常需要30-40%首付）</span></p>
+<h4><span class="en">Phase 2: Search & Evaluate (Weeks 5-12)</span><span class="zn">阶段2：搜索与评估（第5-12周）</span></h4>
+<p><span class="en">4. Your broker presents matching listings. Focus on BC% 60-70%, multiplier 3-5x, contract 10yr+</span><span class="zn">4. 经纪人推荐匹配的挂牌。关注BC% 60-70%、倍数3-5x、合同10年以上</span></p>
+<p><span class="en">5. Submit offer once you find a match. Contract includes conditions for inspections, due diligence, finance, BC approval</span><span class="zn">5. 找到合适的提交报价。合同包含检查、尽调、贷款、BC批准条件</span></p>
+<h4><span class="en">Phase 3: Due Diligence (CRITICAL!)</span><span class="zn">阶段3：尽职调查（关键！）</span></h4>
 <ul>
-<li><b>30/40 Rule</b>: 30-40% deposit for most loans</li>
-<li><b>Multiplier</b>: 3-5x good, &gt;6x overpriced</li>
-<li><b>BC%</b>: 50-70% ideal, &gt;80% caretaker trap</li>
-<li><b>Caretaking pay</b>: Must cover your time + profit margin</li></ul>
-<p><b>Questions for Seller:</b></p>
+<li><span class="en"><b>Accountant:</b> Independently verify ALL income — BC salary, letting commissions, pool fees, cleaning. Check 3+ years financial statements, trust account records, occupancy rates</span><span class="zn"><b>会计师:</b> 独立验证所有收入 — BC薪资、租赁佣金、泳池费用、清洁。检查3年以上财务报表、信托账户记录、入住率</span></li>
+<li><span class="en"><b>Lawyer:</b> Review care-taking agreement (duties, pay, term, renewal), letting agreement, BC by-laws, past minutes, disputes</span><span class="zn"><b>律师:</b> 审查管理协议（职责、薪酬、期限、续约）、租赁协议、BC规约、过往会议记录、纠纷</span></li>
+<li><span class="en"><b>Physical inspections:</b> Building/pest inspection on manager unit, check pool/gym/BBQ condition, check maintenance backlog</span><span class="zn"><b>物理检查:</b> 经理单元的建筑/白蚁检查、检查泳池/健身房/BBQ状态、检查维护积压</span></li>
+<li><span class="en"><b>Letting Pool:</b> Count pool units, check stability, check for units likely to leave</span><span class="zn"><b>租赁池:</b> 统计池中单元、检查稳定性、检查可能离开的单元</span></li>
+<li><span class="en"><b>BC Relationship:</b> Meet the Body Corporate committee. Good relationship is essential for long-term success</span><span class="zn"><b>BC关系:</b> 与业主委员会见面。良好的关系对长期成功至关重要</span></li>
+</ul>
+<h4><span class="en">Phase 4: Approval & Settlement (Weeks 12-20)</span><span class="zn">阶段4：批准与交割（第12-20周）</span></h4>
+<p><span class="en">6. Final finance approval</span><span class="zn">6. 最终贷款批准</span></p>
+<p><span class="en">7. Body Corporate approval (BC must approve you as manager)</span><span class="zn">7. 业主批准（BC必须批准你为经理）</span></p>
+<p><span class="en">8. Get RLA licence (during settlement period)</span><span class="zn">8. 获取RLA执照（在交割期间）</span></p>
+<p><span class="en">9. Settlement — you now own the business!</span><span class="zn">9. 交割 — 你现在拥有这个业务！</span></p>
+</div></div>
+
+<div class="gs">
+<div class="gh" onclick="tg(this)"><span class="arr">▶</span><span class="en">Due Diligence Checklist</span><span class="zn">尽职调查清单</span></div>
+<div class="gc">
+<h4><span class="en">Financial</span><span class="zn">财务</span></h4>
 <ul>
-<li>Current BC relationship?</li>
-<li>How many units in pool? How long have they been there?</li>
-<li>Any considering leaving pool?</li>
-<li>Major upcoming maintenance/costs?</li>
-<li>Hours per week workload?</li>
-<li>Any disputes with owners?</li></ul>
-<p><b>Best resources:</b> AccomProperties.com.au, ResortBrokers.com.au, TheOnsiteManager.com.au</p>
-<div class="tp2">Pro Tip: Talk to CURRENT or FORMER PMR owners. They give real picture, not broker's polished version.</div>
+<li><span class="en">Verify net income independently</span><span class="zn">独立验证净收入</span></li>
+<li><span class="en">Check ALL income sources: BC salary, commissions, pool fees, cleaning</span><span class="zn">检查所有收入来源：BC薪资、佣金、泳池费用、清洁</span></li>
+<li><span class="en">3+ years financial statements</span><span class="zn">3年以上财务报表</span></li>
+<li><span class="en">Trust account records</span><span class="zn">信托账户记录</span></li>
+<li><span class="en">Occupancy rates (perm 95%+, holiday 60-70% avg)</span><span class="zn">入住率（长租95%+，短租平均60-70%）</span></li>
+</ul>
+<h4><span class="en">Legal</span><span class="zn">法律</span></h4>
+<ul>
+<li><span class="en">Care-taking agreement: duties, responsibilities, remuneration, term, renewal options, CPI increases</span><span class="zn">管理协议：职责、责任、报酬、期限、续约选项、CPI增长</span></li>
+<li><span class="en">Letting agreement: commission rates, terms</span><span class="zn">租赁协议：佣金率、条款</span></li>
+<li><span class="en">BC by-laws + 2 years of meeting minutes (look for disputes)</span><span class="zn">BC规约+2年会议记录（查找纠纷）</span></li>
+<li><span class="en">Any outstanding disputes or legal claims</span><span class="zn">任何未决纠纷或法律索赔</span></li>
+</ul>
+<h4><span class="en">Letting Pool</span><span class="zn">租赁池</span></h4>
+<ul>
+<li><span class="en">Count current pool units</span><span class="zn">统计当前 pool unit 数量</span></li>
+<li><span class="en">Composition: permanent vs holiday?</span><span class="zn">组成：长租vs短租？</span></li>
+<li><span class="en">Growth potential? Risk of losing units?</span><span class="zn">增长潜力？失去单元的风险？</span></li>
+</ul>
+</div></div>
+
+<div class="gs">
+<div class="gh" onclick="tg(this)"><span class="arr">▶</span><span class="en">Common Pitfalls (READ CAREFULLY)</span><span class="zn">常见陷阱（仔细阅读）</span></div>
+<div class="gc">
+<div class="wr"><b><span class="en">Inadequate Due Diligence</span><span class="zn">尽职调查不足</span></b><br><span class="en">#1 reason PMR purchases fail. Never rely on seller's figures. Pay $3-5K for specialist PMR accountant verification.</span><span class="zn">PMR购买失败的主要原因。永远不要依赖卖家的数据。花$3-5K请专业PMR会计师验证。</span></div>
+<div class="wr"><b><span class="en">Poor BC Relationship</span><span class="zn">BC关系差</span></b><br><span class="en">The BC committee can make your life beautiful or terrible. Review minutes carefully for disputes, personality clashes, unresolved issues.</span><span class="zn">BC委员会可以让你生活美好或糟糕。仔细检查会议记录中的纠纷、人格冲突、未决问题。</span></div>
+<div class="wr"><b><span class="en">Ambiguous or Outdated Agreements</span><span class="zn">模糊或过时的协议</span></b><br><span class="en">Poorly written care-taking agreements can mean more work for the same pay. Can BC increase workload without more pay?</span><span class="zn">写得不好的管理协议可能意味着同样的工资更多的工作。BC能在不加薪的情况下增加工作量吗？</span></div>
+<div class="wr"><b><span class="en">Loss of Letting Pool Units</span><span class="zn">失去租赁池单元</span></b><br><span class="en">Units can leave if owners decide to live in the unit, use outside agents, or leave them empty.</span><span class="zn">如果业主决定自住、使用外部代理或空置，单元会离开。</span></div>
+<div class="wr"><b><span class="en">Underestimate Workload</span><span class="zn">低估工作量</span></b><br><span class="en">Permanent: ~15-20 hrs/week. Holiday: ~25-40 hrs/week. Be realistic about daily responsibilities.</span><span class="zn">长租：~每周15-20小时。短租：~每周25-40小时。对日常职责要现实。</span></div>
+<div class="wr"><b><span class="en">Wrong Advisors</span><span class="zn">选错顾问</span></b><br><span class="en">Using a regular accountant or lawyer who hasn't done PMR deals is a major risk. They WILL miss critical issues.</span><span class="zn">使用没有做过PMR交易的普通会计师或律师是重大风险。他们会遗漏关键问题。</span></div>
+</div></div>
+
+<div class="gs">
+<div class="gh" onclick="tg(this)"><span class="arr">▶</span><span class="en">Key Rules & Tips</span><span class="zn">关键规则与技巧</span></div>
+<div class="gc">
+<p><span class="en"><b>30/40 Rule:</b> 30-40% deposit required for most PMR loans</span><span class="zn"><b>30/40规则:</b> 大多数PMR贷款需要30-40%首付</span></p>
+<p><span class="en"><b>Multiplier Rule:</b> 3-5x = excellent value, 5-6x = fair market, >6x = overpriced</span><span class="zn"><b>倍数规则:</b> 3-5x = 极佳价值，5-6x = 市场公平，>6x = 定价过高</span></p>
+<p><span class="en"><b>BC Ratio Rule:</b> 50-70% = healthy, 70-80% = caution, >80% = caretaker trap (AVOID!)</span><span class="zn"><b>BC比率规则:</b> 50-70% = 健康，70-80% = 注意，>80% = caretaker陷阱（避免！）</span></p>
+<div class="tp2"><span class="en"><b>Pro Tip:</b> Talk to CURRENT or FORMER PMR owners. They give you the real picture — not the broker's polished version.</span><span class="zn"><b>专家提示:</b> 与现任或前任PMR业主交谈。他们会给你真实的画面 — 而不是经纪人的美化版本。</span></div>
 </div></div>
 
 </div>
@@ -214,31 +217,17 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.96);backdrop-filt
 <div class="ft">pmr-dashboard | winrobin.github.io</div>
 
 <script>
-function sw(id){
-var els=document.querySelectorAll('.tp');
-for(var i=0;i<els.length;i++)els[i].classList.remove('ac');
-document.getElementById(id).classList.add('ac');
-var tabs=document.querySelectorAll('.tab');
-for(var i=0;i<tabs.length;i++)tabs[i].classList.remove('ac');
-event.currentTarget.classList.add('ac');
-}
-function tg(el){
-el.classList.toggle('open');
-var c=el.nextElementSibling;
-if(c){
-if(el.classList.contains('open')){c.classList.add('open');c.style.display='block';}
-else{c.classList.remove('open');c.style.display='none';}
-}
-}
+function sw(id){var els=document.querySelectorAll('.tp');for(var i=0;i<els.length;i++)els[i].classList.remove('ac');document.getElementById(id).classList.add('ac');var tabs=document.querySelectorAll('.tab');for(var i=0;i<tabs.length;i++)tabs[i].classList.remove('ac');event.currentTarget.classList.add('ac');}
+function tg(el){var arr=el.querySelector('.arr');el.classList.toggle('open');var c=el.nextElementSibling;if(c){if(el.classList.contains('open')){c.classList.add('open');c.style.display='block';if(arr)arr.style.transform='rotate(90deg)';}else{c.classList.remove('open');c.style.display='none';if(arr)arr.style.transform='';}}}
 function tog(){
-var el=document.querySelectorAll('.en');
-var zn=document.querySelectorAll('.zn');
-for(var i=0;i<el.length;i++){el[i].style.display=(el[i].style.display==='none')?'':'none';}
-for(var i=0;i<zn.length;i++){zn[i].style.display=(zn[i].style.display==='none')?'':'none';}
+  var zh=document.querySelectorAll('.zn');
+  for(var i=0;i<zh.length;i++){
+    if(zh[i].style.display==='none'){zh[i].style.display='';}
+    else{zh[i].style.display='none';}
+  }
 }
 var d=new Date();
-var opts={day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'};
-document.getElementById('dt').textContent=d.toLocaleDateString('en-AU',opts);
+document.getElementById('dt').textContent=d.toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'});
 </script>
 </body>
 </html>
