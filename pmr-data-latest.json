@@ -143,7 +143,7 @@
     "status": "active",
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
-    "notes": "Massively Reduced Wakerley MLR – Freshly Topped Up & Ready to Go! $257K net; 5.25x mult; Bulimba blue-chip; Tier 2"
+    "notes": "Massively Reduced Wakerley MLR \u2013 Freshly Topped Up & Ready to Go! $257K net; 5.25x mult; Bulimba blue-chip; Tier 2"
   },
   {
     "id": "prop-010",
@@ -160,5 +160,37 @@
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
     "notes": "Broadbeach core; $1.675M; all data missing"
+  },
+  {
+    "id": "prop-011",
+    "name": "Brisbane CBD Premium",
+    "region": "Brisbane",
+    "price": null,
+    "net_income": 1100000,
+    "multiplier": null,
+    "bc_percent": null,
+    "contract_years": 21,
+    "pool_units": null,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "last_updated": "2026-04-13",
+    "source": "propertybridge.com.au",
+    "notes": "SPECTACULAR CBD LOCATION - $1.1M+ PROFIT; Body Corporate Salary >$230k p.a.; 21-year contract; 350 sqm manager's apartment with 200 sqm courtyard, 3BR, 2BA"
+  },
+  {
+    "id": "prop-012",
+    "name": "Hamilton Riverside Portfolio",
+    "region": "Brisbane",
+    "price": 7016000,
+    "net_income": 900000,
+    "multiplier": 7.795555555555556,
+    "bc_percent": 48.278725496822574,
+    "contract_years": null,
+    "pool_units": 119,
+    "weekly_rent_per_unit": 114.4010989010989,
+    "status": "active",
+    "last_updated": "2026-04-13",
+    "source": "propertybridge.com.au",
+    "notes": "$7,016,000 asking price; Net profit $900k; Body Corporate $700k p.a.; Manager unit leased $42k p.a.; Letting pool $707,914; 119 units"
   }
 ]
