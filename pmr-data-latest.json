@@ -13,7 +13,9 @@
     "status": "active",
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
-    "notes": "#1 BC 61.5% healthy; 23yr contract; $68/wk reasonable; minimal"
+    "notes": "#1 BC 61.5% healthy; 23yr contract; $68/wk reasonable; minimal",
+    "last_fetched": "2026-04-13T21:59:03.971322",
+    "data_source": "fetcher_script"
   },
   {
     "id": "prop-002",
@@ -29,7 +31,9 @@
     "status": "active",
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
-    "notes": "CBD waterfront; BC 57.5% healthy; $431K net; 52 pool units; 11yr first sale; Tier 3"
+    "notes": "CBD waterfront; BC 57.5% healthy; $431K net; 52 pool units; 11yr first sale; Tier 3",
+    "last_fetched": "2026-04-13T21:59:03.971331",
+    "data_source": "fetcher_script"
   },
   {
     "id": "prop-003",
@@ -45,7 +49,9 @@
     "status": "active",
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
-    "notes": "BC 61.1% healthy; new building; Pool missing = main risk"
+    "notes": "BC 61.1% healthy; new building; Pool missing = main risk",
+    "last_fetched": "2026-04-13T21:59:03.971332",
+    "data_source": "fetcher_script"
   },
   {
     "id": "prop-004",
@@ -61,7 +67,9 @@
     "status": "active",
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
-    "notes": "BC 52% very healthy; 21yr contract; holiday+permanent mix; 18/47=38% pool; Manager unit $850K extra income"
+    "notes": "BC 52% very healthy; 21yr contract; holiday+permanent mix; 18/47=38% pool; Manager unit $850K extra income",
+    "last_fetched": "2026-04-13T21:59:03.971334",
+    "data_source": "fetcher_script"
   },
   {
     "id": "prop-005",
@@ -77,7 +85,9 @@
     "status": "active",
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
-    "notes": "4.05x excellent multiplier! $210K net; ROI 24.7%; beach proximity - BC/contract/pool ALL unknown - full DD needed"
+    "notes": "4.05x excellent multiplier! $210K net; ROI 24.7%; beach proximity - BC/contract/pool ALL unknown - full DD needed",
+    "last_fetched": "2026-04-13T21:59:03.971335",
+    "data_source": "fetcher_script"
   },
   {
     "id": "prop-006",
@@ -93,7 +103,9 @@
     "status": "active",
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
-    "notes": "4.76x excellent; 189 total 19 pool (10%) huge growth; light rail 2min; no onsite required"
+    "notes": "4.76x excellent; 189 total 19 pool (10%) huge growth; light rail 2min; no onsite required",
+    "last_fetched": "2026-04-13T21:59:03.971337",
+    "data_source": "fetcher_script"
   },
   {
     "id": "prop-007",
@@ -109,7 +121,9 @@
     "status": "active",
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
-    "notes": "BC 93.6% = caretaker not PMR; $34/wk extremely low"
+    "notes": "BC 93.6% = caretaker not PMR; $34/wk extremely low",
+    "last_fetched": "2026-04-13T21:59:03.971338",
+    "data_source": "fetcher_script"
   },
   {
     "id": "prop-008",
@@ -125,7 +139,9 @@
     "status": "active",
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
-    "notes": "Two adjoining caretaker complexes; BC 83.7% high; 16yr contract; 200m to beach"
+    "notes": "Two adjoining caretaker complexes; BC 83.7% high; 16yr contract; 200m to beach",
+    "last_fetched": "2026-04-13T21:59:03.971340",
+    "data_source": "fetcher_script"
   },
   {
     "id": "prop-009",
@@ -143,7 +159,9 @@
     "status": "active",
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
-    "notes": "Massively Reduced Wakerley MLR \u2013 Freshly Topped Up & Ready to Go! $257K net; 5.25x mult; Bulimba blue-chip; Tier 2"
+    "notes": "Massively Reduced Wakerley MLR – Freshly Topped Up & Ready to Go! $257K net; 5.25x mult; Bulimba blue-chip; Tier 2",
+    "last_fetched": "2026-04-13T21:59:03.971341",
+    "data_source": "fetcher_script"
   },
   {
     "id": "prop-010",
@@ -159,7 +177,9 @@
     "status": "active",
     "last_updated": "2026-04-12",
     "source": "accomproperties.com.au",
-    "notes": "Broadbeach core; $1.675M; all data missing"
+    "notes": "Broadbeach core; $1.675M; all data missing",
+    "last_fetched": "2026-04-13T21:59:03.971342",
+    "data_source": "fetcher_script"
   },
   {
     "id": "prop-011",
@@ -175,7 +195,9 @@
     "status": "active",
     "last_updated": "2026-04-13",
     "source": "propertybridge.com.au",
-    "notes": "SPECTACULAR CBD LOCATION - $1.1M+ PROFIT; Body Corporate Salary >$230k p.a.; 21-year contract; 350 sqm manager's apartment with 200 sqm courtyard, 3BR, 2BA"
+    "notes": "SPECTACULAR CBD LOCATION - $1.1M+ PROFIT; Body Corporate Salary >$230k p.a.; 21-year contract; 350 sqm manager's apartment with 200 sqm courtyard, 3BR, 2BA",
+    "last_fetched": "2026-04-13T21:59:03.971343",
+    "data_source": "fetcher_script"
   },
   {
     "id": "prop-012",
@@ -191,6 +213,8 @@
     "status": "active",
     "last_updated": "2026-04-13",
     "source": "propertybridge.com.au",
-    "notes": "$7,016,000 asking price; Net profit $900k; Body Corporate $700k p.a.; Manager unit leased $42k p.a.; Letting pool $707,914; 119 units"
+    "notes": "$7,016,000 asking price; Net profit $900k; Body Corporate $700k p.a.; Manager unit leased $42k p.a.; Letting pool $707,914; 119 units",
+    "last_fetched": "2026-04-13T21:59:03.971345",
+    "data_source": "fetcher_script"
   }
 ]
