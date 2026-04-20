@@ -214,7 +214,7 @@ function matchesRegion(p) {
 function setRegion(btn, region) {
   activeRegion = region;
   document.querySelectorAll('.rf-btn').forEach(function(b){ b.classList.remove('ac'); });
-  btn.classList.add('ac');
+  if (btn) btn.classList.add('ac');
   renderAll();
 }
 
@@ -357,12 +357,18 @@ async function loadPropertyData() {
     });
     var rfBar = document.getElementById('rf-bar');
     if (rfBar) {
-      var btns = '<button class="rf-btn ac" onclick="setRegion(this,'all')">All ('+allProps.length+')</button>';
+      var btns = '<button class="rf-btn ac" data-region="all">All ('+allProps.length+')</button>';
       ['Brisbane','Gold Coast','Sunshine Coast','QLD Other','Interstate'].forEach(function(grp){
         var cnt = regionCounts[grp]||0;
-        if (cnt > 0) btns += '<button class="rf-btn" onclick="setRegion(this,''+grp+'')">'+grp+' ('+cnt+')</button>';
+        if (cnt > 0) btns += '<button class="rf-btn" data-region="'+grp+'">'+grp+' ('+cnt+')</button>';
       });
       rfBar.innerHTML = btns;
+      // attach click handlers after setting innerHTML
+      rfBar.querySelectorAll('.rf-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          setRegion(this, this.getAttribute('data-region'));
+        });
+      });
     }
 
     renderAll();
