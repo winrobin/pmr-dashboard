@@ -6,6 +6,7 @@
 <title>PMR Dashboard</title>
 <style>
 
+
 :root{--bg:#090a0f;--bg2:#111318;--bd:#1e222a;--tx:#e8eaed;--t2:#8b95a5;--t3:#555d6a;--ac:#4a9eff;--g:#22c55e;--a:#f59e0b;--r:#ef4444}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--tx);font-family:'DM Sans',system-ui,sans-serif;font-size:13px;line-height:1.6;padding-bottom:40px}
@@ -66,10 +67,39 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.95);backdrop-filt
 .ft{text-align:center;padding:20px 8px;font-size:9px;color:var(--t3);border-top:1px solid var(--bd);margin-top:16px}
 .ft b{color:var(--ac)}
 
+
+/* ── Region filter ────────────────────────── */
+.rf{background:rgba(9,10,15,.8);border-bottom:1px solid var(--bd);padding:8px 16px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+.rf-btn{display:inline-block;padding:5px 12px;margin-right:6px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.4px;cursor:pointer;border:1px solid var(--bd);background:none;color:var(--t2);transition:all .18s}
+.rf-btn.ac{background:var(--ac);color:#fff;border-color:var(--ac)}
+/* ── Sort bar ─────────────────────────────── */
+.sb{padding:6px 16px 2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sb-label{font-size:10px;color:var(--t2);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.sb-btn{font-size:11px;padding:4px 10px;border-radius:6px;border:1px solid var(--bd);background:none;color:var(--t2);cursor:pointer;transition:all .15s}
+.sb-btn.ac{background:rgba(79,152,163,.15);color:var(--ac);border-color:var(--ac)}
+/* ── Card notes ───────────────────────────── */
+.cn-notes{font-size:12px;color:var(--t2);padding:8px 0 2px;line-height:1.55}
+.cn-risk{font-size:12px;color:var(--a);background:rgba(218,113,1,.08);border-left:3px solid var(--a);padding:6px 8px;border-radius:0 4px 4px 0;margin:4px 0;line-height:1.5}
+.cn-act{font-size:12px;color:var(--ac);background:rgba(79,152,163,.08);border-left:3px solid var(--ac);padding:6px 8px;border-radius:0 4px 4px 0;margin:4px 0;line-height:1.5}
+/* ── Watchlist star ───────────────────────── */
+.star{background:none;border:none;font-size:16px;cursor:pointer;padding:0 4px;opacity:.4;transition:opacity .15s}
+.star.on{opacity:1}
+.card-h{display:flex;align-items:center;gap:8px}
+.nm{flex:1;font-size:13px;font-weight:600;color:var(--t1)}
+/* ── Contract year colors ─────────────────── */
+.cont-g{color:var(--g)!important}
+.cont-y{color:var(--y)!important}
+.cont-r{color:var(--r)!important}
+/* ── Price badge ──────────────────────────── */
+.price-high{color:var(--a)!important}
+/* ── Watchlist tab dot ────────────────────── */
+.wl-count{display:inline-block;background:var(--ac);color:#fff;border-radius:10px;font-size:9px;padding:1px 5px;margin-left:4px;vertical-align:middle}
+/* ── Data freshness ───────────────────────── */
+.freshness{font-size:10px;color:var(--t2);padding:4px 16px 0;text-align:right}
+
 </style>
 </head>
 <body>
-
 <nav><div class="nh"><div class="br"><h1>PMR Dashboard</h1></div><div class="nr"><span class="nd" id="dt"></span><button class="lb" onclick="tog()">EN</button></div></div></nav>
 <div class="leg">
 <span><b>NI</b> <span class="en">Net Income</span><span class="zh">年净收入</span></span>
@@ -79,19 +109,29 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.95);backdrop-filt
 <span><b>CONT</b> <span class="en">Contract years</span><span class="zh">合同年限</span></span>
 </div>
 <div class="rf" id="rf-bar"></div>
+  <div class="sb">
+    <span class="sb-label en">Sort</span><span class="sb-label zh">排序</span>
+    <button class="sb-btn ac" data-sort="mult"><span class="en">Best Value</span><span class="zh">最优倍数</span></button>
+    <button class="sb-btn" data-sort="ni"><span class="en">Highest NI</span><span class="zh">最高净收入</span></button>
+    <button class="sb-btn" data-sort="roi"><span class="en">Best ROI</span><span class="zh">最高回报率</span></button>
+    <button class="sb-btn" data-sort="price"><span class="en">Lowest Price</span><span class="zh">最低价格</span></button>
+  </div>
+  <div class="freshness" id="freshness"></div>
 <div class="tabs">
 <div class="ti ac" onclick="sw('t1')">Tier 1</div>
 <div class="ti" onclick="sw('t2')">Tier 2</div>
 <div class="ti" onclick="sw('t3')">Tier 3</div>
 <div class="ti" onclick="sw('ta')">All</div>
 <div class="ti" onclick="sw('t4')"><span class="en">Guide</span><span class="zh">指南</span></div>
+  <div class="ti" onclick="sw('tw')"><span class="en">★ Watch</span><span class="zh">★ 收藏</span><span class="wl-count" id="wl-cnt">0</span></div>
 </div>
 <div class="app">
 <div class="tp ac" id="t1"></div>
 <div class="tp" id="t2"></div>
 <div class="tp" id="t3"></div>
 <div class="tp" id="ta"></div>
-<div class="tp" id="t4"><div class="sec-h"><span class="en">Guide</span><span class="zh">指南</span><span class="b"></span></div>
+<div class="tp" id="tw"></div>
+  <div class="tp" id="t4"><div class="sec-h"><span class="en">Guide</span><span class="zh">指南</span><span class="b"></span></div>
 <div class="gs"><div class="gh open" onclick="tg(this)"><span class="ha">▶</span><span class="en">1. What is PMR?</span><span class="zh">1. 什么是PMR?</span></div>
 <div class="gc open">
 <p><b>PMR</b> (Property Management Rights) — uniquely Australian, QLD dominant. You buy the agreement — NOT the property.</p>
@@ -131,238 +171,321 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.95);backdrop-filt
 </div>
 <div class="ft"><b>pmr-dashboard</b> · winrobin/github.io</div>
 </div>
-
-
 <script>
-// ── UI: tab switching + language toggle ───────────────────────────────────
+// ── Language toggle (body.cn class) ──────────────────────────────────────
 var zh = false;
 function tog(){
-  zh=!zh;
+  zh = !zh;
   document.body.classList.toggle('cn', zh);
-  document.querySelector('.lb').textContent=zh?'中文':'EN';
+  document.querySelector('.lb').textContent = zh ? '中文' : 'EN';
 }
+// ── Tab switching ─────────────────────────────────────────────────────────
 function sw(id){
   document.querySelectorAll('.tp').forEach(function(e){e.classList.remove('ac')});
   document.querySelectorAll('.ti').forEach(function(e){e.classList.remove('ac')});
-  var el=document.getElementById(id);
-  if(el)el.classList.add('ac');
-  var tabs=document.querySelectorAll('.ti');
-  var ids=['t1','t2','t3','ta','t4'];
-  tabs.forEach(function(t,i){if(ids[i]===id)t.classList.add('ac');});
+  var el = document.getElementById(id);
+  if(el) el.classList.add('ac');
+  var ids = ['t1','t2','t3','ta','tw','t4'];
+  document.querySelectorAll('.ti').forEach(function(t,i){
+    if(ids[i] === id) t.classList.add('ac');
+  });
 }
 function tg(el){
   el.classList.toggle('open');
-  var gc=el.nextElementSibling;
-  if(gc)gc.classList.toggle('open');
+  var gc = el.nextElementSibling;
+  if(gc) gc.classList.toggle('open');
 }
-// Date
+// ── Date display ──────────────────────────────────────────────────────────
 (function(){
-  var d=new Date();
-  var el=document.getElementById('dt');
-  if(el)el.textContent=d.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getFullYear()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' pm';
+  var d = new Date();
+  var mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var el = document.getElementById('dt');
+  if(el) el.textContent = d.getDate()+' '+mo[d.getMonth()]+' '+d.getFullYear()+
+    ' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' AEST';
 })();
 </script>
 
 <script>
-// ── Location filter state ─────────────────────────────────────────────────
+// ── State ─────────────────────────────────────────────────────────────────
 var activeRegion = 'all';
-var allProps = [];
+var activeSort   = 'mult';
+var allProps     = [];
+var watchlist    = JSON.parse(localStorage.getItem('pmr-watch') || '[]');
 
-var REGION_GROUPS = {
-  'Brisbane':['Brisbane','Brisbane City','West End','Kangaroo Point','Victoria Point',
-    'Morayfield','Brendale','Chermside','Lutwyche','Wakerley','Mansfield',
-    'Redcliffe','Albany Creek','Eight Mile Plains','South Brisbane','Newstead',
-    'Fortitude Valley','Spring Hill','Kelvin Grove','Woolloongabba','Stones Corner'],
-  'Gold Coast':['Gold Coast','Broadbeach','Surfers Paradise','Mermaid Beach','Main Beach',
-    'Burleigh','Burleigh Waters','Tugun','Southport','Robina','Mudgeeraba',
-    'Coolangatta','Silver Quays','Varsity Lakes','Palm Beach','Currumbin',
-    'Labrador','Arundel','Helensvale','Coomera','Oxenford'],
+// ── Region groups ─────────────────────────────────────────────────────────
+var RG = {
+  'Brisbane':      ['Brisbane','West End','Kangaroo Point','Victoria Point','Morayfield',
+                    'Brendale','Chermside','Lutwyche','Wakerley','Mansfield','Redcliffe',
+                    'Albany Creek','Eight Mile Plains','South Brisbane','Newstead',
+                    'Fortitude Valley','Spring Hill','Kelvin Grove','Woolloongabba',
+                    'Stones Corner','Hamilton','Southbank','Nundah','Bowen Hills'],
+  'Gold Coast':    ['Gold Coast','Broadbeach','Surfers Paradise','Mermaid Beach','Main Beach',
+                    'Burleigh','Tugun','Southport','Robina','Mudgeeraba','Coolangatta',
+                    'Silver Quays','Varsity Lakes','Palm Beach','Currumbin','Labrador',
+                    'Arundel','Helensvale','Coomera','Oxenford','Runaway Bay'],
   'Sunshine Coast':['Sunshine Coast','Noosa','Noosaville','Mooloolaba','Caloundra',
-    'Maroochydore','Kings Beach','Coolum','Coolum Beach','Peregian','Buderim',
-    'Kawana','Bokarina','Wurtulla','Bli Bli','Nambour'],
-  'QLD Other':['Cairns','Townsville','Hervey Bay','Bundaberg','Mackay','Rockhampton',
-    'Gladstone','Airlie Beach','Whitsunday','Magnetic Island','Port Douglas',
-    'Trinity Beach','Mission Beach','Yeppoon','Agnes Water'],
-  'Interstate':['Sydney','Melbourne','Perth','Adelaide','Darwin','Hobart','NSW','VIC',
-    'WA','SA','NT','TAS','ACT','Port Macquarie','Byron Bay','Hunter Valley']
+                    'Maroochydore','Kings Beach','Coolum','Peregian','Buderim',
+                    'Kawana','Bokarina','Wurtulla','Bli Bli','Nambour'],
+  'QLD Other':     ['Cairns','Townsville','Hervey Bay','Bundaberg','Mackay','Rockhampton',
+                    'Gladstone','Airlie Beach','Whitsunday','Port Douglas','Trinity Beach',
+                    'Mission Beach','Yeppoon','Agnes Water'],
+  'Interstate':    ['Sydney','Melbourne','Perth','Adelaide','Hobart','NSW','VIC',
+                    'WA','ACT','Port Macquarie','Byron Bay','Hunter Valley']
 };
 
-function getRegionGroup(p){
-  var txt=((p.name||'')+' '+(p.region||'')).toLowerCase();
-  for(var grp in REGION_GROUPS){
-    var keys=REGION_GROUPS[grp];
-    for(var i=0;i<keys.length;i++){
-      if(txt.indexOf(keys[i].toLowerCase())>=0)return grp;
+function getGroup(p){
+  var txt = ((p.name||'')+' '+(p.region||'')).toLowerCase();
+  for(var g in RG){
+    for(var i=0;i<RG[g].length;i++){
+      if(txt.indexOf(RG[g][i].toLowerCase())>=0) return g;
     }
   }
   return 'QLD Other';
 }
+function matchRegion(p){ return activeRegion==='all' || getGroup(p)===activeRegion; }
 
-function matchesRegion(p){
-  return activeRegion==='all'||getRegionGroup(p)===activeRegion;
+// ── Sorting ───────────────────────────────────────────────────────────────
+function sortProps(arr){
+  return arr.slice().sort(function(a,b){
+    if(activeSort==='mult'){
+      if(!a.multiplier||a.multiplier===0) return 1;
+      if(!b.multiplier||b.multiplier===0) return -1;
+      return a.multiplier - b.multiplier;
+    }
+    if(activeSort==='ni')    return (b.net_income||0)-(a.net_income||0);
+    if(activeSort==='roi'){
+      var ra = a.price ? (a.net_income||0)/a.price : 0;
+      var rb = b.price ? (b.net_income||0)/b.price : 0;
+      return rb - ra;
+    }
+    if(activeSort==='price') return (a.price||0)-(b.price||0);
+    return 0;
+  });
 }
 
-function setRegion(btn,region){
-  activeRegion=region;
-  document.querySelectorAll('.rf-btn').forEach(function(b){b.classList.remove('ac');});
-  if(btn)btn.classList.add('ac');
+// ── Formatters ────────────────────────────────────────────────────────────
+function fmt(n){
+  if(!n||n===0) return '—';
+  if(n>=1000000) return '$'+(n/1000000).toFixed(2)+'M';
+  if(n>=1000)    return '$'+Math.round(n/1000)+'K';
+  return '$'+n.toLocaleString();
+}
+function multColor(m){ return !m?'':m<=5?'g':m<=6.5?'y':'r'; }
+function bcColor(b){   return !b?'':b<=70?'g':b<=80?'y':'r'; }
+function contColor(c){ return !c?'':c>=20?'cont-g':c>=10?'cont-y':'cont-r'; }
+function flag(p){
+  if(p.bc_percent&&p.bc_percent>80)  return '🚨';
+  if(p.multiplier&&p.multiplier>7.5) return '⚠️';
+  if(p.bc_percent&&p.bc_percent>70)  return '⚠️';
+  if(p.contract_years&&p.contract_years<10) return '⚠️';
+  return '✅';
+}
+function roi(p){ return p.price&&p.net_income ? (p.net_income/p.price*100).toFixed(1)+'%' : '—'; }
+
+// ── Watchlist ─────────────────────────────────────────────────────────────
+function isWatched(id){ return watchlist.indexOf(id) >= 0; }
+function toggleWatch(id){
+  var idx = watchlist.indexOf(id);
+  if(idx>=0) watchlist.splice(idx,1); else watchlist.push(id);
+  localStorage.setItem('pmr-watch', JSON.stringify(watchlist));
   renderAll();
 }
 
-// ── formatters ────────────────────────────────────────────────────────────
-function fmt(n){
-  if(!n||n===0)return'—';
-  if(n>=1000000)return'$'+(n/1000000).toFixed(2)+'M';
-  if(n>=1000)return'$'+(n/1000).toFixed(0)+'K';
-  return'$'+n.toLocaleString();
-}
-function multColor(m){if(!m||m===0)return'';if(m<=5)return'g';if(m<=6.5)return'y';return'r';}
-function bcColor(b){if(!b||b===0)return'';if(b<=70)return'g';if(b<=80)return'y';return'r';}
-function flag(p){
-  if(p.bc_percent&&p.bc_percent>80)return'🚨';
-  if(p.multiplier&&p.multiplier>7)return'⚠️';
-  if(p.bc_percent&&p.bc_percent>70)return'⚠️';
-  return'✅';
-}
+// ── Card builder ──────────────────────────────────────────────────────────
+function makeCard(p, rank){
+  var mc = p.multiplier, bc = p.bc_percent, cont = p.contract_years;
+  var link  = p.url ? '<a class="lk" href="'+p.url+'" target="_blank">🔗</a>' : '';
+  var star  = '<button class="star'+(isWatched(p.id)?' on':'')+'" onclick="toggleWatch(\''+p.id+'\')">★</button>';
+  var rkC   = rank<=3?'g':rank<=6?'y':'d';
 
-// ── card ──────────────────────────────────────────────────────────────────
-function makeCard(p,rank){
-  var mc=p.multiplier,bc=p.bc_percent;
-  var mcC=multColor(mc),bcC=bcColor(bc);
-  var link=p.url?'<a class="lk" href="'+p.url+'" target="_blank">🔗</a>':'';
-  var rankColor=rank<=3?'g':rank<=6?'y':'d';
-  var notesHtml='';
-  if(p.notes&&p.notes.trim())notesHtml+='<div class="cn-notes">'+p.notes+'</div>';
-  if(p.risks&&p.risks.trim())notesHtml+='<div class="cn-risk"><span>⚠️ </span>'+p.risks+'</div>';
-  if(p.action&&p.action.trim())notesHtml+='<div class="cn-act"><span>→ </span>'+p.action+'</div>';
+  var contVal = cont&&cont>0 ? cont+'yr' : '?';
+  var contC   = contColor(cont);
+
+  // Price color: >$3M = amber warning
+  var priceC = (p.price && p.price > 3000000) ? 'price-high' : '';
+
+  // Notes
+  var nh = '';
+  if(p.notes  && p.notes.trim())  nh += '<div class="cn-notes">'+p.notes+'</div>';
+  if(p.risks  && p.risks.trim())  nh += '<div class="cn-risk">⚠️ '+p.risks+'</div>';
+  if(p.action && p.action.trim()) nh += '<div class="cn-act">→ '+p.action+'</div>';
+
+  // ROI line
+  var roiLine = (p.price&&p.net_income) ?
+    '<div class="cn-notes" style="color:var(--t2);font-size:11px">ROI: '+roi(p)+'</div>' : '';
+
   return '<div class="card">'+
     '<div class="card-h">'+
-      '<span class="rk '+rankColor+'">'+rank+'</span>'+
-      '<span class="nm">'+p.name+'</span>'+link+
+      '<span class="rk '+rkC+'">'+rank+'</span>'+
+      '<span class="nm">'+p.name+'</span>'+
+      star+link+
     '</div>'+
     '<div class="cb">'+
       '<div class="mg">'+
-        '<div class="mc"><div class="v">'+fmt(p.price)+'</div><div class="l">Price</div></div>'+
+        '<div class="mc '+priceC+'"><div class="v">'+fmt(p.price)+'</div><div class="l">Price</div></div>'+
         '<div class="mc '+(p.net_income>0?'g':'')+'"><div class="v">'+fmt(p.net_income)+'</div><div class="l">NI</div></div>'+
-        '<div class="mc '+bcC+'"><div class="v">'+(bc&&bc>0?bc+'%':'—')+'</div><div class="l">BC%</div></div>'+
-        '<div class="mc '+mcC+'"><div class="v">'+(mc&&mc>0?mc+'x':'—')+'</div><div class="l">Mult</div></div>'+
+        '<div class="mc '+bcColor(bc)+'"><div class="v">'+(bc&&bc>0?bc+'%':'—')+'</div><div class="l">BC%</div></div>'+
+        '<div class="mc '+multColor(mc)+'"><div class="v">'+(mc&&mc>0?mc+'x':'—')+'</div><div class="l">Mult</div></div>'+
         '<div class="mc"><div class="v">'+(p.pool_units>0?p.pool_units:'?')+'</div><div class="l">Pool</div></div>'+
-        '<div class="mc"><div class="v">'+(p.contract_years>0?p.contract_years+'yr':'?')+'</div><div class="l">Cont</div></div>'+
+        '<div class="mc '+contC+'"><div class="v">'+contVal+'</div><div class="l">Cont</div></div>'+
       '</div>'+
-      notesHtml+
+      roiLine+nh+
     '</div>'+
   '</div>';
 }
 
-function makeTableRow(p,idx){
-  var tier=p.price>0?(p.price<1000000?'T1':p.price<1500000?'T2':'T3'):'—';
-  var mc=p.multiplier,bc=p.bc_percent;
-  var link=p.url?'<a href="'+p.url+'" target="_blank" style="color:var(--ac)">🔗</a>':'—';
+function makeTableRow(p, idx){
+  var tier = p.price>0?(p.price<1000000?'T1':p.price<1500000?'T2':'T3'):'—';
+  var mc = p.multiplier, bc = p.bc_percent, cont = p.contract_years;
+  var link = p.url ? '<a href="'+p.url+'" target="_blank" style="color:var(--ac)">🔗</a>' : '—';
+  var star = '<button class="star'+(isWatched(p.id)?' on':'')+'" onclick="toggleWatch(\''+p.id+'\')">★</button>';
   return '<tr>'+
-    '<td>'+tier+'</td>'+
-    '<td>'+idx+'</td>'+
-    '<td style="text-align:left;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+p.name+'">'+p.name+'</td>'+
+    '<td>'+tier+'</td><td>'+idx+'</td>'+
+    '<td style="text-align:left;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+p.name+'">'+p.name+'</td>'+
     '<td>'+fmt(p.price)+'</td>'+
     '<td class="'+(p.net_income>0?'tg':'')+'">'+fmt(p.net_income)+'</td>'+
     '<td class="'+bcColor(bc)+'">'+(bc&&bc>0?bc+'%':'—')+'</td>'+
     '<td class="'+multColor(mc)+'">'+(mc&&mc>0?mc.toFixed(2)+'x':'—')+'</td>'+
     '<td>'+(p.pool_units>0?p.pool_units:'—')+'</td>'+
-    '<td>'+(p.contract_years>0?p.contract_years+'yr':'—')+'</td>'+
+    '<td class="'+contColor(cont)+'">'+(cont&&cont>0?cont+'yr':'—')+'</td>'+
+    '<td>'+roi(p)+'</td>'+
     '<td>'+flag(p)+'</td>'+
+    '<td>'+star+'</td>'+
     '<td>'+link+'</td>'+
   '</tr>';
 }
 
-// ── render ────────────────────────────────────────────────────────────────
-function renderAll(){
-  if(!allProps.length)return;
-  var t1=[],t2=[],t3=[];
-  allProps.forEach(function(p){
-    if(!matchesRegion(p))return;
-    var pr=p.price||0;
-    if(pr>0&&pr<1000000)t1.push(p);
-    else if(pr>=1000000&&pr<1500000)t2.push(p);
-    else if(pr>=1500000)t3.push(p);
-    else t1.push(p); // no price — show in T1 as unknown
-  });
-  function sortTier(arr){
-    return arr.sort(function(a,b){
-      if(!a.multiplier||a.multiplier===0)return 1;
-      if(!b.multiplier||b.multiplier===0)return-1;
-      return a.multiplier-b.multiplier;
-    });
+// ── Render ────────────────────────────────────────────────────────────────
+function renderTier(id, label, arr){
+  var el = document.getElementById(id); if(!el) return;
+  var h = '<div class="sec-h"><span>'+label+' ('+arr.length+')</span><span class="b"></span></div>';
+  if(!arr.length){
+    h += '<div style="padding:32px;color:var(--t2);text-align:center;font-size:13px">No listings'+(activeRegion!=='all'?' in '+activeRegion:'')+' for this tier.</div>';
+  } else {
+    arr.forEach(function(p,i){ h += makeCard(p,i+1); });
   }
-  t1=sortTier(t1);t2=sortTier(t2);t3=sortTier(t3);
-
-  function renderTier(id,label,arr){
-    var el=document.getElementById(id);if(!el)return;
-    var h='<div class="sec-h"><span>'+label+' ('+arr.length+')</span><span class="b"></span></div>';
-    if(arr.length===0){
-      h+='<div style="padding:32px;color:var(--t2);text-align:center;font-size:13px">No listings'+(activeRegion!=='all'?' in '+activeRegion:'')+' for this tier.</div>';
-    } else {
-      arr.forEach(function(p,i){h+=makeCard(p,i+1);});
-    }
-    el.innerHTML=h;
-  }
-  renderTier('t1','Tier 1 — Under $1M',t1);
-  renderTier('t2','Tier 2 — $1M–$1.5M',t2);
-  renderTier('t3','Tier 3 — $1.5M+',t3);
-
-  var allFiltered=allProps.filter(function(p){return matchesRegion(p);});
-  var ta=document.getElementById('ta');
-  if(ta){
-    var sorted=allFiltered.slice().sort(function(a,b){return(a.price||0)-(b.price||0);});
-    var rows=sorted.map(function(p,i){return makeTableRow(p,i+1);}).join('');
-    ta.innerHTML='<div class="sec-h"><span>All ('+allFiltered.length+')</span><span class="b"></span></div>'+
-      '<div class="tw"><table class="t"><thead><tr>'+
-      '<th>T</th><th>#</th><th style="text-align:left">Name</th><th>Price</th><th>NI</th>'+
-      '<th>BC%</th><th>Mult</th><th>Pool</th><th>Cont</th><th></th><th>🔗</th>'+
-      '</tr></thead><tbody>'+rows+'</tbody></table></div>';
-  }
+  el.innerHTML = h;
 }
 
-// ── load data ─────────────────────────────────────────────────────────────
+function renderAll(){
+  if(!allProps.length) return;
+  var t1=[],t2=[],t3=[];
+  allProps.forEach(function(p){
+    if(!matchRegion(p)) return;
+    // Front-end safety: skip under-contract or SA/NT
+    if(/under.?contract/i.test(p.name||'')) return;
+    var reg = ((p.region||'')+' '+(p.name||'')).toUpperCase();
+    if(/ SA | NT |DARWIN/.test(' '+reg+' ')) return;
+    var pr = p.price||0;
+    if(pr>0 && pr<1000000)          t1.push(p);
+    else if(pr>=1000000&&pr<1500000) t2.push(p);
+    else if(pr>=1500000)             t3.push(p);
+    else                             t1.push(p); // unknown price → T1
+  });
+  t1=sortProps(t1); t2=sortProps(t2); t3=sortProps(t3);
+  renderTier('t1','Tier 1 — Under $1M',t1);
+  renderTier('t2','Tier 2 — $1M – $1.5M',t2);
+  renderTier('t3','Tier 3 — $1.5M+',t3);
+
+  // All tab
+  var all = sortProps(allProps.filter(function(p){ return matchRegion(p); }));
+  var ta = document.getElementById('ta');
+  if(ta){
+    var rows = all.map(function(p,i){ return makeTableRow(p,i+1); }).join('');
+    ta.innerHTML = '<div class="sec-h"><span>All ('+all.length+')</span><span class="b"></span></div>'+
+      '<div class="tw"><table class="t"><thead><tr>'+
+      '<th>T</th><th>#</th><th style="text-align:left">Name</th>'+
+      '<th>Price</th><th>NI</th><th>BC%</th><th>Mult</th>'+
+      '<th>Pool</th><th>Cont</th><th>ROI</th><th></th><th>★</th><th>🔗</th>'+
+      '</tr></thead><tbody>'+rows+'</tbody></table></div>';
+  }
+
+  // Watchlist tab
+  var wl = allProps.filter(function(p){ return isWatched(p.id); });
+  var tw = document.getElementById('tw');
+  if(tw){
+    var wlSorted = sortProps(wl);
+    var wh = '<div class="sec-h"><span>★ Watchlist ('+wl.length+')</span><span class="b"></span></div>';
+    if(!wl.length){
+      wh += '<div style="padding:32px;color:var(--t2);text-align:center;font-size:13px">Tap ★ on any listing to add it here.</div>';
+    } else {
+      wlSorted.forEach(function(p,i){ wh += makeCard(p,i+1); });
+    }
+    tw.innerHTML = wh;
+  }
+
+  // Update watchlist count badge
+  var cnt = document.getElementById('wl-cnt');
+  if(cnt) cnt.textContent = watchlist.length;
+  cnt.style.display = watchlist.length ? '' : 'none';
+}
+
+// ── Load data ─────────────────────────────────────────────────────────────
 async function loadPropertyData(){
   try{
-    var r=await fetch('pmr-data-latest.json?t='+Date.now());
-    if(!r.ok)throw new Error('HTTP '+r.status);
-    allProps=await r.json();
+    var r = await fetch('pmr-data-latest.json?t='+Date.now());
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    var raw = await r.json();
 
-    // Build region filter
-    var regionCounts={};
-    allProps.forEach(function(p){
-      var g=getRegionGroup(p);
-      regionCounts[g]=(regionCounts[g]||0)+1;
+    // Front-end safety filters
+    allProps = raw.filter(function(p){
+      var n = (p.name||'').toLowerCase();
+      if(/under.?contract/.test(n)) return false;
+      var reg = ((p.region||'')+' '+n).toUpperCase();
+      if(/ SA | NT |DARWIN/.test(' '+reg+' ')) return false;
+      return true;
     });
-    var rfBar=document.getElementById('rf-bar');
-    if(rfBar){
-      var btns='<button class="rf-btn ac" data-region="all">All ('+allProps.length+')</button>';
-      ['Brisbane','Gold Coast','Sunshine Coast','QLD Other','Interstate'].forEach(function(grp){
-        var cnt=regionCounts[grp]||0;
-        if(cnt>0)btns+='<button class="rf-btn" data-region="'+grp+'">'+grp+' ('+cnt+')</button>';
+
+    // Build region filter buttons
+    var counts = {};
+    allProps.forEach(function(p){ var g=getGroup(p); counts[g]=(counts[g]||0)+1; });
+    var rf = document.getElementById('rf-bar');
+    if(rf){
+      var btns = '<button class="rf-btn ac" data-region="all">All ('+allProps.length+')</button>';
+      ['Brisbane','Gold Coast','Sunshine Coast','QLD Other','Interstate'].forEach(function(g){
+        if(counts[g]) btns += '<button class="rf-btn" data-region="'+g+'">'+g+' ('+counts[g]+')</button>';
       });
-      rfBar.innerHTML=btns;
-      rfBar.querySelectorAll('.rf-btn').forEach(function(btn){
-        btn.addEventListener('click',function(){
-          setRegion(this,this.getAttribute('data-region'));
+      rf.innerHTML = btns;
+      rf.querySelectorAll('.rf-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          activeRegion = this.getAttribute('data-region');
+          rf.querySelectorAll('.rf-btn').forEach(function(b){ b.classList.remove('ac'); });
+          this.classList.add('ac');
+          renderAll();
         });
       });
     }
 
-    // Update timestamp with count
-    var nd=document.getElementById('dt');
-    if(nd)nd.textContent=nd.textContent+' · '+allProps.length+' listings';
+    // Sort buttons
+    document.querySelectorAll('.sb-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        activeSort = this.getAttribute('data-sort');
+        document.querySelectorAll('.sb-btn').forEach(function(b){ b.classList.remove('ac'); });
+        this.classList.add('ac');
+        renderAll();
+      });
+    });
+
+    // Data freshness
+    var fresh = document.getElementById('freshness');
+    if(fresh && allProps.length){
+      var lu = allProps[0].last_updated || allProps[0].last_fetched || '';
+      if(lu) fresh.textContent = 'Data updated: '+lu.split('T')[0];
+    }
 
     renderAll();
-  }catch(e){
+  } catch(e){
     console.error('Load error:',e);
     ['t1','t2','t3','ta'].forEach(function(id){
-      var el=document.getElementById(id);
-      if(el)el.innerHTML='<div style="padding:32px;color:var(--r);text-align:center">Error loading data: '+e.message+'<br><button onclick="loadPropertyData()" style="margin-top:12px;padding:8px 16px;background:var(--ac);color:#fff;border:none;border-radius:6px;cursor:pointer">Retry</button></div>';
+      var el = document.getElementById(id);
+      if(el) el.innerHTML = '<div style="padding:32px;color:var(--r);text-align:center">'+
+        'Error: '+e.message+
+        '<br><button onclick="loadPropertyData()" style="margin-top:12px;padding:8px 16px;background:var(--ac);color:#fff;border:none;border-radius:6px;cursor:pointer">Retry</button></div>';
     });
   }
 }
-document.addEventListener('DOMContentLoaded',loadPropertyData);
+document.addEventListener('DOMContentLoaded', loadPropertyData);
 </script>
+
 </body>
 </html>
