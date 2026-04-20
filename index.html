@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PMR Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+
 :root{--bg:#090a0f;--bg2:#111318;--bd:#1e222a;--tx:#e8eaed;--t2:#8b95a5;--t3:#555d6a;--ac:#4a9eff;--g:#22c55e;--a:#f59e0b;--r:#ef4444}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--tx);font-family:'DM Sans',system-ui,sans-serif;font-size:13px;line-height:1.6;padding-bottom:40px}
@@ -65,9 +65,11 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.95);backdrop-filt
 .fm{background:var(--bg);padding:8px 10px;border-radius:6px;font-family:'JetBrains Mono',monospace;color:var(--g);margin:6px 0;font-size:10px}
 .ft{text-align:center;padding:20px 8px;font-size:9px;color:var(--t3);border-top:1px solid var(--bd);margin-top:16px}
 .ft b{color:var(--ac)}
+
 </style>
 </head>
 <body>
+
 <nav><div class="nh"><div class="br"><h1>PMR Dashboard</h1></div><div class="nr"><span class="nd" id="dt"></span><button class="lb" onclick="tog()">EN</button></div></div></nav>
 <div class="leg">
 <span><b>NI</b> <span class="en">Net Income</span><span class="zh">年净收入</span></span>
@@ -130,49 +132,36 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.95);backdrop-filt
 <div class="ft"><b>pmr-dashboard</b> · winrobin/github.io</div>
 </div>
 
+
 <script>
+// ── UI: tab switching + language toggle ───────────────────────────────────
+var zh = false;
+function tog(){
+  zh=!zh;
+  document.querySelectorAll('.en').forEach(function(e){e.style.display=zh?'none':'';});
+  document.querySelectorAll('.zh').forEach(function(e){e.style.display=zh?'':'none';});
+  document.querySelector('.lb').textContent=zh?'中文':'EN';
+}
 function sw(id){
   document.querySelectorAll('.tp').forEach(function(e){e.classList.remove('ac')});
   document.querySelectorAll('.ti').forEach(function(e){e.classList.remove('ac')});
-  document.getElementById(id).classList.add('ac');
-  event.currentTarget.classList.add('ac');
+  var el=document.getElementById(id);
+  if(el)el.classList.add('ac');
+  var tabs=document.querySelectorAll('.ti');
+  var ids=['t1','t2','t3','ta','t4'];
+  tabs.forEach(function(t,i){if(ids[i]===id)t.classList.add('ac');});
 }
 function tg(el){
   el.classList.toggle('open');
-  var c=el.nextElementSibling;
-  if(c){
-    if(el.classList.contains('open')){c.classList.add('open');c.style.display='block';}
-    else{c.classList.remove('open');c.style.display='none';}
-  }
+  var gc=el.nextElementSibling;
+  if(gc)gc.classList.toggle('open');
 }
-function tog(){
-  var b=document.body,btn=document.querySelector('.lb');
-  if(b.classList.contains('cn')){b.classList.remove('cn');btn.textContent='EN';}
-  else{b.classList.add('cn');btn.textContent='中文';}
-}
-var now=new Date();
-document.getElementById('dt').textContent=now.toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})+' '+now.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
-</script>
-<script>
-function sw(id){
-  document.querySelectorAll('.tp').forEach(function(e){e.classList.remove('ac')});
-  document.querySelectorAll('.ti').forEach(function(e){e.classList.remove('ac')});
-  document.getElementById(id).classList.add('ac');
-  event.currentTarget.classList.add('ac');
-}
-function tg(el){
-  var c=el.nextElementSibling;
-  el.classList.toggle('open');
-  if(el.classList.contains('open')){c.classList.add('open');c.style.display='block';}
-  else{c.classList.remove('open');c.style.display='none';}
-}
-function tog(){
-  var b=document.body,btn=document.querySelector('.lb');
-  if(b.classList.contains('cn')){b.classList.remove('cn');btn.textContent='EN';}
-  else{b.classList.add('cn');btn.textContent='中文';}
-}
-var now=new Date();
-document.getElementById('dt').textContent=now.toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'numeric'})+' '+now.toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
+// Date
+(function(){
+  var d=new Date();
+  var el=document.getElementById('dt');
+  if(el)el.textContent=d.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()]+' '+d.getFullYear()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' pm';
+})();
 </script>
 
 <script>
@@ -181,45 +170,53 @@ var activeRegion = 'all';
 var allProps = [];
 
 var REGION_GROUPS = {
-  'Brisbane':      ['Brisbane','Brisbane City','West End','Kangaroo Point','Victoria Point',
-                    'Morayfield','Brendale','Chermside','Lutwyche','Wakerley','Mansfield',
-                    'Redcliffe','Albany Creek','Morayfield','Eight Mile Plains'],
-  'Gold Coast':    ['Gold Coast','Broadbeach','Surfers Paradise','Mermaid Beach','Main Beach',
-                    'Burleigh','Burleigh Waters','Tugun','Southport','Robina','Mudgeeraba',
-                    'Coolangatta','Kangaroo Point','Silver Quays'],
+  'Brisbane':['Brisbane','Brisbane City','West End','Kangaroo Point','Victoria Point',
+    'Morayfield','Brendale','Chermside','Lutwyche','Wakerley','Mansfield',
+    'Redcliffe','Albany Creek','Eight Mile Plains','South Brisbane','Newstead',
+    'Fortitude Valley','Spring Hill','Kelvin Grove','Woolloongabba','Stones Corner'],
+  'Gold Coast':['Gold Coast','Broadbeach','Surfers Paradise','Mermaid Beach','Main Beach',
+    'Burleigh','Burleigh Waters','Tugun','Southport','Robina','Mudgeeraba',
+    'Coolangatta','Silver Quays','Varsity Lakes','Palm Beach','Currumbin',
+    'Labrador','Arundel','Helensvale','Coomera','Oxenford'],
   'Sunshine Coast':['Sunshine Coast','Noosa','Noosaville','Mooloolaba','Caloundra',
-                    'Maroochydore','Kings Beach','Coolum','Coolum Beach'],
-  'QLD Other':     ['Cairns','Townsville','Hervey Bay','Bundaberg','Mackay','Rockhampton',
-                    'Gladstone','Airlie Beach','Queensland'],
-  'Interstate':    ['Sydney','Melbourne','Perth','Adelaide','Darwin','Hobart','NSW','VIC',
-                    'WA','SA','NT','TAS','ACT','Port Macquarie'],
+    'Maroochydore','Kings Beach','Coolum','Coolum Beach','Peregian','Buderim',
+    'Kawana','Bokarina','Wurtulla','Bli Bli','Nambour'],
+  'QLD Other':['Cairns','Townsville','Hervey Bay','Bundaberg','Mackay','Rockhampton',
+    'Gladstone','Airlie Beach','Whitsunday','Magnetic Island','Port Douglas',
+    'Trinity Beach','Mission Beach','Yeppoon','Agnes Water'],
+  'Interstate':['Sydney','Melbourne','Perth','Adelaide','Darwin','Hobart','NSW','VIC',
+    'WA','SA','NT','TAS','ACT','Port Macquarie','Byron Bay','Hunter Valley']
 };
 
-function getRegionGroup(p) {
-  var name = (p.name + ' ' + (p.region||'')).toLowerCase();
-  for (var grp in REGION_GROUPS) {
-    var keys = REGION_GROUPS[grp];
-    for (var i=0; i<keys.length; i++) {
-      if (name.indexOf(keys[i].toLowerCase()) >= 0) return grp;
+function getRegionGroup(p){
+  var txt=((p.name||'')+' '+(p.region||'')).toLowerCase();
+  for(var grp in REGION_GROUPS){
+    var keys=REGION_GROUPS[grp];
+    for(var i=0;i<keys.length;i++){
+      if(txt.indexOf(keys[i].toLowerCase())>=0)return grp;
     }
   }
   return 'QLD Other';
 }
 
-function matchesRegion(p) {
-  if (activeRegion === 'all') return true;
-  return getRegionGroup(p) === activeRegion;
+function matchesRegion(p){
+  return activeRegion==='all'||getRegionGroup(p)===activeRegion;
 }
 
-function setRegion(btn, region) {
-  activeRegion = region;
-  document.querySelectorAll('.rf-btn').forEach(function(b){ b.classList.remove('ac'); });
-  if (btn) btn.classList.add('ac');
+function setRegion(btn,region){
+  activeRegion=region;
+  document.querySelectorAll('.rf-btn').forEach(function(b){b.classList.remove('ac');});
+  if(btn)btn.classList.add('ac');
   renderAll();
 }
 
-// ── formatters ───────────────────────────────────────────────────────────
-function fmt(n){if(!n||n===0)return'—';if(n>=1000000)return'$'+(n/1000000).toFixed(2)+'M';if(n>=1000)return'$'+(n/1000).toFixed(0)+'K';return'$'+n.toLocaleString();}
+// ── formatters ────────────────────────────────────────────────────────────
+function fmt(n){
+  if(!n||n===0)return'—';
+  if(n>=1000000)return'$'+(n/1000000).toFixed(2)+'M';
+  if(n>=1000)return'$'+(n/1000).toFixed(0)+'K';
+  return'$'+n.toLocaleString();
+}
 function multColor(m){if(!m||m===0)return'';if(m<=5)return'g';if(m<=6.5)return'y';return'r';}
 function bcColor(b){if(!b||b===0)return'';if(b<=70)return'g';if(b<=80)return'y';return'r';}
 function flag(p){
@@ -228,42 +225,26 @@ function flag(p){
   if(p.bc_percent&&p.bc_percent>70)return'⚠️';
   return'✅';
 }
-function tierLabel(price){
-  if(!price||price===0)return'—';
-  if(price<1000000)return'T1';
-  if(price<1500000)return'T2';
-  return'T3';
-}
 
-// ── card rendering ────────────────────────────────────────────────────────
-function makeCard(p, rank) {
-  var mc = p.multiplier, bc = p.bc_percent;
-  var mcC = multColor(mc), bcC = bcColor(bc);
-  var link = p.url && p.url !== '' ? '<a class="lk" href="'+p.url+'" target="_blank">🔗</a>' : '';
-  var rankColor = rank<=3?'g':rank<=6?'y':'d';
-
-  // notes / risks / action from JSON (auto-generated by fetcher)
-  var notesHtml = '';
-  if (p.notes && p.notes.trim()) {
-    notesHtml += '<div class="cn-notes">'+p.notes+'</div>';
-  }
-  if (p.risks && p.risks.trim()) {
-    notesHtml += '<div class="cn-risk"><span>⚠️ </span>'+p.risks+'</div>';
-  }
-  if (p.action && p.action.trim()) {
-    notesHtml += '<div class="cn-act"><span>→ </span>'+p.action+'</div>';
-  }
-
+// ── card ──────────────────────────────────────────────────────────────────
+function makeCard(p,rank){
+  var mc=p.multiplier,bc=p.bc_percent;
+  var mcC=multColor(mc),bcC=bcColor(bc);
+  var link=p.url?'<a class="lk" href="'+p.url+'" target="_blank">🔗</a>':'';
+  var rankColor=rank<=3?'g':rank<=6?'y':'d';
+  var notesHtml='';
+  if(p.notes&&p.notes.trim())notesHtml+='<div class="cn-notes">'+p.notes+'</div>';
+  if(p.risks&&p.risks.trim())notesHtml+='<div class="cn-risk"><span>⚠️ </span>'+p.risks+'</div>';
+  if(p.action&&p.action.trim())notesHtml+='<div class="cn-act"><span>→ </span>'+p.action+'</div>';
   return '<div class="card">'+
     '<div class="card-h">'+
-      '<span class="rk '+rankColor+'">'+(rank)+'</span>'+
-      '<span class="nm">'+p.name+'</span>'+
-      link+
+      '<span class="rk '+rankColor+'">'+rank+'</span>'+
+      '<span class="nm">'+p.name+'</span>'+link+
     '</div>'+
     '<div class="cb">'+
       '<div class="mg">'+
-        '<div class="mc '+(p.price>0?'':'')+'"><div class="v">'+fmt(p.price)+'</div><div class="l">Price</div></div>'+
-        '<div class="mc '+(p.net_income>0?'g':'r')+'"><div class="v">'+fmt(p.net_income)+'</div><div class="l">NI</div></div>'+
+        '<div class="mc"><div class="v">'+fmt(p.price)+'</div><div class="l">Price</div></div>'+
+        '<div class="mc '+(p.net_income>0?'g':'')+'"><div class="v">'+fmt(p.net_income)+'</div><div class="l">NI</div></div>'+
         '<div class="mc '+bcC+'"><div class="v">'+(bc&&bc>0?bc+'%':'—')+'</div><div class="l">BC%</div></div>'+
         '<div class="mc '+mcC+'"><div class="v">'+(mc&&mc>0?mc+'x':'—')+'</div><div class="l">Mult</div></div>'+
         '<div class="mc"><div class="v">'+(p.pool_units>0?p.pool_units:'?')+'</div><div class="l">Pool</div></div>'+
@@ -274,16 +255,16 @@ function makeCard(p, rank) {
   '</div>';
 }
 
-function makeTableRow(p, idx) {
-  var tier = tierLabel(p.price);
-  var mc = p.multiplier, bc = p.bc_percent;
-  var link = p.url && p.url !== '' ? '<a href="'+p.url+'" target="_blank" style="color:var(--ac)">🔗</a>' : '—';
+function makeTableRow(p,idx){
+  var tier=p.price>0?(p.price<1000000?'T1':p.price<1500000?'T2':'T3'):'—';
+  var mc=p.multiplier,bc=p.bc_percent;
+  var link=p.url?'<a href="'+p.url+'" target="_blank" style="color:var(--ac)">🔗</a>':'—';
   return '<tr>'+
     '<td>'+tier+'</td>'+
     '<td>'+idx+'</td>'+
     '<td style="text-align:left;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+p.name+'">'+p.name+'</td>'+
-    '<td class="'+(p.price>0?'tg':'')+'">'+fmt(p.price)+'</td>'+
-    '<td class="'+(p.net_income>0?'tg':'r')+'">'+fmt(p.net_income)+'</td>'+
+    '<td>'+fmt(p.price)+'</td>'+
+    '<td class="'+(p.net_income>0?'tg':'')+'">'+fmt(p.net_income)+'</td>'+
     '<td class="'+bcColor(bc)+'">'+(bc&&bc>0?bc+'%':'—')+'</td>'+
     '<td class="'+multColor(mc)+'">'+(mc&&mc>0?mc.toFixed(2)+'x':'—')+'</td>'+
     '<td>'+(p.pool_units>0?p.pool_units:'—')+'</td>'+
@@ -293,20 +274,18 @@ function makeTableRow(p, idx) {
   '</tr>';
 }
 
-// ── render functions ──────────────────────────────────────────────────────
-function renderAll() {
-  if (!allProps.length) return;
-  var props = allProps;
-
+// ── render ────────────────────────────────────────────────────────────────
+function renderAll(){
+  if(!allProps.length)return;
   var t1=[],t2=[],t3=[];
-  props.forEach(function(p){
-    if (!matchesRegion(p)) return;
+  allProps.forEach(function(p){
+    if(!matchesRegion(p))return;
     var pr=p.price||0;
-    if(pr<1000000&&pr>0)t1.push(p);
-    else if(pr<1500000)t2.push(p);
-    else t3.push(p);
+    if(pr>0&&pr<1000000)t1.push(p);
+    else if(pr>=1000000&&pr<1500000)t2.push(p);
+    else if(pr>=1500000)t3.push(p);
+    else t1.push(p); // no price — show in T1 as unknown
   });
-
   function sortTier(arr){
     return arr.sort(function(a,b){
       if(!a.multiplier||a.multiplier===0)return 1;
@@ -316,74 +295,75 @@ function renderAll() {
   }
   t1=sortTier(t1);t2=sortTier(t2);t3=sortTier(t3);
 
-  function renderTier(id, label, arr){
-    var el=document.getElementById(id);
-    if(!el)return;
-    var html='<div class="sec-h"><span>'+label+' ('+arr.length+')</span><span class="b"></span></div>';
+  function renderTier(id,label,arr){
+    var el=document.getElementById(id);if(!el)return;
+    var h='<div class="sec-h"><span>'+label+' ('+arr.length+')</span><span class="b"></span></div>';
     if(arr.length===0){
-      html+='<div style="padding:24px;color:var(--t2);text-align:center">No listings in this range'+(activeRegion!=='all'?' for '+activeRegion:'')+'. Try a different region filter.</div>';
+      h+='<div style="padding:32px;color:var(--t2);text-align:center;font-size:13px">No listings'+(activeRegion!=='all'?' in '+activeRegion:'')+' for this tier.</div>';
     } else {
-      arr.forEach(function(p,i){html+=makeCard(p,i+1);});
+      arr.forEach(function(p,i){h+=makeCard(p,i+1);});
     }
-    el.innerHTML=html;
+    el.innerHTML=h;
   }
-  renderTier('t1','Tier 1: Under $1M',t1);
-  renderTier('t2','Tier 2: $1M–$1.5M',t2);
-  renderTier('t3','Tier 3: $1.5M+',t3);
+  renderTier('t1','Tier 1 — Under $1M',t1);
+  renderTier('t2','Tier 2 — $1M–$1.5M',t2);
+  renderTier('t3','Tier 3 — $1.5M+',t3);
 
-  // All tab
-  var allFiltered = props.filter(function(p){ return matchesRegion(p); });
+  var allFiltered=allProps.filter(function(p){return matchesRegion(p);});
   var ta=document.getElementById('ta');
   if(ta){
-    var sorted=allFiltered.slice().sort(function(a,b){return (a.price||0)-(b.price||0);});
+    var sorted=allFiltered.slice().sort(function(a,b){return(a.price||0)-(b.price||0);});
     var rows=sorted.map(function(p,i){return makeTableRow(p,i+1);}).join('');
-    ta.innerHTML='<div class="sec-h"><span>All Properties ('+allFiltered.length+')</span><span class="b"></span></div>'+
+    ta.innerHTML='<div class="sec-h"><span>All ('+allFiltered.length+')</span><span class="b"></span></div>'+
       '<div class="tw"><table class="t"><thead><tr>'+
-      '<th>T</th><th>#</th><th style="text-align:left">Name</th><th>Price</th><th>NI</th><th>BC%</th><th>Mult</th><th>Pool</th><th>Cont</th><th>Flag</th><th>🔗</th>'+
+      '<th>T</th><th>#</th><th style="text-align:left">Name</th><th>Price</th><th>NI</th>'+
+      '<th>BC%</th><th>Mult</th><th>Pool</th><th>Cont</th><th></th><th>🔗</th>'+
       '</tr></thead><tbody>'+rows+'</tbody></table></div>';
   }
 }
 
-async function loadPropertyData() {
-  try {
-    var r = await fetch('pmr-data-latest.json?t='+Date.now());
-    allProps = await r.json();
+// ── load data ─────────────────────────────────────────────────────────────
+async function loadPropertyData(){
+  try{
+    var r=await fetch('pmr-data-latest.json?t='+Date.now());
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    allProps=await r.json();
 
-    // Build region filter buttons from actual data
-    var regionCounts = {};
+    // Build region filter
+    var regionCounts={};
     allProps.forEach(function(p){
-      var grp = getRegionGroup(p);
-      regionCounts[grp] = (regionCounts[grp]||0)+1;
+      var g=getRegionGroup(p);
+      regionCounts[g]=(regionCounts[g]||0)+1;
     });
-    var rfBar = document.getElementById('rf-bar');
-    if (rfBar) {
-      var btns = '<button class="rf-btn ac" data-region="all">All ('+allProps.length+')</button>';
+    var rfBar=document.getElementById('rf-bar');
+    if(rfBar){
+      var btns='<button class="rf-btn ac" data-region="all">All ('+allProps.length+')</button>';
       ['Brisbane','Gold Coast','Sunshine Coast','QLD Other','Interstate'].forEach(function(grp){
-        var cnt = regionCounts[grp]||0;
-        if (cnt > 0) btns += '<button class="rf-btn" data-region="'+grp+'">'+grp+' ('+cnt+')</button>';
+        var cnt=regionCounts[grp]||0;
+        if(cnt>0)btns+='<button class="rf-btn" data-region="'+grp+'">'+grp+' ('+cnt+')</button>';
       });
-      rfBar.innerHTML = btns;
-      // attach click handlers after setting innerHTML
+      rfBar.innerHTML=btns;
       rfBar.querySelectorAll('.rf-btn').forEach(function(btn){
-        btn.addEventListener('click', function(){
-          setRegion(this, this.getAttribute('data-region'));
+        btn.addEventListener('click',function(){
+          setRegion(this,this.getAttribute('data-region'));
         });
       });
     }
 
-    renderAll();
-
+    // Update timestamp with count
     var nd=document.getElementById('dt');
-    if(nd) nd.textContent=nd.textContent+' · '+allProps.length+' listings';
-  } catch(e) {
-    console.error('Error loading data:',e);
+    if(nd)nd.textContent=nd.textContent+' · '+allProps.length+' listings';
+
+    renderAll();
+  }catch(e){
+    console.error('Load error:',e);
     ['t1','t2','t3','ta'].forEach(function(id){
       var el=document.getElementById(id);
-      if(el)el.innerHTML='<div style="padding:24px;color:var(--r);text-align:center">Failed to load. Refresh to retry.</div>';
+      if(el)el.innerHTML='<div style="padding:32px;color:var(--r);text-align:center">Error loading data: '+e.message+'<br><button onclick="loadPropertyData()" style="margin-top:12px;padding:8px 16px;background:var(--ac);color:#fff;border:none;border-radius:6px;cursor:pointer">Retry</button></div>';
     });
   }
 }
-document.addEventListener('DOMContentLoaded', loadPropertyData);
+document.addEventListener('DOMContentLoaded',loadPropertyData);
 </script>
 </body>
 </html>
