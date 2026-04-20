@@ -280,7 +280,13 @@ function flag(p){
   if(p.contract_years&&p.contract_years<10) return '⚠️';
   return '✅';
 }
-function roi(p){ return p.price&&p.net_income ? (p.net_income/p.price*100).toFixed(1)+'%' : '—'; }
+function roi(p){
+  if(!p.price||!p.net_income) return '—';
+  if(p.price===p.net_income) return '—';  // price unknown (card-only value)
+  var r = p.net_income/p.price*100;
+  if(r>50) return '—';  // >50% ROI is almost always a data error
+  return r.toFixed(1)+'%';
+}
 
 // ── Watchlist ─────────────────────────────────────────────────────────────
 function isWatched(id){ return watchlist.indexOf(id) >= 0; }
