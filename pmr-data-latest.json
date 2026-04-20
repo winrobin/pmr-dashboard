@@ -1,26 +1,46 @@
 [
   {
-    "id": "accomproperties-com-au-21241",
+    "id": "accomproperties-com-au-54061",
     "name": "Trinity Beach",
     "region": "SA",
     "price": 2275000,
     "net_income": 472917,
     "multiplier": 4.81,
-    "bc_percent": null,
-    "contract_years": null,
+    "bc_percent": 21.1,
+    "contract_years": 23,
     "pool_units": 28,
     "weekly_rent_per_unit": null,
     "status": "active",
     "url": "https://accomproperties.com.au/business-display/business-trinity-beach,19179",
     "source": "accomproperties.com.au",
-    "notes": "4.81x — excellent value. 28 pool units — good diversification. 20.8% ROI — strong return.",
+    "notes": "BC 21.1% healthy. 4.81x — excellent value. 23yr contract — very secure. 28 pool units — good diversification. 20.8% ROI — strong return.",
     "risks": "",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
+    "action": "",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:47:44.959613"
+    "last_fetched": "2026-04-20T17:16:13.423051"
   },
   {
-    "id": "resortbrokers-com-au-77696",
+    "id": "accomproperties-com-au-45030",
+    "name": "Cairns City",
+    "region": "Cairns",
+    "price": 2330000,
+    "net_income": 424071,
+    "multiplier": 5.49,
+    "bc_percent": null,
+    "contract_years": 22,
+    "pool_units": 29,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://accomproperties.com.au/business-display/business-cairns-city,19212",
+    "source": "accomproperties.com.au",
+    "notes": "5.49x — fair. 22yr contract — very secure. 29 pool units — good diversification. 18.2% ROI — strong return.",
+    "risks": "",
+    "action": "Request BC salary breakdown.",
+    "last_updated": "2026-04-20",
+    "last_fetched": "2026-04-20T17:15:51.213667"
+  },
+  {
+    "id": "resortbrokers-com-au-17587",
     "name": "Townsville City QLD",
     "region": "Townsville",
     "price": 735000,
@@ -37,10 +57,10 @@
     "risks": "Only 8 pool units — small income base.",
     "action": "Request BC salary breakdown.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:48:25.739641"
+    "last_fetched": "2026-04-20T17:17:14.621652"
   },
   {
-    "id": "resortbrokers-com-au-24086",
+    "id": "resortbrokers-com-au-52345",
     "name": "Victoria Point QLD",
     "region": "QLD",
     "price": 824764,
@@ -57,10 +77,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:04.803312"
+    "last_fetched": "2026-04-20T17:17:54.001387"
   },
   {
-    "id": "resortbrokers-com-au-40148",
+    "id": "resortbrokers-com-au-60120",
     "name": "Kings Beach QLD",
     "region": "QLD",
     "price": 550000,
@@ -77,10 +97,10 @@
     "risks": "",
     "action": "Verify pool unit schedule. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:09.177514"
+    "last_fetched": "2026-04-20T17:17:58.374217"
   },
   {
-    "id": "theonsitemanager-com-au-13124",
+    "id": "theonsitemanager-com-au-60869",
     "name": "Exclusive Kallangur QLD $440,000 Permanent Management Rights Net Income: $ 106,783 (actua",
     "region": "Brisbane",
     "price": 440000,
@@ -97,10 +117,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.447776"
+    "last_fetched": "2026-04-20T17:18:18.327912"
   },
   {
-    "id": "theonsitemanager-com-au-98506",
+    "id": "theonsitemanager-com-au-14745",
     "name": "Exclusive Agnes Water QLD $2,400,000 Resort / Holiday Management Rights Net Income: $ 523",
     "region": "QLD",
     "price": 2400000,
@@ -117,10 +137,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.479169"
+    "last_fetched": "2026-04-20T17:18:18.361238"
   },
   {
-    "id": "resortbrokers-com-au-39753",
+    "id": "resortbrokers-com-au-90862",
     "name": "Airlie Beach QLD",
     "region": "QLD",
     "price": 2195000,
@@ -137,10 +157,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:48:30.054534"
+    "last_fetched": "2026-04-20T17:17:18.952713"
   },
   {
-    "id": "resortbrokers-com-au-64473",
+    "id": "resortbrokers-com-au-23278",
     "name": "Varsity Lakes QLD",
     "region": "QLD",
     "price": 3440000,
@@ -157,10 +177,10 @@
     "risks": "7.41x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:00.520716"
+    "last_fetched": "2026-04-20T17:17:49.684762"
   },
   {
-    "id": "theonsitemanager-com-au-25387",
+    "id": "theonsitemanager-com-au-06345",
     "name": "Exclusive Maroochydore QLD $395,000 Permanent Management Rights Net Income: $ 119,3",
     "region": "Sunshine Coast",
     "price": 395000,
@@ -177,10 +197,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.453386"
+    "last_fetched": "2026-04-20T17:18:18.335125"
   },
   {
-    "id": "theonsitemanager-com-au-62227",
+    "id": "theonsitemanager-com-au-05521",
     "name": "Exclusive Oxley QLD $903k on MR and $780k on MU Permanent Management Rights Net Income: $",
     "region": "Brisbane",
     "price": 780000,
@@ -197,10 +217,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.511160"
+    "last_fetched": "2026-04-20T17:18:18.394435"
   },
   {
-    "id": "theonsitemanager-com-au-09459",
+    "id": "theonsitemanager-com-au-51818",
     "name": "Exclusive Airlie Beach QLD $1,050,000 Resort / Holiday Management Rights Net Income: $",
     "region": "QLD",
     "price": 1050000,
@@ -217,50 +237,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.518262"
+    "last_fetched": "2026-04-20T17:18:18.408987"
   },
   {
-    "id": "accomproperties-com-au-06805",
-    "name": "Cairns City",
-    "region": "Cairns",
-    "price": 2330000,
-    "net_income": 424071,
-    "multiplier": 5.49,
-    "bc_percent": null,
-    "contract_years": null,
-    "pool_units": 29,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://accomproperties.com.au/business-display/business-cairns-city,19212",
-    "source": "accomproperties.com.au",
-    "notes": "5.49x — fair. 29 pool units — good diversification. 18.2% ROI — strong return.",
-    "risks": "",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:47:44.904288"
-  },
-  {
-    "id": "accomproperties-com-au-70729",
-    "name": "Main Beach",
-    "region": "SA",
-    "price": 375000,
-    "net_income": 93500,
-    "multiplier": 4.01,
-    "bc_percent": null,
-    "contract_years": null,
-    "pool_units": 8,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://accomproperties.com.au/business-display/business-main-beach,19111",
-    "source": "accomproperties.com.au",
-    "notes": "4.01x — excellent value. 24.9% ROI — strong return.",
-    "risks": "Only 8 pool units — small income base.",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:47:44.983163"
-  },
-  {
-    "id": "resortbrokers-com-au-20374",
+    "id": "resortbrokers-com-au-45891",
     "name": "Brendale QLD",
     "region": "QLD",
     "price": 975000,
@@ -277,10 +257,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:47:59.536736"
+    "last_fetched": "2026-04-20T17:16:48.625071"
   },
   {
-    "id": "resortbrokers-com-au-56109",
+    "id": "resortbrokers-com-au-49553",
     "name": "Morayfield QLD",
     "region": "QLD",
     "price": 975000,
@@ -297,10 +277,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:17.843084"
+    "last_fetched": "2026-04-20T17:18:07.030658"
   },
   {
-    "id": "theonsitemanager-com-au-32826",
+    "id": "theonsitemanager-com-au-65900",
     "name": "Exclusive Brendale QLD $975,000 Permanent Management Rights Net Income: $ 181,288 (actual",
     "region": "Brisbane",
     "price": 975000,
@@ -317,10 +297,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.353991"
+    "last_fetched": "2026-04-20T17:18:18.231580"
   },
   {
-    "id": "theonsitemanager-com-au-40991",
+    "id": "theonsitemanager-com-au-20367",
     "name": "Exclusive Brisbane QLD $781,060 Permanent Management Rights Net Income: $ 164,439 (actual",
     "region": "Brisbane",
     "price": 781060,
@@ -337,10 +317,10 @@
     "risks": "Only 4 pool units — small income base.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.357448"
+    "last_fetched": "2026-04-20T17:18:18.235164"
   },
   {
-    "id": "theonsitemanager-com-au-01027",
+    "id": "theonsitemanager-com-au-21402",
     "name": "Exclusive Torquay QLD $2,895,000 Resort / Holiday Management Rights Net Income: $ 489,869",
     "region": "QLD",
     "price": 2895000,
@@ -357,10 +337,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.378219"
+    "last_fetched": "2026-04-20T17:18:18.256788"
   },
   {
-    "id": "theonsitemanager-com-au-75933",
+    "id": "theonsitemanager-com-au-33601",
     "name": "Exclusive Griffin QLD $1,848,000 Permanent Management Rights Net Income: $ 308,182 (actua",
     "region": "Brisbane",
     "price": 1848000,
@@ -377,10 +357,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.395603"
+    "last_fetched": "2026-04-20T17:18:18.278308"
   },
   {
-    "id": "theonsitemanager-com-au-72005",
+    "id": "theonsitemanager-com-au-08239",
     "name": "Exclusive Kings Beach QLD $550,000 Resort / Holiday Management Rights Net Income: $",
     "region": "Sunshine Coast",
     "price": 550000,
@@ -397,10 +377,10 @@
     "risks": "Only 8 pool units — small income base.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.417813"
+    "last_fetched": "2026-04-20T17:18:18.292658"
   },
   {
-    "id": "theonsitemanager-com-au-33352",
+    "id": "theonsitemanager-com-au-00503",
     "name": "Exclusive Pimpama QLD $1,575,700 Permanent Management Rights Net Income: $ 276,447 (act",
     "region": "Gold Coast",
     "price": 1575700,
@@ -417,10 +397,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.441917"
+    "last_fetched": "2026-04-20T17:18:18.316529"
   },
   {
-    "id": "theonsitemanager-com-au-15591",
+    "id": "theonsitemanager-com-au-94396",
     "name": "Exclusive Cairns City QLD $2,330,000 Resort / Holiday Management Rights Net Income: $ 424,0",
     "region": "Cairns",
     "price": 2330000,
@@ -437,10 +417,50 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.494386"
+    "last_fetched": "2026-04-20T17:18:18.377231"
   },
   {
-    "id": "resortbrokers-com-au-94830",
+    "id": "accomproperties-com-au-58900",
+    "name": "Main Beach",
+    "region": "SA",
+    "price": 375000,
+    "net_income": 93500,
+    "multiplier": 4.01,
+    "bc_percent": 401.1,
+    "contract_years": 25,
+    "pool_units": 8,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://accomproperties.com.au/business-display/business-main-beach,19111",
+    "source": "accomproperties.com.au",
+    "notes": "4.01x — excellent value. 25yr contract — very secure. 24.9% ROI — strong return.",
+    "risks": "BC 401.1% = caretaker trap. Minimal letting income. Only 8 pool units — small income base.",
+    "action": "",
+    "last_updated": "2026-04-20",
+    "last_fetched": "2026-04-20T17:16:26.047498"
+  },
+  {
+    "id": "accomproperties-com-au-63998",
+    "name": "Noosaville",
+    "region": "Noosa",
+    "price": 3200000,
+    "net_income": 407000,
+    "multiplier": 7.86,
+    "bc_percent": 25.1,
+    "contract_years": 25,
+    "pool_units": 23,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://accomproperties.com.au/business-display/business-noosaville,19021",
+    "source": "accomproperties.com.au",
+    "notes": "BC 25.1% healthy. 25yr contract — very secure. 23 pool units — good diversification. 12.7% ROI.",
+    "risks": "7.86x — overpriced for this income.",
+    "action": "",
+    "last_updated": "2026-04-20",
+    "last_fetched": "2026-04-20T17:16:34.150777"
+  },
+  {
+    "id": "resortbrokers-com-au-77582",
     "name": "Southport QLD",
     "region": "Southport",
     "price": 1300000,
@@ -457,10 +477,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:48:47.500243"
+    "last_fetched": "2026-04-20T17:17:36.362550"
   },
   {
-    "id": "theonsitemanager-com-au-60246",
+    "id": "theonsitemanager-com-au-14900",
     "name": "Exclusive Carindale QLD $678,000 Permanent Management Rights Net Income: $ 118,000 (actua",
     "region": "Brisbane",
     "price": 678000,
@@ -477,30 +497,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.364676"
+    "last_fetched": "2026-04-20T17:18:18.243609"
   },
   {
-    "id": "theonsitemanager-com-au-91921",
-    "name": "Exclusive West End QLD $698,000 Business Only Permanent Management Rights Net Income: $ 1",
-    "region": "Brisbane",
-    "price": 698000,
-    "net_income": 125078,
-    "multiplier": 5.58,
-    "bc_percent": null,
-    "contract_years": null,
-    "pool_units": 11,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.TheOnsiteManager.com.au/permanent-management-rights/WestEnd-QLD-21169016",
-    "source": "theonsitemanager.com.au",
-    "notes": "5.58x — fair. 11 pool units. 17.9% ROI — strong return.",
-    "risks": "",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.521839"
-  },
-  {
-    "id": "resortbrokers-com-au-47880",
+    "id": "resortbrokers-com-au-62517",
     "name": "Kangaroo Point QLD",
     "region": "QLD",
     "price": 691155,
@@ -517,10 +517,10 @@
     "risks": "BC 93.6% = caretaker trap. Minimal letting income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:48:34.402938"
+    "last_fetched": "2026-04-20T17:17:23.374987"
   },
   {
-    "id": "theonsitemanager-com-au-83619",
+    "id": "theonsitemanager-com-au-95931",
     "name": "Exclusive Port Macquarie NSW",
     "region": "NSW",
     "price": 750000,
@@ -537,11 +537,11 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.435278"
+    "last_fetched": "2026-04-20T17:18:18.309898"
   },
   {
-    "id": "theonsitemanager-com-au-96025",
-    "name": "Under ContractExclusive Brendale QLD $3,665,000 Permanent Management Rights Net Income: $",
+    "id": "theonsitemanager-com-au-76489",
+    "name": "Exclusive Brendale QLD $3,665,000 Permanent Management Rights Net Income: $",
     "region": "Brisbane",
     "price": 3665000,
     "net_income": 554616,
@@ -557,10 +557,10 @@
     "risks": "6.61x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.485340"
+    "last_fetched": "2026-04-20T17:18:18.367005"
   },
   {
-    "id": "theonsitemanager-com-au-75162",
+    "id": "theonsitemanager-com-au-21916",
     "name": "Exclusive Broadbeach QLD",
     "region": "Gold Coast",
     "price": 850000,
@@ -577,30 +577,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.514595"
+    "last_fetched": "2026-04-20T17:18:18.404868"
   },
   {
-    "id": "accomproperties-com-au-63794",
-    "name": "Noosaville",
-    "region": "Noosa",
-    "price": 3200000,
-    "net_income": 407000,
-    "multiplier": 7.86,
-    "bc_percent": null,
-    "contract_years": null,
-    "pool_units": 23,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://accomproperties.com.au/business-display/business-noosaville,19021",
-    "source": "accomproperties.com.au",
-    "notes": "23 pool units — good diversification. 12.7% ROI.",
-    "risks": "7.86x — overpriced for this income.",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:47:44.997735"
-  },
-  {
-    "id": "resortbrokers-com-au-51118",
+    "id": "resortbrokers-com-au-29432",
     "name": "Main Beach QLD",
     "region": "QLD",
     "price": 5600000,
@@ -617,10 +597,10 @@
     "risks": "7.48x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:47:55.210166"
+    "last_fetched": "2026-04-20T17:16:44.342687"
   },
   {
-    "id": "resortbrokers-com-au-15653",
+    "id": "resortbrokers-com-au-92601",
     "name": "Coolangatta QLD",
     "region": "QLD",
     "price": 4050000,
@@ -637,10 +617,10 @@
     "risks": "7.33x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:48:08.174847"
+    "last_fetched": "2026-04-20T17:16:57.287868"
   },
   {
-    "id": "resortbrokers-com-au-24281",
+    "id": "resortbrokers-com-au-18415",
     "name": "Brisbane QLD",
     "region": "Brisbane",
     "price": 1223895,
@@ -657,10 +637,10 @@
     "risks": "7.46x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:48:21.408340"
+    "last_fetched": "2026-04-20T17:17:10.286325"
   },
   {
-    "id": "theonsitemanager-com-au-82822",
+    "id": "theonsitemanager-com-au-11903",
     "name": "Exclusive Coolum Beach QLD $6,945,000 Resort / Holiday Management Rights Net Income",
     "region": "Sunshine Coast",
     "price": 6945000,
@@ -677,10 +657,10 @@
     "risks": "7.39x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.361871"
+    "last_fetched": "2026-04-20T17:18:18.239234"
   },
   {
-    "id": "theonsitemanager-com-au-84600",
+    "id": "theonsitemanager-com-au-22489",
     "name": "Exclusive Burleigh Waters QLD $3,608,000 Permanent Management Rights Net Income: $ 460,",
     "region": "Gold Coast",
     "price": 3608000,
@@ -697,10 +677,10 @@
     "risks": "7.84x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.391820"
+    "last_fetched": "2026-04-20T17:18:18.272410"
   },
   {
-    "id": "theonsitemanager-com-au-79468",
+    "id": "theonsitemanager-com-au-72856",
     "name": "Exclusive Varsity Lakes QLD $3,440,000 Permanent Management Rights Net Income: $ 464,15",
     "region": "Gold Coast",
     "price": 3440000,
@@ -717,10 +697,10 @@
     "risks": "7.41x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.408155"
+    "last_fetched": "2026-04-20T17:18:18.282173"
   },
   {
-    "id": "theonsitemanager-com-au-51051",
+    "id": "theonsitemanager-com-au-39099",
     "name": "Exclusive Currumbin QLD $3,338,000 Resort / Holiday Management Rights Net Income: $ 500",
     "region": "Gold Coast",
     "price": 3338000,
@@ -737,11 +717,11 @@
     "risks": "6.67x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.427342"
+    "last_fetched": "2026-04-20T17:18:18.302993"
   },
   {
-    "id": "theonsitemanager-com-au-28802",
-    "name": "Under ContractExclusive Brisbane City QLD $8,300,000 Resort / Holiday Management Rights N",
+    "id": "theonsitemanager-com-au-51953",
+    "name": "Exclusive Brisbane City QLD $8,300,000 Resort / Holiday Management Rights N",
     "region": "Brisbane",
     "price": 8300000,
     "net_income": 1154830,
@@ -757,11 +737,11 @@
     "risks": "7.19x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.482439"
+    "last_fetched": "2026-04-20T17:18:18.364164"
   },
   {
-    "id": "theonsitemanager-com-au-06797",
-    "name": "Under ContractExclusive Hamilton QLD $7,016,000 Permanent Management Rights Net Income: $",
+    "id": "theonsitemanager-com-au-88939",
+    "name": "Exclusive Hamilton QLD $7,016,000 Permanent Management Rights Net Income: $",
     "region": "Brisbane",
     "price": 7016000,
     "net_income": 1042273,
@@ -777,10 +757,10 @@
     "risks": "6.73x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.488003"
+    "last_fetched": "2026-04-20T17:18:18.370272"
   },
   {
-    "id": "theonsitemanager-com-au-73573",
+    "id": "theonsitemanager-com-au-13689",
     "name": "Exclusive Deception Bay QLD $3,341,460 Permanent Management Rights Net Income: $ 472,153",
     "region": "Brisbane",
     "price": 3341460,
@@ -797,10 +777,30 @@
     "risks": "7.08x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.507665"
+    "last_fetched": "2026-04-20T17:18:18.391191"
   },
   {
-    "id": "theonsitemanager-com-au-93419",
+    "id": "accomproperties-com-au-69671",
+    "name": "Robina",
+    "region": "SA",
+    "price": 2500000,
+    "net_income": 291000,
+    "multiplier": 8.59,
+    "bc_percent": 72.2,
+    "contract_years": 25,
+    "pool_units": 25,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://accomproperties.com.au/business-display/business-robina,19170",
+    "source": "accomproperties.com.au",
+    "notes": "25yr contract — very secure. 25 pool units — good diversification. 11.6% ROI.",
+    "risks": "BC 72.2% — leaning caretaker. 8.59x — overpriced for this income.",
+    "action": "",
+    "last_updated": "2026-04-20",
+    "last_fetched": "2026-04-20T17:16:17.988591"
+  },
+  {
+    "id": "theonsitemanager-com-au-41991",
     "name": "Exclusive Torquay QLD $995,000 Resort / Holiday Management Rights Net Income: $ 147,482 (",
     "region": "QLD",
     "price": 995000,
@@ -817,10 +817,50 @@
     "risks": "6.75x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.346558"
+    "last_fetched": "2026-04-20T17:18:18.223773"
   },
   {
-    "id": "resortbrokers-com-au-89750",
+    "id": "accomproperties-com-au-60637",
+    "name": "Hervey Bay",
+    "region": "Hervey Bay",
+    "price": 999000,
+    "net_income": 80482,
+    "multiplier": 12.41,
+    "bc_percent": null,
+    "contract_years": 25,
+    "pool_units": 90,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://accomproperties.com.au/business-display/business-hervey-bay,19201",
+    "source": "accomproperties.com.au",
+    "notes": "25yr contract — very secure. 90 pool units — good diversification.",
+    "risks": "12.41x — overpriced for this income.",
+    "action": "Request BC salary breakdown.",
+    "last_updated": "2026-04-20",
+    "last_fetched": "2026-04-20T17:16:04.074394"
+  },
+  {
+    "id": "accomproperties-com-au-36586",
+    "name": "Port Macquarie",
+    "region": "NSW",
+    "price": 2665000,
+    "net_income": 322693,
+    "multiplier": 8.26,
+    "bc_percent": 0.1,
+    "contract_years": 10,
+    "pool_units": 28,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://accomproperties.com.au/business-display/business-port-macquarie,19204",
+    "source": "accomproperties.com.au",
+    "notes": "BC 0.1% healthy. 10yr contract — adequate. 28 pool units — good diversification. 12.1% ROI.",
+    "risks": "8.26x — overpriced for this income.",
+    "action": "",
+    "last_updated": "2026-04-20",
+    "last_fetched": "2026-04-20T17:16:08.733737"
+  },
+  {
+    "id": "resortbrokers-com-au-92776",
     "name": "Coolum Beach QLD",
     "region": "QLD",
     "price": 6945000,
@@ -837,50 +877,30 @@
     "risks": "7.39x — overpriced for this income.",
     "action": "Request BC salary breakdown. Verify pool unit schedule. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:48:12.453644"
+    "last_fetched": "2026-04-20T17:17:01.595713"
   },
   {
-    "id": "accomproperties-com-au-43032",
-    "name": "Port Macquarie",
-    "region": "NSW",
-    "price": 2665000,
-    "net_income": 322693,
-    "multiplier": 8.26,
-    "bc_percent": null,
-    "contract_years": null,
-    "pool_units": 28,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://accomproperties.com.au/business-display/business-port-macquarie,19204",
-    "source": "accomproperties.com.au",
-    "notes": "28 pool units — good diversification. 12.1% ROI.",
-    "risks": "8.26x — overpriced for this income.",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:47:44.951832"
-  },
-  {
-    "id": "accomproperties-com-au-53979",
-    "name": "Robina",
+    "id": "accomproperties-com-au-87970",
+    "name": "Tugun",
     "region": "SA",
-    "price": 2500000,
-    "net_income": 291000,
-    "multiplier": 8.59,
-    "bc_percent": null,
-    "contract_years": null,
-    "pool_units": 25,
+    "price": 1358000,
+    "net_income": 120038,
+    "multiplier": 11.31,
+    "bc_percent": 74.8,
+    "contract_years": 20,
+    "pool_units": 11,
     "weekly_rent_per_unit": null,
     "status": "active",
-    "url": "https://accomproperties.com.au/business-display/business-robina,19170",
+    "url": "https://accomproperties.com.au/business-display/business-tugun,19208",
     "source": "accomproperties.com.au",
-    "notes": "25 pool units — good diversification. 11.6% ROI.",
-    "risks": "8.59x — overpriced for this income.",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
+    "notes": "20yr contract — very secure. 11 pool units.",
+    "risks": "BC 74.8% — leaning caretaker. 11.31x — overpriced for this income.",
+    "action": "",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:47:44.968749"
+    "last_fetched": "2026-04-20T17:15:59.311291"
   },
   {
-    "id": "theonsitemanager-com-au-86426",
+    "id": "theonsitemanager-com-au-51426",
     "name": "Surfers Paradise QLD $1,969,000 Permanent Management Rights Net Income: $ 243,906 (actu",
     "region": "Gold Coast",
     "price": 1969000,
@@ -897,10 +917,10 @@
     "risks": "8.07x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.341889"
+    "last_fetched": "2026-04-20T17:18:18.219565"
   },
   {
-    "id": "theonsitemanager-com-au-66186",
+    "id": "theonsitemanager-com-au-38260",
     "name": "Exclusive Runcorn QLD $2,933,000 Permanent Management Rights Net Income: $ 338,984 (actua",
     "region": "Brisbane",
     "price": 2933000,
@@ -917,10 +937,10 @@
     "risks": "8.65x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.368214"
+    "last_fetched": "2026-04-20T17:18:18.247384"
   },
   {
-    "id": "theonsitemanager-com-au-42629",
+    "id": "theonsitemanager-com-au-51408",
     "name": "Exclusive North Lakes QLD $2,300,000 Permanent Management Rights Net Income: $ 280,523 (a",
     "region": "Brisbane",
     "price": 2300000,
@@ -937,10 +957,10 @@
     "risks": "8.2x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.372831"
+    "last_fetched": "2026-04-20T17:18:18.252568"
   },
   {
-    "id": "theonsitemanager-com-au-28465",
+    "id": "theonsitemanager-com-au-54734",
     "name": "Exclusive Eight Mile Plains QLD $5,968,000 Permanent Management Rights Net Income: $ 664,",
     "region": "Brisbane",
     "price": 5968000,
@@ -957,10 +977,10 @@
     "risks": "8.97x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.420993"
+    "last_fetched": "2026-04-20T17:18:18.296140"
   },
   {
-    "id": "theonsitemanager-com-au-90104",
+    "id": "theonsitemanager-com-au-70773",
     "name": "Exclusive Griffin QLD $3,980,000 Permanent Management Rights Net Income: $ 445,423 (actua",
     "region": "Brisbane",
     "price": 3980000,
@@ -977,26 +997,6 @@
     "risks": "8.94x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.438539"
-  },
-  {
-    "id": "theonsitemanager-com-au-79270",
-    "name": "Exclusive Noosaville QLD $2,455,000 Resort / Holiday Management Rights Net Income:",
-    "region": "Sunshine Coast",
-    "price": 2455000,
-    "net_income": 300000,
-    "multiplier": 8.18,
-    "bc_percent": null,
-    "contract_years": null,
-    "pool_units": 26,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.TheOnsiteManager.com.au/resort--holiday-management-rights/Noosaville-QLD-21172696",
-    "source": "theonsitemanager.com.au",
-    "notes": "26 pool units — good diversification. 12.2% ROI.",
-    "risks": "8.18x — overpriced for this income.",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-20",
-    "last_fetched": "2026-04-20T14:49:28.490958"
+    "last_fetched": "2026-04-20T17:18:18.313235"
   }
 ]
