@@ -6,96 +6,127 @@
 <title>PMR Dashboard</title>
 <style>
 
-
-:root{--bg:#090a0f;--bg2:#111318;--bd:#1e222a;--tx:#e8eaed;--t2:#8b95a5;--t3:#555d6a;--ac:#4a9eff;--g:#22c55e;--a:#f59e0b;--r:#ef4444}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{background:var(--bg);color:var(--tx);font-family:'DM Sans',system-ui,sans-serif;font-size:13px;line-height:1.6;padding-bottom:40px}
-a{color:inherit;text-decoration:none}
-.zh{display:none}body.cn .en{display:none}body.cn .zh{display:block}
-nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);padding:0 16px}
-.nh{display:flex;align-items:center;justify-content:space-between;height:48px}
-.br h1{font-size:15px;font-weight:700;letter-spacing:-.3px}
-.nr{display:flex;align-items:center;gap:10px}.nd{font-size:10px;color:var(--t3);font-family:'JetBrains Mono',monospace}
-.lb{background:rgba(74,158,255,.08);color:var(--ac);border:1px solid rgba(74,158,255,.2);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:600;font-family:inherit}
-.leg{background:var(--bg2);border-bottom:1px solid var(--bd);padding:10px 16px;font-size:10px;color:var(--t2);display:flex;flex-wrap:wrap;gap:8px 14px}
-.leg b{color:var(--tx);font-weight:600;font-family:'JetBrains Mono',monospace;font-size:9px}
+:root{
+  --bg:#09090f;--s1:rgba(255,255,255,.04);--s2:rgba(255,255,255,.07);
+  --bd:rgba(255,255,255,.09);--tx:#e8eaf0;--t1:#c8cad4;--t2:#7a7d8a;
+  --ac:#4f98a3;--g:#50c878;--y:#ffcc44;--a:#da7101;--r:#dc4646;
+  --pad:16px;--rad:10px
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;font-size:14px;min-height:100vh}
+a{color:var(--ac);text-decoration:none}
+/* Nav */
+nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd);padding:0 var(--pad)}
+.nh{display:flex;align-items:center;height:48px;gap:12px}
+.br{display:flex;align-items:center;gap:8px}
+h1{font-size:16px;font-weight:700;color:var(--tx)}
+.nr{margin-left:auto;display:flex;align-items:center;gap:10px}
+.nd{font-size:11px;color:var(--t2)}
+.lb{background:rgba(74,158,255,.08);color:var(--ac);border:1px solid rgba(74,158,255,.2);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s}
+.lb:hover{background:rgba(74,158,255,.16)}
+/* Legend */
+.leg{display:flex;flex-wrap:wrap;gap:8px 16px;padding:8px var(--pad);border-bottom:1px solid var(--bd);font-size:11px;color:var(--t2)}
+.leg b{color:var(--ac)}
+/* Tabs */
 .tabs{display:flex;position:sticky;top:48px;z-index:100;background:rgba(9,10,15,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
-.ti{flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--t2);cursor:pointer;border-bottom:2px solid transparent;transition:.15s}
-.ti:hover{color:var(--tx)}.ti.ac{border-bottom-color:var(--ac);color:var(--ac)}
-.app{max-width:960px;margin:0 auto;padding:0 16px}
-.rf{background:rgba(9,10,15,.8);border-bottom:1px solid var(--bd);padding:8px 16px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
-.rf-btn{display:inline-block;padding:5px 12px;margin-right:6px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.4px;cursor:pointer;border:1px solid var(--bd);background:none;color:var(--t2);transition:all .18s}
-.rf-btn.ac,.rf-btn:active{background:var(--ac);color:#fff;border-color:var(--ac)}
-.cn-notes{font-size:12px;color:var(--t2);padding:8px 0 4px;line-height:1.5}
-.cn-risk{font-size:12px;color:var(--a);background:rgba(218,113,1,.08);border-left:3px solid var(--a);padding:6px 8px;border-radius:0 4px 4px 0;margin:4px 0;line-height:1.5}
-.cn-act{font-size:12px;color:var(--ac);background:rgba(79,152,163,.08);border-left:3px solid var(--ac);padding:6px 8px;border-radius:0 4px 4px 0;margin:4px 0;line-height:1.5}
-.sec-h{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--t2);padding:16px 0 8px;display:flex;align-items:center;gap:8px}
-.sec-h .b{flex:1;height:1px;background:var(--bd)}
-.tp{display:none}.tp.ac{display:block}
-.card{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;margin-bottom:10px;overflow:hidden}
-.card-h{padding:12px 16px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px}
-.rk{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;color:#fff;letter-spacing:.3px}
-.rk.g{background:linear-gradient(135deg,#f59e0b,#d97706)}.rk.y{background:linear-gradient(135deg,#64748b,#475569)}.rk.r{background:linear-gradient(135deg,#b45309,#92400e)}.rk.d{background:#1e222a;color:var(--t3)}
-.card-h .nm{font-size:14px;font-weight:600;flex:1}
-.card-h .lk{background:rgba(74,158,255,.08);color:var(--ac);font-size:10px;padding:3px 6px;border-radius:4px}
-.cb{padding:14px 16px}
-.mg{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:10px}
-.mc{background:var(--bg);border-radius:6px;padding:8px 4px;text-align:center}
-.mc .v{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500}
-.mc .l{font-size:7px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-top:3px}
-.mc.g .v{color:var(--g)}.mc.y .v{color:var(--a)}.mc.r .v{color:var(--r)}
-.notes{font-size:11px;color:var(--t2);margin-bottom:8px;line-height:1.5}
-.risks{background:rgba(239,68,68,.06);border-left:3px solid var(--r);padding:8px 12px;margin:8px 0;border-radius:0 6px 6px 0;font-size:11px;color:#fca5a5;line-height:1.5}
-.action{background:rgba(74,158,255,.06);border-left:3px solid var(--ac);padding:8px 12px;margin:8px 0;border-radius:0 6px 6px 0;font-size:11px;color:#93c5fd;line-height:1.5}
-.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:4px}
-.t{width:100%;border-collapse:collapse;font-size:10px;font-family:'JetBrains Mono',monospace}
-.t th{background:var(--bg2);padding:8px 4px;text-align:center;color:var(--t2);font-weight:600;font-size:9px;letter-spacing:.3px}
-.t td{padding:6px 4px;text-align:center;border-bottom:1px solid var(--bd)}
-.t td:first-child{font-family:'DM Sans',sans-serif;font-weight:600;color:var(--tx)}
-.tg{color:var(--g)}.ty{color:var(--a)}.tr{color:var(--r)}
-.gs{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;margin-bottom:6px}
-.gh{padding:14px 16px;cursor:pointer;font-weight:600;font-size:12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--bd)}
-.ha{font-size:9px;transition:.2s;color:var(--t3)}.gh.open .ha{transform:rotate(90deg);color:var(--ac)}
-.gc{padding:16px;display:none}.gc.open{display:block}
-.gc h4{font-size:10px;font-weight:700;color:var(--ac);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.6px}
-.gc p,.gc li{font-size:11px;color:var(--t2);margin-bottom:4px}
-.gc ul{padding-left:14px;margin-bottom:6px}
-.gc table{width:100%;border-collapse:collapse;margin:8px 0;font-size:10px}
-.gc th{background:var(--bg);padding:5px 8px;text-align:left;color:var(--tx);font-weight:600}
-.gc td{padding:5px 8px;border-bottom:1px solid var(--bd);color:var(--t2)}
-.fm{background:var(--bg);padding:8px 10px;border-radius:6px;font-family:'JetBrains Mono',monospace;color:var(--g);margin:6px 0;font-size:10px}
-.ft{text-align:center;padding:20px 8px;font-size:9px;color:var(--t3);border-top:1px solid var(--bd);margin-top:16px}
-.ft b{color:var(--ac)}
+.ti{flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--t2);cursor:pointer;border-bottom:2px solid transparent;transition:all .18s}
+.ti:hover{color:var(--tx)}
+.ti.ac{color:var(--ac);border-bottom-color:var(--ac)}
+/* Panels */
+.app{padding-bottom:40px}
+.tp{display:none}
+.tp.ac{display:block}
+/* Cards */
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rad);padding:12px;margin:8px var(--pad)}
+.card:hover{border-color:rgba(79,152,163,.3);background:var(--s2)}
+.rk{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:700;flex-shrink:0}
+.rk.g{background:rgba(80,200,120,.15);color:var(--g)}
+.rk.y{background:rgba(255,204,68,.15);color:var(--y)}
+.rk.d{background:rgba(255,255,255,.06);color:var(--t2)}
+.cb{padding-top:8px}
+.mg{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.mc{background:rgba(255,255,255,.03);border-radius:6px;padding:6px 4px;text-align:center}
+.mc .v{font-size:13px;font-weight:600;color:var(--t1)}
+.mc .l{font-size:9px;color:var(--t2);margin-top:2px;letter-spacing:.3px}
+.mc.g .v{color:var(--g)}.mc.y .v{color:var(--y)}.mc.r .v{color:var(--r)}
+.lk{font-size:14px;opacity:.6;transition:opacity .15s}.lk:hover{opacity:1}
+/* Table */
+.tw{overflow-x:auto;padding:0 var(--pad) 16px}
+.t{width:100%;border-collapse:collapse;font-size:12px}
+.t th{padding:8px 6px;text-align:right;color:var(--t2);font-weight:600;border-bottom:1px solid var(--bd);white-space:nowrap}
+.t td{padding:7px 6px;text-align:right;border-bottom:1px solid rgba(255,255,255,.04);color:var(--t1)}
+.t tr:last-child td{border-bottom:none}
+.t tr:hover td{background:rgba(255,255,255,.03)}
+.tg{color:var(--g)!important}.tr{color:var(--r)!important}
+.g{color:var(--g)!important}.y{color:var(--a)!important}.r{color:var(--r)!important}
+/* Section header */
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:16px var(--pad) 8px;font-size:13px;font-weight:600;color:var(--t2)}
+.b{flex:1;height:1px;background:var(--bd);margin-left:12px}
+/* Guide */
+.gs{margin:0 var(--pad) 8px;border:1px solid var(--bd);border-radius:var(--rad);overflow:hidden}
+.gh{padding:12px var(--pad);cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;background:var(--s1)}
+.gh:hover{background:var(--s2)}
+.ha{font-size:10px;color:var(--t2);transition:transform .2s}
+.gh.open .ha{transform:rotate(90deg)}
+.gc{display:none;padding:12px var(--pad) 16px;border-top:1px solid var(--bd);font-size:13px;line-height:1.7;color:var(--t2)}
+.gc.open{display:block}
+.gc p{margin-bottom:8px}
+.gc ul{padding-left:18px;margin-bottom:8px}
+.gc table{width:100%;border-collapse:collapse;margin:8px 0}
+.gc th,.gc td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.05);font-size:12px;text-align:left}
+.gc th{color:var(--t2);font-weight:600}
+.fm{font-family:monospace;background:rgba(79,152,163,.1);border:1px solid var(--bd);color:var(--ac);padding:4px 10px;border-radius:4px;font-size:12px;display:inline-block;margin:4px 0 8px}
+/* zh hidden by default */
+.zh{display:none}
+body.cn .en{display:none}
+body.cn .zh{display:block}
 
 
-/* ── Region filter ────────────────────────── */
-.rf{background:rgba(9,10,15,.8);border-bottom:1px solid var(--bd);padding:8px 16px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
-.rf-btn{display:inline-block;padding:5px 12px;margin-right:6px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.4px;cursor:pointer;border:1px solid var(--bd);background:none;color:var(--t2);transition:all .18s}
-.rf-btn.ac{background:var(--ac);color:#fff;border-color:var(--ac)}
-/* ── Sort bar ─────────────────────────────── */
-.sb{padding:6px 16px 2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.sb-label{font-size:10px;color:var(--t2);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
-.sb-btn{font-size:11px;padding:4px 10px;border-radius:6px;border:1px solid var(--bd);background:none;color:var(--t2);cursor:pointer;transition:all .15s}
-.sb-btn.ac{background:rgba(79,152,163,.15);color:var(--ac);border-color:var(--ac)}
-/* ── Card notes ───────────────────────────── */
+/* ── Unified pill filter bars ─────────────────────────────────────── */
+.fbar{background:rgba(9,10,15,.85);border-bottom:1px solid var(--bd);padding:7px 14px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;display:flex;align-items:center;gap:6px}
+.fbar-label{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--t2);flex-shrink:0;margin-right:2px;min-width:36px}
+.pill{display:inline-flex;align-items:center;gap:3px;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--bd);background:none;color:var(--t2);transition:all .18s;white-space:nowrap;flex-shrink:0}
+.pill:hover{color:var(--tx);border-color:var(--t2)}
+.pill.ac{background:var(--ac);color:#fff;border-color:var(--ac)}
+.pill-t1.ac{background:var(--g);border-color:var(--g)}
+.pill-t2.ac{background:var(--a);border-color:var(--a)}
+.pill-t3.ac{background:var(--r);border-color:var(--r)}
+/* ── Flag legend ──────────────────────────────────────────────────── */
+.flag-legend{display:flex;gap:6px 14px;flex-wrap:wrap;padding:7px 16px;font-size:11px;color:var(--t2);border-bottom:1px solid var(--bd);background:rgba(255,255,255,.015)}
+/* ── Card additions ───────────────────────────────────────────────── */
 .cn-notes{font-size:12px;color:var(--t2);padding:8px 0 2px;line-height:1.55}
-.cn-risk{font-size:12px;color:var(--a);background:rgba(218,113,1,.08);border-left:3px solid var(--a);padding:6px 8px;border-radius:0 4px 4px 0;margin:4px 0;line-height:1.5}
-.cn-act{font-size:12px;color:var(--ac);background:rgba(79,152,163,.08);border-left:3px solid var(--ac);padding:6px 8px;border-radius:0 4px 4px 0;margin:4px 0;line-height:1.5}
-/* ── Watchlist star ───────────────────────── */
-.star{background:none;border:none;font-size:16px;cursor:pointer;padding:0 4px;opacity:.4;transition:opacity .15s}
-.star.on{opacity:1}
-.card-h{display:flex;align-items:center;gap:8px}
+.cn-risk{font-size:12px;color:var(--a);background:rgba(218,113,1,.08);border-left:3px solid var(--a);padding:5px 8px;border-radius:0 4px 4px 0;margin:4px 0}
+.cn-act{font-size:12px;color:var(--ac);background:rgba(79,152,163,.08);border-left:3px solid var(--ac);padding:5px 8px;border-radius:0 4px 4px 0;margin:4px 0}
+.card-h{display:flex;align-items:center;gap:7px}
 .nm{flex:1;font-size:13px;font-weight:600;color:var(--t1)}
-/* ── Contract year colors ─────────────────── */
-.cont-g{color:var(--g)!important}
-.cont-y{color:var(--y)!important}
-.cont-r{color:var(--r)!important}
-/* ── Price badge ──────────────────────────── */
+.star{background:none;border:none;font-size:15px;cursor:pointer;padding:0 2px;opacity:.35;transition:opacity .15s;color:var(--y)}
+.star.on{opacity:1}
+.wl-count{display:inline-block;background:var(--ac);color:#fff;border-radius:10px;font-size:9px;padding:1px 5px;margin-left:3px;vertical-align:middle}
+.cont-g{color:var(--g)!important}.cont-y{color:var(--y)!important}.cont-r{color:var(--r)!important}
 .price-high{color:var(--a)!important}
-/* ── Watchlist tab dot ────────────────────── */
-.wl-count{display:inline-block;background:var(--ac);color:#fff;border-radius:10px;font-size:9px;padding:1px 5px;margin-left:4px;vertical-align:middle}
-/* ── Data freshness ───────────────────────── */
-.freshness{font-size:10px;color:var(--t2);padding:4px 16px 0;text-align:right}
+.freshness{font-size:10px;color:var(--t2);padding:3px 16px 0;text-align:right}
+/* ── Wiki-style Guide ─────────────────────────────────────────────── */
+.wiki{max-width:820px;margin:0 auto;padding:8px 16px 60px}
+.wiki h2{font-size:15px;font-weight:700;color:var(--tx);margin:28px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--bd)}
+.wiki h3{font-size:12px;font-weight:700;color:var(--ac);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.4px}
+.wiki p{font-size:13px;color:var(--t2);line-height:1.75;margin:0 0 10px}
+.wiki ul,.wiki ol{font-size:13px;color:var(--t2);line-height:1.8;padding-left:20px;margin:0 0 12px}
+.wiki li{margin-bottom:2px}
+.wiki table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0 18px}
+.wiki th{background:rgba(255,255,255,.04);color:var(--t2);font-weight:600;padding:7px 10px;text-align:left;border-bottom:1px solid var(--bd)}
+.wiki td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--tx);vertical-align:top}
+.wiki tr:last-child td{border-bottom:none}
+.wiki .fm{font-family:monospace;background:rgba(79,152,163,.1);border:1px solid var(--bd);color:var(--ac);padding:6px 14px;border-radius:6px;font-size:12px;margin:6px 0 12px;display:inline-block}
+.wiki .tip{background:rgba(79,152,163,.07);border-left:3px solid var(--ac);padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;color:var(--t2);margin:8px 0 14px;line-height:1.6}
+.wiki .warn{background:rgba(218,113,1,.07);border-left:3px solid var(--a);padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;color:var(--t2);margin:8px 0 14px;line-height:1.6}
+.wiki .danger{background:rgba(220,70,70,.07);border-left:3px solid var(--r);padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;color:var(--t2);margin:8px 0 14px;line-height:1.6}
+.wiki .toc{background:rgba(255,255,255,.025);border:1px solid var(--bd);border-radius:8px;padding:12px 16px;margin:4px 0 20px}
+.wiki .toc a{color:var(--ac);text-decoration:none;display:block;padding:3px 0;font-size:12px}
+.wiki .toc a:hover{color:var(--tx)}
+.badge{display:inline-block;padding:1px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-left:5px;vertical-align:middle}
+.badge-g{background:rgba(80,200,120,.15);color:var(--g)}
+.badge-y{background:rgba(218,113,1,.15);color:var(--a)}
+.badge-r{background:rgba(220,70,70,.15);color:var(--r)}
 
 </style>
 </head>
@@ -103,395 +134,457 @@ nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.95);backdrop-filt
 <nav><div class="nh"><div class="br"><h1>PMR Dashboard</h1></div><div class="nr"><span class="nd" id="dt"></span><button class="lb" onclick="tog()">EN</button></div></div></nav>
 <div class="leg">
 <span><b>NI</b> <span class="en">Net Income</span><span class="zh">年净收入</span></span>
-<span><b>BC%</b> <span class="en">Salary/Net (ideal 60-70%)</span><span class="zh">BC薪资占 (理想60-70%)</span></span>
+<span><b>BC%</b> <span class="en">Salary/Net (ideal 60-70%)</span><span class="zh">BC薪资占比 (理想60-70%)</span></span>
 <span><b>MULT</b> <span class="en">Price/Net (lower=better)</span><span class="zh">价格/净收入 (越低越好)</span></span>
 <span><b>POOL</b> <span class="en">Letting pool units</span><span class="zh">出租单元数</span></span>
-<span><b>CONT</b> <span class="en">Contract years</span><span class="zh">合同年限</span></span>
+<span><b>CONT</b> <span class="en">Contract years remaining</span><span class="zh">合同剩余年限</span></span>
 </div>
-<div class="rf" id="rf-bar"></div>
-  <div class="sb">
-    <span class="sb-label en">Sort</span><span class="sb-label zh">排序</span>
-    <button class="sb-btn ac" data-sort="mult"><span class="en">Best Value</span><span class="zh">最优倍数</span></button>
-    <button class="sb-btn" data-sort="ni"><span class="en">Highest NI</span><span class="zh">最高净收入</span></button>
-    <button class="sb-btn" data-sort="roi"><span class="en">Best ROI</span><span class="zh">最高回报率</span></button>
-    <button class="sb-btn" data-sort="price"><span class="en">Lowest Price</span><span class="zh">最低价格</span></button>
-  </div>
-  <div class="freshness" id="freshness"></div>
+<div class="fbar" id="rf-bar">
+  <span class="fbar-label en">Location</span><span class="fbar-label zh">地区</span>
+</div>
+<div class="fbar" id="sort-bar">
+  <span class="fbar-label en">Sort</span><span class="fbar-label zh">排序</span>
+  <button class="pill ac" data-sort="mult"><span class="en">Best Value</span><span class="zh">最优倍数</span></button>
+  <button class="pill" data-sort="ni"><span class="en">Highest NI</span><span class="zh">最高NI</span></button>
+  <button class="pill" data-sort="roi"><span class="en">Best ROI</span><span class="zh">最高ROI</span></button>
+  <button class="pill" data-sort="price"><span class="en">Lowest Price</span><span class="zh">最低价格</span></button>
+</div>
+<div class="fbar" id="tier-bar">
+  <span class="fbar-label en">Tier</span><span class="fbar-label zh">档位</span>
+  <button class="pill ac" data-tier="all"><span class="en">All</span><span class="zh">全部</span></button>
+  <button class="pill pill-t1" data-tier="t1"><span class="en">T1 &lt;$1M</span><span class="zh">T1 &lt;$1M</span></button>
+  <button class="pill pill-t2" data-tier="t2"><span class="en">T2 $1–1.5M</span><span class="zh">T2 $1–1.5M</span></button>
+  <button class="pill pill-t3" data-tier="t3"><span class="en">T3 $1.5M+</span><span class="zh">T3 $1.5M+</span></button>
+</div>
+<div class="freshness" id="freshness"></div>
 <div class="tabs">
-<div class="ti ac" onclick="sw('t1')">Tier 1</div>
-<div class="ti" onclick="sw('t2')">Tier 2</div>
-<div class="ti" onclick="sw('t3')">Tier 3</div>
-<div class="ti" onclick="sw('ta')">All</div>
-<div class="ti" onclick="sw('t4')"><span class="en">Guide</span><span class="zh">指南</span></div>
-  <div class="ti" onclick="sw('tw')"><span class="en">★ Watch</span><span class="zh">★ 收藏</span><span class="wl-count" id="wl-cnt">0</span></div>
+  <div class="ti ac" onclick="sw('ta')"><span class="en">Listings</span><span class="zh">列表</span></div>
+  <div class="ti" onclick="sw('t4')"><span class="en">Guide</span><span class="zh">指南</span></div>
+  <div class="ti" onclick="sw('tw')"><span class="en">★ Watch</span><span class="zh">★ 收藏</span><span class="wl-count" id="wl-cnt" style="display:none">0</span></div>
 </div>
 <div class="app">
-<div class="tp ac" id="t1"></div>
-<div class="tp" id="t2"></div>
-<div class="tp" id="t3"></div>
-<div class="tp" id="ta"></div>
-<div class="tp" id="tw"></div>
-  <div class="tp" id="t4"><div class="sec-h"><span class="en">Guide</span><span class="zh">指南</span><span class="b"></span></div>
-<div class="gs"><div class="gh open" onclick="tg(this)"><span class="ha">▶</span><span class="en">1. What is PMR?</span><span class="zh">1. 什么是PMR?</span></div>
-<div class="gc open">
-<p><b>PMR</b> (Property Management Rights) — uniquely Australian, QLD dominant. You buy the agreement — NOT the property.</p>
-<ul><li><b><span class="en">Caretaking</span><span class="zh">物业管理</span>:</b> <span class="en">maintaining common areas</span><span class="zh">维护公共区域</span></li><li><b><span class="en">Letting</span><span class="zh">租赁管理</span>:</b> <span class="en">managing rentals for owners</span><span class="zh">为业主管理出租</span></li></ul>
-<h4><span class="en">Three Types</span><span class="zh">三种类型</span></h4>
-<table><tr><th><span class="en">Type</span><span class="zh">类型</span></th><th><span class="en">What</span><span class="zh">内容</span></th><th><span class="en">Price</span><span class="zh">价格</span></th></tr>
-<tr><td><span class="en">Business Only</span><span class="zh">纯商业</span></td><td><span class="en">Caretaking + Letting</span><span class="zh">管理+租赁</span></td><td>$500K-$1.5M</td></tr>
-<tr><td><span class="en">MR + Unit</span><span class="zh">MR+公寓</span></td><td><span class="en">PMR biz + apartment</span><span class="zh">PMR + 公寓</span></td><td>$1M-$3M+</td></tr>
-<tr><td><span class="en">MR + Freehold</span><span class="zh">MR+产权</span></td><td><span class="en">PMR + own unit</span><span class="zh">PMR + 拥有unit</span></td><td>$2M-$5M+</td></tr></table></div></div>
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">2. Key Metrics</span><span class="zh">2. 关键指标</span></div>
-<div class="gc">
-<h4>BC%</h4><div class="fm">BC% = BC Salary / Net Income × 100</div>
-<table><tr><th>BC%</th><th></th></tr>
-<tr><td style="color:var(--g)">50-70%</td><td><span class="en">Healthy balance</span><span class="zh">理想</span></td></tr>
-<tr><td style="color:var(--a)">70-80%</td><td><span class="en">Leaning caretaker</span><span class="zh">注意</span></td></tr>
-<tr><td style="color:var(--r)">&gt;80%</td><td style="color:var(--r)">🚨 <span class="en">Caretaker trap!</span><span class="zh">纯caretaker陷阱</span></td></tr></table>
-<h4>Multiplier</h4><div class="fm">Mult = Price / Net Profit</div>
-<table><tr><th>3-5x</th><td style="color:var(--g)"><span class="en">Excellent</span><span class="zh">极佳</span></td></tr><tr><th>5-6x</th><td style="color:var(--a)"><span class="en">Fair</span><span class="zh">合理</span></td></tr><tr><th>&gt;6x</th><td style="color:var(--r)"><span class="en">Overpriced</span><span class="zh">过高</span></td></tr></table>
-<h4>$/wk per unit</h4><div class="fm">$/wk = (Net − BC Salary) / Pool / 52</div>
-<table><tr><th>$60-85</th><td style="color:var(--g)">Normal</td></tr><tr><th>$40-60</th><td style="color:var(--a)">Below avg</td></tr><tr><th>&lt;$40</th><td style="color:var(--r)">Too low!</td></tr></table></div></div>
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">3. Financial Analysis</span><span class="zh">3. 财务分析</span></div>
-<div class="gc"><h4>ROI</h4><div class="fm">ROI = (Net / Price) × 100</div>
-<table><tr><th>15-25%</th><td style="color:var(--g)">Strong</td></tr><tr><th>10-15%</th><td style="color:var(--a)">Average</td></tr><tr><th>&lt;10%</th><td style="color:var(--r)">Weak</td></tr></table>
-<h4><span class="en">Leveraged Return</span><span class="zh">杠杆回报</span></h4><div class="fm">Cash = Net − Mortgage</div>
-<div class="fm">$128K − $33K = <b>$95K</b></div>
-<div class="notes" style="background:rgba(245,158,11,.08);border-left:3px solid #f59e0b;padding:8px;border-radius:0 6px 6px 0"><span class="en">💡 BC salary grows by CPI only (~2-3%/yr). Letting income GROWS with occupancy, rates, and pool expansion!</span><span class="zh">💡 BC薪资只随CPI增长（~2-3%/年）。Letting收入随入住率和扩展增长！</span></div></div></div>
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">4. Market</span><span class="zh">4. 市场</span></div>
-<div class="gc"><table><tr><th></th><th>Brisbane</th><th>Gold Coast</th></tr>
-<tr><th><span class="en">Complexes</span><span class="zh">数量</span></th><td>~600+</td><td>~1,200+</td></tr>
-<tr><th>Dominant</th><td><span class="en">Permanent</span><span class="zh">长租</span></td><td><span class="en">Holiday</span><span class="zh">短租</span></td></tr>
-<tr><th>Net Yield</th><td>15-20%</td><td>18-25%</td></tr></table>
-<ul><li>Olympics 2032 driving growth</li><li>Rates ~5.8-6.2%</li><li>PMR prices up ~8% YoY</li></ul></div></div>
-<div class="gs"><div class="gh" onclick="tg(this)"><span class="ha">▶</span><span class="en">5. Resources</span><span class="zh">5. 资源</span></div>
-<div class="gc"><ul><li><b>AccomProperties.com.au</b></li><li><b>ResortBrokers.com.au</b></li><li><b>TheOnsiteManager.com.au</b></li><li><b>ARAMA QLD</b></li><li><b>AMRTA</b></li></ul></div></div>
+  <div class="flag-legend" id="flag-legend">
+    <span>✅ <span class="en">Good: BC%≤70, Mult≤6.5, Cont≥15yr</span><span class="zh">指标良好</span></span>
+    <span>⚠️ <span class="en">Caution: BC% 70–80 · Mult &gt;7.5x · Cont &lt;15yr</span><span class="zh">注意：BC偏高/倍数偏高/合同偏短</span></span>
+    <span>🚨 <span class="en">Risk: BC% &gt;80 or Mult &gt;10x</span><span class="zh">高风险</span></span>
+  </div>
+  <div class="tp ac" id="ta"></div>
+  <div class="tp" id="tw"></div>
+  <div class="tp" id="t4">
+<div class="wiki">
+<div class="toc">
+<b style="font-size:12px;color:var(--tx);display:block;margin-bottom:6px">📚 Contents</b>
+<a href="#g1"><span class="en">1. What is PMR?</span><span class="zh">1. 什么是PMR？</span></a>
+<a href="#g2"><span class="en">2. How the Business Works</span><span class="zh">2. 商业运作方式</span></a>
+<a href="#g3"><span class="en">3. Key Metrics Explained</span><span class="zh">3. 关键指标解析</span></a>
+<a href="#g4"><span class="en">4. Reading a Listing</span><span class="zh">4. 如何读懂listing</span></a>
+<a href="#g5"><span class="en">5. Due Diligence Checklist</span><span class="zh">5. 尽职调查清单</span></a>
+<a href="#g6"><span class="en">6. Financing</span><span class="zh">6. 融资方式</span></a>
+<a href="#g7"><span class="en">7. Red Flags</span><span class="zh">7. 风险警示</span></a>
+<a href="#g8"><span class="en">8. Glossary</span><span class="zh">8. 术语表</span></a>
 </div>
 
+<h2 id="g1"><span class="en">1. What is PMR?</span><span class="zh">1. 什么是PMR？</span></h2>
+<p><span class="en"><b>Property Management Rights (PMR)</b> is a uniquely Australian business model, dominant in Queensland. You buy the <em>right</em> to manage a residential or holiday complex — you are buying the agreement, not the real estate.</span><span class="zh"><b>物业管理权（PMR）</b>是澳大利亚独有的商业模式，在昆士兰州最为普遍。你购买的是管理住宅或度假综合体的<em>权利</em>——买的是协议，不是房产。</span></p>
+<h3><span class="en">Three Types</span><span class="zh">三种类型</span></h3>
+<table>
+<tr><th><span class="en">Type</span><span class="zh">类型</span></th><th><span class="en">Description</span><span class="zh">说明</span></th><th><span class="en">Live Onsite?</span><span class="zh">需住现场？</span></th><th><span class="en">Typical Price</span><span class="zh">典型价格</span></th></tr>
+<tr><td><b><span class="en">Business Only</span><span class="zh">纯商业</span></b></td><td><span class="en">Caretaking + letting. No unit required.</span><span class="zh">管理+租赁，无需公寓。</span></td><td><span class="en">No</span><span class="zh">否</span></td><td>$400K–$1.5M</td></tr>
+<tr><td><b>MR + Unit</b></td><td><span class="en">Business + manager's apartment. Live onsite.</span><span class="zh">业务+管理员公寓，住现场。</span></td><td><span class="en">Yes</span><span class="zh">是</span></td><td>$1M–$4M</td></tr>
+<tr><td><b>MR + Freehold</b></td><td><span class="en">Own the manager's unit outright. Strongest security.</span><span class="zh">全产权拥有管理员公寓，最高安全性。</span></td><td><span class="en">Yes</span><span class="zh">是</span></td><td>$2M–$5M+</td></tr>
+</table>
+<h3><span class="en">Permanent vs Holiday</span><span class="zh">长租 vs 度假</span></h3>
+<table>
+<tr><th></th><th><span class="en">Permanent</span><span class="zh">长租</span></th><th><span class="en">Holiday / Resort</span><span class="zh">度假村</span></th></tr>
+<tr><td><span class="en">Tenants</span><span class="zh">租客</span></td><td><span class="en">Long-term residents</span><span class="zh">长期居民</span></td><td><span class="en">Short-stay tourists</span><span class="zh">短期游客</span></td></tr>
+<tr><td><span class="en">Income</span><span class="zh">收入稳定性</span></td><td style="color:var(--g)"><span class="en">Stable year-round</span><span class="zh">全年稳定</span></td><td style="color:var(--a)"><span class="en">Seasonal swings</span><span class="zh">季节性波动</span></td></tr>
+<tr><td><span class="en">Multiplier</span><span class="zh">典型倍数</span></td><td><span class="en">4–6x typical</span><span class="zh">4–6倍</span></td><td><span class="en">5–8x typical</span><span class="zh">5–8倍</span></td></tr>
+</table>
+
+<h2 id="g2"><span class="en">2. How the Business Works</span><span class="zh">2. 商业运作方式</span></h2>
+<p><span class="en">Your income comes from two streams: a <b>Body Corporate (BC) salary</b> for caretaking duties, and <b>letting commissions</b> from managing rentals on behalf of unit owners.</span><span class="zh">收入来自两部分：物业委员会（BC）支付的<b>物业管理薪资</b>，以及代业主管理出租的<b>租赁佣金</b>。</span></p>
+<div class="fm">Net Income = BC Salary + Letting Commissions − Expenses</div>
+<h3><span class="en">Body Corporate Salary</span><span class="zh">BC薪资</span></h3>
+<ul>
+<li><span class="en">Fixed annual salary paid by the BC for grounds, pool, common areas</span><span class="zh">BC支付的固定年薪，用于花园、泳池、公共区域维护</span></li>
+<li><span class="en">Indexed annually — usually CPI or 3.5%, whichever is greater</span><span class="zh">每年按CPI或3.5%（取较高者）调整</span></li>
+<li><span class="en">BC% = this salary as % of total net income. Ideal: 50–70%</span><span class="zh">BC% = 该薪资占净收入百分比，理想：50–70%</span></li>
+</ul>
+<h3><span class="en">Letting Income</span><span class="zh">租赁收入</span></h3>
+<ul>
+<li><span class="en">Earned by managing units in the "letting pool" — owners who authorise you</span><span class="zh">通过管理"出租池"中的单元获得——即授权你出租的业主</span></li>
+<li><span class="en">Typical commission: 8–12% of rent collected</span><span class="zh">典型佣金：收取租金的8–12%</span></li>
+<li><span class="en">Growth lever: recruit more units into your pool</span><span class="zh">增长方式：争取更多单元加入出租池</span></li>
+</ul>
+<div class="tip"><span class="en">💡 The BC salary is your floor — it pays your base even during slow periods. Letting income is where you grow.</span><span class="zh">💡 BC薪资是收入底线，即使在淡季也能保障基本收入；租赁收入是你增长的来源。</span></div>
+
+<h2 id="g3"><span class="en">3. Key Metrics Explained</span><span class="zh">3. 关键指标解析</span></h2>
+<h3>BC% <span class="badge badge-g">ideal 50–70%</span></h3>
+<div class="fm">BC% = BC Salary ÷ Net Income × 100</div>
+<table>
+<tr><th>BC%</th><th><span class="en">Meaning</span><span class="zh">含义</span></th><th><span class="en">Risk</span><span class="zh">风险</span></th></tr>
+<tr><td style="color:var(--g)">50–70%</td><td><span class="en">Healthy mix of salary + letting</span><span class="zh">薪资与租赁均衡</span></td><td style="color:var(--g)"><span class="en">Low ✅</span><span class="zh">低 ✅</span></td></tr>
+<tr><td style="color:var(--a)">70–80%</td><td><span class="en">Leaning caretaker, limited upside</span><span class="zh">偏向物业管理，增长有限</span></td><td style="color:var(--a)"><span class="en">Medium ⚠️</span><span class="zh">中 ⚠️</span></td></tr>
+<tr><td style="color:var(--r)">&gt;80%</td><td><span class="en">Caretaker trap — mostly salary, if BC cancels you lose everything</span><span class="zh">纯管理陷阱——几乎全靠薪资，BC取消即失去一切</span></td><td style="color:var(--r)"><span class="en">High 🚨</span><span class="zh">高 🚨</span></td></tr>
+</table>
+
+<h3>Multiplier (MULT) <span class="badge badge-g">ideal 3–5x</span></h3>
+<div class="fm">Multiplier = Price ÷ Net Income</div>
+<table>
+<tr><th>Mult</th><th><span class="en">Rating</span><span class="zh">评级</span></th><th><span class="en">What it means</span><span class="zh">含义</span></th></tr>
+<tr><td style="color:var(--g)">3–5x</td><td style="color:var(--g)">✅ <span class="en">Excellent</span><span class="zh">极佳</span></td><td><span class="en">Recoup in 3–5 years</span><span class="zh">3–5年回本</span></td></tr>
+<tr><td style="color:var(--a)">5–6.5x</td><td style="color:var(--a)">⚠️ <span class="en">Fair / market rate</span><span class="zh">合理，市场价</span></td><td><span class="en">Acceptable with good metrics</span><span class="zh">其他指标良好时可接受</span></td></tr>
+<tr><td style="color:var(--r)">&gt;6.5x</td><td style="color:var(--r)">🚨 <span class="en">Overpriced</span><span class="zh">过高</span></td><td><span class="en">Needs strong growth story</span><span class="zh">需要强增长预期支撑</span></td></tr>
+</table>
+
+<h3><span class="en">Contract Years (CONT)</span><span class="zh">合同年限</span> <span class="badge badge-g">ideal ≥20yr</span></h3>
+<table>
+<tr><th>CONT</th><th><span class="en">Security Level</span><span class="zh">安全性</span></th></tr>
+<tr><td style="color:var(--g)">≥20yr</td><td style="color:var(--g)"><span class="en">Excellent — banks and buyers prefer this</span><span class="zh">优秀——贷款机构和买家均偏好</span></td></tr>
+<tr><td style="color:var(--y)">10–19yr</td><td style="color:var(--y)"><span class="en">Adequate — negotiate top-up before buying</span><span class="zh">尚可——买前谈判续约</span></td></tr>
+<tr><td style="color:var(--r)">&lt;10yr</td><td style="color:var(--r)">🚨 <span class="en">Lenders may refuse; resale is hard</span><span class="zh">贷款可能被拒，转售困难</span></td></tr>
+</table>
+<div class="tip"><span class="en">💡 "Top-up" = getting the BC to vote to extend the agreement. Very common in QLD — adds significant value and bankability.</span><span class="zh">💡 "续约"= 让BC投票延长协议期限，在昆士兰很常见，能显著提升价值和贷款可行性。</span></div>
+
+<h3><span class="en">Letting Pool (POOL)</span><span class="zh">出租池规模</span></h3>
+<table>
+<tr><th>Pool</th><th><span class="en">Assessment</span><span class="zh">评估</span></th></tr>
+<tr><td style="color:var(--g)">≥30</td><td style="color:var(--g)"><span class="en">Excellent scale and diversity</span><span class="zh">规模和多样性均优秀</span></td></tr>
+<tr><td style="color:var(--a)">15–29</td><td style="color:var(--a)"><span class="en">Good, some vacancy risk</span><span class="zh">良好，有一定空置风险</span></td></tr>
+<tr><td style="color:var(--r)">&lt;10</td><td style="color:var(--r)">🚨 <span class="en">High per-unit vacancy risk</span><span class="zh">单元空置风险较高</span></td></tr>
+</table>
+
+<h3>ROI</h3>
+<div class="fm">ROI = Net Income ÷ Price × 100%</div>
+<p><span class="en">Typical PMR ROI is <b>15–25%</b> — far above residential property (3–5%). If ROI shows as "—", the price was not disclosed in the listing.</span><span class="zh">典型PMR回报率为<b>15–25%</b>，远高于住宅投资（3–5%）。如显示"—"表示价格未披露。</span></p>
+
+<h2 id="g4"><span class="en">4. Reading a Listing</span><span class="zh">4. 如何读懂Listing</span></h2>
+<table>
+<tr><th><span class="en">Field</span><span class="zh">字段</span></th><th><span class="en">What it is</span><span class="zh">含义</span></th><th><span class="en">Watch out for</span><span class="zh">注意事项</span></th></tr>
+<tr><td><b>Price</b></td><td><span class="en">Asking price for the business (+ unit if MR+U)</span><span class="zh">业务要价（MR+U时含公寓）</span></td><td><span class="en">EOI / — = undisclosed, request info pack</span><span class="zh">EOI/— = 未披露，需索取资料包</span></td></tr>
+<tr><td><b>NI</b></td><td><span class="en">Net Income after running costs</span><span class="zh">扣除运营成本后的净收入</span></td><td><span class="en">"Actual" vs "projected" — actual only</span><span class="zh">"实际"vs"预测"——只接受实际值</span></td></tr>
+<tr><td><b>BC%</b></td><td><span class="en">BC salary ÷ net income</span><span class="zh">BC薪资占净收入比例</span></td><td><span class="en">&gt;80% = mostly a job, not an investment</span><span class="zh">&gt;80% = 更像工作非投资</span></td></tr>
+<tr><td><b>Mult</b></td><td><span class="en">Price ÷ NI — years to recoup</span><span class="zh">价格÷净收入——回本年数</span></td><td><span class="en">Verify NI is audited, not estimated</span><span class="zh">确认已审计，非估算</span></td></tr>
+<tr><td><b>Pool</b></td><td><span class="en">Number of units you actively let</span><span class="zh">主动出租的单元数</span></td><td><span class="en">Check how many use outside agents</span><span class="zh">检查有多少单元使用外部中介</span></td></tr>
+<tr><td><b>Cont</b></td><td><span class="en">Years remaining on agreement</span><span class="zh">协议剩余年限</span></td><td><span class="en">&lt;10yr = lenders may decline</span><span class="zh">&lt;10年 = 贷款可能被拒</span></td></tr>
+</table>
+<div class="warn"><span class="en">⚠️ Always ask for the <b>last 2 years of financials</b>, the <b>letting pool schedule</b>, and <b>BC meeting minutes</b> before making any offer.</span><span class="zh">⚠️ 出价前务必索取<b>过去2年财务报告</b>、<b>出租池明细</b>和<b>BC会议记录</b>。</span></div>
+
+<h2 id="g5"><span class="en">5. Due Diligence Checklist</span><span class="zh">5. 尽职调查清单</span></h2>
+<h3><span class="en">Before Making an Offer</span><span class="zh">出价前</span></h3>
+<ul>
+<li><span class="en">☐ Request full information memorandum (IM) from broker</span><span class="zh">☐ 向经纪人索取完整信息备忘录（IM）</span></li>
+<li><span class="en">☐ Confirm Net Income is <b>audited</b> (not just stated)</span><span class="zh">☐ 确认净收入已<b>经过审计</b>（非自报）</span></li>
+<li><span class="en">☐ Get letting pool schedule — how many units, which owners</span><span class="zh">☐ 获取出租池明细——单元数及业主名单</span></li>
+<li><span class="en">☐ Check units managed by outside agents (leakage you can recover)</span><span class="zh">☐ 检查由外部中介管理的单元（可争取回来的收入）</span></li>
+<li><span class="en">☐ Confirm BC salary and annual CPI indexation clause</span><span class="zh">☐ 确认BC薪资及年度CPI调整条款</span></li>
+<li><span class="en">☐ Review BC meeting minutes (last 2 years) for disputes</span><span class="zh">☐ 查阅过去2年BC会议记录，了解潜在纠纷</span></li>
+<li><span class="en">☐ Confirm agreement term remaining and top-up history</span><span class="zh">☐ 确认协议剩余年限及续约历史</span></li>
+</ul>
+<h3><span class="en">After Signing (Due Diligence Period)</span><span class="zh">签约后（尽职调查期）</span></h3>
+<ul>
+<li><span class="en">☐ Engage a PMR-specialist solicitor (not a general property lawyer)</span><span class="zh">☐ 聘请PMR专业律师（非普通房产律师）</span></li>
+<li><span class="en">☐ Engage a PMR accountant to verify all financials</span><span class="zh">☐ 聘请PMR会计师核实财务</span></li>
+<li><span class="en">☐ Request 2-year trust account bank statements</span><span class="zh">☐ 索取信托账户2年银行对账单</span></li>
+<li><span class="en">☐ Verify all letting agreements are current and signed</span><span class="zh">☐ 核实所有出租协议均现行有效</span></li>
+<li><span class="en">☐ Inspect condition of common areas — pool, gym, lifts, gardens</span><span class="zh">☐ 检查公共区域状况——泳池、健身房、电梯、花园</span></li>
+<li><span class="en">☐ Meet the BC committee members in person</span><span class="zh">☐ 与BC委员会成员面谈</span></li>
+</ul>
+<div class="tip"><span class="en">💡 Use a solicitor who specialises in MR — there are only ~10 firms in QLD who truly understand PMR contracts. Ask your broker for a referral.</span><span class="zh">💡 务必使用MR专业律师——昆士兰只有约10家律所真正了解PMR合同。</span></div>
+
+<h2 id="g6"><span class="en">6. Financing</span><span class="zh">6. 融资方式</span></h2>
+<p><span class="en">PMR is treated as a <b>commercial loan</b> — different rules apply compared to residential.</span><span class="zh">PMR属于<b>商业贷款</b>，规则与住宅贷款不同。</span></p>
+<table>
+<tr><th><span class="en">Factor</span><span class="zh">因素</span></th><th><span class="en">Typical</span><span class="zh">典型情况</span></th></tr>
+<tr><td><span class="en">LVR (Loan to Value)</span><span class="zh">贷款比例</span></td><td><span class="en">50–65% (less than residential)</span><span class="zh">50–65%（低于住宅贷款）</span></td></tr>
+<tr><td><span class="en">Interest rate</span><span class="zh">利率</span></td><td><span class="en">~7–8.5% (commercial rate)</span><span class="zh">约7–8.5%（商业利率）</span></td></tr>
+<tr><td><span class="en">Min contract remaining</span><span class="zh">最低剩余年限</span></td><td><span class="en">Most lenders require ≥15yr</span><span class="zh">大多数贷款机构要求≥15年</span></td></tr>
+<tr><td><span class="en">Deposit required</span><span class="zh">所需首付</span></td><td><span class="en">35–50% of business price</span><span class="zh">业务价格的35–50%</span></td></tr>
+<tr><td><span class="en">Key lenders</span><span class="zh">主要贷款机构</span></td><td><span class="en">BOQ, ANZ, NAB (commercial desk), specialist MR brokers</span><span class="zh">BOQ、ANZ、NAB（商业部门），MR专业贷款经纪人</span></td></tr>
+</table>
+<div class="warn"><span class="en">⚠️ If buying MR+Unit, the unit is usually financed separately as residential (higher LVR). The split structure matters — get advice before signing.</span><span class="zh">⚠️ 购买MR+公寓时，公寓通常作为住宅贷款单独处理（更高LVR）。融资结构非常重要，签约前需专业建议。</span></div>
+
+<h2 id="g7"><span class="en">7. Red Flags 🚨</span><span class="zh">7. 风险警示 🚨</span></h2>
+<div class="danger"><b><span class="en">Skip immediately if any of these apply:</span><span class="zh">出现以下任何一项立即跳过：</span></b></div>
+<ul>
+<li>🚨 <b>BC% &gt;85%</b> — <span class="en">you are an employee, not a business owner</span><span class="zh">你是雇员，不是生意老板</span></li>
+<li>🚨 <b><span class="en">Contract &lt;10yr</span><span class="zh">合同&lt;10年</span></b> — <span class="en">no top-up in progress</span><span class="zh">且无续约计划</span></li>
+<li>🚨 <b>Mult &gt;8x</b> — <span class="en">no clear growth story</span><span class="zh">且无明确增长逻辑</span></li>
+<li>🚨 <b>Pool &lt;5 units</b> — <span class="en">too concentrated, high vacancy risk</span><span class="zh">过于集中，空置风险极高</span></li>
+<li>🚨 <b><span class="en">100% BC salary</span><span class="zh">100% BC薪资</span></b> — <span class="en">zero letting income = zero growth</span><span class="zh">零租赁收入 = 零增长</span></li>
+<li>🚨 <b><span class="en">Projected income</span><span class="zh">预测收入</span></b> — <span class="en">must be audited actuals only</span><span class="zh">必须是经审计的实际数据</span></li>
+</ul>
+<div class="warn"><b><span class="en">Investigate before proceeding:</span><span class="zh">以下情况需仔细调查：</span></b>
+<ul style="margin-top:6px">
+<li><span class="en">Price undisclosed (EOI/—) — ask why before requesting IM</span><span class="zh">价格未披露（EOI/—）——索取IM前先了解原因</span></li>
+<li><span class="en">Large number of external-agent units — income leakage</span><span class="zh">大量单元由外部中介管理——收入流失</span></li>
+<li><span class="en">New complex (&lt;2yr) — no proven income track record</span><span class="zh">新楼盘（&lt;2年）——无收入历史记录</span></li>
+<li><span class="en">Recent price reduction — find out why</span><span class="zh">近期降价——需了解原因</span></li>
+<li><span class="en">BC% 70–80% — caution, limited growth ceiling</span><span class="zh">BC% 70–80%——注意，增长空间有限</span></li>
+</ul>
 </div>
-<div class="ft"><b>pmr-dashboard</b> · winrobin/github.io</div>
+
+<h2 id="g8"><span class="en">8. Glossary</span><span class="zh">8. 术语表</span></h2>
+<table>
+<tr><th><span class="en">Term</span><span class="zh">术语</span></th><th><span class="en">Meaning</span><span class="zh">含义</span></th></tr>
+<tr><td><b>BC</b></td><td><span class="en">Body Corporate — the owners' committee that governs the complex</span><span class="zh">物业委员会——管理综合体的业主委员会</span></td></tr>
+<tr><td><b>Letting Pool</b></td><td><span class="en">Units whose owners authorised you to manage rentals</span><span class="zh">授权你管理出租的单元池</span></td></tr>
+<tr><td><b>Top-up</b></td><td><span class="en">Extending contract term by BC vote</span><span class="zh">通过BC投票延长合同年限</span></td></tr>
+<tr><td><b>Accom Module</b></td><td><span class="en">Part of the BC Act governing short-stay letting agreements</span><span class="zh">物业法中规范短租协议的模块</span></td></tr>
+<tr><td><b>ROI</b></td><td><span class="en">Return on Investment = NI ÷ Price</span><span class="zh">投资回报率 = 净收入 ÷ 价格</span></td></tr>
+<tr><td><b>Multiplier</b></td><td><span class="en">Price ÷ NI — years to recoup purchase price</span><span class="zh">价格 ÷ 净收入——回收购买价格的年数</span></td></tr>
+<tr><td><b>EOI</b></td><td><span class="en">Expression of Interest — price undisclosed</span><span class="zh">意向书——价格未披露</span></td></tr>
+<tr><td><b>IM</b></td><td><span class="en">Information Memorandum — full financial package from broker</span><span class="zh">信息备忘录——经纪人提供的完整财务资料包</span></td></tr>
+<tr><td><b>Trust Account</b></td><td><span class="en">Separate account holding tenant payments before disbursement</span><span class="zh">存放租客租金待分配的独立账户</span></td></tr>
+<tr><td><b>Caretaker Trap</b></td><td><span class="en">BC% so high you're basically an employee with no business value</span><span class="zh">BC%极高，本质上只是雇员，无商业价值</span></td></tr>
+<tr><td><b>External Units</b></td><td><span class="en">Units using outside agents instead of you — income leakage</span><span class="zh">使用外部中介的单元——可争取回来的收入流失</span></td></tr>
+<tr><td><b>Freehold</b></td><td><span class="en">Full ownership of land + building</span><span class="zh">土地+建筑完全产权</span></td></tr>
+<tr><td><b>Stratum Title</b></td><td><span class="en">Standard unit title in a strata complex</span><span class="zh">分层产权——标准公寓产权形式</span></td></tr>
+</table>
+</div>
+</div>
 </div>
 <script>
-// ── Language toggle (body.cn class) ──────────────────────────────────────
 var zh = false;
 function tog(){
   zh = !zh;
   document.body.classList.toggle('cn', zh);
   document.querySelector('.lb').textContent = zh ? '中文' : 'EN';
 }
-// ── Tab switching ─────────────────────────────────────────────────────────
 function sw(id){
-  document.querySelectorAll('.tp').forEach(function(e){e.classList.remove('ac')});
-  document.querySelectorAll('.ti').forEach(function(e){e.classList.remove('ac')});
+  document.querySelectorAll('.tp').forEach(function(e){ e.classList.remove('ac'); });
+  document.querySelectorAll('.ti').forEach(function(e){ e.classList.remove('ac'); });
   var el = document.getElementById(id);
   if(el) el.classList.add('ac');
-  var ids = ['t1','t2','t3','ta','tw','t4'];
-  document.querySelectorAll('.ti').forEach(function(t,i){
-    if(ids[i] === id) t.classList.add('ac');
+  document.querySelectorAll('.ti').forEach(function(t){
+    var fn = t.getAttribute('onclick')||'';
+    if(fn.indexOf("'"+id+"'")>=0) t.classList.add('ac');
   });
+  var fl = document.getElementById('flag-legend');
+  if(fl) fl.style.display = (id==='ta') ? '' : 'none';
 }
-function tg(el){
-  el.classList.toggle('open');
-  var gc = el.nextElementSibling;
-  if(gc) gc.classList.toggle('open');
-}
-// ── Date display ──────────────────────────────────────────────────────────
 (function(){
-  var d = new Date();
-  var mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var el = document.getElementById('dt');
-  if(el) el.textContent = d.getDate()+' '+mo[d.getMonth()]+' '+d.getFullYear()+
+  var d=new Date(), mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var el=document.getElementById('dt');
+  if(el) el.textContent=d.getDate()+' '+mo[d.getMonth()]+' '+d.getFullYear()+
     ' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' AEST';
 })();
 </script>
-
 <script>
-// ── State ─────────────────────────────────────────────────────────────────
-var activeRegion = 'all';
-var activeSort   = 'mult';
-var allProps     = [];
-var watchlist    = JSON.parse(localStorage.getItem('pmr-watch') || '[]');
-
-// ── Region groups ─────────────────────────────────────────────────────────
-var RG = {
-  'Brisbane':      ['Brisbane','West End','Kangaroo Point','Victoria Point','Morayfield',
-                    'Brendale','Chermside','Lutwyche','Wakerley','Mansfield','Redcliffe',
-                    'Albany Creek','Eight Mile Plains','South Brisbane','Newstead',
-                    'Fortitude Valley','Spring Hill','Kelvin Grove','Woolloongabba',
-                    'Stones Corner','Hamilton','Southbank','Nundah','Bowen Hills'],
-  'Gold Coast':    ['Gold Coast','Broadbeach','Surfers Paradise','Mermaid Beach','Main Beach',
-                    'Burleigh','Tugun','Southport','Robina','Mudgeeraba','Coolangatta',
-                    'Silver Quays','Varsity Lakes','Palm Beach','Currumbin','Labrador',
-                    'Arundel','Helensvale','Coomera','Oxenford','Runaway Bay'],
-  'Sunshine Coast':['Sunshine Coast','Noosa','Noosaville','Mooloolaba','Caloundra',
-                    'Maroochydore','Kings Beach','Coolum','Peregian','Buderim',
-                    'Kawana','Bokarina','Wurtulla','Bli Bli','Nambour'],
-  'QLD Other':     ['Cairns','Townsville','Hervey Bay','Bundaberg','Mackay','Rockhampton',
-                    'Gladstone','Airlie Beach','Whitsunday','Port Douglas','Trinity Beach',
-                    'Mission Beach','Yeppoon','Agnes Water'],
-  'Interstate':    ['Sydney','Melbourne','Perth','Adelaide','Hobart','NSW','VIC',
-                    'WA','ACT','Port Macquarie','Byron Bay','Hunter Valley']
+var activeRegion='all', activeSort='mult', activeTier='all';
+var allProps=[], watchlist=JSON.parse(localStorage.getItem('pmr-watch')||'[]');
+var RG={
+  'Brisbane':['Brisbane','West End','Kangaroo Point','Victoria Point','Morayfield','Brendale',
+    'Chermside','Lutwyche','Wakerley','Mansfield','Redcliffe','Albany Creek','Eight Mile Plains',
+    'Fortitude Valley','Spring Hill','Kelvin Grove','Woolloongabba','Hamilton','Southbank',
+    'Nundah','Oxley','Carindale','Runcorn','Kallangur','Griffin','North Lakes','Pimpama','Newstead'],
+  'Gold Coast':['Gold Coast','Broadbeach','Surfers Paradise','Mermaid Beach','Main Beach',
+    'Burleigh','Tugun','Southport','Robina','Mudgeeraba','Coolangatta','Varsity Lakes',
+    'Palm Beach','Currumbin','Labrador','Arundel','Helensvale','Coomera','Runaway Bay'],
+  'Sunshine Coast':['Sunshine Coast','Noosa','Noosaville','Mooloolaba','Caloundra','Maroochydore',
+    'Kings Beach','Coolum','Peregian','Buderim','Kawana','Torquay','Bokarina','Nambour'],
+  'QLD Other':['Cairns','Townsville','Hervey Bay','Bundaberg','Mackay','Rockhampton',
+    'Airlie Beach','Whitsunday','Port Douglas','Trinity Beach','Agnes Water','Yeppoon'],
+  'Interstate':['Sydney','Melbourne','Perth','Hobart','NSW','VIC','WA','ACT','Port Macquarie','Byron Bay']
 };
-
 function getGroup(p){
-  var txt = ((p.name||'')+' '+(p.region||'')).toLowerCase();
-  for(var g in RG){
-    for(var i=0;i<RG[g].length;i++){
-      if(txt.indexOf(RG[g][i].toLowerCase())>=0) return g;
-    }
-  }
+  var txt=((p.name||'')+' '+(p.region||'')).toLowerCase();
+  for(var g in RG) for(var i=0;i<RG[g].length;i++) if(txt.indexOf(RG[g][i].toLowerCase())>=0) return g;
   return 'QLD Other';
 }
-function matchRegion(p){ return activeRegion==='all' || getGroup(p)===activeRegion; }
-
-// ── Sorting ───────────────────────────────────────────────────────────────
 function sortProps(arr){
   return arr.slice().sort(function(a,b){
     if(activeSort==='mult'){
       if(!a.multiplier||a.multiplier===0) return 1;
       if(!b.multiplier||b.multiplier===0) return -1;
-      return a.multiplier - b.multiplier;
+      return a.multiplier-b.multiplier;
     }
-    if(activeSort==='ni')    return (b.net_income||0)-(a.net_income||0);
+    if(activeSort==='ni') return (b.net_income||0)-(a.net_income||0);
     if(activeSort==='roi'){
-      var ra = a.price ? (a.net_income||0)/a.price : 0;
-      var rb = b.price ? (b.net_income||0)/b.price : 0;
-      return rb - ra;
+      var ra=(a.price&&a.price!==a.net_income)?(a.net_income||0)/a.price:0;
+      var rb=(b.price&&b.price!==b.net_income)?(b.net_income||0)/b.price:0;
+      return rb-ra;
     }
     if(activeSort==='price') return (a.price||0)-(b.price||0);
     return 0;
   });
 }
-
-// ── Formatters ────────────────────────────────────────────────────────────
 function fmt(n){
   if(!n||n===0) return '—';
   if(n>=1000000) return '$'+(n/1000000).toFixed(2)+'M';
-  if(n>=1000)    return '$'+Math.round(n/1000)+'K';
+  if(n>=1000) return '$'+Math.round(n/1000)+'K';
   return '$'+n.toLocaleString();
 }
 function multColor(m){ return !m?'':m<=5?'g':m<=6.5?'y':'r'; }
-function bcColor(b){   return !b?'':b<=70?'g':b<=80?'y':'r'; }
+function bcColor(b){ return !b?'':b<=70?'g':b<=80?'y':'r'; }
 function contColor(c){ return !c?'':c>=20?'cont-g':c>=10?'cont-y':'cont-r'; }
 function flag(p){
-  if(p.bc_percent&&p.bc_percent>80)  return '🚨';
-  if(p.multiplier&&p.multiplier>7.5) return '⚠️';
-  if(p.bc_percent&&p.bc_percent>70)  return '⚠️';
-  if(p.contract_years&&p.contract_years<10) return '⚠️';
+  var bc=p.bc_percent,m=p.multiplier,c=p.contract_years;
+  if((bc&&bc>80)||(m&&m>10)) return '🚨';
+  if((bc&&bc>70)||(m&&m>7.5)||(c&&c<15)) return '⚠️';
   return '✅';
 }
-function roi(p){
-  if(!p.price||!p.net_income) return '—';
-  if(p.price===p.net_income) return '—';  // price unknown (card-only value)
-  var r = p.net_income/p.price*100;
-  if(r>50) return '—';  // >50% ROI is almost always a data error
-  return r.toFixed(1)+'%';
+function flagTitle(p){
+  var bc=p.bc_percent,m=p.multiplier,c=p.contract_years,r=[];
+  if(bc&&bc>80) r.push('BC% '+bc+'% exceeds 80%');
+  else if(bc&&bc>70) r.push('BC% '+bc+'% is 70-80%');
+  if(m&&m>10) r.push('Mult '+m+'x exceeds 10x');
+  else if(m&&m>7.5) r.push('Mult '+m+'x exceeds 7.5x');
+  if(c&&c<15) r.push('Contract '+c+'yr under 15yr');
+  return r.length?r.join(' | '):'All metrics look good';
 }
-
-// ── Watchlist ─────────────────────────────────────────────────────────────
-function isWatched(id){ return watchlist.indexOf(id) >= 0; }
+function roi(p){
+  if(!p.price||!p.net_income||p.price===p.net_income) return '—';
+  var r=p.net_income/p.price*100;
+  return r>50?'—':r.toFixed(1)+'%';
+}
+function isWatched(id){ return watchlist.indexOf(id)>=0; }
 function toggleWatch(id){
-  var idx = watchlist.indexOf(id);
+  var idx=watchlist.indexOf(id);
   if(idx>=0) watchlist.splice(idx,1); else watchlist.push(id);
-  localStorage.setItem('pmr-watch', JSON.stringify(watchlist));
+  localStorage.setItem('pmr-watch',JSON.stringify(watchlist));
   renderAll();
 }
-
-// ── Card builder ──────────────────────────────────────────────────────────
-function makeCard(p, rank){
-  var mc = p.multiplier, bc = p.bc_percent, cont = p.contract_years;
-  var link  = p.url ? '<a class="lk" href="'+p.url+'" target="_blank">🔗</a>' : '';
-  var star  = '<button class="star'+(isWatched(p.id)?' on':'')+'" onclick="toggleWatch(\''+p.id+'\')">★</button>';
-  var rkC   = rank<=3?'g':rank<=6?'y':'d';
-
-  var contVal = cont&&cont>0 ? cont+'yr' : '?';
-  var contC   = contColor(cont);
-
-  // Price color: >$3M = amber warning
-  var priceC = (p.price && p.price > 3000000) ? 'price-high' : '';
-
-  // Notes
-  var nh = '';
-  if(p.notes  && p.notes.trim())  nh += '<div class="cn-notes">'+p.notes+'</div>';
-  if(p.risks  && p.risks.trim())  nh += '<div class="cn-risk">⚠️ '+p.risks+'</div>';
-  if(p.action && p.action.trim()) nh += '<div class="cn-act">→ '+p.action+'</div>';
-
-  // ROI line
-  var roiLine = (p.price&&p.net_income) ?
-    '<div class="cn-notes" style="color:var(--t2);font-size:11px">ROI: '+roi(p)+'</div>' : '';
-
+function makeCard(p,rank){
+  var mc=p.multiplier,bc=p.bc_percent,cont=p.contract_years;
+  var link=p.url?'<a class="lk" href="'+p.url+'" target="_blank">🔗</a>':'';
+  var star='<button class="star'+(isWatched(p.id)?' on':'')+'" onclick="toggleWatch(\''+p.id+'\')" title="Add to watchlist">★</button>';
+  var rkC=rank<=3?'g':rank<=6?'y':'d';
+  var nh='';
+  if(p.notes&&p.notes.trim()) nh+='<div class="cn-notes">'+p.notes+'</div>';
+  if(p.risks&&p.risks.trim()) nh+='<div class="cn-risk">⚠️ '+p.risks+'</div>';
+  if(p.action&&p.action.trim()) nh+='<div class="cn-act">→ '+p.action+'</div>';
+  var roiStr=roi(p);
+  var roiLine=roiStr!=='—'?'<div style="font-size:11px;color:var(--t2);padding:4px 0 0">ROI: '+roiStr+'</div>':'';
   return '<div class="card">'+
     '<div class="card-h">'+
       '<span class="rk '+rkC+'">'+rank+'</span>'+
       '<span class="nm">'+p.name+'</span>'+
+      '<span title="'+flagTitle(p)+'">'+flag(p)+'</span>'+
       star+link+
     '</div>'+
-    '<div class="cb">'+
-      '<div class="mg">'+
-        '<div class="mc '+priceC+'"><div class="v">'+fmt(p.price)+'</div><div class="l">Price</div></div>'+
-        '<div class="mc '+(p.net_income>0?'g':'')+'"><div class="v">'+fmt(p.net_income)+'</div><div class="l">NI</div></div>'+
-        '<div class="mc '+bcColor(bc)+'"><div class="v">'+(bc&&bc>0?bc+'%':'—')+'</div><div class="l">BC%</div></div>'+
-        '<div class="mc '+multColor(mc)+'"><div class="v">'+(mc&&mc>0?mc+'x':'—')+'</div><div class="l">Mult</div></div>'+
-        '<div class="mc"><div class="v">'+(p.pool_units>0?p.pool_units:'?')+'</div><div class="l">Pool</div></div>'+
-        '<div class="mc '+contC+'"><div class="v">'+contVal+'</div><div class="l">Cont</div></div>'+
-      '</div>'+
-      roiLine+nh+
-    '</div>'+
-  '</div>';
+    '<div class="cb"><div class="mg">'+
+      '<div class="mc '+(p.price&&p.price>3000000?'y':'')+'"><div class="v">'+fmt(p.price)+'</div><div class="l">Price</div></div>'+
+      '<div class="mc '+(p.net_income>0?'g':'')+'"><div class="v">'+fmt(p.net_income)+'</div><div class="l">NI</div></div>'+
+      '<div class="mc '+bcColor(bc)+'"><div class="v">'+(bc&&bc>0?bc+'%':'—')+'</div><div class="l">BC%</div></div>'+
+      '<div class="mc '+multColor(mc)+'"><div class="v">'+(mc&&mc>0?mc+'x':'—')+'</div><div class="l">Mult</div></div>'+
+      '<div class="mc"><div class="v">'+(p.pool_units>0?p.pool_units:'?')+'</div><div class="l">Pool</div></div>'+
+      '<div class="mc '+contColor(cont)+'"><div class="v">'+(cont&&cont>0?cont+'yr':'?')+'</div><div class="l">Cont</div></div>'+
+    '</div>'+roiLine+nh+'</div></div>';
 }
-
-function makeTableRow(p, idx){
-  var tier = p.price>0?(p.price<1000000?'T1':p.price<1500000?'T2':'T3'):'—';
-  var mc = p.multiplier, bc = p.bc_percent, cont = p.contract_years;
-  var link = p.url ? '<a href="'+p.url+'" target="_blank" style="color:var(--ac)">🔗</a>' : '—';
-  var star = '<button class="star'+(isWatched(p.id)?' on':'')+'" onclick="toggleWatch(\''+p.id+'\')">★</button>';
+function makeTableRow(p,idx){
+  var mc=p.multiplier,bc=p.bc_percent,cont=p.contract_years;
+  var link=p.url?'<a href="'+p.url+'" target="_blank" style="color:var(--ac)">🔗</a>':'—';
+  var star='<button class="star'+(isWatched(p.id)?' on':'')+'" onclick="toggleWatch(\''+p.id+'\')" title="Watchlist">★</button>';
+  var tier=p.price>0?(p.price<1000000?'<span style="color:var(--g)">T1</span>':p.price<1500000?'<span style="color:var(--a)">T2</span>':'<span style="color:var(--r)">T3</span>'):'—';
   return '<tr>'+
     '<td>'+tier+'</td><td>'+idx+'</td>'+
-    '<td style="text-align:left;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+p.name+'">'+p.name+'</td>'+
-    '<td>'+fmt(p.price)+'</td>'+
+    '<td style="text-align:left;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+p.name+' | '+flagTitle(p)+'">'+p.name+'</td>'+
+    '<td class="'+(p.price&&p.price>3000000?'y':'')+'">'+fmt(p.price)+'</td>'+
     '<td class="'+(p.net_income>0?'tg':'')+'">'+fmt(p.net_income)+'</td>'+
     '<td class="'+bcColor(bc)+'">'+(bc&&bc>0?bc+'%':'—')+'</td>'+
     '<td class="'+multColor(mc)+'">'+(mc&&mc>0?mc.toFixed(2)+'x':'—')+'</td>'+
     '<td>'+(p.pool_units>0?p.pool_units:'—')+'</td>'+
     '<td class="'+contColor(cont)+'">'+(cont&&cont>0?cont+'yr':'—')+'</td>'+
     '<td>'+roi(p)+'</td>'+
-    '<td>'+flag(p)+'</td>'+
-    '<td>'+star+'</td>'+
-    '<td>'+link+'</td>'+
+    '<td title="'+flagTitle(p)+'">'+flag(p)+'</td>'+
+    '<td>'+star+'</td><td>'+link+'</td>'+
   '</tr>';
 }
-
-// ── Render ────────────────────────────────────────────────────────────────
-function renderTier(id, label, arr){
-  var el = document.getElementById(id); if(!el) return;
-  var h = '<div class="sec-h"><span>'+label+' ('+arr.length+')</span><span class="b"></span></div>';
-  if(!arr.length){
-    h += '<div style="padding:32px;color:var(--t2);text-align:center;font-size:13px">No listings'+(activeRegion!=='all'?' in '+activeRegion:'')+' for this tier.</div>';
-  } else {
-    arr.forEach(function(p,i){ h += makeCard(p,i+1); });
-  }
-  el.innerHTML = h;
+function filterProps(arr){
+  return arr.filter(function(p){
+    if(activeRegion!=='all'&&getGroup(p)!==activeRegion) return false;
+    if(activeTier==='t1'&&!(p.price>0&&p.price<1000000)) return false;
+    if(activeTier==='t2'&&!(p.price>=1000000&&p.price<1500000)) return false;
+    if(activeTier==='t3'&&!(p.price>=1500000)) return false;
+    return true;
+  });
 }
-
 function renderAll(){
   if(!allProps.length) return;
-  var t1=[],t2=[],t3=[];
-  allProps.forEach(function(p){
-    if(!matchRegion(p)) return;
-    // Front-end safety: skip under-contract or SA/NT
-    if(/under.?contract/i.test(p.name||'')) return;
-    var reg = ((p.region||'')+' '+(p.name||'')).toUpperCase();
-    if(/ SA | NT |DARWIN/.test(' '+reg+' ')) return;
-    var pr = p.price||0;
-    if(pr>0 && pr<1000000)          t1.push(p);
-    else if(pr>=1000000&&pr<1500000) t2.push(p);
-    else if(pr>=1500000)             t3.push(p);
-    else                             t1.push(p); // unknown price → T1
-  });
-  t1=sortProps(t1); t2=sortProps(t2); t3=sortProps(t3);
-  renderTier('t1','Tier 1 — Under $1M',t1);
-  renderTier('t2','Tier 2 — $1M – $1.5M',t2);
-  renderTier('t3','Tier 3 — $1.5M+',t3);
-
-  // All tab
-  var all = sortProps(allProps.filter(function(p){ return matchRegion(p); }));
-  var ta = document.getElementById('ta');
+  var filtered=sortProps(filterProps(allProps));
+  var ta=document.getElementById('ta');
   if(ta){
-    var rows = all.map(function(p,i){ return makeTableRow(p,i+1); }).join('');
-    ta.innerHTML = '<div class="sec-h"><span>All ('+all.length+')</span><span class="b"></span></div>'+
+    var rows=filtered.map(function(p,i){ return makeTableRow(p,i+1); }).join('');
+    ta.innerHTML='<div class="sec-h"><span>'+
+      (activeTier==='all'?'All':activeTier==='t1'?'Tier 1 — Under $1M':activeTier==='t2'?'Tier 2 — $1M–$1.5M':'Tier 3 — $1.5M+')+
+      ' ('+filtered.length+')</span><span class="b"></span></div>'+
       '<div class="tw"><table class="t"><thead><tr>'+
       '<th>T</th><th>#</th><th style="text-align:left">Name</th>'+
       '<th>Price</th><th>NI</th><th>BC%</th><th>Mult</th>'+
       '<th>Pool</th><th>Cont</th><th>ROI</th><th></th><th>★</th><th>🔗</th>'+
       '</tr></thead><tbody>'+rows+'</tbody></table></div>';
   }
-
-  // Watchlist tab
-  var wl = allProps.filter(function(p){ return isWatched(p.id); });
-  var tw = document.getElementById('tw');
+  var tw=document.getElementById('tw');
   if(tw){
-    var wlSorted = sortProps(wl);
-    var wh = '<div class="sec-h"><span>★ Watchlist ('+wl.length+')</span><span class="b"></span></div>';
-    if(!wl.length){
-      wh += '<div style="padding:32px;color:var(--t2);text-align:center;font-size:13px">Tap ★ on any listing to add it here.</div>';
-    } else {
-      wlSorted.forEach(function(p,i){ wh += makeCard(p,i+1); });
-    }
-    tw.innerHTML = wh;
+    var wl=sortProps(allProps.filter(function(p){ return isWatched(p.id); }));
+    var wh='<div class="sec-h"><span>★ Watchlist ('+wl.length+')</span><span class="b"></span></div>';
+    wh+=wl.length?wl.map(function(p,i){ return makeCard(p,i+1); }).join(''):
+      '<div style="padding:32px;color:var(--t2);text-align:center;font-size:13px">Tap ★ on any listing to save it here</div>';
+    tw.innerHTML=wh;
   }
-
-  // Update watchlist count badge
-  var cnt = document.getElementById('wl-cnt');
-  if(cnt) cnt.textContent = watchlist.length;
-  cnt.style.display = watchlist.length ? '' : 'none';
+  var cnt=document.getElementById('wl-cnt');
+  if(cnt){ cnt.textContent=watchlist.length; cnt.style.display=watchlist.length?'':'none'; }
 }
-
-// ── Load data ─────────────────────────────────────────────────────────────
 async function loadPropertyData(){
   try{
-    var r = await fetch('pmr-data-latest.json?t='+Date.now());
+    var r=await fetch('pmr-data-latest.json?t='+Date.now());
     if(!r.ok) throw new Error('HTTP '+r.status);
-    var raw = await r.json();
-
-    // Front-end safety filters
-    allProps = raw.filter(function(p){
-      var n = (p.name||'').toLowerCase();
+    var raw=await r.json();
+    allProps=raw.filter(function(p){
+      var n=(p.name||'').toLowerCase();
       if(/under.?contract/.test(n)) return false;
-      var reg = ((p.region||'')+' '+n).toUpperCase();
+      var reg=((p.region||'')+' '+n).toUpperCase();
       if(/ SA | NT |DARWIN/.test(' '+reg+' ')) return false;
       return true;
     });
-
-    // Build region filter buttons
-    var counts = {};
+    var counts={};
     allProps.forEach(function(p){ var g=getGroup(p); counts[g]=(counts[g]||0)+1; });
-    var rf = document.getElementById('rf-bar');
+    var rf=document.getElementById('rf-bar');
     if(rf){
-      var btns = '<button class="rf-btn ac" data-region="all">All ('+allProps.length+')</button>';
+      var btns='<span class="fbar-label en">Location</span><span class="fbar-label zh">地区</span>';
+      btns+='<button class="pill ac" data-region="all"><span class="en">All ('+allProps.length+')</span><span class="zh">全部</span></button>';
       ['Brisbane','Gold Coast','Sunshine Coast','QLD Other','Interstate'].forEach(function(g){
-        if(counts[g]) btns += '<button class="rf-btn" data-region="'+g+'">'+g+' ('+counts[g]+')</button>';
+        if(counts[g]) btns+='<button class="pill" data-region="'+g+'">'+g+' ('+counts[g]+')</button>';
       });
-      rf.innerHTML = btns;
-      rf.querySelectorAll('.rf-btn').forEach(function(btn){
-        btn.addEventListener('click', function(){
-          activeRegion = this.getAttribute('data-region');
-          rf.querySelectorAll('.rf-btn').forEach(function(b){ b.classList.remove('ac'); });
+      rf.innerHTML=btns;
+      rf.querySelectorAll('.pill[data-region]').forEach(function(btn){
+        btn.addEventListener('click',function(){
+          activeRegion=this.getAttribute('data-region');
+          rf.querySelectorAll('.pill').forEach(function(b){ b.classList.remove('ac'); });
           this.classList.add('ac');
           renderAll();
         });
       });
     }
-
-    // Sort buttons
-    document.querySelectorAll('.sb-btn').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        activeSort = this.getAttribute('data-sort');
-        document.querySelectorAll('.sb-btn').forEach(function(b){ b.classList.remove('ac'); });
-        this.classList.add('ac');
-        renderAll();
+    document.querySelectorAll('#sort-bar .pill').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        activeSort=this.getAttribute('data-sort');
+        document.querySelectorAll('#sort-bar .pill').forEach(function(b){ b.classList.remove('ac'); });
+        this.classList.add('ac'); renderAll();
       });
     });
-
-    // Data freshness
-    var fresh = document.getElementById('freshness');
-    if(fresh && allProps.length){
-      var lu = allProps[0].last_updated || allProps[0].last_fetched || '';
-      if(lu) fresh.textContent = 'Data updated: '+lu.split('T')[0];
-    }
-
-    renderAll();
-  } catch(e){
-    console.error('Load error:',e);
-    ['t1','t2','t3','ta'].forEach(function(id){
-      var el = document.getElementById(id);
-      if(el) el.innerHTML = '<div style="padding:32px;color:var(--r);text-align:center">'+
-        'Error: '+e.message+
-        '<br><button onclick="loadPropertyData()" style="margin-top:12px;padding:8px 16px;background:var(--ac);color:#fff;border:none;border-radius:6px;cursor:pointer">Retry</button></div>';
+    document.querySelectorAll('#tier-bar .pill').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        activeTier=this.getAttribute('data-tier');
+        document.querySelectorAll('#tier-bar .pill').forEach(function(b){ b.classList.remove('ac'); });
+        this.classList.add('ac'); renderAll();
+      });
     });
+    var fresh=document.getElementById('freshness');
+    if(fresh&&allProps.length){
+      var lu=allProps[0].last_updated||allProps[0].last_fetched||'';
+      if(lu) fresh.textContent='Data: '+lu.split('T')[0];
+    }
+    renderAll();
+  }catch(e){
+    console.error(e);
+    var ta=document.getElementById('ta');
+    if(ta) ta.innerHTML='<div style="padding:32px;color:var(--r);text-align:center">'+
+      'Error: '+e.message+'<br><button onclick="loadPropertyData()" style="margin-top:12px;padding:8px 16px;background:var(--ac);color:#fff;border:none;border-radius:6px;cursor:pointer">Retry</button></div>';
   }
 }
-document.addEventListener('DOMContentLoaded', loadPropertyData);
+document.addEventListener('DOMContentLoaded',loadPropertyData);
 </script>
-
 </body>
 </html>
