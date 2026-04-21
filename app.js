@@ -30,7 +30,20 @@
     if (!bar) return;
     const regions = ['all'];
     allData.forEach(p => {
-      const r = (p.location || '').split(',')[0].trim();
+      
+      let r = p.location || p.region || p.address || '';
+      if (!r && p.title && p.title.includes(' QLD')) {
+        let parts = p.title.split(' ');
+        let qld_idx = parts.indexOf('QLD');
+        if (qld_idx > 0) {
+            r = parts.slice(Math.max(0, qld_idx - 2), qld_idx + 1).join(' ');
+        }
+      }
+      r = r.split(',')[0].trim();
+      
+      // 清理一下常见的垃圾词
+      r = r.replace('Caretaking Only ', '').replace('Management Rights ', '').trim();
+
       if (r && !regions.includes(r)) regions.push(r);
     });
     let html = '<span class="fbar-label en">Location</span><span class="fbar-label zh">地区</span>';
