@@ -508,5 +508,229 @@ body.cn .zh{display:block}
 
 </div>
 </div><script>
-(function(){var allData=[],curSort='mult',curTier='all',curRegion='all',watchlist=JSON.parse(localStorage.getItem('pmr_wl')||'[]'),isZH=false;document.addEventListener('DOMContentLoaded',function(){loadData();bindPills();});function loadData(){fetch('pmr-data-latest.json?t='+Date.now()).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(data){allData=Array.isArray(data)?data:(data.listings||data.data||[]);var dt=document.getElementById('dt');if(dt)dt.textContent=new Date().toLocaleDateString('en-AU');var fr=document.getElementById('freshness');if(fr)fr.textContent=allData.length+' listings';buildRegionPills();render();}).catch(function(e){document.getElementById('ta').innerHTML='<div style="padding:60px;text-align:center;color:#dc4646">Cannot load pmr-data-latest.json<br><small>'+e.message+'</small></div>';});}function buildRegionPills(){var bar=document.getElementById('rf-bar');if(!bar)return;var regions=['all'];allData.forEach(function(p){var r=(p.location||'').split(',')[0].trim();if(r&&!regions.includes(r))regions.push(r);});bar.innerHTML='<span class="fbar-label en">Location</span><span class="fbar-label zh">地区</span>'+regions.map(function(r,i){return'<button class="pill'+(i===0?' ac':'')+'" data-region="'+r+'">'+(r==='all'?'<span class="en">All</span><span class="zh">全部</span>':r)+'</button>';}).join('');bar.querySelectorAll('[data-region]').forEach(function(b){b.addEventListener('click',function(){curRegion=this.dataset.region;bar.querySelectorAll('[data-region]').forEach(function(x){x.classList.remove('ac');});this.classList.add('ac');render();});});}function bindPills(){document.querySelectorAll('[data-sort]').forEach(function(b){b.addEventListener('click',function(){curSort=this.dataset.sort;document.querySelectorAll('[data-sort]').forEach(function(x){x.classList.remove('ac');});this.classList.add('ac');render();});});document.querySelectorAll('[data-tier]').forEach(function(b){b.addEventListener('click',function(){curTier=this.dataset.tier;document.querySelectorAll('[data-tier]').forEach(function(x){x.classList.remove('ac');});this.classList.add('ac');render();});});}function getF(){var d=allData.slice();if(curRegion!=='all')d=d.filter(function(p){return(p.location||'').includes(curRegion);});if(curTier!=='all')d=d.filter(function(p){var pr=p.price||0;return curTier==='t1'?pr>0&&pr<1e6:curTier==='t2'?pr>=1e6&&pr<1.5e6:pr>=1.5e6;});return d.sort(function(a,b){return curSort==='mult'?(a.multiplier||999)-(b.multiplier||999):curSort==='ni'?(b.net_income||0)-(a.net_income||0):curSort==='roi'?roi(b)-roi(a):(a.price||0)-(b.price||0);});}function roi(p){return p.price&&p.net_income?p.net_income/p.price*100:0;}function cl(k,v){if(!v)return'';if(k==='bc')return v<=70?'g':v<=80?'y':'r';if(k==='mult')return v<=5?'g':v<=7?'y':'r';if(k==='cont')return v>=20?'g':v>=10?'y':'r';if(k==='ni')return v>=150000?'g':v>=80000?'y':'r';if(k==='pool')return v>=30?'g':v>=15?'y':'r';return'';}function fm(k,v){if(v==null)return'—';if(k==='price'||k==='ni')return v?'$'+Number(v).toLocaleString('en-AU'):'—';if(k==='bc')return v.toFixed(1)+'%';if(k==='mult')return v.toFixed(2)+'x';if(k==='cont')return v+'yr';return String(v);}function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}function mc(l,v,c){return'<div class="mc'+(c?' '+c:'')+'"><div class="v '+(c||'')+'">'+v+'</div><div class="l">'+l+'</div></div>';}function render(){renderCards();renderWL();}function renderCards(){var ta=document.getElementById('ta');var list=getF();if(!list.length){ta.innerHTML='<div style="padding:60px;text-align:center;color:var(--t2)">No listings match filters.</div>';return;}var cards=list.map(function(p,i){var idx=allData.indexOf(p),url=p.url||p.link||'',inWL=watchlist.includes(idx),rk=i<2?'g':i<4?'y':'d';return'<div class="card"><div class="card-h"><span class="rk '+rk+'">'+(i+1)+'</span><span class="nm">'+esc(p.title||p.name||'PMR')+(p.location?' <span style="font-size:11px;font-weight:400;color:var(--t2)">· '+esc(p.location)+'</span>':'')+'</span><button class="star'+(inWL?' on':'')+'" onclick="toggleWL('+idx+',this)">★</button></div><div class="mg">'+mc('PRICE',fm('price',p.price),cl('price',p.price))+mc('NI',fm('ni',p.net_income),cl('ni',p.net_income))+mc('BC%',fm('bc',p.bc_percent),cl('bc',p.bc_percent))+mc('MULT',fm('mult',p.multiplier),cl('mult',p.multiplier))+mc('CONT',fm('cont',p.contract_years),cl('cont',p.contract_years))+mc('POOL',fm('pool',p.pool_units),cl('pool',p.pool_units))+'</div>'+(p.notes?'<div class="cn-notes">'+esc(p.notes)+'</div>':'')+(url?'<div style="margin-top:8px"><a href="'+esc(url)+'" target="_blank" class="lk" style="font-size:12px;color:var(--ac)">View listing →</a></div>':'')+'</div>';}).join('');var tbl='<div class="tw mobile-hide"><table class="t"><thead><tr><th style="text-align:left">#</th><th style="text-align:left">Name</th><th>Price</th><th>NI</th><th>BC%</th><th>Mult</th><th>Cont</th><th>Pool</th><th>ROI</th></tr></thead><tbody>'+list.map(function(p,i){var r=roi(p),url=p.url||p.link||'';return'<tr onclick="'+(url?'window.open(''+esc(url)+'','_blank')':'')+'" style="cursor:pointer"><td style="text-align:left;color:var(--t2)">'+(i+1)+'</td><td style="text-align:left">'+esc(p.title||p.name||'PMR')+'</td><td class="'+cl('price',p.price)+'">'+fm('price',p.price)+'</td><td class="'+cl('ni',p.net_income)+'">'+fm('ni',p.net_income)+'</td><td class="'+cl('bc',p.bc_percent)+'">'+fm('bc',p.bc_percent)+'</td><td class="'+cl('mult',p.multiplier)+'">'+fm('mult',p.multiplier)+'</td><td class="cont-'+cl('cont',p.contract_years)+'">'+fm('cont',p.contract_years)+'</td><td class="'+cl('pool',p.pool_units)+'">'+fm('pool',p.pool_units)+'</td><td>'+(r?r.toFixed(1)+'%':'—')+'</td></tr>';}).join('')+'</tbody></table></div>';ta.innerHTML=tbl+'<div class="mobile-cards">'+cards+'</div>';}function renderWL(){var tw=document.getElementById('tw'),cnt=document.getElementById('wl-cnt');if(cnt){cnt.textContent=watchlist.length;cnt.style.display=watchlist.length?'inline-block':'none';}if(!tw)return;if(!watchlist.length){tw.innerHTML='<div style="padding:60px;text-align:center;color:var(--t2)">No saved listings. Click ★ to save.</div>';return;}tw.innerHTML='<div>'+watchlist.map(function(idx){var p=allData[idx];if(!p)return'';var url=p.url||p.link||'';return'<div class="card"><div class="card-h"><span class="nm">'+esc(p.title||p.name||'PMR')+'</span><button class="star on" onclick="toggleWL('+idx+',this)">★</button></div><div class="mg">'+mc('PRICE',fm('price',p.price),cl('price',p.price))+mc('NI',fm('ni',p.net_income),cl('ni',p.net_income))+mc('BC%',fm('bc',p.bc_percent),cl('bc',p.bc_percent))+mc('MULT',fm('mult',p.multiplier),cl('mult',p.multiplier))+mc('CONT',fm('cont',p.contract_years),cl('cont',p.contract_years))+mc('POOL',fm('pool',p.pool_units),cl('pool',p.pool_units))+'</div>'+(url?'<div style="margin-top:8px"><a href="'+esc(url)+'" target="_blank" class="lk" style="font-size:12px;color:var(--ac)">View listing →</a></div>':'')+'</div>';}).join('')+'</div>';}window.sw=function(id){document.querySelectorAll('.tp').forEach(function(e){e.classList.remove('ac');});document.querySelectorAll('.ti').forEach(function(e){e.classList.remove('ac');});var p=document.getElementById(id);if(p)p.classList.add('ac');var map={ta:0,t4:1,tw:2},tabs=document.querySelectorAll('.ti');if(map[id]!=null&&tabs[map[id]])tabs[map[id]].classList.add('ac');};window.tog=function(){isZH=!isZH;document.body.classList.toggle('cn',isZH);var b=document.querySelector('.lb');if(b)b.textContent=isZH?'EN':'中文';};window.toggleWL=function(idx,btn){var i=watchlist.indexOf(idx);if(i===-1)watchlist.push(idx);else watchlist.splice(i,1);localStorage.setItem('pmr_wl',JSON.stringify(watchlist));if(btn)btn.classList.toggle('on',watchlist.includes(idx));renderWL();};})();
-</script></body></html>
+(function(){
+var allData=[],curSort='mult',curTier='all',curRegion='all',isZH=false;
+var watchlist=JSON.parse(localStorage.getItem('pmr_wl')||'[]');
+
+document.addEventListener('DOMContentLoaded',function(){
+  fetch('pmr-data-latest.json?t='+Date.now())
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(function(data){
+      allData=Array.isArray(data)?data:(data.listings||data.data||[]);
+      var dt=document.getElementById('dt');
+      if(dt) dt.textContent=new Date().toLocaleDateString('en-AU');
+      var fr=document.getElementById('freshness');
+      if(fr) fr.textContent=allData.length+' listings';
+      buildRegions();
+      bindPills();
+      render();
+    })
+    .catch(function(e){
+      var ta=document.getElementById('ta');
+      if(ta) ta.innerHTML='<div style="padding:60px;text-align:center;color:#dc4646">Cannot load pmr-data-latest.json<br><small>'+e.message+'</small></div>';
+    });
+});
+
+function buildRegions(){
+  var bar=document.getElementById('rf-bar');
+  if(!bar) return;
+  var regions=['all'];
+  allData.forEach(function(p){
+    var r=(p.location||'').split(',')[0].trim();
+    if(r && regions.indexOf(r)===-1) regions.push(r);
+  });
+  var html='<span class="fbar-label en">Location</span><span class="fbar-label zh">地区</span>';
+  regions.forEach(function(r,i){
+    html+='<button class="pill'+(i===0?' ac':'')+'" data-region="'+r+'">'+(r==='all'?'<span class="en">All</span><span class="zh">全部</span>':r)+'</button>';
+  });
+  bar.innerHTML=html;
+  bar.querySelectorAll('[data-region]').forEach(function(b){
+    b.addEventListener('click',function(){
+      curRegion=this.getAttribute('data-region');
+      bar.querySelectorAll('[data-region]').forEach(function(x){ x.classList.remove('ac'); });
+      this.classList.add('ac');
+      render();
+    });
+  });
+}
+
+function bindPills(){
+  document.querySelectorAll('[data-sort]').forEach(function(b){
+    b.addEventListener('click',function(){
+      curSort=this.getAttribute('data-sort');
+      document.querySelectorAll('[data-sort]').forEach(function(x){ x.classList.remove('ac'); });
+      this.classList.add('ac');
+      render();
+    });
+  });
+  document.querySelectorAll('[data-tier]').forEach(function(b){
+    b.addEventListener('click',function(){
+      curTier=this.getAttribute('data-tier');
+      document.querySelectorAll('[data-tier]').forEach(function(x){ x.classList.remove('ac'); });
+      this.classList.add('ac');
+      render();
+    });
+  });
+}
+
+function getF(){
+  var d=allData.slice();
+  if(curRegion!=='all') d=d.filter(function(p){ return (p.location||'').indexOf(curRegion)!==-1; });
+  if(curTier!=='all') d=d.filter(function(p){
+    var pr=p.price||0;
+    if(curTier==='t1') return pr>0&&pr<1000000;
+    if(curTier==='t2') return pr>=1000000&&pr<1500000;
+    return pr>=1500000;
+  });
+  d.sort(function(a,b){
+    if(curSort==='mult') return (a.multiplier||999)-(b.multiplier||999);
+    if(curSort==='ni')   return (b.net_income||0)-(a.net_income||0);
+    if(curSort==='roi')  return roi(b)-roi(a);
+    return (a.price||0)-(b.price||0);
+  });
+  return d;
+}
+
+function roi(p){ return (p.price&&p.net_income)? p.net_income/p.price*100 :0; }
+
+function cl(k,v){
+  if(!v) return '';
+  if(k==='bc')   return v<=70?'g':v<=80?'y':'r';
+  if(k==='mult') return v<=5?'g':v<=7?'y':'r';
+  if(k==='cont') return v>=20?'g':v>=10?'y':'r';
+  if(k==='ni')   return v>=150000?'g':v>=80000?'y':'r';
+  if(k==='pool') return v>=30?'g':v>=15?'y':'r';
+  return '';
+}
+
+function fm(k,v){
+  if(v==null) return '—';
+  if(k==='price'||k==='ni') return v?'$'+Number(v).toLocaleString('en-AU'):'—';
+  if(k==='bc')   return v.toFixed(1)+'%';
+  if(k==='mult') return v.toFixed(2)+'x';
+  if(k==='cont') return v+'yr';
+  return String(v);
+}
+
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function mc(l,v,c){
+  return '<div class="mc'+(c?' '+c:'')+'"><div class="v '+(c||'')+'">'+v+'</div><div class="l">'+l+'</div></div>';
+}
+
+function render(){ renderCards(); renderWL(); }
+
+function renderCards(){
+  var ta=document.getElementById('ta');
+  if(!ta) return;
+  var list=getF();
+  if(!list.length){
+    ta.innerHTML='<div style="padding:60px;text-align:center;color:var(--t2)">No listings match filters.</div>';
+    return;
+  }
+  var cards='';
+  list.forEach(function(p,i){
+    var idx=allData.indexOf(p);
+    var url=p.url||p.link||'';
+    var inWL=watchlist.indexOf(idx)!==-1;
+    var rk=i<2?'g':i<4?'y':'d';
+    cards+='<div class="card">';
+    cards+='<div class="card-h">';
+    cards+='<span class="rk '+rk+'">'+(i+1)+'</span>';
+    cards+='<span class="nm">'+esc(p.title||p.name||'PMR Listing');
+    if(p.location) cards+=' <span style="font-size:11px;font-weight:400;color:var(--t2)">· '+esc(p.location)+'</span>';
+    cards+='</span>';
+    cards+='<button class="star'+(inWL?' on':'')+'" onclick="toggleWL('+idx+',this)">★</button>';
+    cards+='</div>';
+    cards+='<div class="mg">';
+    cards+=mc('PRICE',fm('price',p.price),cl('price',p.price));
+    cards+=mc('NI',fm('ni',p.net_income),cl('ni',p.net_income));
+    cards+=mc('BC%',fm('bc',p.bc_percent),cl('bc',p.bc_percent));
+    cards+=mc('MULT',fm('mult',p.multiplier),cl('mult',p.multiplier));
+    cards+=mc('CONT',fm('cont',p.contract_years),cl('cont',p.contract_years));
+    cards+=mc('POOL',fm('pool',p.pool_units),cl('pool',p.pool_units));
+    cards+='</div>';
+    if(p.notes) cards+='<div class="cn-notes">'+esc(p.notes)+'</div>';
+    if(url) cards+='<div style="margin-top:8px"><a href="'+esc(url)+'" target="_blank" class="lk" style="font-size:12px;color:var(--ac)">View listing →</a></div>';
+    cards+='</div>';
+  });
+  var tbl='<div class="tw mobile-hide"><table class="t"><thead><tr>';
+  tbl+='<th style="text-align:left">#</th><th style="text-align:left">Name</th>';
+  tbl+='<th>Price</th><th>NI</th><th>BC%</th><th>Mult</th><th>Cont</th><th>Pool</th><th>ROI</th>';
+  tbl+='</tr></thead><tbody>';
+  list.forEach(function(p,i){
+    var r=roi(p); var url=p.url||p.link||'';
+    tbl+='<tr onclick="'+(url?'window.open(''+esc(url)+'','_blank')':'')+'" style="cursor:pointer">';
+    tbl+='<td style="text-align:left;color:var(--t2)">'+(i+1)+'</td>';
+    tbl+='<td style="text-align:left">'+esc(p.title||p.name||'PMR Listing')+'</td>';
+    tbl+='<td class="'+cl('price',p.price)+'">'+fm('price',p.price)+'</td>';
+    tbl+='<td class="'+cl('ni',p.net_income)+'">'+fm('ni',p.net_income)+'</td>';
+    tbl+='<td class="'+cl('bc',p.bc_percent)+'">'+fm('bc',p.bc_percent)+'</td>';
+    tbl+='<td class="'+cl('mult',p.multiplier)+'">'+fm('mult',p.multiplier)+'</td>';
+    tbl+='<td class="cont-'+cl('cont',p.contract_years)+'">'+fm('cont',p.contract_years)+'</td>';
+    tbl+='<td class="'+cl('pool',p.pool_units)+'">'+fm('pool',p.pool_units)+'</td>';
+    tbl+='<td>'+(r?r.toFixed(1)+'%':'—')+'</td>';
+    tbl+='</tr>';
+  });
+  tbl+='</tbody></table></div>';
+  ta.innerHTML=tbl+'<div class="mobile-cards">'+cards+'</div>';
+}
+
+function renderWL(){
+  var tw=document.getElementById('tw');
+  var cnt=document.getElementById('wl-cnt');
+  if(cnt){ cnt.textContent=watchlist.length; cnt.style.display=watchlist.length?'inline-block':'none'; }
+  if(!tw) return;
+  if(!watchlist.length){
+    tw.innerHTML='<div style="padding:60px;text-align:center;color:var(--t2)">No saved listings. Click ★ to save.</div>';
+    return;
+  }
+  var html='';
+  watchlist.forEach(function(idx){
+    var p=allData[idx]; if(!p) return;
+    var url=p.url||p.link||'';
+    html+='<div class="card">';
+    html+='<div class="card-h"><span class="nm">'+esc(p.title||p.name||'PMR Listing')+'</span>';
+    html+='<button class="star on" onclick="toggleWL('+idx+',this)">★</button></div>';
+    html+='<div class="mg">';
+    html+=mc('PRICE',fm('price',p.price),cl('price',p.price));
+    html+=mc('NI',fm('ni',p.net_income),cl('ni',p.net_income));
+    html+=mc('BC%',fm('bc',p.bc_percent),cl('bc',p.bc_percent));
+    html+=mc('MULT',fm('mult',p.multiplier),cl('mult',p.multiplier));
+    html+=mc('CONT',fm('cont',p.contract_years),cl('cont',p.contract_years));
+    html+=mc('POOL',fm('pool',p.pool_units),cl('pool',p.pool_units));
+    html+='</div>';
+    if(url) html+='<div style="margin-top:8px"><a href="'+esc(url)+'" target="_blank" class="lk" style="font-size:12px;color:var(--ac)">View listing →</a></div>';
+    html+='</div>';
+  });
+  tw.innerHTML=html;
+}
+
+window.sw=function(id){
+  document.querySelectorAll('.tp').forEach(function(e){ e.classList.remove('ac'); });
+  document.querySelectorAll('.ti').forEach(function(e){ e.classList.remove('ac'); });
+  var p=document.getElementById(id); if(p) p.classList.add('ac');
+  var map={ta:0,t4:1,tw:2};
+  var tabs=document.querySelectorAll('.ti');
+  if(map[id]!=null && tabs[map[id]]) tabs[map[id]].classList.add('ac');
+};
+
+window.tog=function(){
+  isZH=!isZH;
+  document.body.classList.toggle('cn',isZH);
+  var b=document.querySelector('.lb');
+  if(b) b.textContent=isZH?'EN':'中文';
+};
+
+window.toggleWL=function(idx,btn){
+  var i=watchlist.indexOf(idx);
+  if(i===-1) watchlist.push(idx); else watchlist.splice(i,1);
+  localStorage.setItem('pmr_wl',JSON.stringify(watchlist));
+  if(btn) btn.classList.toggle('on',watchlist.indexOf(idx)!==-1);
+  renderWL();
+};
+
+})();
+</script>
+</body>
+</html>
