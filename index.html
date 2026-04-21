@@ -128,13 +128,66 @@ body.cn .zh{display:block}
 .badge-y{background:rgba(218,113,1,.15);color:var(--a)}
 .badge-r{background:rgba(220,70,70,.15);color:var(--r)}
 
+
+/* ── Mobile optimisations ─────────────────────────────────────────── */
+/* Flag inline tooltip (tap on mobile) */
+.flag-wrap{position:relative;display:inline-block;cursor:pointer}
+.flag-tip{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
+  background:rgba(20,22,30,.97);border:1px solid var(--bd);border-radius:6px;
+  padding:6px 10px;font-size:11px;color:var(--tx);white-space:nowrap;z-index:300;
+  pointer-events:none;max-width:260px;white-space:normal;line-height:1.5;text-align:left}
+.flag-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--bd)}
+.flag-wrap.open .flag-tip{display:block}
+
+@media (max-width:640px){
+  /* Nav */
+  .nd{display:none}
+  h1{font-size:14px}
+  /* Legend: 2 per row */
+  .leg{gap:5px 10px;padding:6px 12px;font-size:10px}
+  /* Filter bars: tighter */
+  .fbar{padding:5px 10px;gap:5px}
+  .fbar-label{font-size:8px;min-width:30px}
+  .pill{padding:4px 10px;font-size:10px}
+  /* Tabs */
+  .ti{font-size:10px;padding:9px 2px}
+  /* Flag legend stacked */
+  .flag-legend{flex-direction:column;gap:4px;padding:6px 12px;font-size:10px}
+  /* Cards */
+  .card{margin:6px 10px;padding:10px}
+  .nm{font-size:12px}
+  .mg{grid-template-columns:repeat(3,1fr);gap:5px}
+  .mc .v{font-size:12px}
+  .mc .l{font-size:8px}
+  /* Hide table, show cards on mobile */
+  .mobile-hide{display:none!important}
+  .mobile-cards{display:block!important}
+  /* Freshness */
+  .freshness{font-size:9px;padding:2px 12px 0}
+  /* Wiki */
+  .wiki{padding:6px 12px 40px}
+  .wiki h2{font-size:14px;margin:20px 0 8px}
+  .wiki h3{font-size:11px}
+  .wiki p,.wiki li{font-size:12px}
+  .wiki table{font-size:11px}
+  .wiki th,.wiki td{padding:5px 7px}
+  /* TOC */
+  .wiki .toc{padding:10px 12px}
+  .wiki .toc a{font-size:11px}
+}
+@media (min-width:641px){
+  .mobile-cards{display:none!important}
+  .mobile-hide{display:block!important}
+}
+
 </style>
 </head>
 <body>
 <nav><div class="nh"><div class="br"><h1>PMR Dashboard</h1></div><div class="nr"><span class="nd" id="dt"></span><button class="lb" onclick="tog()">EN</button></div></div></nav>
 <div class="leg">
 <span><b>NI</b> <span class="en">Net Income</span><span class="zh">年净收入</span></span>
-<span><b>BC%</b> <span class="en">Salary/Net (ideal 60-70%)</span><span class="zh">BC薪资占比 (理想60-70%)</span></span>
+<span><b>BC%</b> <span class="en">Salary/Net (ideal 60–70%)</span><span class="zh">BC薪资占比 (60–70%)</span></span>
 <span><b>MULT</b> <span class="en">Price/Net (lower=better)</span><span class="zh">价格/净收入 (越低越好)</span></span>
 <span><b>POOL</b> <span class="en">Letting pool units</span><span class="zh">出租单元数</span></span>
 <span><b>CONT</b> <span class="en">Contract years remaining</span><span class="zh">合同剩余年限</span></span>
@@ -164,9 +217,9 @@ body.cn .zh{display:block}
 </div>
 <div class="app">
   <div class="flag-legend" id="flag-legend">
-    <span>✅ <span class="en">Good: BC%≤70, Mult≤6.5, Cont≥15yr</span><span class="zh">指标良好</span></span>
-    <span>⚠️ <span class="en">Caution: BC% 70–80 · Mult &gt;7.5x · Cont &lt;15yr</span><span class="zh">注意：BC偏高/倍数偏高/合同偏短</span></span>
-    <span>🚨 <span class="en">Risk: BC% &gt;80 or Mult &gt;10x</span><span class="zh">高风险</span></span>
+    <span>✅ <span class="en">Good: BC%≤70 · Mult≤6.5 · Cont≥15yr</span><span class="zh">指标良好</span></span>
+    <span>⚠️ <span class="en">Caution: BC% 70–80 or Mult&gt;7.5x or Cont&lt;15yr</span><span class="zh">注意</span></span>
+    <span>🚨 <span class="en">Risk: BC%&gt;80 or Mult&gt;10x</span><span class="zh">高风险</span></span>
   </div>
   <div class="tp ac" id="ta"></div>
   <div class="tp" id="tw"></div>
@@ -347,32 +400,38 @@ body.cn .zh{display:block}
 <script>
 var zh = false;
 function tog(){
-  zh = !zh;
-  document.body.classList.toggle('cn', zh);
-  document.querySelector('.lb').textContent = zh ? '中文' : 'EN';
+  zh=!zh;
+  document.body.classList.toggle('cn',zh);
+  document.querySelector('.lb').textContent=zh?'中文':'EN';
 }
 function sw(id){
-  document.querySelectorAll('.tp').forEach(function(e){ e.classList.remove('ac'); });
-  document.querySelectorAll('.ti').forEach(function(e){ e.classList.remove('ac'); });
-  var el = document.getElementById(id);
+  document.querySelectorAll('.tp').forEach(function(e){e.classList.remove('ac');});
+  document.querySelectorAll('.ti').forEach(function(e){e.classList.remove('ac');});
+  var el=document.getElementById(id);
   if(el) el.classList.add('ac');
   document.querySelectorAll('.ti').forEach(function(t){
-    var fn = t.getAttribute('onclick')||'';
+    var fn=t.getAttribute('onclick')||'';
     if(fn.indexOf("'"+id+"'")>=0) t.classList.add('ac');
   });
-  var fl = document.getElementById('flag-legend');
-  if(fl) fl.style.display = (id==='ta') ? '' : 'none';
+  var fl=document.getElementById('flag-legend');
+  if(fl) fl.style.display=(id==='ta')?'':'none';
 }
+// Close all flag tips when tapping elsewhere
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.flag-wrap')){
+    document.querySelectorAll('.flag-wrap.open').forEach(function(el){el.classList.remove('open');});
+  }
+});
 (function(){
-  var d=new Date(), mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var d=new Date(),mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var el=document.getElementById('dt');
   if(el) el.textContent=d.getDate()+' '+mo[d.getMonth()]+' '+d.getFullYear()+
     ' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' AEST';
 })();
 </script>
 <script>
-var activeRegion='all', activeSort='mult', activeTier='all';
-var allProps=[], watchlist=JSON.parse(localStorage.getItem('pmr-watch')||'[]');
+var activeRegion='all',activeSort='mult',activeTier='all';
+var allProps=[],watchlist=JSON.parse(localStorage.getItem('pmr-watch')||'[]');
 var RG={
   'Brisbane':['Brisbane','West End','Kangaroo Point','Victoria Point','Morayfield','Brendale',
     'Chermside','Lutwyche','Wakerley','Mansfield','Redcliffe','Albany Creek','Eight Mile Plains',
@@ -392,6 +451,7 @@ function getGroup(p){
   for(var g in RG) for(var i=0;i<RG[g].length;i++) if(txt.indexOf(RG[g][i].toLowerCase())>=0) return g;
   return 'QLD Other';
 }
+function isMobile(){ return window.innerWidth<=640; }
 function sortProps(arr){
   return arr.slice().sort(function(a,b){
     if(activeSort==='mult'){
@@ -424,14 +484,19 @@ function flag(p){
   if((bc&&bc>70)||(m&&m>7.5)||(c&&c<15)) return '⚠️';
   return '✅';
 }
-function flagTitle(p){
+function flagReason(p){
   var bc=p.bc_percent,m=p.multiplier,c=p.contract_years,r=[];
-  if(bc&&bc>80) r.push('BC% '+bc+'% exceeds 80%');
-  else if(bc&&bc>70) r.push('BC% '+bc+'% is 70-80%');
-  if(m&&m>10) r.push('Mult '+m+'x exceeds 10x');
-  else if(m&&m>7.5) r.push('Mult '+m+'x exceeds 7.5x');
-  if(c&&c<15) r.push('Contract '+c+'yr under 15yr');
-  return r.length?r.join(' | '):'All metrics look good';
+  if(bc&&bc>80) r.push('🚨 BC% '+bc+'% (>80%)');
+  else if(bc&&bc>70) r.push('⚠️ BC% '+bc+'% (70–80%)');
+  if(m&&m>10) r.push('🚨 Mult '+m+'x (>10x)');
+  else if(m&&m>7.5) r.push('⚠️ Mult '+m+'x (>7.5x)');
+  if(c&&c<15) r.push('⚠️ Contract '+c+'yr (<15yr)');
+  return r.length?r.join('<br>'):'✅ All metrics look good';
+}
+function flagBadge(p,id){
+  var f=flag(p), tip=flagReason(p);
+  return '<span class="flag-wrap" onclick="var w=this;document.querySelectorAll(\'.flag-wrap.open\').forEach(function(e){if(e!==w)e.classList.remove(\'open\')});this.classList.toggle(\'open\')" title="'+tip.replace(/<br>/g,' | ')+'">'+
+    f+'<span class="flag-tip">'+tip+'</span></span>';
 }
 function roi(p){
   if(!p.price||!p.net_income||p.price===p.net_income) return '—';
@@ -445,10 +510,12 @@ function toggleWatch(id){
   localStorage.setItem('pmr-watch',JSON.stringify(watchlist));
   renderAll();
 }
+
+// ── Card (mobile + watchlist) ─────────────────────────────────────────────
 function makeCard(p,rank){
   var mc=p.multiplier,bc=p.bc_percent,cont=p.contract_years;
   var link=p.url?'<a class="lk" href="'+p.url+'" target="_blank">🔗</a>':'';
-  var star='<button class="star'+(isWatched(p.id)?' on':'')+'" onclick="toggleWatch(\''+p.id+'\')" title="Add to watchlist">★</button>';
+  var star='<button class="star'+(isWatched(p.id)?' on':'')+'" onclick="toggleWatch(\''+p.id+'\')" title="Watchlist">★</button>';
   var rkC=rank<=3?'g':rank<=6?'y':'d';
   var nh='';
   if(p.notes&&p.notes.trim()) nh+='<div class="cn-notes">'+p.notes+'</div>';
@@ -456,11 +523,12 @@ function makeCard(p,rank){
   if(p.action&&p.action.trim()) nh+='<div class="cn-act">→ '+p.action+'</div>';
   var roiStr=roi(p);
   var roiLine=roiStr!=='—'?'<div style="font-size:11px;color:var(--t2);padding:4px 0 0">ROI: '+roiStr+'</div>':'';
+  // On mobile show flag reason inline below metrics
+  var flagLine='<div style="font-size:11px;color:var(--t2);padding:4px 0 0;line-height:1.6">'+flagReason(p).replace(/<br>/g,' &nbsp;')+'</div>';
   return '<div class="card">'+
     '<div class="card-h">'+
       '<span class="rk '+rkC+'">'+rank+'</span>'+
       '<span class="nm">'+p.name+'</span>'+
-      '<span title="'+flagTitle(p)+'">'+flag(p)+'</span>'+
       star+link+
     '</div>'+
     '<div class="cb"><div class="mg">'+
@@ -470,8 +538,10 @@ function makeCard(p,rank){
       '<div class="mc '+multColor(mc)+'"><div class="v">'+(mc&&mc>0?mc+'x':'—')+'</div><div class="l">Mult</div></div>'+
       '<div class="mc"><div class="v">'+(p.pool_units>0?p.pool_units:'?')+'</div><div class="l">Pool</div></div>'+
       '<div class="mc '+contColor(cont)+'"><div class="v">'+(cont&&cont>0?cont+'yr':'?')+'</div><div class="l">Cont</div></div>'+
-    '</div>'+roiLine+nh+'</div></div>';
+    '</div>'+flagLine+roiLine+nh+'</div></div>';
 }
+
+// ── Table row (desktop only) ──────────────────────────────────────────────
 function makeTableRow(p,idx){
   var mc=p.multiplier,bc=p.bc_percent,cont=p.contract_years;
   var link=p.url?'<a href="'+p.url+'" target="_blank" style="color:var(--ac)">🔗</a>':'—';
@@ -479,7 +549,7 @@ function makeTableRow(p,idx){
   var tier=p.price>0?(p.price<1000000?'<span style="color:var(--g)">T1</span>':p.price<1500000?'<span style="color:var(--a)">T2</span>':'<span style="color:var(--r)">T3</span>'):'—';
   return '<tr>'+
     '<td>'+tier+'</td><td>'+idx+'</td>'+
-    '<td style="text-align:left;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+p.name+' | '+flagTitle(p)+'">'+p.name+'</td>'+
+    '<td style="text-align:left;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+p.name+'">'+p.name+'</td>'+
     '<td class="'+(p.price&&p.price>3000000?'y':'')+'">'+fmt(p.price)+'</td>'+
     '<td class="'+(p.net_income>0?'tg':'')+'">'+fmt(p.net_income)+'</td>'+
     '<td class="'+bcColor(bc)+'">'+(bc&&bc>0?bc+'%':'—')+'</td>'+
@@ -487,10 +557,11 @@ function makeTableRow(p,idx){
     '<td>'+(p.pool_units>0?p.pool_units:'—')+'</td>'+
     '<td class="'+contColor(cont)+'">'+(cont&&cont>0?cont+'yr':'—')+'</td>'+
     '<td>'+roi(p)+'</td>'+
-    '<td title="'+flagTitle(p)+'">'+flag(p)+'</td>'+
+    '<td>'+flagBadge(p,'r'+idx)+'</td>'+
     '<td>'+star+'</td><td>'+link+'</td>'+
   '</tr>';
 }
+
 function filterProps(arr){
   return arr.filter(function(p){
     if(activeRegion!=='all'&&getGroup(p)!==activeRegion) return false;
@@ -500,21 +571,36 @@ function filterProps(arr){
     return true;
   });
 }
-function renderAll(){
-  if(!allProps.length) return;
-  var filtered=sortProps(filterProps(allProps));
-  var ta=document.getElementById('ta');
-  if(ta){
+
+function renderListings(filtered, containerId){
+  var ta=document.getElementById(containerId);
+  if(!ta) return;
+  var label=activeTier==='all'?'All':activeTier==='t1'?'Tier 1 — Under $1M':activeTier==='t2'?'Tier 2 — $1M–$1.5M':'Tier 3 — $1.5M+';
+  var hdr='<div class="sec-h"><span>'+label+' ('+filtered.length+')</span><span class="b"></span></div>';
+  if(!filtered.length){
+    ta.innerHTML=hdr+'<div style="padding:32px;color:var(--t2);text-align:center;font-size:13px">No listings match current filters</div>';
+    return;
+  }
+  if(isMobile()){
+    // Mobile: cards
+    ta.innerHTML=hdr+filtered.map(function(p,i){ return makeCard(p,i+1); }).join('');
+  } else {
+    // Desktop: table
     var rows=filtered.map(function(p,i){ return makeTableRow(p,i+1); }).join('');
-    ta.innerHTML='<div class="sec-h"><span>'+
-      (activeTier==='all'?'All':activeTier==='t1'?'Tier 1 — Under $1M':activeTier==='t2'?'Tier 2 — $1M–$1.5M':'Tier 3 — $1.5M+')+
-      ' ('+filtered.length+')</span><span class="b"></span></div>'+
+    ta.innerHTML=hdr+
       '<div class="tw"><table class="t"><thead><tr>'+
       '<th>T</th><th>#</th><th style="text-align:left">Name</th>'+
       '<th>Price</th><th>NI</th><th>BC%</th><th>Mult</th>'+
       '<th>Pool</th><th>Cont</th><th>ROI</th><th></th><th>★</th><th>🔗</th>'+
       '</tr></thead><tbody>'+rows+'</tbody></table></div>';
   }
+}
+
+function renderAll(){
+  if(!allProps.length) return;
+  var filtered=sortProps(filterProps(allProps));
+  renderListings(filtered,'ta');
+  // Watchlist: always cards (comfortable on both)
   var tw=document.getElementById('tw');
   if(tw){
     var wl=sortProps(allProps.filter(function(p){ return isWatched(p.id); }));
@@ -526,6 +612,14 @@ function renderAll(){
   var cnt=document.getElementById('wl-cnt');
   if(cnt){ cnt.textContent=watchlist.length; cnt.style.display=watchlist.length?'':'none'; }
 }
+
+// Re-render on resize (mobile <-> desktop switch)
+var resizeTimer;
+window.addEventListener('resize',function(){
+  clearTimeout(resizeTimer);
+  resizeTimer=setTimeout(renderAll,200);
+});
+
 async function loadPropertyData(){
   try{
     var r=await fetch('pmr-data-latest.json?t='+Date.now());
@@ -538,6 +632,7 @@ async function loadPropertyData(){
       if(/ SA | NT |DARWIN/.test(' '+reg+' ')) return false;
       return true;
     });
+    // Location pills
     var counts={};
     allProps.forEach(function(p){ var g=getGroup(p); counts[g]=(counts[g]||0)+1; });
     var rf=document.getElementById('rf-bar');
@@ -551,26 +646,28 @@ async function loadPropertyData(){
       rf.querySelectorAll('.pill[data-region]').forEach(function(btn){
         btn.addEventListener('click',function(){
           activeRegion=this.getAttribute('data-region');
-          rf.querySelectorAll('.pill').forEach(function(b){ b.classList.remove('ac'); });
-          this.classList.add('ac');
-          renderAll();
+          rf.querySelectorAll('.pill').forEach(function(b){b.classList.remove('ac');});
+          this.classList.add('ac'); renderAll();
         });
       });
     }
+    // Sort pills
     document.querySelectorAll('#sort-bar .pill').forEach(function(btn){
       btn.addEventListener('click',function(){
         activeSort=this.getAttribute('data-sort');
-        document.querySelectorAll('#sort-bar .pill').forEach(function(b){ b.classList.remove('ac'); });
+        document.querySelectorAll('#sort-bar .pill').forEach(function(b){b.classList.remove('ac');});
         this.classList.add('ac'); renderAll();
       });
     });
+    // Tier pills
     document.querySelectorAll('#tier-bar .pill').forEach(function(btn){
       btn.addEventListener('click',function(){
         activeTier=this.getAttribute('data-tier');
-        document.querySelectorAll('#tier-bar .pill').forEach(function(b){ b.classList.remove('ac'); });
+        document.querySelectorAll('#tier-bar .pill').forEach(function(b){b.classList.remove('ac');});
         this.classList.add('ac'); renderAll();
       });
     });
+    // Freshness
     var fresh=document.getElementById('freshness');
     if(fresh&&allProps.length){
       var lu=allProps[0].last_updated||allProps[0].last_fetched||'';
