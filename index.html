@@ -1,404 +1,512 @@
 <!DOCTYPE html>
-<html lang="zh" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PMR Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
 :root{
-  --bg:#0f1117;--surface:#181c24;--surface2:#1e2330;--border:#2a2f3d;
-  --text:#e2e6f0;--muted:#8891a8;--faint:#454d61;
-  --green:#2ecc71;--yellow:#f0b429;--red:#e74c3c;
-  --accent:#4f98a3;--accent2:#01696f;--r:8px;
+  --bg:#09090f;--s1:rgba(255,255,255,.04);--s2:rgba(255,255,255,.07);
+  --bd:rgba(255,255,255,.09);--tx:#e8eaf0;--t1:#c8cad4;--t2:#7a7d8a;
+  --ac:#4f98a3;--g:#50c878;--y:#ffcc44;--a:#da7101;--r:#dc4646;
+  --pad:16px;--rad:10px
 }
-body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
-header{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.logo{font-size:16px;font-weight:700;color:var(--accent);letter-spacing:.5px}
-.hdr-meta{font-size:12px;color:var(--muted)}
-.theme-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px}
-.stats-bar{display:flex;gap:20px;padding:12px 20px;background:var(--surface);border-bottom:1px solid var(--border);flex-wrap:wrap}
-.stat-item{display:flex;flex-direction:column;gap:2px}
-.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-.stat-value{font-size:18px;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
-.legend{display:flex;gap:16px;padding:7px 20px;background:var(--surface2);border-bottom:1px solid var(--border);flex-wrap:wrap;font-size:11px;color:var(--muted)}
-.dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px}
-.dot-g{background:var(--green)}.dot-y{background:var(--yellow)}.dot-r{background:var(--red)}
-.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 20px;background:var(--surface)}
-.tab{padding:10px 16px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit;transition:all .15s}
-.tab:hover{color:var(--text)}
-.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-.tab-content{display:none}
-.tab-content.active{display:block}
-.controls{padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--border);background:var(--surface)}
-.btn-group{display:flex;gap:4px}
-.ctrl-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
-.ctrl-btn:hover{border-color:var(--accent);color:var(--accent)}
-.ctrl-btn.active{background:var(--accent2);border-color:var(--accent);color:#fff}
-.lbl{font-size:12px;color:var(--muted);margin-right:2px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;padding:16px 20px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
-.card:hover{border-color:var(--accent);box-shadow:0 4px 20px rgba(79,152,163,.12)}
-.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:8px}
-.card-title{font-size:13px;font-weight:600;line-height:1.4;flex:1}
-.card-loc{font-size:11px;color:var(--muted);margin-top:2px}
-.rank{font-size:11px;font-weight:700;padding:2px 7px;border-radius:12px;white-space:nowrap}
-.r1{background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3)}
-.r2{background:rgba(240,180,41,.12);color:var(--yellow);border:1px solid rgba(240,180,41,.25)}
-.r3{background:rgba(79,152,163,.15);color:var(--accent);border:1px solid rgba(79,152,163,.3)}
-.rn{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.metric{background:var(--surface2);border-radius:6px;padding:7px 8px;text-align:center}
-.metric-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
-.metric-value{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
-.g{color:var(--green)}.y{color:var(--yellow)}.r{color:var(--red)}.n{color:var(--muted)}
-.card-footer{margin-top:10px;display:flex;justify-content:space-between;align-items:center}
-.notes{font-size:11px;color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.card-link{font-size:11px;color:var(--accent);text-decoration:none;white-space:nowrap;margin-left:8px}
-.card-link:hover{color:#fff}
-.loader{text-align:center;padding:60px;color:var(--muted);font-size:15px}
-.err{text-align:center;padding:40px;color:var(--red);font-size:13px;background:var(--surface);margin:20px;border-radius:var(--r);border:1px solid rgba(231,76,60,.2);line-height:1.8}
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center}
-.modal-bg.open{display:flex}
-.modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;max-width:560px;width:90%;max-height:85vh;overflow-y:auto;position:relative}
-.modal-close{position:absolute;top:12px;right:12px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center}
-.modal-title{font-size:16px;font-weight:700;margin-bottom:4px;padding-right:36px}
-.modal-sub{font-size:12px;color:var(--accent);margin-bottom:16px}
-.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.modal-metric{background:var(--surface2);border-radius:8px;padding:10px 12px}
-.modal-metric-label{font-size:11px;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
-.modal-metric-value{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
-.modal-notes{background:var(--surface2);border-radius:8px;padding:12px;font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px}
-.modal-actions{display:flex;gap:8px}
-.mbtn{padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block;border:none;transition:all .15s}
-.mbtn-p{background:var(--accent2);color:#fff}
-.mbtn-p:hover{background:var(--accent)}
-.mbtn-s{background:var(--surface2);border:1px solid var(--border);color:var(--muted)}
-.mbtn-s:hover{color:var(--text)}
-.guide-body{max-width:860px;margin:0 auto;padding:24px 20px;line-height:1.8;font-size:14px;color:var(--muted)}
-.guide-body h2{color:var(--text);font-size:20px;margin-bottom:20px}
-.guide-body h3{color:var(--accent);margin:20px 0 8px;font-size:14px}
-.guide-body ul{margin-left:16px;list-style:disc}
-.guide-body li{margin-bottom:4px}
-.guide-body b{color:var(--text)}
-@media(max-width:640px){.grid{grid-template-columns:1fr;padding:10px}.stats-bar{gap:10px}.stat-value{font-size:15px}.controls{gap:6px}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;font-size:14px;min-height:100vh}
+a{color:var(--ac);text-decoration:none}
+/* Nav */
+nav{position:sticky;top:0;z-index:200;background:rgba(9,10,15,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd);padding:0 var(--pad)}
+.nh{display:flex;align-items:center;height:48px;gap:12px}
+.br{display:flex;align-items:center;gap:8px}
+h1{font-size:16px;font-weight:700;color:var(--tx)}
+.nr{margin-left:auto;display:flex;align-items:center;gap:10px}
+.nd{font-size:11px;color:var(--t2)}
+.lb{background:rgba(74,158,255,.08);color:var(--ac);border:1px solid rgba(74,158,255,.2);padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s}
+.lb:hover{background:rgba(74,158,255,.16)}
+/* Legend */
+.leg{display:flex;flex-wrap:wrap;gap:8px 16px;padding:8px var(--pad);border-bottom:1px solid var(--bd);font-size:11px;color:var(--t2)}
+.leg b{color:var(--ac)}
+/* Tabs */
+.tabs{display:flex;position:sticky;top:48px;z-index:100;background:rgba(9,10,15,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.ti{flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:600;color:var(--t2);cursor:pointer;border-bottom:2px solid transparent;transition:all .18s}
+.ti:hover{color:var(--tx)}
+.ti.ac{color:var(--ac);border-bottom-color:var(--ac)}
+/* Panels */
+.app{padding-bottom:40px}
+.tp{display:none}
+.tp.ac{display:block}
+/* Cards */
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--rad);padding:12px;margin:8px var(--pad)}
+.card:hover{border-color:rgba(79,152,163,.3);background:var(--s2)}
+.rk{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:10px;font-weight:700;flex-shrink:0}
+.rk.g{background:rgba(80,200,120,.15);color:var(--g)}
+.rk.y{background:rgba(255,204,68,.15);color:var(--y)}
+.rk.d{background:rgba(255,255,255,.06);color:var(--t2)}
+.cb{padding-top:8px}
+.mg{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.mc{background:rgba(255,255,255,.03);border-radius:6px;padding:6px 4px;text-align:center}
+.mc .v{font-size:13px;font-weight:600;color:var(--t1)}
+.mc .l{font-size:9px;color:var(--t2);margin-top:2px;letter-spacing:.3px}
+.mc.g .v{color:var(--g)}.mc.y .v{color:var(--y)}.mc.r .v{color:var(--r)}
+.lk{font-size:14px;opacity:.6;transition:opacity .15s}.lk:hover{opacity:1}
+/* Table */
+.tw{overflow-x:auto;padding:0 var(--pad) 16px}
+.t{width:100%;border-collapse:collapse;font-size:12px}
+.t th{padding:8px 6px;text-align:right;color:var(--t2);font-weight:600;border-bottom:1px solid var(--bd);white-space:nowrap}
+.t td{padding:7px 6px;text-align:right;border-bottom:1px solid rgba(255,255,255,.04);color:var(--t1)}
+.t tr:last-child td{border-bottom:none}
+.t tr:hover td{background:rgba(255,255,255,.03)}
+.tg{color:var(--g)!important}.tr{color:var(--r)!important}
+.g{color:var(--g)!important}.y{color:var(--a)!important}.r{color:var(--r)!important}
+/* Section header */
+.sec-h{display:flex;align-items:center;justify-content:space-between;padding:16px var(--pad) 8px;font-size:13px;font-weight:600;color:var(--t2)}
+.b{flex:1;height:1px;background:var(--bd);margin-left:12px}
+/* Guide */
+.gs{margin:0 var(--pad) 8px;border:1px solid var(--bd);border-radius:var(--rad);overflow:hidden}
+.gh{padding:12px var(--pad);cursor:pointer;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;background:var(--s1)}
+.gh:hover{background:var(--s2)}
+.ha{font-size:10px;color:var(--t2);transition:transform .2s}
+.gh.open .ha{transform:rotate(90deg)}
+.gc{display:none;padding:12px var(--pad) 16px;border-top:1px solid var(--bd);font-size:13px;line-height:1.7;color:var(--t2)}
+.gc.open{display:block}
+.gc p{margin-bottom:8px}
+.gc ul{padding-left:18px;margin-bottom:8px}
+.gc table{width:100%;border-collapse:collapse;margin:8px 0}
+.gc th,.gc td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.05);font-size:12px;text-align:left}
+.gc th{color:var(--t2);font-weight:600}
+.fm{font-family:monospace;background:rgba(79,152,163,.1);border:1px solid var(--bd);color:var(--ac);padding:4px 10px;border-radius:4px;font-size:12px;display:inline-block;margin:4px 0 8px}
+/* zh hidden by default */
+.zh{display:none}
+body.cn .en{display:none}
+body.cn .zh{display:block}
+
+
+/* ── Unified pill filter bars ─────────────────────────────────────── */
+.fbar{background:rgba(9,10,15,.85);border-bottom:1px solid var(--bd);padding:7px 14px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;display:flex;align-items:center;gap:6px}
+.fbar-label{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--t2);flex-shrink:0;margin-right:2px;min-width:36px}
+.pill{display:inline-flex;align-items:center;gap:3px;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--bd);background:none;color:var(--t2);transition:all .18s;white-space:nowrap;flex-shrink:0}
+.pill:hover{color:var(--tx);border-color:var(--t2)}
+.pill.ac{background:var(--ac);color:#fff;border-color:var(--ac)}
+.pill-t1.ac{background:var(--g);border-color:var(--g)}
+.pill-t2.ac{background:var(--a);border-color:var(--a)}
+.pill-t3.ac{background:var(--r);border-color:var(--r)}
+/* ── Flag legend ──────────────────────────────────────────────────── */
+.flag-legend{display:flex;gap:6px 14px;flex-wrap:wrap;padding:7px 16px;font-size:11px;color:var(--t2);border-bottom:1px solid var(--bd);background:rgba(255,255,255,.015)}
+/* ── Card additions ───────────────────────────────────────────────── */
+.cn-notes{font-size:12px;color:var(--t2);padding:8px 0 2px;line-height:1.55}
+.cn-risk{font-size:12px;color:var(--a);background:rgba(218,113,1,.08);border-left:3px solid var(--a);padding:5px 8px;border-radius:0 4px 4px 0;margin:4px 0}
+.cn-act{font-size:12px;color:var(--ac);background:rgba(79,152,163,.08);border-left:3px solid var(--ac);padding:5px 8px;border-radius:0 4px 4px 0;margin:4px 0}
+.card-h{display:flex;align-items:center;gap:7px}
+.nm{flex:1;font-size:13px;font-weight:600;color:var(--t1)}
+.star{background:none;border:none;font-size:15px;cursor:pointer;padding:0 2px;opacity:.35;transition:opacity .15s;color:var(--y)}
+.star.on{opacity:1}
+.wl-count{display:inline-block;background:var(--ac);color:#fff;border-radius:10px;font-size:9px;padding:1px 5px;margin-left:3px;vertical-align:middle}
+.cont-g{color:var(--g)!important}.cont-y{color:var(--y)!important}.cont-r{color:var(--r)!important}
+.price-high{color:var(--a)!important}
+.freshness{font-size:10px;color:var(--t2);padding:3px 16px 0;text-align:right}
+/* ── Wiki-style Guide ─────────────────────────────────────────────── */
+.wiki{max-width:820px;margin:0 auto;padding:8px 16px 60px}
+.wiki h2{font-size:15px;font-weight:700;color:var(--tx);margin:28px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--bd)}
+.wiki h3{font-size:12px;font-weight:700;color:var(--ac);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.4px}
+.wiki p{font-size:13px;color:var(--t2);line-height:1.75;margin:0 0 10px}
+.wiki ul,.wiki ol{font-size:13px;color:var(--t2);line-height:1.8;padding-left:20px;margin:0 0 12px}
+.wiki li{margin-bottom:2px}
+.wiki table{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0 18px}
+.wiki th{background:rgba(255,255,255,.04);color:var(--t2);font-weight:600;padding:7px 10px;text-align:left;border-bottom:1px solid var(--bd)}
+.wiki td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--tx);vertical-align:top}
+.wiki tr:last-child td{border-bottom:none}
+.wiki .fm{font-family:monospace;background:rgba(79,152,163,.1);border:1px solid var(--bd);color:var(--ac);padding:6px 14px;border-radius:6px;font-size:12px;margin:6px 0 12px;display:inline-block}
+.wiki .tip{background:rgba(79,152,163,.07);border-left:3px solid var(--ac);padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;color:var(--t2);margin:8px 0 14px;line-height:1.6}
+.wiki .warn{background:rgba(218,113,1,.07);border-left:3px solid var(--a);padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;color:var(--t2);margin:8px 0 14px;line-height:1.6}
+.wiki .danger{background:rgba(220,70,70,.07);border-left:3px solid var(--r);padding:8px 12px;border-radius:0 6px 6px 0;font-size:12px;color:var(--t2);margin:8px 0 14px;line-height:1.6}
+.wiki .toc{background:rgba(255,255,255,.025);border:1px solid var(--bd);border-radius:8px;padding:12px 16px;margin:4px 0 20px}
+.wiki .toc a{color:var(--ac);text-decoration:none;display:block;padding:3px 0;font-size:12px}
+.wiki .toc a:hover{color:var(--tx)}
+.badge{display:inline-block;padding:1px 7px;border-radius:4px;font-size:10px;font-weight:700;margin-left:5px;vertical-align:middle}
+.badge-g{background:rgba(80,200,120,.15);color:var(--g)}
+.badge-y{background:rgba(218,113,1,.15);color:var(--a)}
+.badge-r{background:rgba(220,70,70,.15);color:var(--r)}
+
+
+/* ── Mobile optimisations ─────────────────────────────────────────── */
+/* Flag inline tooltip (tap on mobile) */
+.flag-wrap{position:relative;display:inline-block;cursor:pointer}
+.flag-tip{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
+  background:rgba(20,22,30,.97);border:1px solid var(--bd);border-radius:6px;
+  padding:6px 10px;font-size:11px;color:var(--tx);white-space:nowrap;z-index:300;
+  pointer-events:none;max-width:260px;white-space:normal;line-height:1.5;text-align:left}
+.flag-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--bd)}
+.flag-wrap.open .flag-tip{display:block}
+
+@media (max-width:640px){
+  /* Nav */
+  .nd{display:none}
+  h1{font-size:14px}
+  /* Legend: 2 per row */
+  .leg{gap:5px 10px;padding:6px 12px;font-size:10px}
+  /* Filter bars: tighter */
+  .fbar{padding:5px 10px;gap:5px}
+  .fbar-label{font-size:8px;min-width:30px}
+  .pill{padding:4px 10px;font-size:10px}
+  /* Tabs */
+  .ti{font-size:10px;padding:9px 2px}
+  /* Flag legend stacked */
+  .flag-legend{flex-direction:column;gap:4px;padding:6px 12px;font-size:10px}
+  /* Cards */
+  .card{margin:6px 10px;padding:10px}
+  .nm{font-size:12px}
+  .mg{grid-template-columns:repeat(3,1fr);gap:5px}
+  .mc .v{font-size:12px}
+  .mc .l{font-size:8px}
+  /* Hide table, show cards on mobile */
+  .mobile-hide{display:none!important}
+  .mobile-cards{display:block!important}
+  /* Freshness */
+  .freshness{font-size:9px;padding:2px 12px 0}
+  /* Wiki */
+  .wiki{padding:6px 12px 40px}
+  .wiki h2{font-size:14px;margin:20px 0 8px}
+  .wiki h3{font-size:11px}
+  .wiki p,.wiki li{font-size:12px}
+  .wiki table{font-size:11px}
+  .wiki th,.wiki td{padding:5px 7px}
+  /* TOC */
+  .wiki .toc{padding:10px 12px}
+  .wiki .toc a{font-size:11px}
+}
+@media (min-width:641px){
+  .mobile-cards{display:none!important}
+  .mobile-hide{display:block!important}
+}
+
 </style>
 </head>
 <body>
-
-<header>
-  <div class="logo">PMR Dashboard</div>
-  <div style="display:flex;align-items:center;gap:12px">
-    <div class="hdr-meta" id="last-updated">Loading...</div>
-    <button class="theme-btn" onclick="toggleTheme()">☀ Light</button>
-  </div>
-</header>
-
-<div class="stats-bar">
-  <div class="stat-item"><div class="stat-label">Listings</div><div class="stat-value" id="s-count">—</div></div>
-  <div class="stat-item"><div class="stat-label">Total Value</div><div class="stat-value" id="s-value">—</div></div>
-  <div class="stat-item"><div class="stat-label">Total Net Income</div><div class="stat-value" id="s-ni">—</div></div>
-  <div class="stat-item"><div class="stat-label">Avg Multiplier</div><div class="stat-value" id="s-mult">—</div></div>
+<nav><div class="nh"><div class="br"><h1>PMR Dashboard</h1></div><div class="nr"><span class="nd" id="dt"></span><button class="lb" onclick="tog()">EN</button></div></div></nav>
+<div class="leg">
+<span><b>NI</b> <span class="en">Net Income</span><span class="zh">年净收入</span></span>
+<span><b>BC%</b> <span class="en">Salary/Net (ideal 60–70%)</span><span class="zh">BC薪资占比 (60–70%)</span></span>
+<span><b>MULT</b> <span class="en">Price/Net (lower=better)</span><span class="zh">价格/净收入 (越低越好)</span></span>
+<span><b>POOL</b> <span class="en">Letting pool units</span><span class="zh">出租单元数</span></span>
+<span><b>CONT</b> <span class="en">Contract years remaining</span><span class="zh">合同剩余年限</span></span>
 </div>
-
-<div class="legend">
-  <span><span class="dot dot-g"></span>Good: BC%&le;70 &middot; Mult&le;6.5x &middot; Cont&ge;15yr</span>
-  <span><span class="dot dot-y"></span>Caution: BC% 70&ndash;80 or Mult 6.5&ndash;7.5x or Cont&lt;15yr</span>
-  <span><span class="dot dot-r"></span>Risk: BC%&gt;80 or Mult&gt;7.5x</span>
+<div class="fbar" id="rf-bar">
+  <span class="fbar-label en">Location</span><span class="fbar-label zh">地区</span>
 </div>
-
+<div class="fbar" id="sort-bar">
+  <span class="fbar-label en">Sort</span><span class="fbar-label zh">排序</span>
+  <button class="pill ac" data-sort="mult"><span class="en">Best Value</span><span class="zh">最优倍数</span></button>
+  <button class="pill" data-sort="ni"><span class="en">Highest NI</span><span class="zh">最高NI</span></button>
+  <button class="pill" data-sort="roi"><span class="en">Best ROI</span><span class="zh">最高ROI</span></button>
+  <button class="pill" data-sort="price"><span class="en">Lowest Price</span><span class="zh">最低价格</span></button>
+</div>
+<div class="fbar" id="tier-bar">
+  <span class="fbar-label en">Tier</span><span class="fbar-label zh">档位</span>
+  <button class="pill ac" data-tier="all"><span class="en">All</span><span class="zh">全部</span></button>
+  <button class="pill pill-t1" data-tier="t1"><span class="en">T1 &lt;$1M</span><span class="zh">T1 &lt;$1M</span></button>
+  <button class="pill pill-t2" data-tier="t2"><span class="en">T2 $1–1.5M</span><span class="zh">T2 $1–1.5M</span></button>
+  <button class="pill pill-t3" data-tier="t3"><span class="en">T3 $1.5M+</span><span class="zh">T3 $1.5M+</span></button>
+</div>
+<div class="freshness" id="freshness"></div>
 <div class="tabs">
-  <button class="tab active" id="tab-btn-listings" onclick="switchTab('listings')">Listings</button>
-  <button class="tab" id="tab-btn-guide" onclick="switchTab('guide')">Guide</button>
+  <div class="ti ac" onclick="sw('ta')"><span class="en">Listings</span><span class="zh">列表</span></div>
+  <div class="ti" onclick="sw('t4')"><span class="en">Guide</span><span class="zh">指南</span></div>
+  <div class="ti" onclick="sw('tw')"><span class="en">★ Watch</span><span class="zh">★ 收藏</span><span class="wl-count" id="wl-cnt" style="display:none">0</span></div>
 </div>
-
-<div id="tab-listings" class="tab-content active">
-  <div class="controls">
-    <span class="lbl">SORT</span>
-    <div class="btn-group" id="sort-group">
-      <button class="ctrl-btn active" onclick="setSort('best',this)">Best Value</button>
-      <button class="ctrl-btn" onclick="setSort('ni',this)">Highest NI</button>
-      <button class="ctrl-btn" onclick="setSort('roi',this)">Best ROI</button>
-      <button class="ctrl-btn" onclick="setSort('price',this)">Lowest Price</button>
-    </div>
-    <span class="lbl" style="margin-left:8px">TIER</span>
-    <div class="btn-group" id="tier-group">
-      <button class="ctrl-btn active" onclick="setTier('all',this)">All</button>
-      <button class="ctrl-btn" onclick="setTier('t1',this)">T1 &lt;$1M</button>
-      <button class="ctrl-btn" onclick="setTier('t2',this)">T2 $1&ndash;1.5M</button>
-      <button class="ctrl-btn" onclick="setTier('t3',this)">T3 $1.5M+</button>
-    </div>
+<div class="app">
+  <div class="flag-legend" id="flag-legend">
+    <span>✅ <span class="en">Good: BC%≤70 · Mult≤6.5 · Cont≥15yr</span><span class="zh">指标良好</span></span>
+    <span>⚠️ <span class="en">Caution: BC% 70–80 or Mult&gt;7.5x or Cont&lt;15yr</span><span class="zh">注意</span></span>
+    <span>🚨 <span class="en">Risk: BC%&gt;80 or Mult&gt;10x</span><span class="zh">高风险</span></span>
   </div>
-  <div id="listings-container"><div class="loader">⏳ Loading data...</div></div>
+  <div class="tp ac" id="ta"></div>
+  <div class="tp" id="tw"></div>
+  <div class="tp" id="t4">
+<div class="wiki">
+<div class="toc">
+<b style="font-size:12px;color:var(--tx);display:block;margin-bottom:6px">📚 Contents</b>
+<a href="#g1"><span class="en">1. What is PMR?</span><span class="zh">1. 什么是PMR？</span></a>
+<a href="#g2"><span class="en">2. How the Business Works</span><span class="zh">2. 商业运作方式</span></a>
+<a href="#g3"><span class="en">3. Key Metrics Explained</span><span class="zh">3. 关键指标解析</span></a>
+<a href="#g4"><span class="en">4. Reading a Listing</span><span class="zh">4. 如何读懂listing</span></a>
+<a href="#g5"><span class="en">5. Due Diligence Checklist</span><span class="zh">5. 尽职调查清单</span></a>
+<a href="#g6"><span class="en">6. Financing</span><span class="zh">6. 融资方式</span></a>
+<a href="#g7"><span class="en">7. Red Flags</span><span class="zh">7. 风险警示</span></a>
+<a href="#g8"><span class="en">8. Glossary</span><span class="zh">8. 术语表</span></a>
+<a href="#g9"><span class="en">9. Real Operator Experiences</span><span class="zh">9. 从业者真实经验</span></a>
+<a href="#g10"><span class="en">10. Licences, Certificates &amp; Documents</span><span class="zh">10. 牌照、证书与所需材料</span></a>
 </div>
 
-<div id="tab-guide" class="tab-content">
-  <div class="guide-body">
-    <h2>PMR Investment Guide</h2>
-    <h3>Ch 1 — What is PMR?</h3>
-    <p>Property Management Rights (PMR) give you the right to manage a residential complex — collecting rent, maintaining common areas, and providing caretaker services. You earn salary/caretaking income plus commissions on letting pool units.</p>
-    <h3>Ch 2 — Key Metrics</h3>
-    <ul>
-      <li><b>Net Income (NI)</b> — Annual revenue after direct costs. Target &gt;$120K.</li>
-      <li><b>BC% (Salary/Net)</b> — Body corporate salary as % of net income. Ideal &lt;70%.</li>
-      <li><b>Multiplier</b> — Purchase price &divide; net income. Lower = better. Target &le;6.5x.</li>
-      <li><b>Pool Units</b> — Letting pool size. More units = more commission income.</li>
-      <li><b>Contract Years</b> — Years remaining on management agreement. Target &ge;15yr.</li>
-      <li><b>Weekly Rent/Unit</b> — Average rent per letting pool unit. $60&ndash;85/wk typical QLD.</li>
-    </ul>
-    <h3>Ch 3 — Scoring</h3>
-    <ul>
-      <li>BC% &rarr; Green &le;70%, Yellow 70&ndash;80%, Red &gt;80%</li>
-      <li>Multiplier &rarr; Green &le;6.5x, Yellow 6.5&ndash;7.5x, Red &gt;7.5x</li>
-      <li>Contract &rarr; Green &ge;15yr, Yellow 10&ndash;14yr, Red &lt;10yr</li>
-    </ul>
-    <h3>Ch 4 — Price Tiers</h3>
-    <ul>
-      <li><b>T1 &lt;$1M</b> — Entry level, lower NI, good for first-timers</li>
-      <li><b>T2 $1&ndash;1.5M</b> — Mid-range, best ROI balance zone</li>
-      <li><b>T3 $1.5M+</b> — Premium, higher NI, more capital required</li>
-    </ul>
-    <h3>Ch 5 — Due Diligence Checklist</h3>
-    <ul>
-      <li>Request last 3 years financials from vendor</li>
-      <li>Check management agreement length and renewal terms</li>
-      <li>Count actual letting pool units (not total complex units)</li>
-      <li>Verify body corporate salary in agreement</li>
-      <li>Check for exclusive management rights clause</li>
-      <li>Confirm caretaker duties are manageable solo or with staff</li>
-    </ul>
-    <h3>Ch 6 — Financing PMR</h3>
-    <p>Banks treat PMR as commercial lending. Typical LVR 50&ndash;65%. Some lenders specialise in PMR (Bankwest, NAB, BOQ). Separate the real estate component (manager's unit) from the business rights for cleaner financing.</p>
-    <h3>Ch 7 — Understanding the Contract</h3>
-    <p>The caretaking agreement and letting appointment are two separate contracts. The caretaking agreement is registered on title. The letting appointment is between you and each lot owner. Review both with a PMR-specialist solicitor.</p>
-    <h3>Ch 8 — Improving NI After Purchase</h3>
-    <ul>
-      <li>Grow the letting pool by winning over owner-managed units</li>
-      <li>Review maintenance markup margins</li>
-      <li>Add value-adds: pool cleaning, garden, valet parking contracts</li>
-      <li>Reduce vacancy by active marketing and competitive pricing</li>
-    </ul>
-    <h3>Ch 9 — Real Operator Tips</h3>
-    <ul>
-      <li>Live on-site — your proximity is your competitive advantage</li>
-      <li>Build relationships with your BC committee early</li>
-      <li>Use property management software (Console, Manage My Property) from day 1</li>
-      <li>Hire a relief manager for holidays — factor this into projections</li>
-      <li>Join ARAMA for support and advocacy</li>
-      <li>Watch for "on-site manager burnout" — drives below-market sales you can target</li>
-    </ul>
-    <h3>Ch 10 — Licences &amp; Document Checklist</h3>
-    <ul>
-      <li>Real Estate Licence (QLD) — required to operate a letting business</li>
-      <li>Trust account registration with QCAT</li>
-      <li>ABN + GST registration</li>
-      <li>Public liability insurance (min $10M recommended)</li>
-      <li>Documents to request: management agreement, caretaking agreement, BC financials, last 3yr P&amp;L, rental rolls, letting pool list, BC meeting minutes (last 2 years)</li>
-    </ul>
-  </div>
+<h2 id="g1"><span class="en">1. What is PMR?</span><span class="zh">1. 什么是PMR？</span></h2>
+<p><span class="en"><b>Property Management Rights (PMR)</b> is a uniquely Australian business model, dominant in Queensland. You buy the <em>right</em> to manage a residential or holiday complex — you are buying the agreement, not the real estate.</span><span class="zh"><b>物业管理权（PMR）</b>是澳大利亚独有的商业模式，在昆士兰州最为普遍。你购买的是管理住宅或度假综合体的<em>权利</em>——买的是协议，不是房产。</span></p>
+<h3><span class="en">Three Types</span><span class="zh">三种类型</span></h3>
+<table>
+<tr><th><span class="en">Type</span><span class="zh">类型</span></th><th><span class="en">Description</span><span class="zh">说明</span></th><th><span class="en">Live Onsite?</span><span class="zh">需住现场？</span></th><th><span class="en">Typical Price</span><span class="zh">典型价格</span></th></tr>
+<tr><td><b><span class="en">Business Only</span><span class="zh">纯商业</span></b></td><td><span class="en">Caretaking + letting. No unit required.</span><span class="zh">管理+租赁，无需公寓。</span></td><td><span class="en">No</span><span class="zh">否</span></td><td>$400K–$1.5M</td></tr>
+<tr><td><b>MR + Unit</b></td><td><span class="en">Business + manager's apartment. Live onsite.</span><span class="zh">业务+管理员公寓，住现场。</span></td><td><span class="en">Yes</span><span class="zh">是</span></td><td>$1M–$4M</td></tr>
+<tr><td><b>MR + Freehold</b></td><td><span class="en">Own the manager's unit outright. Strongest security.</span><span class="zh">全产权拥有管理员公寓，最高安全性。</span></td><td><span class="en">Yes</span><span class="zh">是</span></td><td>$2M–$5M+</td></tr>
+</table>
+<h3><span class="en">Permanent vs Holiday</span><span class="zh">长租 vs 度假</span></h3>
+<table>
+<tr><th></th><th><span class="en">Permanent</span><span class="zh">长租</span></th><th><span class="en">Holiday / Resort</span><span class="zh">度假村</span></th></tr>
+<tr><td><span class="en">Tenants</span><span class="zh">租客</span></td><td><span class="en">Long-term residents</span><span class="zh">长期居民</span></td><td><span class="en">Short-stay tourists</span><span class="zh">短期游客</span></td></tr>
+<tr><td><span class="en">Income</span><span class="zh">收入稳定性</span></td><td style="color:var(--g)"><span class="en">Stable year-round</span><span class="zh">全年稳定</span></td><td style="color:var(--a)"><span class="en">Seasonal swings</span><span class="zh">季节性波动</span></td></tr>
+<tr><td><span class="en">Multiplier</span><span class="zh">典型倍数</span></td><td><span class="en">4–6x typical</span><span class="zh">4–6倍</span></td><td><span class="en">5–8x typical</span><span class="zh">5–8倍</span></td></tr>
+</table>
+
+<h2 id="g2"><span class="en">2. How the Business Works</span><span class="zh">2. 商业运作方式</span></h2>
+<p><span class="en">Your income comes from two streams: a <b>Body Corporate (BC) salary</b> for caretaking duties, and <b>letting commissions</b> from managing rentals on behalf of unit owners.</span><span class="zh">收入来自两部分：物业委员会（BC）支付的<b>物业管理薪资</b>，以及代业主管理出租的<b>租赁佣金</b>。</span></p>
+<div class="fm">Net Income = BC Salary + Letting Commissions − Expenses</div>
+<h3><span class="en">Body Corporate Salary</span><span class="zh">BC薪资</span></h3>
+<ul>
+<li><span class="en">Fixed annual salary paid by the BC for grounds, pool, common areas</span><span class="zh">BC支付的固定年薪，用于花园、泳池、公共区域维护</span></li>
+<li><span class="en">Indexed annually — usually CPI or 3.5%, whichever is greater</span><span class="zh">每年按CPI或3.5%（取较高者）调整</span></li>
+<li><span class="en">BC% = this salary as % of total net income. Ideal: 50–70%</span><span class="zh">BC% = 该薪资占净收入百分比，理想：50–70%</span></li>
+</ul>
+<h3><span class="en">Letting Income</span><span class="zh">租赁收入</span></h3>
+<ul>
+<li><span class="en">Earned by managing units in the "letting pool" — owners who authorise you</span><span class="zh">通过管理"出租池"中的单元获得——即授权你出租的业主</span></li>
+<li><span class="en">Typical commission: 8–12% of rent collected</span><span class="zh">典型佣金：收取租金的8–12%</span></li>
+<li><span class="en">Growth lever: recruit more units into your pool</span><span class="zh">增长方式：争取更多单元加入出租池</span></li>
+</ul>
+<div class="tip"><span class="en">💡 The BC salary is your floor — it pays your base even during slow periods. Letting income is where you grow.</span><span class="zh">💡 BC薪资是收入底线，即使在淡季也能保障基本收入；租赁收入是你增长的来源。</span></div>
+
+<h2 id="g3"><span class="en">3. Key Metrics Explained</span><span class="zh">3. 关键指标解析</span></h2>
+<h3>BC% <span class="badge badge-g">ideal 50–70%</span></h3>
+<div class="fm">BC% = BC Salary ÷ Net Income × 100</div>
+<table>
+<tr><th>BC%</th><th><span class="en">Meaning</span><span class="zh">含义</span></th><th><span class="en">Risk</span><span class="zh">风险</span></th></tr>
+<tr><td style="color:var(--g)">50–70%</td><td><span class="en">Healthy mix of salary + letting</span><span class="zh">薪资与租赁均衡</span></td><td style="color:var(--g)"><span class="en">Low ✅</span><span class="zh">低 ✅</span></td></tr>
+<tr><td style="color:var(--a)">70–80%</td><td><span class="en">Leaning caretaker, limited upside</span><span class="zh">偏向物业管理，增长有限</span></td><td style="color:var(--a)"><span class="en">Medium ⚠️</span><span class="zh">中 ⚠️</span></td></tr>
+<tr><td style="color:var(--r)">&gt;80%</td><td><span class="en">Caretaker trap — mostly salary, if BC cancels you lose everything</span><span class="zh">纯管理陷阱——几乎全靠薪资，BC取消即失去一切</span></td><td style="color:var(--r)"><span class="en">High 🚨</span><span class="zh">高 🚨</span></td></tr>
+</table>
+
+<h3>Multiplier (MULT) <span class="badge badge-g">ideal 3–5x</span></h3>
+<div class="fm">Multiplier = Price ÷ Net Income</div>
+<table>
+<tr><th>Mult</th><th><span class="en">Rating</span><span class="zh">评级</span></th><th><span class="en">What it means</span><span class="zh">含义</span></th></tr>
+<tr><td style="color:var(--g)">3–5x</td><td style="color:var(--g)">✅ <span class="en">Excellent</span><span class="zh">极佳</span></td><td><span class="en">Recoup in 3–5 years</span><span class="zh">3–5年回本</span></td></tr>
+<tr><td style="color:var(--a)">5–6.5x</td><td style="color:var(--a)">⚠️ <span class="en">Fair / market rate</span><span class="zh">合理，市场价</span></td><td><span class="en">Acceptable with good metrics</span><span class="zh">其他指标良好时可接受</span></td></tr>
+<tr><td style="color:var(--r)">&gt;6.5x</td><td style="color:var(--r)">🚨 <span class="en">Overpriced</span><span class="zh">过高</span></td><td><span class="en">Needs strong growth story</span><span class="zh">需要强增长预期支撑</span></td></tr>
+</table>
+
+<h3><span class="en">Contract Years (CONT)</span><span class="zh">合同年限</span> <span class="badge badge-g">ideal ≥20yr</span></h3>
+<table>
+<tr><th>CONT</th><th><span class="en">Security Level</span><span class="zh">安全性</span></th></tr>
+<tr><td style="color:var(--g)">≥20yr</td><td style="color:var(--g)"><span class="en">Excellent — banks and buyers prefer this</span><span class="zh">优秀——贷款机构和买家均偏好</span></td></tr>
+<tr><td style="color:var(--y)">10–19yr</td><td style="color:var(--y)"><span class="en">Adequate — negotiate top-up before buying</span><span class="zh">尚可——买前谈判续约</span></td></tr>
+<tr><td style="color:var(--r)">&lt;10yr</td><td style="color:var(--r)">🚨 <span class="en">Lenders may refuse; resale is hard</span><span class="zh">贷款可能被拒，转售困难</span></td></tr>
+</table>
+<div class="tip"><span class="en">💡 "Top-up" = getting the BC to vote to extend the agreement. Very common in QLD — adds significant value and bankability.</span><span class="zh">💡 "续约"= 让BC投票延长协议期限，在昆士兰很常见，能显著提升价值和贷款可行性。</span></div>
+
+<h3><span class="en">Letting Pool (POOL)</span><span class="zh">出租池规模</span></h3>
+<table>
+<tr><th>Pool</th><th><span class="en">Assessment</span><span class="zh">评估</span></th></tr>
+<tr><td style="color:var(--g)">≥30</td><td style="color:var(--g)"><span class="en">Excellent scale and diversity</span><span class="zh">规模和多样性均优秀</span></td></tr>
+<tr><td style="color:var(--a)">15–29</td><td style="color:var(--a)"><span class="en">Good, some vacancy risk</span><span class="zh">良好，有一定空置风险</span></td></tr>
+<tr><td style="color:var(--r)">&lt;10</td><td style="color:var(--r)">🚨 <span class="en">High per-unit vacancy risk</span><span class="zh">单元空置风险较高</span></td></tr>
+</table>
+
+<h3>ROI</h3>
+<div class="fm">ROI = Net Income ÷ Price × 100%</div>
+<p><span class="en">Typical PMR ROI is <b>15–25%</b> — far above residential property (3–5%). If ROI shows as "—", the price was not disclosed in the listing.</span><span class="zh">典型PMR回报率为<b>15–25%</b>，远高于住宅投资（3–5%）。如显示"—"表示价格未披露。</span></p>
+
+<h2 id="g4"><span class="en">4. Reading a Listing</span><span class="zh">4. 如何读懂Listing</span></h2>
+<table>
+<tr><th><span class="en">Field</span><span class="zh">字段</span></th><th><span class="en">What it is</span><span class="zh">含义</span></th><th><span class="en">Watch out for</span><span class="zh">注意事项</span></th></tr>
+<tr><td><b>Price</b></td><td><span class="en">Asking price for the business (+ unit if MR+U)</span><span class="zh">业务要价（MR+U时含公寓）</span></td><td><span class="en">EOI / — = undisclosed, request info pack</span><span class="zh">EOI/— = 未披露，需索取资料包</span></td></tr>
+<tr><td><b>NI</b></td><td><span class="en">Net Income after running costs</span><span class="zh">扣除运营成本后的净收入</span></td><td><span class="en">"Actual" vs "projected" — actual only</span><span class="zh">"实际"vs"预测"——只接受实际值</span></td></tr>
+<tr><td><b>BC%</b></td><td><span class="en">BC salary ÷ net income</span><span class="zh">BC薪资占净收入比例</span></td><td><span class="en">&gt;80% = mostly a job, not an investment</span><span class="zh">&gt;80% = 更像工作非投资</span></td></tr>
+<tr><td><b>Mult</b></td><td><span class="en">Price ÷ NI — years to recoup</span><span class="zh">价格÷净收入——回本年数</span></td><td><span class="en">Verify NI is audited, not estimated</span><span class="zh">确认已审计，非估算</span></td></tr>
+<tr><td><b>Pool</b></td><td><span class="en">Number of units you actively let</span><span class="zh">主动出租的单元数</span></td><td><span class="en">Check how many use outside agents</span><span class="zh">检查有多少单元使用外部中介</span></td></tr>
+<tr><td><b>Cont</b></td><td><span class="en">Years remaining on agreement</span><span class="zh">协议剩余年限</span></td><td><span class="en">&lt;10yr = lenders may decline</span><span class="zh">&lt;10年 = 贷款可能被拒</span></td></tr>
+</table>
+<div class="warn"><span class="en">⚠️ Always ask for the <b>last 2 years of financials</b>, the <b>letting pool schedule</b>, and <b>BC meeting minutes</b> before making any offer.</span><span class="zh">⚠️ 出价前务必索取<b>过去2年财务报告</b>、<b>出租池明细</b>和<b>BC会议记录</b>。</span></div>
+
+<h2 id="g5"><span class="en">5. Due Diligence Checklist</span><span class="zh">5. 尽职调查清单</span></h2>
+<h3><span class="en">Before Making an Offer</span><span class="zh">出价前</span></h3>
+<ul>
+<li><span class="en">☐ Request full information memorandum (IM) from broker</span><span class="zh">☐ 向经纪人索取完整信息备忘录（IM）</span></li>
+<li><span class="en">☐ Confirm Net Income is <b>audited</b> (not just stated)</span><span class="zh">☐ 确认净收入已<b>经过审计</b>（非自报）</span></li>
+<li><span class="en">☐ Get letting pool schedule — how many units, which owners</span><span class="zh">☐ 获取出租池明细——单元数及业主名单</span></li>
+<li><span class="en">☐ Check units managed by outside agents (leakage you can recover)</span><span class="zh">☐ 检查由外部中介管理的单元（可争取回来的收入）</span></li>
+<li><span class="en">☐ Confirm BC salary and annual CPI indexation clause</span><span class="zh">☐ 确认BC薪资及年度CPI调整条款</span></li>
+<li><span class="en">☐ Review BC meeting minutes (last 2 years) for disputes</span><span class="zh">☐ 查阅过去2年BC会议记录，了解潜在纠纷</span></li>
+<li><span class="en">☐ Confirm agreement term remaining and top-up history</span><span class="zh">☐ 确认协议剩余年限及续约历史</span></li>
+</ul>
+<h3><span class="en">After Signing (Due Diligence Period)</span><span class="zh">签约后（尽职调查期）</span></h3>
+<ul>
+<li><span class="en">☐ Engage a PMR-specialist solicitor (not a general property lawyer)</span><span class="zh">☐ 聘请PMR专业律师（非普通房产律师）</span></li>
+<li><span class="en">☐ Engage a PMR accountant to verify all financials</span><span class="zh">☐ 聘请PMR会计师核实财务</span></li>
+<li><span class="en">☐ Request 2-year trust account bank statements</span><span class="zh">☐ 索取信托账户2年银行对账单</span></li>
+<li><span class="en">☐ Verify all letting agreements are current and signed</span><span class="zh">☐ 核实所有出租协议均现行有效</span></li>
+<li><span class="en">☐ Inspect condition of common areas — pool, gym, lifts, gardens</span><span class="zh">☐ 检查公共区域状况——泳池、健身房、电梯、花园</span></li>
+<li><span class="en">☐ Meet the BC committee members in person</span><span class="zh">☐ 与BC委员会成员面谈</span></li>
+</ul>
+<div class="tip"><span class="en">💡 Use a solicitor who specialises in MR — there are only ~10 firms in QLD who truly understand PMR contracts. Ask your broker for a referral.</span><span class="zh">💡 务必使用MR专业律师——昆士兰只有约10家律所真正了解PMR合同。</span></div>
+
+<h2 id="g6"><span class="en">6. Financing</span><span class="zh">6. 融资方式</span></h2>
+<p><span class="en">PMR is treated as a <b>commercial loan</b> — different rules apply compared to residential.</span><span class="zh">PMR属于<b>商业贷款</b>，规则与住宅贷款不同。</span></p>
+<table>
+<tr><th><span class="en">Factor</span><span class="zh">因素</span></th><th><span class="en">Typical</span><span class="zh">典型情况</span></th></tr>
+<tr><td><span class="en">LVR (Loan to Value)</span><span class="zh">贷款比例</span></td><td><span class="en">50–65% (less than residential)</span><span class="zh">50–65%（低于住宅贷款）</span></td></tr>
+<tr><td><span class="en">Interest rate</span><span class="zh">利率</span></td><td><span class="en">~7–8.5% (commercial rate)</span><span class="zh">约7–8.5%（商业利率）</span></td></tr>
+<tr><td><span class="en">Min contract remaining</span><span class="zh">最低剩余年限</span></td><td><span class="en">Most lenders require ≥15yr</span><span class="zh">大多数贷款机构要求≥15年</span></td></tr>
+<tr><td><span class="en">Deposit required</span><span class="zh">所需首付</span></td><td><span class="en">35–50% of business price</span><span class="zh">业务价格的35–50%</span></td></tr>
+<tr><td><span class="en">Key lenders</span><span class="zh">主要贷款机构</span></td><td><span class="en">BOQ, ANZ, NAB (commercial desk), specialist MR brokers</span><span class="zh">BOQ、ANZ、NAB（商业部门），MR专业贷款经纪人</span></td></tr>
+</table>
+<div class="warn"><span class="en">⚠️ If buying MR+Unit, the unit is usually financed separately as residential (higher LVR). The split structure matters — get advice before signing.</span><span class="zh">⚠️ 购买MR+公寓时，公寓通常作为住宅贷款单独处理（更高LVR）。融资结构非常重要，签约前需专业建议。</span></div>
+
+<h2 id="g7"><span class="en">7. Red Flags 🚨</span><span class="zh">7. 风险警示 🚨</span></h2>
+<div class="danger"><b><span class="en">Skip immediately if any of these apply:</span><span class="zh">出现以下任何一项立即跳过：</span></b></div>
+<ul>
+<li>🚨 <b>BC% &gt;85%</b> — <span class="en">you are an employee, not a business owner</span><span class="zh">你是雇员，不是生意老板</span></li>
+<li>🚨 <b><span class="en">Contract &lt;10yr</span><span class="zh">合同&lt;10年</span></b> — <span class="en">no top-up in progress</span><span class="zh">且无续约计划</span></li>
+<li>🚨 <b>Mult &gt;8x</b> — <span class="en">no clear growth story</span><span class="zh">且无明确增长逻辑</span></li>
+<li>🚨 <b>Pool &lt;5 units</b> — <span class="en">too concentrated, high vacancy risk</span><span class="zh">过于集中，空置风险极高</span></li>
+<li>🚨 <b><span class="en">100% BC salary</span><span class="zh">100% BC薪资</span></b> — <span class="en">zero letting income = zero growth</span><span class="zh">零租赁收入 = 零增长</span></li>
+<li>🚨 <b><span class="en">Projected income</span><span class="zh">预测收入</span></b> — <span class="en">must be audited actuals only</span><span class="zh">必须是经审计的实际数据</span></li>
+</ul>
+<div class="warn"><b><span class="en">Investigate before proceeding:</span><span class="zh">以下情况需仔细调查：</span></b>
+<ul style="margin-top:6px">
+<li><span class="en">Price undisclosed (EOI/—) — ask why before requesting IM</span><span class="zh">价格未披露（EOI/—）——索取IM前先了解原因</span></li>
+<li><span class="en">Large number of external-agent units — income leakage</span><span class="zh">大量单元由外部中介管理——收入流失</span></li>
+<li><span class="en">New complex (&lt;2yr) — no proven income track record</span><span class="zh">新楼盘（&lt;2年）——无收入历史记录</span></li>
+<li><span class="en">Recent price reduction — find out why</span><span class="zh">近期降价——需了解原因</span></li>
+<li><span class="en">BC% 70–80% — caution, limited growth ceiling</span><span class="zh">BC% 70–80%——注意，增长空间有限</span></li>
+</ul>
 </div>
 
-<div class="modal-bg" id="modal-bg" onclick="bgClose(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">&#10005;</button>
-    <div class="modal-title" id="m-title"></div>
-    <div class="modal-sub" id="m-sub"></div>
-    <div class="modal-grid" id="m-metrics"></div>
-    <div class="modal-notes" id="m-notes"></div>
-    <div class="modal-actions" id="m-actions"></div>
-  </div>
+<h2 id="g8"><span class="en">8. Glossary</span><span class="zh">8. 术语表</span></h2>
+<table>
+<tr><th><span class="en">Term</span><span class="zh">术语</span></th><th><span class="en">Meaning</span><span class="zh">含义</span></th></tr>
+<tr><td><b>BC</b></td><td><span class="en">Body Corporate — the owners' committee that governs the complex</span><span class="zh">物业委员会——管理综合体的业主委员会</span></td></tr>
+<tr><td><b>Letting Pool</b></td><td><span class="en">Units whose owners authorised you to manage rentals</span><span class="zh">授权你管理出租的单元池</span></td></tr>
+<tr><td><b>Top-up</b></td><td><span class="en">Extending contract term by BC vote</span><span class="zh">通过BC投票延长合同年限</span></td></tr>
+<tr><td><b>Accom Module</b></td><td><span class="en">Part of the BC Act governing short-stay letting agreements</span><span class="zh">物业法中规范短租协议的模块</span></td></tr>
+<tr><td><b>ROI</b></td><td><span class="en">Return on Investment = NI ÷ Price</span><span class="zh">投资回报率 = 净收入 ÷ 价格</span></td></tr>
+<tr><td><b>Multiplier</b></td><td><span class="en">Price ÷ NI — years to recoup purchase price</span><span class="zh">价格 ÷ 净收入——回收购买价格的年数</span></td></tr>
+<tr><td><b>EOI</b></td><td><span class="en">Expression of Interest — price undisclosed</span><span class="zh">意向书——价格未披露</span></td></tr>
+<tr><td><b>IM</b></td><td><span class="en">Information Memorandum — full financial package from broker</span><span class="zh">信息备忘录——经纪人提供的完整财务资料包</span></td></tr>
+<tr><td><b>Trust Account</b></td><td><span class="en">Separate account holding tenant payments before disbursement</span><span class="zh">存放租客租金待分配的独立账户</span></td></tr>
+<tr><td><b>Caretaker Trap</b></td><td><span class="en">BC% so high you're basically an employee with no business value</span><span class="zh">BC%极高，本质上只是雇员，无商业价值</span></td></tr>
+<tr><td><b>External Units</b></td><td><span class="en">Units using outside agents instead of you — income leakage</span><span class="zh">使用外部中介的单元——可争取回来的收入流失</span></td></tr>
+<tr><td><b>Freehold</b></td><td><span class="en">Full ownership of land + building</span><span class="zh">土地+建筑完全产权</span></td></tr>
+<tr><td><b>Stratum Title</b></td><td><span class="en">Standard unit title in a strata complex</span><span class="zh">分层产权——标准公寓产权形式</span></td></tr>
+</table>
 </div>
 
-<script>
-var allData=[], curSort='best', curTier='all';
+<h2 id="g9"><span class="en">9. Real Operator Experiences</span><span class="zh">9. 从业者真实经验</span></h2>
+<p><span class="en">These insights come from active PMR managers, brokers, and buyers across Queensland forums, industry groups, and published guides. They reflect real patterns — not hypotheticals.</span><span class="zh">以下经验来自昆士兰州各论坛、行业群体及出版指南中的在职管理权经营者、经纪人和买家，反映的是真实规律，不是理论。</span></p>
 
-async function loadData(){
-  try{
-    var r=await fetch('pmr-data-latest.json?t='+Date.now());
-    if(!r.ok) throw new Error('HTTP '+r.status);
-    allData=await r.json();
-    renderStats(allData);
-    renderListings();
-    document.getElementById('last-updated').textContent='Updated: '+new Date().toLocaleDateString('en-AU');
-  }catch(e){
-    document.getElementById('listings-container').innerHTML=
-      '<div class="err">Could not load pmr-data-latest.json<br><small>'+e.message+'</small><br><br>Make sure pmr-data-latest.json is in the same folder and pushed to gh-pages.</div>';
-    document.getElementById('last-updated').textContent='Load failed';
-  }
-}
+<h3>💡 <span class="en">Running the Business Day-to-Day</span><span class="zh">日常经营</span></h3>
+<ul>
+<li><span class="en"><b>Phone never stops.</b> Residents call at all hours — burst pipes at 11pm, locked out at 6am. New operators consistently underestimate the after-hours demand. If you value quiet evenings, budget for an after-hours call service (~$200–$400/mo).</span><span class="zh"><b>电话永远不会停。</b>住户随时都会打来——晚上11点爆管、早上6点锁门。新手经营者往往低估了非工作时间的需求。如果你重视安静的夜晚，考虑安排接听服务（约$200–400/月）。</span></li>
+<li><span class="en"><b>Your relationship with the BC committee is everything.</b> A supportive committee makes life easy; a hostile one can make every year stressful. Visit the complex and meet committee members before you buy — not after.</span><span class="zh"><b>与BC委员会的关系至关重要。</b>支持你的委员会让一切顺畅；对立的委员会会让每一年都很煎熬。在买之前去拜访综合体并与委员会成员见面——不要等到之后。</span></li>
+<li><span class="en"><b>"The money is made in the letting, not the caretaking."</b> Your BC salary is the floor; your real income growth comes from recruiting more units into your pool. Experienced managers actively court external-agent units by being responsive and competitive on fees.</span><span class="zh"><b>"钱是在出租中赚到的，不是在物业管理中。"</b>你的BC薪资是底线；真正的收入增长来自招募更多单元进入你的出租池。有经验的经营者会积极争取那些使用外部中介的单元。</span></li>
+<li><span class="en"><b>Trust account discipline is non-negotiable.</b> Every dollar of rent collected must flow through a separate trust account and be audited annually. Several managers have lost their licence over sloppy trust accounting — get proper software (PropertyMe, Console) from day one.</span><span class="zh"><b>信托账户管理不容妥协。</b>收取的每一分租金都必须通过独立信托账户流转，并每年审计一次。一些经营者因信托账务混乱而吊销牌照——从第一天起就使用专业软件（PropertyMe、Console）。</span></li>
+<li><span class="en"><b>Staff or no staff?</b> Many smaller complexes (&lt;50 units) are run owner-operator with no staff. Above ~80 units most managers bring in a part-time assistant. Factor this into your NI assessment — if the current operator has no staff but the complex clearly needs one, the stated NI is artificially high.</span><span class="zh"><b>要不要员工？</b>很多小型综合体（&lt;50单元）由业主兼职自营，没有员工。超过约80单元后，大多数经营者会聘用兼职助手。这需要纳入你的NI评估——如果当前经营者没有员工但综合体明显需要，则报告的NI是人为偏高的。</span></li>
+</ul>
 
-function renderStats(data){
-  var tv=data.reduce(function(s,p){return s+(p.price||0);},0);
-  var tn=data.reduce(function(s,p){return s+(p.net_income||0);},0);
-  var ms=data.filter(function(p){return p.multiplier>0;}).map(function(p){return p.multiplier;});
-  var am=ms.length?ms.reduce(function(a,b){return a+b;},0)/ms.length:0;
-  document.getElementById('s-count').textContent=data.length;
-  document.getElementById('s-value').textContent='$'+(tv/1e6).toFixed(1)+'M';
-  document.getElementById('s-ni').textContent='$'+(tn/1e6).toFixed(2)+'M';
-  document.getElementById('s-mult').textContent=am.toFixed(2)+'x';
-}
+<h3>💰 <span class="en">On Pricing &amp; Negotiation</span><span class="zh">定价与议价</span></h3>
+<ul>
+<li><span class="en"><b>Vendors always lead with projected income.</b> Always ask: "Is this audited actuals, or a projection?" — a vendor saying "it's on track to do $X" is not the same as two years of verified accounts. Walk away from projected-only listings.</span><span class="zh"><b>卖家总是拿预测收入说事。</b>务必问清楚："这是经审计的实际收入，还是预测？"——卖家说"预计能做到$X"和两年经核实账目完全不是一回事。拒绝只有预测数据的物业。</span></li>
+<li><span class="en"><b>Multiplier is negotiable — especially when metrics are mixed.</b> If BC% is high (>75%) or contract is short (&lt;15yr), you have genuine grounds to push the multiple down. Brokers price for the best case; you buy for the realistic case.</span><span class="zh"><b>倍数是可以议价的——尤其是当指标参差不齐时。</b>如果BC%偏高（&gt;75%）或合同偏短（&lt;15年），你有实质理由压低倍数。经纪人按最好情况定价；你按现实情况购买。</span></li>
+<li><span class="en"><b>Watch for "lifestyle premium" pricing.</b> Coastal holiday complexes often carry a premium that pure numbers don't justify. It's fine if you want to live there — but don't confuse lifestyle with investment merit.</span><span class="zh"><b>警惕"生活方式溢价"定价。</b>沿海度假综合体往往有纯数字无法支撑的溢价。如果你想住在那里，完全没问题——但别把生活方式和投资价值混为一谈。</span></li>
+<li><span class="en"><b>Letting pool numbers can drift.</b> A pool of 40 units sounds great — but if 8 have left in the past 12 months, the trajectory matters more than the snapshot. Ask for pool history, not just current count.</span><span class="zh"><b>出租池数量会变化。</b>40个单元的出租池听起来不错——但如果过去12个月有8个离开了，趋势比快照更重要。要求查看出租池历史，而不仅仅是当前数量。</span></li>
+</ul>
 
-function score(p){
-  var s=0;
-  var bc=p.bc_percent, ml=p.multiplier, cy=p.contract_years, ni=p.net_income;
-  if(bc!=null){s+=bc<=70?3:bc<=80?1:0;}
-  if(ml!=null){s+=ml<=6.5?3:ml<=7.5?1:0;}
-  if(cy!=null){s+=cy>=15?2:cy>=10?1:0;}
-  if(ni!=null){s+=ni>=150000?2:ni>=100000?1:0;}
-  return s;
-}
+<h3>⚠️ <span class="en">Things That Caught People Off Guard</span><span class="zh">让人措手不及的事</span></h3>
+<ul>
+<li><span class="en"><b>The BC can be your biggest risk.</b> If you don't get along with the committee, they can make your life difficult: refuse top-ups, give you bad reviews to unit owners, or push to terminate for minor breaches. Culture fit matters as much as financials.</span><span class="zh"><b>BC可以是你最大的风险。</b>如果你与委员会关系不好，他们可以让你日子难过：拒绝续约、向单元业主给你差评，或以小违规为由推动终止合同。文化契合和财务指标同样重要。</span></li>
+<li><span class="en"><b>Capital works levies can destroy short-term cash flow.</b> If the building has deferred maintenance (old lifts, roof issues, pool resurfacing), the BC can vote a special levy. You don't pay it — but owners do, and unhappy owners leave your letting pool.</span><span class="zh"><b>资本维修征费会破坏短期现金流。</b>如果楼栋有积压维护（旧电梯、屋顶问题、泳池翻新），BC可以投票征收特别税。你不用交——但业主要交，不满意的业主会退出你的出租池。</span></li>
+<li><span class="en"><b>Vacancy is contagious.</b> One empty unit doesn't hurt much; five empty units in a holiday complex during the off-season can make your commissions drop 30–40% in a quarter. Holiday PMR needs a cash buffer of at least 3 months of living expenses.</span><span class="zh"><b>空置具有连锁效应。</b>一个空置单元影响不大；度假综合体淡季五个空置单元可能让你的佣金一个季度下降30–40%。度假PMR至少需要3个月生活费的现金储备。</span></li>
+<li><span class="en"><b>"I wish I'd met the outgoing manager earlier."</b> Sitting down with the seller for a full handover (reservation system, maintenance contacts, quirky residents, BC dynamics) is invaluable — negotiate for a 1–2 week handover period in your contract.</span><span class="zh"><b>"我希望能早点与前任经营者见面。"</b>与卖家坐下来进行完整的交接（预订系统、维护联系人、特殊住户情况、BC动态）非常宝贵——在合同中争取1–2周的交接期。</span></li>
+</ul>
 
-function sorted(data){
-  var d=data.slice();
-  if(curSort==='best') return d.sort(function(a,b){return score(b)-score(a);});
-  if(curSort==='ni')   return d.sort(function(a,b){return (b.net_income||0)-(a.net_income||0);});
-  if(curSort==='roi')  return d.sort(function(a,b){return (a.multiplier||999)-(b.multiplier||999);});
-  if(curSort==='price')return d.sort(function(a,b){return (a.price||0)-(b.price||0);});
-  return d;
-}
+<div class="tip"><span class="en">💡 <b>Biggest consensus across operators:</b> Spend twice as long on the BC relationship and financials as you think you need to. The technical side of running a complex is learnable in weeks; undoing a bad deal or a hostile BC takes years.</span><span class="zh">💡 <b>从业者最大的共识：</b>在BC关系和财务核查上花两倍于你认为需要的时间。运营综合体的技术层面几周内就能学会；但要解开一笔糟糕的交易或扭转敌对的BC关系，可能需要好几年。</span></div>
 
-function tiered(data){
-  if(curTier==='t1') return data.filter(function(p){return (p.price||0)<1000000;});
-  if(curTier==='t2') return data.filter(function(p){var v=p.price||0;return v>=1000000&&v<1500000;});
-  if(curTier==='t3') return data.filter(function(p){return (p.price||0)>=1500000;});
-  return data;
-}
+<h2 id="g10"><span class="en">10. Licences, Certificates &amp; Documents</span><span class="zh">10. 牌照、证书与所需材料</span></h2>
+<p><span class="en">To legally operate a PMR business in Queensland, you need a <b>Resident Letting Agent (RLA) Licence</b> issued by the Office of Fair Trading (OFT). This is not optional — collecting rent without it is a criminal offence.</span><span class="zh">在昆士兰州合法经营PMR业务，你必须持有由公平交易办公室（OFT）颁发的<b>常驻出租中介（RLA）牌照</b>。这不是可选的——没有牌照收取租金是违法行为。</span></p>
 
-function col(k,v){
-  if(v==null||v===0||v==='') return 'n';
-  if(k==='bc_percent')           return v<=70?'g':v<=80?'y':'r';
-  if(k==='multiplier')           return v<=6.5?'g':v<=7.5?'y':'r';
-  if(k==='contract_years')       return v>=15?'g':v>=10?'y':'r';
-  if(k==='net_income')           return v>=150000?'g':v>=100000?'y':'r';
-  if(k==='weekly_rent_per_unit') return (v>=60&&v<=85)?'g':((v>=40&&v<60)||(v>85&&v<=100))?'y':'r';
-  return 'n';
-}
+<h3><span class="en">Licence Required: Resident Letting Agent (RLA)</span><span class="zh">必需牌照：常驻出租中介（RLA）</span></h3>
+<table>
+<tr><th><span class="en">Item</span><span class="zh">事项</span></th><th><span class="en">Detail</span><span class="zh">详情</span></th></tr>
+<tr><td><span class="en">Issuing body</span><span class="zh">发证机构</span></td><td><span class="en">Office of Fair Trading QLD (OFT)</span><span class="zh">昆士兰州公平交易办公室（OFT）</span></td></tr>
+<tr><td><span class="en">Governing law</span><span class="zh">依据法律</span></td><td><span class="en">Property Occupations Act 2014 (QLD)</span><span class="zh">2014年房产职业法（昆士兰）</span></td></tr>
+<tr><td><span class="en">Training required</span><span class="zh">培训要求</span></td><td><span class="en">7 competency modules (approx. 2 days full-time or self-paced online)</span><span class="zh">7个能力模块（约2天全职或自定进度线上）</span></td></tr>
+<tr><td><span class="en">Cost of training</span><span class="zh">培训费用</span></td><td>~$700</td></tr>
+<tr><td><span class="en">Application form</span><span class="zh">申请表格</span></td><td><span class="en">PAMD 1-1 (download from fairtrading.qld.gov.au)</span><span class="zh">PAMD 1-1（从公平交易网站下载）</span></td></tr>
+<tr><td><span class="en">Processing time</span><span class="zh">审批时间</span></td><td><span class="en">~4–6 weeks (includes criminal history check)</span><span class="zh">约4–6周（含刑事背景调查）</span></td></tr>
+<tr><td><span class="en">Licence scope</span><span class="zh">牌照范围</span></td><td><span class="en">Attached to specific building — not transferable to another complex</span><span class="zh">附属于特定楼栋——不可转移至其他综合体</span></td></tr>
+<tr><td><span class="en">Renewal</span><span class="zh">续期</span></td><td><span class="en">Annual renewal required via OFT</span><span class="zh">每年通过OFT续期</span></td></tr>
+</table>
 
-function fmt(k,v){
-  if(v==null||v===''||v===0) return '—';
-  if(k==='price'||k==='net_income') return '$'+Number(v).toLocaleString('en-AU');
-  if(k==='bc_percent')           return v.toFixed(1)+'%';
-  if(k==='multiplier')           return v.toFixed(2)+'x';
-  if(k==='contract_years')       return v+'yr';
-  if(k==='pool_units')           return String(v);
-  if(k==='weekly_rent_per_unit') return '$'+v+'/wk';
-  return String(v);
-}
+<div class="warn"><span class="en">⚠️ Apply for your RLA licence <b>before settlement</b> — it takes 4–6 weeks and you cannot collect rent or operate the letting pool without it. Factor this into your settlement timeline.</span><span class="zh">⚠️ 在<b>交割前</b>申请RLA牌照——审批需要4–6周，没有牌照你无法收取租金或运营出租池。将此纳入你的交割时间规划。</span></div>
 
-function badge(i){
-  if(i===0) return '<span class="rank r1">#1</span>';
-  if(i===1) return '<span class="rank r2">#2</span>';
-  if(i===2) return '<span class="rank r3">#3</span>';
-  return '<span class="rank rn">#'+(i+1)+'</span>';
-}
+<h3><span class="en">Training Providers (QLD)</span><span class="zh">培训机构（昆士兰）</span></h3>
+<table>
+<tr><th><span class="en">Provider</span><span class="zh">机构</span></th><th><span class="en">Contact</span><span class="zh">联系方式</span></th><th><span class="en">Format</span><span class="zh">形式</span></th></tr>
+<tr><td><b>REIQ</b> (Brisbane / GC / SC / NQ)</td><td>reiq.com.au</td><td><span class="en">In-person + online</span><span class="zh">线下+线上</span></td></tr>
+<tr><td><b>Complete Property Training</b></td><td>completepropertytraining.com.au · 1300 281 289</td><td><span class="en">In-person</span><span class="zh">线下</span></td></tr>
+<tr><td><b>Property Training QLD</b></td><td>propertytraining.com.au · 1800 080 349</td><td><span class="en">Online/correspondence</span><span class="zh">线上/函授</span></td></tr>
+<tr><td><b>Entry Education</b></td><td>entryeducation.edu.au</td><td><span class="en">Online self-paced</span><span class="zh">线上自定进度</span></td></tr>
+</table>
 
-function renderListings(){
-  var list=tiered(sorted(allData));
-  if(!list.length){
-    document.getElementById('listings-container').innerHTML='<div class="loader">No listings found.</div>';
-    return;
-  }
-  var h='<div class="grid">';
-  list.forEach(function(p,i){
-    var idx=allData.indexOf(p);
-    var title=p.title||p.name||'PMR Listing';
-    var url=p.url||p.link||'';
-    var loc=p.location||'';
-    var notes=p.notes||'';
-    h+='<div class="card" onclick="openModal('+idx+','+i+')">';
-    h+='<div class="card-header"><div><div class="card-title">'+escHtml(title)+'</div>';
-    if(loc) h+='<div class="card-loc">&#128205; '+escHtml(loc)+'</div>';
-    h+='</div>'+badge(i)+'</div>';
-    h+='<div class="metrics">';
-    h+=metricCell('Price','price',p.price);
-    h+=metricCell('Net Income','net_income',p.net_income);
-    h+=metricCell('Multiplier','multiplier',p.multiplier);
-    h+=metricCell('BC%','bc_percent',p.bc_percent);
-    h+=metricCell('Contract','contract_years',p.contract_years);
-    h+=metricCell('Pool Units','pool_units',p.pool_units);
-    h+='</div>';
-    h+='<div class="card-footer"><div class="notes">'+escHtml(notes)+'</div>';
-    if(url) h+='<a class="card-link" href="'+url+'" target="_blank" rel="noopener" onclick="event.stopPropagation()">View &#8594;</a>';
-    h+='</div></div>';
-  });
-  h+='</div>';
-  document.getElementById('listings-container').innerHTML=h;
-}
+<h3><span class="en">Optional but Recommended Qualifications</span><span class="zh">可选但推荐的资质</span></h3>
+<table>
+<tr><th><span class="en">Qualification</span><span class="zh">资质</span></th><th><span class="en">Why Useful</span><span class="zh">为什么有用</span></th></tr>
+<tr><td><b>Cert IV Real Estate Practice</b></td><td><span class="en">Upgrades to full Real Estate Agent licence — opens up off-site property management</span><span class="zh">升级为完整房产中介牌照——可开展非现场物业管理</span></td></tr>
+<tr><td><b>First Aid Certificate</b></td><td><span class="en">Near-mandatory for pool/gym complexes; BC may require it</span><span class="zh">泳池/健身房综合体几乎必备；BC可能要求</span></td></tr>
+<tr><td><b>Pool Safety Inspector</b></td><td><span class="en">Useful if managing pool compliance in-house</span><span class="zh">如自行管理泳池合规检查则有用</span></td></tr>
+<tr><td><b>White Card (Construction Induction)</b></td><td><span class="en">Required if supervising any maintenance/trades on-site</span><span class="zh">如现场监督维修工程则需要</span></td></tr>
+<tr><td><b>RSA (Responsible Service of Alcohol)</b></td><td><span class="en">Required if complex has a bar or licenced function area</span><span class="zh">如综合体有吧台或持牌功能区则需要</span></td></tr>
+</table>
 
-function metricCell(label,key,val){
-  return '<div class="metric"><div class="metric-label">'+label+'</div><div class="metric-value '+col(key,val)+'">'+fmt(key,val)+'</div></div>';
-}
+<h3><span class="en">Documents Required at Purchase</span><span class="zh">购买时所需文件</span></h3>
+<p><span class="en">Your solicitor and accountant will collect most of these — but knowing what to expect prevents delays at settlement.</span><span class="zh">你的律师和会计师会收集大部分这些文件——但提前了解能避免交割时的延误。</span></p>
 
-function escHtml(s){
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
+<h3><span class="en">From the Vendor (Seller)</span><span class="zh">来自卖方</span></h3>
+<ul>
+<li><span class="en">☐ Information Memorandum (IM) from broker</span><span class="zh">☐ 经纪人提供的信息备忘录（IM）</span></li>
+<li><span class="en">☐ Last 2–3 years of audited profit &amp; loss statements</span><span class="zh">☐ 过去2–3年经审计的损益表</span></li>
+<li><span class="en">☐ Last 2 years of trust account bank statements</span><span class="zh">☐ 过去2年信托账户银行对账单</span></li>
+<li><span class="en">☐ Current letting pool schedule (list of all managed units + owner names)</span><span class="zh">☐ 当前出租池明细（所有管理单元及业主名单）</span></li>
+<li><span class="en">☐ Copies of all current letting agreements (signed)</span><span class="zh">☐ 所有当前出租协议的副本（已签署）</span></li>
+<li><span class="en">☐ Management agreement (caretaking agreement with BC)</span><span class="zh">☐ 管理协议（与BC的物业管理协议）</span></li>
+<li><span class="en">☐ Letting agreement (the agreement governing your letting rights)</span><span class="zh">☐ 出租协议（管理你出租权利的协议）</span></li>
+<li><span class="en">☐ Confirmation of remaining contract term</span><span class="zh">☐ 合同剩余年限确认书</span></li>
+<li><span class="en">☐ Last 2 years of BC meeting minutes and financials</span><span class="zh">☐ 过去2年BC会议记录及财务报告</span></li>
+<li><span class="en">☐ Schedule of BC levies (admin + sinking fund)</span><span class="zh">☐ BC征费明细（行政费+维修基金）</span></li>
+<li><span class="en">☐ List of approved contractors / maintenance suppliers</span><span class="zh">☐ 已批准承包商/维护供应商名单</span></li>
+</ul>
 
-function openModal(idx,rank){
-  var p=allData[idx];
-  var url=p.url||p.link||'';
-  document.getElementById('m-title').textContent=p.title||p.name||'PMR Listing';
-  document.getElementById('m-sub').textContent=(p.location||url||'');
-  var keys=[
-    {label:'Price',key:'price'},{label:'Net Income',key:'net_income'},
-    {label:'Multiplier',key:'multiplier'},{label:'BC%',key:'bc_percent'},
-    {label:'Contract',key:'contract_years'},{label:'Pool Units',key:'pool_units'},
-    {label:'Wk Rent/Unit',key:'weekly_rent_per_unit'}
-  ];
-  document.getElementById('m-metrics').innerHTML=keys.map(function(m){
-    return '<div class="modal-metric"><div class="modal-metric-label">'+m.label+'</div><div class="modal-metric-value '+col(m.key,p[m.key])+'">'+fmt(m.key,p[m.key])+'</div></div>';
-  }).join('');
-  document.getElementById('m-notes').textContent=p.notes||'No additional notes.';
-  document.getElementById('m-actions').innerHTML=url
-    ?'<a class="mbtn mbtn-p" href="'+url+'" target="_blank" rel="noopener">View Listing &#8594;</a><button class="mbtn mbtn-s" onclick="closeModal()">Close</button>'
-    :'<button class="mbtn mbtn-s" onclick="closeModal()">Close</button>';
-  document.getElementById('modal-bg').classList.add('open');
-}
+<h3><span class="en">From the Body Corporate</span><span class="zh">来自物业委员会（BC）</span></h3>
+<ul>
+<li><span class="en">☐ Consent to assignment of management rights (BC resolution)</span><span class="zh">☐ 管理权转让同意书（BC决议）</span></li>
+<li><span class="en">☐ BC certificate confirming no outstanding breaches</span><span class="zh">☐ 确认无未解决违规事项的BC证书</span></li>
+<li><span class="en">☐ Sinking fund forecast report</span><span class="zh">☐ 维修基金预测报告</span></li>
+<li><span class="en">☐ Building &amp; contents insurance certificates</span><span class="zh">☐ 楼栋及财产保险证书</span></li>
+</ul>
 
-function closeModal(){ document.getElementById('modal-bg').classList.remove('open'); }
-function bgClose(e){ if(e.target===document.getElementById('modal-bg')) closeModal(); }
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+<h3><span class="en">From the Office of Fair Trading</span><span class="zh">来自公平交易办公室（OFT）</span></h3>
+<ul>
+<li><span class="en">☐ Approved RLA Licence (your name, attached to this complex)</span><span class="zh">☐ 已批准的RLA牌照（你的名字，附属于该综合体）</span></li>
+<li><span class="en">☐ If applicable: company trust account setup documentation</span><span class="zh">☐ 如适用：公司信托账户设置文件</span></li>
+</ul>
 
-function setSort(s,btn){
-  curSort=s;
-  document.querySelectorAll('#sort-group .ctrl-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  renderListings();
-}
+<h3><span class="en">Finance Documents (if borrowing)</span><span class="zh">融资文件（如需贷款）</span></h3>
+<ul>
+<li><span class="en">☐ Formal loan approval letter from lender</span><span class="zh">☐ 贷款机构出具的正式贷款批准函</span></li>
+<li><span class="en">☐ Business valuation report (lender will require this for the MR business component)</span><span class="zh">☐ 业务估值报告（贷款机构对MR业务部分的要求）</span></li>
+<li><span class="en">☐ If buying MR+Unit: separate residential loan approval for unit</span><span class="zh">☐ 如购买MR+公寓：公寓的独立住宅贷款批准</span></li>
+</ul>
 
-function setTier(t,btn){
-  curTier=t;
-  document.querySelectorAll('#tier-group .ctrl-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  renderListings();
-}
+<div class="tip"><span class="en">💡 <b>Timeline tip:</b> Allow 90–120 days from signing to settlement for PMR. The BC consent vote, OFT licence processing, and finance approval all take time and cannot happen in parallel. Work backward from your target settlement date to ensure nothing holds you up.</span><span class="zh">💡 <b>时间线建议：</b>PMR从签约到交割预留90–120天。BC同意投票、OFT牌照审批和融资批准都需要时间，且不能并行处理。从你的目标交割日期倒推，确保没有任何环节拖慢进度。</span></div>
 
-function switchTab(name){
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
-  document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active');});
-  document.getElementById('tab-btn-'+name).classList.add('active');
-  document.getElementById('tab-'+name).classList.add('active');
-}
-
-var dark=true;
-function toggleTheme(){
-  dark=!dark;
-  var r=document.documentElement;
-  if(dark){
-    r.style.setProperty('--bg','#0f1117');r.style.setProperty('--surface','#181c24');
-    r.style.setProperty('--surface2','#1e2330');r.style.setProperty('--border','#2a2f3d');
-    r.style.setProperty('--text','#e2e6f0');r.style.setProperty('--muted','#8891a8');
-    document.querySelector('.theme-btn').textContent='☀ Light';
-  }else{
-    r.style.setProperty('--bg','#f5f6fa');r.style.setProperty('--surface','#ffffff');
-    r.style.setProperty('--surface2','#f0f1f5');r.style.setProperty('--border','#e0e2ea');
-    r.style.setProperty('--text','#1a1d2e');r.style.setProperty('--muted','#5c6080');
-    document.querySelector('.theme-btn').textContent='🌙 Dark';
-  }
-}
-
-loadData();
-</script>
-</body>
-</html>
+</div>
+</div><script>
+(function(){var allData=[],curSort='mult',curTier='all',curRegion='all',watchlist=JSON.parse(localStorage.getItem('pmr_wl')||'[]'),isZH=false;document.addEventListener('DOMContentLoaded',function(){loadData();bindPills();});function loadData(){fetch('pmr-data-latest.json?t='+Date.now()).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(data){allData=Array.isArray(data)?data:(data.listings||data.data||[]);var dt=document.getElementById('dt');if(dt)dt.textContent=new Date().toLocaleDateString('en-AU');var fr=document.getElementById('freshness');if(fr)fr.textContent=allData.length+' listings';buildRegionPills();render();}).catch(function(e){document.getElementById('ta').innerHTML='<div style="padding:60px;text-align:center;color:#dc4646">Cannot load pmr-data-latest.json<br><small>'+e.message+'</small></div>';});}function buildRegionPills(){var bar=document.getElementById('rf-bar');if(!bar)return;var regions=['all'];allData.forEach(function(p){var r=(p.location||'').split(',')[0].trim();if(r&&!regions.includes(r))regions.push(r);});bar.innerHTML='<span class="fbar-label en">Location</span><span class="fbar-label zh">地区</span>'+regions.map(function(r,i){return'<button class="pill'+(i===0?' ac':'')+'" data-region="'+r+'">'+(r==='all'?'<span class="en">All</span><span class="zh">全部</span>':r)+'</button>';}).join('');bar.querySelectorAll('[data-region]').forEach(function(b){b.addEventListener('click',function(){curRegion=this.dataset.region;bar.querySelectorAll('[data-region]').forEach(function(x){x.classList.remove('ac');});this.classList.add('ac');render();});});}function bindPills(){document.querySelectorAll('[data-sort]').forEach(function(b){b.addEventListener('click',function(){curSort=this.dataset.sort;document.querySelectorAll('[data-sort]').forEach(function(x){x.classList.remove('ac');});this.classList.add('ac');render();});});document.querySelectorAll('[data-tier]').forEach(function(b){b.addEventListener('click',function(){curTier=this.dataset.tier;document.querySelectorAll('[data-tier]').forEach(function(x){x.classList.remove('ac');});this.classList.add('ac');render();});});}function getF(){var d=allData.slice();if(curRegion!=='all')d=d.filter(function(p){return(p.location||'').includes(curRegion);});if(curTier!=='all')d=d.filter(function(p){var pr=p.price||0;return curTier==='t1'?pr>0&&pr<1e6:curTier==='t2'?pr>=1e6&&pr<1.5e6:pr>=1.5e6;});return d.sort(function(a,b){return curSort==='mult'?(a.multiplier||999)-(b.multiplier||999):curSort==='ni'?(b.net_income||0)-(a.net_income||0):curSort==='roi'?roi(b)-roi(a):(a.price||0)-(b.price||0);});}function roi(p){return p.price&&p.net_income?p.net_income/p.price*100:0;}function cl(k,v){if(!v)return'';if(k==='bc')return v<=70?'g':v<=80?'y':'r';if(k==='mult')return v<=5?'g':v<=7?'y':'r';if(k==='cont')return v>=20?'g':v>=10?'y':'r';if(k==='ni')return v>=150000?'g':v>=80000?'y':'r';if(k==='pool')return v>=30?'g':v>=15?'y':'r';return'';}function fm(k,v){if(v==null)return'—';if(k==='price'||k==='ni')return v?'$'+Number(v).toLocaleString('en-AU'):'—';if(k==='bc')return v.toFixed(1)+'%';if(k==='mult')return v.toFixed(2)+'x';if(k==='cont')return v+'yr';return String(v);}function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}function mc(l,v,c){return'<div class="mc'+(c?' '+c:'')+'"><div class="v '+(c||'')+'">'+v+'</div><div class="l">'+l+'</div></div>';}function render(){renderCards();renderWL();}function renderCards(){var ta=document.getElementById('ta');var list=getF();if(!list.length){ta.innerHTML='<div style="padding:60px;text-align:center;color:var(--t2)">No listings match filters.</div>';return;}var cards=list.map(function(p,i){var idx=allData.indexOf(p),url=p.url||p.link||'',inWL=watchlist.includes(idx),rk=i<2?'g':i<4?'y':'d';return'<div class="card"><div class="card-h"><span class="rk '+rk+'">'+(i+1)+'</span><span class="nm">'+esc(p.title||p.name||'PMR')+(p.location?' <span style="font-size:11px;font-weight:400;color:var(--t2)">· '+esc(p.location)+'</span>':'')+'</span><button class="star'+(inWL?' on':'')+'" onclick="toggleWL('+idx+',this)">★</button></div><div class="mg">'+mc('PRICE',fm('price',p.price),cl('price',p.price))+mc('NI',fm('ni',p.net_income),cl('ni',p.net_income))+mc('BC%',fm('bc',p.bc_percent),cl('bc',p.bc_percent))+mc('MULT',fm('mult',p.multiplier),cl('mult',p.multiplier))+mc('CONT',fm('cont',p.contract_years),cl('cont',p.contract_years))+mc('POOL',fm('pool',p.pool_units),cl('pool',p.pool_units))+'</div>'+(p.notes?'<div class="cn-notes">'+esc(p.notes)+'</div>':'')+(url?'<div style="margin-top:8px"><a href="'+esc(url)+'" target="_blank" class="lk" style="font-size:12px;color:var(--ac)">View listing →</a></div>':'')+'</div>';}).join('');var tbl='<div class="tw mobile-hide"><table class="t"><thead><tr><th style="text-align:left">#</th><th style="text-align:left">Name</th><th>Price</th><th>NI</th><th>BC%</th><th>Mult</th><th>Cont</th><th>Pool</th><th>ROI</th></tr></thead><tbody>'+list.map(function(p,i){var r=roi(p),url=p.url||p.link||'';return'<tr onclick="'+(url?'window.open(''+esc(url)+'','_blank')':'')+'" style="cursor:pointer"><td style="text-align:left;color:var(--t2)">'+(i+1)+'</td><td style="text-align:left">'+esc(p.title||p.name||'PMR')+'</td><td class="'+cl('price',p.price)+'">'+fm('price',p.price)+'</td><td class="'+cl('ni',p.net_income)+'">'+fm('ni',p.net_income)+'</td><td class="'+cl('bc',p.bc_percent)+'">'+fm('bc',p.bc_percent)+'</td><td class="'+cl('mult',p.multiplier)+'">'+fm('mult',p.multiplier)+'</td><td class="cont-'+cl('cont',p.contract_years)+'">'+fm('cont',p.contract_years)+'</td><td class="'+cl('pool',p.pool_units)+'">'+fm('pool',p.pool_units)+'</td><td>'+(r?r.toFixed(1)+'%':'—')+'</td></tr>';}).join('')+'</tbody></table></div>';ta.innerHTML=tbl+'<div class="mobile-cards">'+cards+'</div>';}function renderWL(){var tw=document.getElementById('tw'),cnt=document.getElementById('wl-cnt');if(cnt){cnt.textContent=watchlist.length;cnt.style.display=watchlist.length?'inline-block':'none';}if(!tw)return;if(!watchlist.length){tw.innerHTML='<div style="padding:60px;text-align:center;color:var(--t2)">No saved listings. Click ★ to save.</div>';return;}tw.innerHTML='<div>'+watchlist.map(function(idx){var p=allData[idx];if(!p)return'';var url=p.url||p.link||'';return'<div class="card"><div class="card-h"><span class="nm">'+esc(p.title||p.name||'PMR')+'</span><button class="star on" onclick="toggleWL('+idx+',this)">★</button></div><div class="mg">'+mc('PRICE',fm('price',p.price),cl('price',p.price))+mc('NI',fm('ni',p.net_income),cl('ni',p.net_income))+mc('BC%',fm('bc',p.bc_percent),cl('bc',p.bc_percent))+mc('MULT',fm('mult',p.multiplier),cl('mult',p.multiplier))+mc('CONT',fm('cont',p.contract_years),cl('cont',p.contract_years))+mc('POOL',fm('pool',p.pool_units),cl('pool',p.pool_units))+'</div>'+(url?'<div style="margin-top:8px"><a href="'+esc(url)+'" target="_blank" class="lk" style="font-size:12px;color:var(--ac)">View listing →</a></div>':'')+'</div>';}).join('')+'</div>';}window.sw=function(id){document.querySelectorAll('.tp').forEach(function(e){e.classList.remove('ac');});document.querySelectorAll('.ti').forEach(function(e){e.classList.remove('ac');});var p=document.getElementById(id);if(p)p.classList.add('ac');var map={ta:0,t4:1,tw:2},tabs=document.querySelectorAll('.ti');if(map[id]!=null&&tabs[map[id]])tabs[map[id]].classList.add('ac');};window.tog=function(){isZH=!isZH;document.body.classList.toggle('cn',isZH);var b=document.querySelector('.lb');if(b)b.textContent=isZH?'EN':'中文';};window.toggleWL=function(idx,btn){var i=watchlist.indexOf(idx);if(i===-1)watchlist.push(idx);else watchlist.splice(i,1);localStorage.setItem('pmr_wl',JSON.stringify(watchlist));if(btn)btn.classList.toggle('on',watchlist.includes(idx));renderWL();};})();
+</script></body></html>
