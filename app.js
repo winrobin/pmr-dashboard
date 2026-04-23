@@ -6,22 +6,6 @@
   let isZH = false;
   let watchlist = JSON.parse(localStorage.getItem('pmr_wl') || '[]');
 
-  
-  const REGION_MAP = {
-    'Broadbeach': 'Gold Coast',
-    'Southport': 'Gold Coast',
-    'Mudgeeraba': 'Gold Coast',
-    'QLD': 'Queensland',
-    'Brisbane': 'Brisbane',
-    'Cairns': 'Cairns',
-    'Townsville': 'Townsville',
-    'Hervey Bay': 'Hervey Bay',
-    'Sunshine Coast': 'Sunshine Coast'
-  };
-  function normalizeRegion(r) {
-    return REGION_MAP[r] || r;
-  }
-
   function loadData() {
     fetch('pmr-data-latest.json?t=' + Date.now())
       .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
@@ -70,6 +54,7 @@
       });
     });
   }
+
   function bindPills() {
     document.querySelectorAll('[data-sort]').forEach(b => {
       b.addEventListener('click', function () {
@@ -109,7 +94,6 @@
         const roiB = (b.net_income && b.price && b.price > 0) ? (b.net_income / b.price) : 0;
         return roiB - roiA;
       }
-      if (curSort === 'roi') return roi(b) - roi(a);
       return (a.price || 0) - (b.price || 0);
     });
   }
@@ -156,7 +140,17 @@
       const url = p.url || p.link || '';
       const inWL = watchlist.includes(idx);
       const rk = i < 2 ? 'g' : i < 4 ? 'y' : 'd';
-      cards += '<div class="card"><div class="card-h"><span class="rk ' + rk + '">' + (i + 1) + '</span><span class="nm">' + esc(p.title || p.name || 'PMR') + (p.location ? ' <span style="font-size:11px;font-weight:400;color:var(--t2)">· ' + esc(p.location) + '</span>' : '') + '</span><button class="star' + (inWL ? ' on' : '') + '" onclick="toggleWL(' + idx + ',this)">★</button></div><div class="mg">' + mc('PRICE', fm('price', p.price), cl('price', p.price)) + mc('NI', fm('ni', p.net_income), cl('ni', p.net_income)) + mc('BC%', fm('bc', p.bc_percent), cl('bc', p.bc_percent)) + mc('MULT', fm('mult', p.multiplier), cl('mult', p.multiplier)) + mc('CONT', fm('cont', p.contract_years), cl('cont', p.contract_years)) + mc('POOL', fm('pool', p.pool_units), cl('pool', p.pool_units)) + '</div>' + (p.notes ? '<div class="cn-notes">' + esc(p.notes) + '</div>' : '') + (url ? '<div style="margin-top:8px"><a href="' + esc(url) + '" target="_blank" class="lk" style="font-size:12px;color:var(--ac)">View listing →</a></div>' : '') + '</div>';
+
+      let fetchDate = new Date();
+      if (p.last_fetched) fetchDate = new Date(p.last_fetched);
+      else if (p.last_updated) fetchDate = new Date(p.last_updated);
+
+      const isNew = ((Date.now() - fetchDate.getTime()) / 86400000) <= 3;
+      const newBadge = isNew ? '<span style="background:#22c55e;color:white;font-size:10px;padding:2px 6px;border-radius:4px;font-weight:bold;margin-left:8px;vertical-align:middle;">NEW</span>' : '';
+
+      const locStr = p.location ? (' <span style="font-size:11px;font-weight:400;color:var(--t2)">· ' + esc(p.location) + '</span>') : '';
+
+      cards += '<div class="card"><div class="card-h"><span class="rk ' + rk + '">' + (i + 1) + '</span><span class="nm">' + esc(p.title || p.name || 'PMR') + newBadge + locStr + '</span><button class="star' + (inWL ? ' on' : '') + '" onclick="toggleWL(' + idx + ',this)">★</button></div><div class="mg">' + mc('PRICE', fm('price', p.price), cl('price', p.price)) + mc('NI', fm('ni', p.net_income), cl('ni', p.net_income)) + mc('BC%', fm('bc', p.bc_percent), cl('bc', p.bc_percent)) + mc('MULT', fm('mult', p.multiplier), cl('mult', p.multiplier)) + mc('CONT', fm('cont', p.contract_years), cl('cont', p.contract_years)) + mc('POOL', fm('pool', p.pool_units), cl('pool', p.pool_units)) + '</div>' + (p.notes ? '<div class="cn-notes">' + esc(p.notes) + '</div>' : '') + (url ? '<div style="margin-top:8px"><a href="' + esc(url) + '" target="_blank" style="color:var(--a);text-decoration:none;font-size:13px" class="en">View listing &rarr;</a><a href="' + esc(url) + '" target="_blank" style="color:var(--a);text-decoration:none;font-size:13px" class="zh">查看房源 &rarr;</a></div>' : '') + '</div>';
     });
 
     let tbl = '<div class="tw mobile-hide"><table class="t"><thead><tr><th style="text-align:left">#</th><th style="text-align:left">Name</th><th>Price</th><th>NI</th><th>BC%</th><th>Mult</th><th>Cont</th><th>Pool</th><th>ROI</th></tr></thead><tbody>';
