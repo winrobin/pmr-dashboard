@@ -44,27 +44,21 @@
   function buildRegions() {
     const bar = document.getElementById('rf-bar');
     if (!bar) return;
+    const seen = new Set();
     const regions = ['all'];
     allData.forEach(p => {
-      
-      let r = p.location || p.region || p.address || '';
-      if (!r && p.title && p.title.includes(' QLD')) {
-        let parts = p.title.split(' ');
-        let qld_idx = parts.indexOf('QLD');
-        if (qld_idx > 0) {
-            r = parts.slice(Math.max(0, qld_idx - 2), qld_idx + 1).join(' ');
-        }
-      }
-      r = r.split(',')[0].trim();
-      
-      // 清理一下常见的垃圾词
-      r = r.replace('Caretaking Only ', '').replace('Management Rights ', '').trim();
-
-      if (r && !regions.includes(r)) regions.push(r);
+      const raw = p.region || p.location || '';
+      const r = normalizeRegion(raw.split(',')[0].trim());
+      if (r && !seen.has(r)) { seen.add(r); regions.push(r); }
+    });
+    regions.sort((a, b) => {
+      if (a === 'all') return -1;
+      if (b === 'all') return 1;
+      return a.localeCompare(b);
     });
     let html = '<span class="fbar-label en">Location</span><span class="fbar-label zh">地区</span>';
     regions.forEach((r, i) => {
-      html += '<button class="pill' + (i === 0 ? ' ac' : '') + '" data-region="' + r + '">' + (r === 'all' ? '<span class="en">All</span><span class="zh">全部</span>' : r) + '</button>';
+      html += '<button class="pill' + (r === curRegion ? ' ac' : '') + '" data-region="' + r + '">' + (r === 'all' ? '<span class="en">All</span><span class="zh">全部</span>' : r) + '</button>';
     });
     bar.innerHTML = html;
     bar.querySelectorAll('[data-region]').forEach(b => {
@@ -76,7 +70,6 @@
       });
     });
   }
-
   function bindPills() {
     document.querySelectorAll('[data-sort]').forEach(b => {
       b.addEventListener('click', function () {
@@ -98,7 +91,10 @@
 
   function getF() {
     let d = allData.slice();
-    if (curRegion !== 'all') d = d.filter(p => (p.location || '').includes(curRegion));
+    if (curRegion !== 'all') d = d.filter(p => {
+      const raw = p.region || p.location || '';
+      return normalizeRegion(raw) === curRegion;
+    });
     if (curTier !== 'all') d = d.filter(p => {
       const pr = p.price || 0;
       if (curTier === 't1') return pr > 0 && pr < 1e6;
