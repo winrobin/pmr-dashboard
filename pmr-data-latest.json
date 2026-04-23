@@ -1,6 +1,6 @@
 [
   {
-    "id": "accomproperties-com-au-03459",
+    "id": "accomproperties-com-au-28349",
     "name": "Trinity Beach",
     "region": "SA",
     "price": 2275000,
@@ -16,11 +16,11 @@
     "notes": "BC 16.5% healthy. 4.81x — excellent value. 23yr contract — very secure. 28 pool units — good diversification. 20.8% ROI — strong return.",
     "risks": "",
     "action": "",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:14:19.261829"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:06:51.480769"
   },
   {
-    "id": "accomproperties-com-au-69889",
+    "id": "accomproperties-com-au-58724",
     "name": "Cairns City",
     "region": "Cairns",
     "price": 2330000,
@@ -36,11 +36,11 @@
     "notes": "BC 28.5% healthy. 5.49x — fair. 22yr contract — very secure. 29 pool units — good diversification. 18.2% ROI — strong return.",
     "risks": "",
     "action": "",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:13:57.917516"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:06:27.575278"
   },
   {
-    "id": "accomproperties-com-au-95365",
+    "id": "accomproperties-com-au-60466",
     "name": "Main Beach",
     "region": "SA",
     "price": 375000,
@@ -56,11 +56,31 @@
     "notes": "BC 27.5% healthy. 4.01x — excellent value. 25yr contract — very secure. 24.9% ROI — strong return.",
     "risks": "Only 8 pool units — small income base.",
     "action": "",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:14:31.332184"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:07:06.421376"
   },
   {
-    "id": "resortbrokers-com-au-74399",
+    "id": "resortbrokers-com-au-40371",
+    "name": "Ferny Grove QLD",
+    "region": "QLD",
+    "price": 1267025,
+    "net_income": 253405,
+    "multiplier": 5.0,
+    "bc_percent": null,
+    "contract_years": null,
+    "pool_units": 25,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://www.resortbrokers.com.au/management-rights-for-sale/queensland/ferny-grove/OTP009171/",
+    "source": "resortbrokers.com.au",
+    "notes": "5.0x — excellent value. 25 pool units — good diversification. 20.0% ROI — strong return.",
+    "risks": "",
+    "action": "Request BC salary breakdown. Confirm contract term remaining.",
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:07:21.034823"
+  },
+  {
+    "id": "resortbrokers-com-au-43138",
     "name": "Townsville City QLD",
     "region": "Townsville",
     "price": 735000,
@@ -76,11 +96,11 @@
     "notes": "3.9x — excellent value. 20yr contract — very secure. 25.6% ROI — strong return.",
     "risks": "Only 8 pool units — small income base.",
     "action": "Request BC salary breakdown.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:15:15.763324"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:07:56.459609"
   },
   {
-    "id": "resortbrokers-com-au-92121",
+    "id": "resortbrokers-com-au-21781",
     "name": "Victoria Point QLD",
     "region": "QLD",
     "price": 824764,
@@ -96,11 +116,11 @@
     "notes": "BC 25.4% healthy. 5.3x — fair. 23yr contract — very secure. 155 pool units — good diversification. 18.9% ROI — strong return.",
     "risks": "",
     "action": "",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:15:54.901751"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:36.541342"
   },
   {
-    "id": "resortbrokers-com-au-11879",
+    "id": "resortbrokers-com-au-04318",
     "name": "Kings Beach QLD",
     "region": "QLD",
     "price": 550000,
@@ -116,11 +136,11 @@
     "notes": "BC 54.2% healthy. 4.66x — excellent value. 21.5% ROI — strong return.",
     "risks": "",
     "action": "Verify pool unit schedule. Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:15:59.311624"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:40.937289"
   },
   {
-    "id": "theonsitemanager-com-au-36231",
+    "id": "theonsitemanager-com-au-23902",
     "name": "Griffin QLD",
     "region": "Brisbane",
     "price": 1848000,
@@ -136,31 +156,11 @@
     "notes": "BC 54.3% healthy. 6.0x — fair. 56 pool units — good diversification. 16.7% ROI — strong return.",
     "risks": "",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.504106"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.286318"
   },
   {
-    "id": "theonsitemanager-com-au-50209",
-    "name": "Kallangur QLD",
-    "region": "Brisbane",
-    "price": 440000,
-    "net_income": 106783,
-    "multiplier": 4.12,
-    "bc_percent": 37.7,
-    "contract_years": null,
-    "pool_units": 27,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.TheOnsiteManager.com.au/permanent-management-rights/Kallangur-QLD-21167318",
-    "source": "theonsitemanager.com.au",
-    "notes": "BC 37.7% healthy. 4.12x — excellent value. 27 pool units — good diversification. 24.3% ROI — strong return.",
-    "risks": "",
-    "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.555886"
-  },
-  {
-    "id": "theonsitemanager-com-au-23020",
+    "id": "theonsitemanager-com-au-94610",
     "name": "Agnes Water QLD",
     "region": "QLD",
     "price": 2400000,
@@ -176,11 +176,11 @@
     "notes": "BC 27.5% healthy. 4.58x — excellent value. 43 pool units — good diversification. 21.8% ROI — strong return.",
     "risks": "",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.598077"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.376173"
   },
   {
-    "id": "resortbrokers-com-au-93433",
+    "id": "resortbrokers-com-au-41492",
     "name": "Airlie Beach QLD",
     "region": "QLD",
     "price": 2195000,
@@ -196,11 +196,11 @@
     "notes": "BC 17.5% healthy. 5.56x — fair. 25yr contract — very secure. 16 pool units. 18.0% ROI — strong return.",
     "risks": "",
     "action": "",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:15:20.103447"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:00.953083"
   },
   {
-    "id": "theonsitemanager-com-au-93249",
+    "id": "theonsitemanager-com-au-91986",
     "name": "Carindale QLD",
     "region": "Brisbane",
     "price": 678000,
@@ -216,11 +216,11 @@
     "notes": "BC 64.5% healthy. 5.75x — fair. 12 pool units. 17.4% ROI — strong return.",
     "risks": "",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.475135"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.253532"
   },
   {
-    "id": "theonsitemanager-com-au-38152",
+    "id": "theonsitemanager-com-au-55282",
     "name": "Maroochydore QLD",
     "region": "Sunshine Coast",
     "price": 395000,
@@ -236,11 +236,11 @@
     "notes": "3.31x — excellent value. 13 pool units. 30.2% ROI — strong return.",
     "risks": "BC 77.1% — leaning caretaker.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.571598"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.344090"
   },
   {
-    "id": "resortbrokers-com-au-33111",
+    "id": "resortbrokers-com-au-51798",
     "name": "Brendale QLD",
     "region": "QLD",
     "price": 975000,
@@ -256,31 +256,11 @@
     "notes": "BC 39.7% healthy. 5.38x — fair. 180 pool units — good diversification. 18.6% ROI — strong return.",
     "risks": "",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:14:49.816466"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:07:29.793997"
   },
   {
-    "id": "resortbrokers-com-au-96893",
-    "name": "Morayfield QLD",
-    "region": "QLD",
-    "price": 975000,
-    "net_income": 181280,
-    "multiplier": 5.38,
-    "bc_percent": null,
-    "contract_years": null,
-    "pool_units": 104,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.resortbrokers.com.au/management-rights-for-sale/queensland/morayfield/MR009111/",
-    "source": "resortbrokers.com.au",
-    "notes": "5.38x — fair. 104 pool units — good diversification. 18.6% ROI — strong return.",
-    "risks": "",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:07.997606"
-  },
-  {
-    "id": "theonsitemanager-com-au-79238",
+    "id": "theonsitemanager-com-au-88283",
     "name": "Pimpama QLD",
     "region": "Gold Coast",
     "price": 1575700,
@@ -296,11 +276,11 @@
     "notes": "BC 28.9% healthy. 5.7x — fair. 62 pool units — good diversification. 17.5% ROI — strong return.",
     "risks": "",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.544844"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.330230"
   },
   {
-    "id": "theonsitemanager-com-au-59936",
+    "id": "theonsitemanager-com-au-27253",
     "name": "Cairns City QLD",
     "region": "Cairns",
     "price": 2330000,
@@ -316,11 +296,11 @@
     "notes": "BC 18.4% healthy. 5.49x — fair. 29 pool units — good diversification. 18.2% ROI — strong return.",
     "risks": "",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.614515"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.393119"
   },
   {
-    "id": "resortbrokers-com-au-85381",
+    "id": "resortbrokers-com-au-39434",
     "name": "Southport QLD",
     "region": "Southport",
     "price": 1300000,
@@ -336,17 +316,17 @@
     "notes": "5.65x — fair. 16 pool units. 17.7% ROI — strong return.",
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:15:37.504932"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:18.770840"
   },
   {
-    "id": "resortbrokers-com-au-75539",
+    "id": "resortbrokers-com-au-54757",
     "name": "Varsity Lakes QLD",
     "region": "QLD",
     "price": 3440000,
     "net_income": 464157,
     "multiplier": 7.41,
-    "bc_percent": 0.0,
+    "bc_percent": null,
     "contract_years": 21,
     "pool_units": 31,
     "weekly_rent_per_unit": null,
@@ -356,11 +336,11 @@
     "notes": "21yr contract — very secure. 31 pool units — good diversification. 13.5% ROI.",
     "risks": "7.41x — overpriced for this income.",
     "action": "Request BC salary breakdown.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:15:50.567193"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:32.050674"
   },
   {
-    "id": "theonsitemanager-com-au-61387",
+    "id": "theonsitemanager-com-au-17902",
     "name": "Burleigh Waters QLD",
     "region": "Gold Coast",
     "price": 3608000,
@@ -376,11 +356,11 @@
     "notes": "BC 57.1% healthy. 55 pool units — good diversification. 12.8% ROI.",
     "risks": "7.84x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.499297"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.281824"
   },
   {
-    "id": "theonsitemanager-com-au-26914",
+    "id": "theonsitemanager-com-au-06331",
     "name": "Hamilton QLD",
     "region": "Brisbane",
     "price": 7016000,
@@ -396,11 +376,31 @@
     "notes": "BC 67.9% healthy. 119 pool units — good diversification. 14.9% ROI.",
     "risks": "6.73x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.607880"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.386455"
   },
   {
-    "id": "resortbrokers-com-au-37370",
+    "id": "resortbrokers-com-au-22089",
+    "name": "Brisbane QLD",
+    "region": "Brisbane",
+    "price": 1223895,
+    "net_income": 184782,
+    "multiplier": 6.62,
+    "bc_percent": null,
+    "contract_years": null,
+    "pool_units": 58,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://www.resortbrokers.com.au/management-rights-for-sale/queensland/brisbane/MR009157/",
+    "source": "resortbrokers.com.au",
+    "notes": "58 pool units — good diversification. 15.1% ROI — strong return.",
+    "risks": "6.62x — overpriced for this income.",
+    "action": "Request BC salary breakdown. Confirm contract term remaining.",
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:07:52.062197"
+  },
+  {
+    "id": "resortbrokers-com-au-00751",
     "name": "Kangaroo Point QLD",
     "region": "QLD",
     "price": 691155,
@@ -416,31 +416,11 @@
     "notes": "5.0x — excellent value. 10 pool units. 20.0% ROI — strong return.",
     "risks": "BC 93.6% = caretaker trap. Minimal letting income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:15:24.474782"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:05.389532"
   },
   {
-    "id": "theonsitemanager-com-au-51413",
-    "name": "Port Macquarie NSW",
-    "region": "NSW",
-    "price": 750000,
-    "net_income": 278895,
-    "multiplier": 2.69,
-    "bc_percent": null,
-    "contract_years": null,
-    "pool_units": 20,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.TheOnsiteManager.com.au/resort--holiday-management-rights/PORTMACQUARIE-NSW-21169854",
-    "source": "theonsitemanager.com.au",
-    "notes": "2.69x — excellent value. 20 pool units — good diversification. 37.2% ROI — strong return.",
-    "risks": "",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.538082"
-  },
-  {
-    "id": "theonsitemanager-com-au-49684",
+    "id": "theonsitemanager-com-au-16763",
     "name": "Oxley QLD",
     "region": "Brisbane",
     "price": 780000,
@@ -456,31 +436,11 @@
     "notes": "4.32x — excellent value. 14 pool units. 23.2% ROI — strong return.",
     "risks": "BC 87.2% = caretaker trap. Minimal letting income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.637482"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.412620"
   },
   {
-    "id": "theonsitemanager-com-au-12810",
-    "name": "Broadbeach QLD",
-    "region": "Gold Coast",
-    "price": 850000,
-    "net_income": 400942,
-    "multiplier": 2.12,
-    "bc_percent": 20.3,
-    "contract_years": null,
-    "pool_units": 27,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.TheOnsiteManager.com.au/resort--holiday-management-rights/Broadbeach-QLD-21171396",
-    "source": "theonsitemanager.com.au",
-    "notes": "BC 20.3% healthy. 2.12x — excellent value. 27 pool units — good diversification. 47.2% ROI — strong return.",
-    "risks": "",
-    "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.640733"
-  },
-  {
-    "id": "accomproperties-com-au-45730",
+    "id": "accomproperties-com-au-21618",
     "name": "Tugun",
     "region": "SA",
     "price": 1358000,
@@ -496,11 +456,11 @@
     "notes": "BC 65.6% healthy. 20yr contract — very secure. 39 pool units — good diversification.",
     "risks": "11.31x — overpriced for this income.",
     "action": "",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:14:07.159234"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:06:37.522596"
   },
   {
-    "id": "resortbrokers-com-au-26188",
+    "id": "resortbrokers-com-au-25716",
     "name": "Main Beach QLD",
     "region": "QLD",
     "price": 5600000,
@@ -516,51 +476,11 @@
     "notes": "30 pool units — good diversification. 13.4% ROI.",
     "risks": "7.48x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:14:45.480198"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:07:25.404159"
   },
   {
-    "id": "resortbrokers-com-au-20919",
-    "name": "Coolangatta QLD",
-    "region": "QLD",
-    "price": 4050000,
-    "net_income": 552566,
-    "multiplier": 7.33,
-    "bc_percent": null,
-    "contract_years": null,
-    "pool_units": 9141,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.resortbrokers.com.au/management-rights-for-sale/queensland/coolangatta/MR009141/",
-    "source": "resortbrokers.com.au",
-    "notes": "9141 pool units — good diversification. 13.6% ROI.",
-    "risks": "7.33x — overpriced for this income.",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:14:58.477105"
-  },
-  {
-    "id": "resortbrokers-com-au-95811",
-    "name": "Brisbane QLD",
-    "region": "Brisbane",
-    "price": 1223895,
-    "net_income": 163970,
-    "multiplier": 7.46,
-    "bc_percent": null,
-    "contract_years": null,
-    "pool_units": 58,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.resortbrokers.com.au/management-rights-for-sale/queensland/brisbane/MR009157/",
-    "source": "resortbrokers.com.au",
-    "notes": "58 pool units — good diversification. 13.4% ROI.",
-    "risks": "7.46x — overpriced for this income.",
-    "action": "Request BC salary breakdown. Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:15:11.424059"
-  },
-  {
-    "id": "theonsitemanager-com-au-78674",
+    "id": "theonsitemanager-com-au-03254",
     "name": "Albany Creek QLD",
     "region": "Brisbane",
     "price": 475000,
@@ -576,11 +496,11 @@
     "notes": "4.24x — excellent value. 23.6% ROI — strong return.",
     "risks": "BC 93.2% = caretaker trap. Minimal letting income. Only 7 pool units — small income base.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.527673"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.312657"
   },
   {
-    "id": "theonsitemanager-com-au-70696",
+    "id": "theonsitemanager-com-au-88794",
     "name": "Currumbin QLD",
     "region": "Gold Coast",
     "price": 3338000,
@@ -596,11 +516,11 @@
     "notes": "BC 15.0% healthy. 23 pool units — good diversification. 15.0% ROI — strong return.",
     "risks": "6.67x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.531233"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.316179"
   },
   {
-    "id": "theonsitemanager-com-au-70716",
+    "id": "theonsitemanager-com-au-99939",
     "name": "Brisbane City QLD",
     "region": "Brisbane",
     "price": 8300000,
@@ -616,11 +536,11 @@
     "notes": "BC 20.1% healthy. 62 pool units — good diversification. 13.9% ROI.",
     "risks": "7.19x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.601349"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.379563"
   },
   {
-    "id": "accomproperties-com-au-68489",
+    "id": "accomproperties-com-au-22965",
     "name": "Robina",
     "region": "SA",
     "price": 2500000,
@@ -636,11 +556,11 @@
     "notes": "25yr contract — very secure. 25 pool units — good diversification. 11.6% ROI.",
     "risks": "BC 72.2% — leaning caretaker. 8.59x — overpriced for this income.",
     "action": "",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:14:23.273680"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:06:56.016937"
   },
   {
-    "id": "theonsitemanager-com-au-82179",
+    "id": "theonsitemanager-com-au-90484",
     "name": "Torquay QLD",
     "region": "QLD",
     "price": 995000,
@@ -656,11 +576,11 @@
     "notes": "BC 20.5% healthy. 10 pool units. 14.8% ROI.",
     "risks": "6.75x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.455313"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.232120"
   },
   {
-    "id": "theonsitemanager-com-au-98070",
+    "id": "theonsitemanager-com-au-60114",
     "name": "Runcorn QLD",
     "region": "Brisbane",
     "price": 2933000,
@@ -676,11 +596,11 @@
     "notes": "BC 65.3% healthy. 37 pool units — good diversification. 11.6% ROI.",
     "risks": "8.65x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.478459"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.257470"
   },
   {
-    "id": "theonsitemanager-com-au-08234",
+    "id": "theonsitemanager-com-au-46783",
     "name": "Eight Mile Plains QLD",
     "region": "Brisbane",
     "price": 5968000,
@@ -696,11 +616,11 @@
     "notes": "BC 64.5% healthy. 71 pool units — good diversification. 11.1% ROI.",
     "risks": "8.97x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.520952"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.305906"
   },
   {
-    "id": "accomproperties-com-au-87980",
+    "id": "accomproperties-com-au-28485",
     "name": "Mudgeeraba",
     "region": "Mudgeeraba",
     "price": 1505000,
@@ -716,31 +636,51 @@
     "notes": "BC 68.5% healthy. 39 pool units — good diversification.",
     "risks": "13.09x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:14:02.650725"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:06:33.222336"
   },
   {
-    "id": "accomproperties-com-au-13358",
+    "id": "accomproperties-com-au-35688",
     "name": "Port Macquarie",
     "region": "NSW",
     "price": 2665000,
     "net_income": 322693,
     "multiplier": 8.26,
-    "bc_percent": 0.1,
+    "bc_percent": null,
     "contract_years": 10,
     "pool_units": 28,
     "weekly_rent_per_unit": null,
     "status": "active",
     "url": "https://accomproperties.com.au/business-display/business-port-macquarie,19204",
     "source": "accomproperties.com.au",
-    "notes": "BC 0.1% healthy. 10yr contract — adequate. 28 pool units — good diversification. 12.1% ROI.",
+    "notes": "10yr contract — adequate. 28 pool units — good diversification. 12.1% ROI.",
     "risks": "8.26x — overpriced for this income.",
-    "action": "",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:14:15.227063"
+    "action": "Request BC salary breakdown.",
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:06:47.255939"
   },
   {
-    "id": "resortbrokers-com-au-86414",
+    "id": "resortbrokers-com-au-68096",
+    "name": "Coolangatta QLD",
+    "region": "QLD",
+    "price": 4050000,
+    "net_income": 552566,
+    "multiplier": 7.33,
+    "bc_percent": null,
+    "contract_years": null,
+    "pool_units": 0,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://www.resortbrokers.com.au/management-rights-for-sale/queensland/coolangatta/MR009141/",
+    "source": "resortbrokers.com.au",
+    "notes": "13.6% ROI.",
+    "risks": "7.33x — overpriced for this income.",
+    "action": "Request BC salary breakdown. Verify pool unit schedule. Confirm contract term remaining.",
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:07:38.734484"
+  },
+  {
+    "id": "resortbrokers-com-au-89300",
     "name": "Coolum Beach QLD",
     "region": "QLD",
     "price": 6945000,
@@ -756,11 +696,11 @@
     "notes": "13.5% ROI.",
     "risks": "7.39x — overpriced for this income.",
     "action": "Request BC salary breakdown. Verify pool unit schedule. Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:15:02.804120"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:07:43.201351"
   },
   {
-    "id": "accomproperties-com-au-47910",
+    "id": "accomproperties-com-au-04508",
     "name": "Hervey Bay",
     "region": "Hervey Bay",
     "price": 999000,
@@ -776,11 +716,11 @@
     "notes": "BC 30.2% healthy. 25yr contract — very secure. 11 pool units.",
     "risks": "12.49x — overpriced for this income.",
     "action": "",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:14:11.170358"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:06:43.153950"
   },
   {
-    "id": "theonsitemanager-com-au-89810",
+    "id": "theonsitemanager-com-au-61301",
     "name": "North Lakes QLD",
     "region": "Brisbane",
     "price": 2300000,
@@ -796,11 +736,11 @@
     "notes": "BC 43.0% healthy. 46 pool units — good diversification. 12.2% ROI.",
     "risks": "8.2x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.481989"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.260979"
   },
   {
-    "id": "theonsitemanager-com-au-76430",
+    "id": "theonsitemanager-com-au-95313",
     "name": "Noosaville QLD",
     "region": "Sunshine Coast",
     "price": 2455000,
@@ -816,11 +756,11 @@
     "notes": "BC 29.7% healthy. 26 pool units — good diversification. 12.2% ROI.",
     "risks": "8.18x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.611158"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.389775"
   },
   {
-    "id": "theonsitemanager-com-au-30176",
+    "id": "theonsitemanager-com-au-13248",
     "name": "Deception Bay QLD",
     "region": "Brisbane",
     "price": 3341460,
@@ -836,11 +776,11 @@
     "notes": "40 pool units — good diversification. 14.1% ROI.",
     "risks": "BC 80.5% = caretaker trap. Minimal letting income. 7.08x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.634296"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.407041"
   },
   {
-    "id": "theonsitemanager-com-au-91670",
+    "id": "theonsitemanager-com-au-47651",
     "name": "Helensvale QLD",
     "region": "Gold Coast",
     "price": 1445000,
@@ -856,11 +796,11 @@
     "notes": "14 pool units. 10.8% ROI.",
     "risks": "BC 76.8% — leaning caretaker. 9.25x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.559310"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.341161"
   },
   {
-    "id": "theonsitemanager-com-au-01515",
+    "id": "theonsitemanager-com-au-53475",
     "name": "Tugun QLD",
     "region": "Gold Coast",
     "price": 1790000,
@@ -876,11 +816,11 @@
     "notes": "BC 40.7% healthy. 18 pool units. 11.5% ROI.",
     "risks": "8.73x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.587316"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.366651"
   },
   {
-    "id": "theonsitemanager-com-au-47113",
+    "id": "theonsitemanager-com-au-38481",
     "name": "Wurtulla QLD",
     "region": "Sunshine Coast",
     "price": 1690000,
@@ -896,11 +836,11 @@
     "notes": "16 pool units.",
     "risks": "BC 70.7% — leaning caretaker. 12.04x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.524354"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.309361"
   },
   {
-    "id": "theonsitemanager-com-au-98391",
+    "id": "theonsitemanager-com-au-13411",
     "name": "Sunshine Beach QLD",
     "region": "Sunshine Coast",
     "price": 1590000,
@@ -916,11 +856,11 @@
     "notes": "BC 33.2% healthy. 10.7% ROI.",
     "risks": "9.35x — overpriced for this income. Only 9 pool units — small income base.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.574964"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.355125"
   },
   {
-    "id": "theonsitemanager-com-au-81476",
+    "id": "theonsitemanager-com-au-87613",
     "name": "Runaway Bay QLD",
     "region": "Gold Coast",
     "price": 1398000,
@@ -936,11 +876,11 @@
     "notes": "15 pool units.",
     "risks": "BC 70.6% — leaning caretaker. 11.2x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.577949"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.358231"
   },
   {
-    "id": "theonsitemanager-com-au-76756",
+    "id": "theonsitemanager-com-au-50058",
     "name": "Surfers Paradise QLD",
     "region": "Gold Coast",
     "price": 1969000,
@@ -956,11 +896,11 @@
     "notes": "21 pool units — good diversification. 12.4% ROI.",
     "risks": "BC 82.9% = caretaker trap. Minimal letting income. 8.07x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.451090"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.224073"
   },
   {
-    "id": "theonsitemanager-com-au-24978",
+    "id": "theonsitemanager-com-au-58747",
     "name": "Pacific Pines QLD",
     "region": "Gold Coast",
     "price": 1300000,
@@ -976,11 +916,11 @@
     "notes": "",
     "risks": "BC 70.9% — leaning caretaker. 11.66x — overpriced for this income. Only 8 pool units — small income base.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.490550"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.269437"
   },
   {
-    "id": "theonsitemanager-com-au-63137",
+    "id": "theonsitemanager-com-au-39772",
     "name": "Peregian Springs QLD",
     "region": "Sunshine Coast",
     "price": 1695000,
@@ -996,7 +936,67 @@
     "notes": "12 pool units. 10.2% ROI.",
     "risks": "BC 81.2% = caretaker trap. Minimal letting income. 9.77x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-21",
-    "last_fetched": "2026-04-21T22:16:18.583802"
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.363876"
+  },
+  {
+    "id": "theonsitemanager-com-au-60322",
+    "name": "Upper Coomera QLD",
+    "region": "Gold Coast",
+    "price": 1200000,
+    "net_income": 100276,
+    "multiplier": 11.97,
+    "bc_percent": 91.7,
+    "contract_years": null,
+    "pool_units": 5,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://www.TheOnsiteManager.com.au/permanent-management-rights/UPPERCOOMERA-QLD-21172240",
+    "source": "theonsitemanager.com.au",
+    "notes": "",
+    "risks": "BC 91.7% = caretaker trap. Minimal letting income. 11.97x — overpriced for this income. Only 5 pool units — small income base.",
+    "action": "Confirm contract term remaining.",
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.295259"
+  },
+  {
+    "id": "theonsitemanager-com-au-82059",
+    "name": "Hervey Bay QLD",
+    "region": "Hervey Bay",
+    "price": 999000,
+    "net_income": 80482,
+    "multiplier": 12.41,
+    "bc_percent": 112.7,
+    "contract_years": null,
+    "pool_units": 0,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://www.TheOnsiteManager.com.au/caretaking-management-rights/HerveyBay-QLD-21172352",
+    "source": "theonsitemanager.com.au",
+    "notes": "",
+    "risks": "BC 112.7% = caretaker trap. Minimal letting income. 12.41x — overpriced for this income.",
+    "action": "Verify pool unit schedule. Confirm contract term remaining.",
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:08:55.403650"
+  },
+  {
+    "id": "accomproperties-com-au-98856",
+    "name": "Broadbeach",
+    "region": "Broadbeach",
+    "price": 400942,
+    "net_income": 0,
+    "multiplier": 0,
+    "bc_percent": null,
+    "contract_years": 22,
+    "pool_units": 27,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://accomproperties.com.au/business-display/business-broadbeach,19148",
+    "source": "accomproperties.com.au",
+    "notes": "22yr contract — very secure. 27 pool units — good diversification.",
+    "risks": "",
+    "action": "Request BC salary breakdown.",
+    "last_updated": "2026-04-23",
+    "last_fetched": "2026-04-23T17:07:00.717084"
   }
 ]

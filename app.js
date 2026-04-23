@@ -6,6 +6,22 @@
   let isZH = false;
   let watchlist = JSON.parse(localStorage.getItem('pmr_wl') || '[]');
 
+  
+  const REGION_MAP = {
+    'Broadbeach': 'Gold Coast',
+    'Southport': 'Gold Coast',
+    'Mudgeeraba': 'Gold Coast',
+    'QLD': 'Queensland',
+    'Brisbane': 'Brisbane',
+    'Cairns': 'Cairns',
+    'Townsville': 'Townsville',
+    'Hervey Bay': 'Hervey Bay',
+    'Sunshine Coast': 'Sunshine Coast'
+  };
+  function normalizeRegion(r) {
+    return REGION_MAP[r] || r;
+  }
+
   function loadData() {
     fetch('pmr-data-latest.json?t=' + Date.now())
       .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
@@ -92,6 +108,11 @@
     return d.sort((a, b) => {
       if (curSort === 'mult') return (a.multiplier || 999) - (b.multiplier || 999);
       if (curSort === 'ni') return (b.net_income || 0) - (a.net_income || 0);
+      if (curSort === 'roi') {
+        const roiA = (a.net_income && a.price && a.price > 0) ? (a.net_income / a.price) : 0;
+        const roiB = (b.net_income && b.price && b.price > 0) ? (b.net_income / b.price) : 0;
+        return roiB - roiA;
+      }
       if (curSort === 'roi') return roi(b) - roi(a);
       return (a.price || 0) - (b.price || 0);
     });

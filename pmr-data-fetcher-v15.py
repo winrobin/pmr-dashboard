@@ -101,6 +101,19 @@ def is_junk_title(title):
     return any(j in tl for j in JUNK_TITLES)
 
 def make_listing(name, price, income, reg, url, src, bc=None, pool=None, cont=None):
+    # Fix pool > 500
+    if pool and pool > 500:
+        pool = 0
+    # Fix BC == 0
+    if bc is not None and bc < 1:
+        bc = None
+
+    # ROI Sanity check (detect unit price instead of business price)
+    if price and income and price > 0:
+        roi_check = (income / price) * 100
+        if roi_check > 35:
+            price = 0  # Likely unit price, flag as unknown (EOI)
+
     # Check if MR+Unit listing with total price embedded in name
     total_from_name, unit_price, is_mr_unit = extract_total_price(name)
     if is_mr_unit and total_from_name > 0:
