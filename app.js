@@ -6,6 +6,22 @@
   let isZH = false;
   let watchlist = JSON.parse(localStorage.getItem('pmr_wl') || '[]');
 
+  const REGION_MAP = {
+  'Broadbeach': 'Gold Coast',
+  'Southport': 'Gold Coast',
+  'Mudgeeraba': 'Gold Coast',
+  'QLD': 'Queensland',
+  'Brisbane': 'Brisbane',
+  'Cairns': 'Cairns',
+  'Townsville': 'Townsville',
+  'Hervey Bay': 'Hervey Bay',
+  'Sunshine Coast': 'Sunshine Coast',
+};
+
+function normalizeRegion(r) {
+  return REGION_MAP[r] || r;
+}
+
   function loadData() {
     fetch('pmr-data-latest.json?t=' + Date.now())
       .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
