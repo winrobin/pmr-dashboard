@@ -1,6 +1,6 @@
 [
   {
-    "id": "accomproperties-com-au-28349",
+    "id": "accomproperties-com-au-18822",
     "name": "Trinity Beach",
     "region": "SA",
     "price": 2275000,
@@ -17,10 +17,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:06:51.480769"
+    "last_fetched": "2026-04-23T20:15:05.216441"
   },
   {
-    "id": "accomproperties-com-au-58724",
+    "id": "accomproperties-com-au-49275",
     "name": "Cairns City",
     "region": "Cairns",
     "price": 2330000,
@@ -37,10 +37,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:06:27.575278"
+    "last_fetched": "2026-04-23T20:14:42.597400"
   },
   {
-    "id": "accomproperties-com-au-60466",
+    "id": "accomproperties-com-au-06857",
     "name": "Main Beach",
     "region": "SA",
     "price": 375000,
@@ -57,10 +57,10 @@
     "risks": "Only 8 pool units — small income base.",
     "action": "",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:07:06.421376"
+    "last_fetched": "2026-04-23T20:15:19.406314"
   },
   {
-    "id": "resortbrokers-com-au-40371",
+    "id": "resortbrokers-com-au-12271",
     "name": "Ferny Grove QLD",
     "region": "QLD",
     "price": 1267025,
@@ -77,10 +77,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:07:21.034823"
+    "last_fetched": "2026-04-23T20:15:33.805746"
   },
   {
-    "id": "resortbrokers-com-au-43138",
+    "id": "resortbrokers-com-au-53564",
     "name": "Townsville City QLD",
     "region": "Townsville",
     "price": 735000,
@@ -97,10 +97,10 @@
     "risks": "Only 8 pool units — small income base.",
     "action": "Request BC salary breakdown.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:07:56.459609"
+    "last_fetched": "2026-04-23T20:16:09.269163"
   },
   {
-    "id": "resortbrokers-com-au-21781",
+    "id": "resortbrokers-com-au-16533",
     "name": "Victoria Point QLD",
     "region": "QLD",
     "price": 824764,
@@ -117,10 +117,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:36.541342"
+    "last_fetched": "2026-04-23T20:16:48.523265"
   },
   {
-    "id": "resortbrokers-com-au-04318",
+    "id": "resortbrokers-com-au-52688",
     "name": "Kings Beach QLD",
     "region": "QLD",
     "price": 550000,
@@ -137,10 +137,10 @@
     "risks": "",
     "action": "Verify pool unit schedule. Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:40.937289"
+    "last_fetched": "2026-04-23T20:16:52.908638"
   },
   {
-    "id": "theonsitemanager-com-au-23902",
+    "id": "theonsitemanager-com-au-22677",
     "name": "Griffin QLD",
     "region": "Brisbane",
     "price": 1848000,
@@ -157,10 +157,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.286318"
+    "last_fetched": "2026-04-23T20:17:08.819460"
   },
   {
-    "id": "theonsitemanager-com-au-94610",
+    "id": "theonsitemanager-com-au-81624",
     "name": "Agnes Water QLD",
     "region": "QLD",
     "price": 2400000,
@@ -177,10 +177,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.376173"
+    "last_fetched": "2026-04-23T20:17:08.979367"
   },
   {
-    "id": "resortbrokers-com-au-41492",
+    "id": "resortbrokers-com-au-14062",
     "name": "Airlie Beach QLD",
     "region": "QLD",
     "price": 2195000,
@@ -197,10 +197,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:00.953083"
+    "last_fetched": "2026-04-23T20:16:13.606866"
   },
   {
-    "id": "theonsitemanager-com-au-91986",
+    "id": "theonsitemanager-com-au-94746",
     "name": "Carindale QLD",
     "region": "Brisbane",
     "price": 678000,
@@ -217,10 +217,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.253532"
+    "last_fetched": "2026-04-23T20:17:08.764485"
   },
   {
-    "id": "theonsitemanager-com-au-55282",
+    "id": "theonsitemanager-com-au-40241",
     "name": "Maroochydore QLD",
     "region": "Sunshine Coast",
     "price": 395000,
@@ -237,10 +237,10 @@
     "risks": "BC 77.1% — leaning caretaker.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.344090"
+    "last_fetched": "2026-04-23T20:17:08.907770"
   },
   {
-    "id": "resortbrokers-com-au-51798",
+    "id": "resortbrokers-com-au-01977",
     "name": "Brendale QLD",
     "region": "QLD",
     "price": 975000,
@@ -257,10 +257,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:07:29.793997"
+    "last_fetched": "2026-04-23T20:15:43.115103"
   },
   {
-    "id": "theonsitemanager-com-au-88283",
+    "id": "theonsitemanager-com-au-83244",
     "name": "Pimpama QLD",
     "region": "Gold Coast",
     "price": 1575700,
@@ -277,10 +277,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.330230"
+    "last_fetched": "2026-04-23T20:17:08.884772"
   },
   {
-    "id": "theonsitemanager-com-au-27253",
+    "id": "theonsitemanager-com-au-17368",
     "name": "Cairns City QLD",
     "region": "Cairns",
     "price": 2330000,
@@ -297,10 +297,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.393119"
+    "last_fetched": "2026-04-23T20:17:09.001529"
   },
   {
-    "id": "resortbrokers-com-au-39434",
+    "id": "resortbrokers-com-au-35818",
     "name": "Southport QLD",
     "region": "Southport",
     "price": 1300000,
@@ -317,10 +317,10 @@
     "risks": "",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:18.770840"
+    "last_fetched": "2026-04-23T20:16:31.026126"
   },
   {
-    "id": "resortbrokers-com-au-54757",
+    "id": "resortbrokers-com-au-78511",
     "name": "Varsity Lakes QLD",
     "region": "QLD",
     "price": 3440000,
@@ -337,10 +337,10 @@
     "risks": "7.41x — overpriced for this income.",
     "action": "Request BC salary breakdown.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:32.050674"
+    "last_fetched": "2026-04-23T20:16:44.061301"
   },
   {
-    "id": "theonsitemanager-com-au-17902",
+    "id": "theonsitemanager-com-au-71814",
     "name": "Burleigh Waters QLD",
     "region": "Gold Coast",
     "price": 3608000,
@@ -357,10 +357,10 @@
     "risks": "7.84x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.281824"
+    "last_fetched": "2026-04-23T20:17:08.815772"
   },
   {
-    "id": "theonsitemanager-com-au-06331",
+    "id": "theonsitemanager-com-au-01136",
     "name": "Hamilton QLD",
     "region": "Brisbane",
     "price": 7016000,
@@ -377,10 +377,10 @@
     "risks": "6.73x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.386455"
+    "last_fetched": "2026-04-23T20:17:08.994076"
   },
   {
-    "id": "resortbrokers-com-au-22089",
+    "id": "resortbrokers-com-au-51469",
     "name": "Brisbane QLD",
     "region": "Brisbane",
     "price": 1223895,
@@ -397,10 +397,10 @@
     "risks": "6.62x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:07:52.062197"
+    "last_fetched": "2026-04-23T20:16:04.890547"
   },
   {
-    "id": "resortbrokers-com-au-00751",
+    "id": "resortbrokers-com-au-89217",
     "name": "Kangaroo Point QLD",
     "region": "QLD",
     "price": 691155,
@@ -417,10 +417,10 @@
     "risks": "BC 93.6% = caretaker trap. Minimal letting income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:05.389532"
+    "last_fetched": "2026-04-23T20:16:17.992702"
   },
   {
-    "id": "theonsitemanager-com-au-16763",
+    "id": "theonsitemanager-com-au-01745",
     "name": "Oxley QLD",
     "region": "Brisbane",
     "price": 780000,
@@ -437,10 +437,10 @@
     "risks": "BC 87.2% = caretaker trap. Minimal letting income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.412620"
+    "last_fetched": "2026-04-23T20:17:09.061052"
   },
   {
-    "id": "accomproperties-com-au-21618",
+    "id": "accomproperties-com-au-77483",
     "name": "Tugun",
     "region": "SA",
     "price": 1358000,
@@ -457,10 +457,10 @@
     "risks": "11.31x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:06:37.522596"
+    "last_fetched": "2026-04-23T20:14:52.355515"
   },
   {
-    "id": "resortbrokers-com-au-25716",
+    "id": "resortbrokers-com-au-93305",
     "name": "Main Beach QLD",
     "region": "QLD",
     "price": 5600000,
@@ -477,10 +477,10 @@
     "risks": "7.48x — overpriced for this income.",
     "action": "Request BC salary breakdown. Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:07:25.404159"
+    "last_fetched": "2026-04-23T20:15:38.779776"
   },
   {
-    "id": "theonsitemanager-com-au-03254",
+    "id": "theonsitemanager-com-au-94668",
     "name": "Albany Creek QLD",
     "region": "Brisbane",
     "price": 475000,
@@ -497,10 +497,10 @@
     "risks": "BC 93.2% = caretaker trap. Minimal letting income. Only 7 pool units — small income base.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.312657"
+    "last_fetched": "2026-04-23T20:17:08.851697"
   },
   {
-    "id": "theonsitemanager-com-au-88794",
+    "id": "theonsitemanager-com-au-68258",
     "name": "Currumbin QLD",
     "region": "Gold Coast",
     "price": 3338000,
@@ -517,10 +517,10 @@
     "risks": "6.67x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.316179"
+    "last_fetched": "2026-04-23T20:17:08.859167"
   },
   {
-    "id": "theonsitemanager-com-au-99939",
+    "id": "theonsitemanager-com-au-84689",
     "name": "Brisbane City QLD",
     "region": "Brisbane",
     "price": 8300000,
@@ -537,10 +537,10 @@
     "risks": "7.19x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.379563"
+    "last_fetched": "2026-04-23T20:17:08.985398"
   },
   {
-    "id": "accomproperties-com-au-22965",
+    "id": "accomproperties-com-au-57444",
     "name": "Robina",
     "region": "SA",
     "price": 2500000,
@@ -557,10 +557,10 @@
     "risks": "BC 72.2% — leaning caretaker. 8.59x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:06:56.016937"
+    "last_fetched": "2026-04-23T20:15:09.671243"
   },
   {
-    "id": "theonsitemanager-com-au-90484",
+    "id": "theonsitemanager-com-au-08255",
     "name": "Torquay QLD",
     "region": "QLD",
     "price": 995000,
@@ -577,10 +577,10 @@
     "risks": "6.75x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.232120"
+    "last_fetched": "2026-04-23T20:17:08.734504"
   },
   {
-    "id": "theonsitemanager-com-au-60114",
+    "id": "theonsitemanager-com-au-76169",
     "name": "Runcorn QLD",
     "region": "Brisbane",
     "price": 2933000,
@@ -597,10 +597,10 @@
     "risks": "8.65x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.257470"
+    "last_fetched": "2026-04-23T20:17:08.777055"
   },
   {
-    "id": "theonsitemanager-com-au-46783",
+    "id": "theonsitemanager-com-au-36323",
     "name": "Eight Mile Plains QLD",
     "region": "Brisbane",
     "price": 5968000,
@@ -617,10 +617,10 @@
     "risks": "8.97x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.305906"
+    "last_fetched": "2026-04-23T20:17:08.838801"
   },
   {
-    "id": "accomproperties-com-au-28485",
+    "id": "accomproperties-com-au-29418",
     "name": "Mudgeeraba",
     "region": "Mudgeeraba",
     "price": 1505000,
@@ -637,10 +637,10 @@
     "risks": "13.09x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:06:33.222336"
+    "last_fetched": "2026-04-23T20:14:48.285475"
   },
   {
-    "id": "accomproperties-com-au-35688",
+    "id": "accomproperties-com-au-84994",
     "name": "Port Macquarie",
     "region": "NSW",
     "price": 2665000,
@@ -657,10 +657,10 @@
     "risks": "8.26x — overpriced for this income.",
     "action": "Request BC salary breakdown.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:06:47.255939"
+    "last_fetched": "2026-04-23T20:15:01.105840"
   },
   {
-    "id": "resortbrokers-com-au-68096",
+    "id": "resortbrokers-com-au-80046",
     "name": "Coolangatta QLD",
     "region": "QLD",
     "price": 4050000,
@@ -677,10 +677,10 @@
     "risks": "7.33x — overpriced for this income.",
     "action": "Request BC salary breakdown. Verify pool unit schedule. Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:07:38.734484"
+    "last_fetched": "2026-04-23T20:15:51.847215"
   },
   {
-    "id": "resortbrokers-com-au-89300",
+    "id": "resortbrokers-com-au-55836",
     "name": "Coolum Beach QLD",
     "region": "QLD",
     "price": 6945000,
@@ -697,10 +697,10 @@
     "risks": "7.39x — overpriced for this income.",
     "action": "Request BC salary breakdown. Verify pool unit schedule. Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:07:43.201351"
+    "last_fetched": "2026-04-23T20:15:56.203502"
   },
   {
-    "id": "accomproperties-com-au-04508",
+    "id": "accomproperties-com-au-67198",
     "name": "Hervey Bay",
     "region": "Hervey Bay",
     "price": 999000,
@@ -717,10 +717,10 @@
     "risks": "12.49x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:06:43.153950"
+    "last_fetched": "2026-04-23T20:14:56.380516"
   },
   {
-    "id": "theonsitemanager-com-au-61301",
+    "id": "theonsitemanager-com-au-02992",
     "name": "North Lakes QLD",
     "region": "Brisbane",
     "price": 2300000,
@@ -737,10 +737,10 @@
     "risks": "8.2x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.260979"
+    "last_fetched": "2026-04-23T20:17:08.786383"
   },
   {
-    "id": "theonsitemanager-com-au-95313",
+    "id": "theonsitemanager-com-au-96405",
     "name": "Noosaville QLD",
     "region": "Sunshine Coast",
     "price": 2455000,
@@ -757,10 +757,10 @@
     "risks": "8.18x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.389775"
+    "last_fetched": "2026-04-23T20:17:08.997746"
   },
   {
-    "id": "theonsitemanager-com-au-13248",
+    "id": "theonsitemanager-com-au-39793",
     "name": "Deception Bay QLD",
     "region": "Brisbane",
     "price": 3341460,
@@ -777,10 +777,10 @@
     "risks": "BC 80.5% = caretaker trap. Minimal letting income. 7.08x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.407041"
+    "last_fetched": "2026-04-23T20:17:09.055700"
   },
   {
-    "id": "theonsitemanager-com-au-47651",
+    "id": "theonsitemanager-com-au-98314",
     "name": "Helensvale QLD",
     "region": "Gold Coast",
     "price": 1445000,
@@ -797,10 +797,10 @@
     "risks": "BC 76.8% — leaning caretaker. 9.25x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.341161"
+    "last_fetched": "2026-04-23T20:17:08.899021"
   },
   {
-    "id": "theonsitemanager-com-au-53475",
+    "id": "theonsitemanager-com-au-12487",
     "name": "Tugun QLD",
     "region": "Gold Coast",
     "price": 1790000,
@@ -817,10 +817,10 @@
     "risks": "8.73x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.366651"
+    "last_fetched": "2026-04-23T20:17:08.963958"
   },
   {
-    "id": "theonsitemanager-com-au-38481",
+    "id": "theonsitemanager-com-au-03669",
     "name": "Wurtulla QLD",
     "region": "Sunshine Coast",
     "price": 1690000,
@@ -837,10 +837,10 @@
     "risks": "BC 70.7% — leaning caretaker. 12.04x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.309361"
+    "last_fetched": "2026-04-23T20:17:08.844131"
   },
   {
-    "id": "theonsitemanager-com-au-13411",
+    "id": "theonsitemanager-com-au-00253",
     "name": "Sunshine Beach QLD",
     "region": "Sunshine Coast",
     "price": 1590000,
@@ -857,10 +857,10 @@
     "risks": "9.35x — overpriced for this income. Only 9 pool units — small income base.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.355125"
+    "last_fetched": "2026-04-23T20:17:08.916816"
   },
   {
-    "id": "theonsitemanager-com-au-87613",
+    "id": "theonsitemanager-com-au-62437",
     "name": "Runaway Bay QLD",
     "region": "Gold Coast",
     "price": 1398000,
@@ -877,10 +877,10 @@
     "risks": "BC 70.6% — leaning caretaker. 11.2x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.358231"
+    "last_fetched": "2026-04-23T20:17:08.922836"
   },
   {
-    "id": "theonsitemanager-com-au-50058",
+    "id": "theonsitemanager-com-au-55271",
     "name": "Surfers Paradise QLD",
     "region": "Gold Coast",
     "price": 1969000,
@@ -897,10 +897,10 @@
     "risks": "BC 82.9% = caretaker trap. Minimal letting income. 8.07x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.224073"
+    "last_fetched": "2026-04-23T20:17:08.725271"
   },
   {
-    "id": "theonsitemanager-com-au-58747",
+    "id": "theonsitemanager-com-au-79057",
     "name": "Pacific Pines QLD",
     "region": "Gold Coast",
     "price": 1300000,
@@ -917,10 +917,10 @@
     "risks": "BC 70.9% — leaning caretaker. 11.66x — overpriced for this income. Only 8 pool units — small income base.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.269437"
+    "last_fetched": "2026-04-23T20:17:08.803432"
   },
   {
-    "id": "theonsitemanager-com-au-39772",
+    "id": "theonsitemanager-com-au-47475",
     "name": "Peregian Springs QLD",
     "region": "Sunshine Coast",
     "price": 1695000,
@@ -937,10 +937,10 @@
     "risks": "BC 81.2% = caretaker trap. Minimal letting income. 9.77x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.363876"
+    "last_fetched": "2026-04-23T20:17:08.957525"
   },
   {
-    "id": "theonsitemanager-com-au-60322",
+    "id": "theonsitemanager-com-au-13536",
     "name": "Upper Coomera QLD",
     "region": "Gold Coast",
     "price": 1200000,
@@ -957,10 +957,10 @@
     "risks": "BC 91.7% = caretaker trap. Minimal letting income. 11.97x — overpriced for this income. Only 5 pool units — small income base.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.295259"
+    "last_fetched": "2026-04-23T20:17:08.827750"
   },
   {
-    "id": "theonsitemanager-com-au-82059",
+    "id": "theonsitemanager-com-au-24481",
     "name": "Hervey Bay QLD",
     "region": "Hervey Bay",
     "price": 999000,
@@ -977,10 +977,10 @@
     "risks": "BC 112.7% = caretaker trap. Minimal letting income. 12.41x — overpriced for this income.",
     "action": "Verify pool unit schedule. Confirm contract term remaining.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:08:55.403650"
+    "last_fetched": "2026-04-23T20:17:09.051285"
   },
   {
-    "id": "accomproperties-com-au-98856",
+    "id": "accomproperties-com-au-34059",
     "name": "Broadbeach",
     "region": "Broadbeach",
     "price": 400942,
@@ -997,6 +997,6 @@
     "risks": "",
     "action": "Request BC salary breakdown.",
     "last_updated": "2026-04-23",
-    "last_fetched": "2026-04-23T17:07:00.717084"
+    "last_fetched": "2026-04-23T20:15:13.713854"
   }
 ]
