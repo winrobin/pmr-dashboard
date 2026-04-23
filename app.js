@@ -10,12 +10,27 @@
   'Broadbeach': 'Gold Coast',
   'Southport': 'Gold Coast',
   'Mudgeeraba': 'Gold Coast',
-  'QLD': 'Queensland',
+  'Surfers Paradise': 'Gold Coast',
+  'Burleigh': 'Gold Coast',
+  'Burleigh Waters': 'Gold Coast',
+  'Currumbin': 'Gold Coast',
+  'Pimpama': 'Gold Coast',
+  'Varsity Lakes': 'Gold Coast',
+  'Coomera': 'Gold Coast',
+  'Tugun': 'Gold Coast',
+  'Runaway Bay': 'Gold Coast',
+  'Gold Coast': 'Gold Coast',
+  'Griffin': 'Brisbane',
+  'Carindale': 'Brisbane',
+  'Oxley': 'Brisbane',
+  'Albany Creek': 'Brisbane',
+  'Hamilton': 'Brisbane',
+  'Kangaroo Point': 'Brisbane',
+  'Ferny Grove': 'Brisbane',
+  'Victoria Point': 'Brisbane',
+  'Brendale': 'Brisbane',
   'Brisbane': 'Brisbane',
-  'Cairns': 'Cairns',
-  'Townsville': 'Townsville',
-  'Hervey Bay': 'Hervey Bay',
-  'Sunshine Coast': 'Sunshine Coast',
+  'QLD': 'Brisbane'
 };
 
 function normalizeRegion(r) {
@@ -44,21 +59,11 @@ function normalizeRegion(r) {
   function buildRegions() {
     const bar = document.getElementById('rf-bar');
     if (!bar) return;
-    const seen = new Set();
-    const regions = ['all'];
-    allData.forEach(p => {
-      const raw = p.region || p.location || '';
-      const r = normalizeRegion(raw.split(',')[0].trim());
-      if (r && !seen.has(r)) { seen.add(r); regions.push(r); }
-    });
-    regions.sort((a, b) => {
-      if (a === 'all') return -1;
-      if (b === 'all') return 1;
-      return a.localeCompare(b);
-    });
+    const regions = ['all', 'Brisbane', 'Gold Coast'];
     let html = '<span class="fbar-label en">Location</span><span class="fbar-label zh">地区</span>';
-    regions.forEach((r, i) => {
-      html += '<button class="pill' + (r === curRegion ? ' ac' : '') + '" data-region="' + r + '">' + (r === 'all' ? '<span class="en">All</span><span class="zh">全部</span>' : r) + '</button>';
+    regions.forEach(r => {
+      const label = r === 'all' ? '<span class="en">All BNE + GC</span><span class="zh">全部</span>' : r;
+      html += '<button class="pill' + (r === curRegion ? ' ac' : '') + '" data-region="' + r + '">' + label + '</button>';
     });
     bar.innerHTML = html;
     bar.querySelectorAll('[data-region]').forEach(b => {
@@ -92,10 +97,18 @@ function normalizeRegion(r) {
 
   function getF() {
     let d = allData.slice();
-    if (curRegion !== 'all') d = d.filter(p => {
+    // Always filter to only Brisbane + Gold Coast
+    d = d.filter(p => {
       const raw = p.region || p.location || '';
-      return normalizeRegion(raw) === curRegion;
+      const norm = normalizeRegion(raw);
+      return norm === 'Brisbane' || norm === 'Gold Coast';
     });
+    if (curRegion !== 'all') {
+      d = d.filter(p => {
+        const raw = p.region || p.location || '';
+        return normalizeRegion(raw) === curRegion;
+      });
+    }
     if (curTier !== 'all') d = d.filter(p => {
       const pr = p.price || 0;
       if (curTier === 't1') return pr > 0 && pr < 1e6;
@@ -110,6 +123,10 @@ function normalizeRegion(r) {
         const roiB = (b.net_income && b.price && b.price > 0) ? (b.net_income / b.price) : 0;
         return roiB - roiA;
       }
+      if (curSort === 'price') return (a.price || 999999999) - (b.price || 999999999);
+      if (curSort === 'bc') return (a.bc_percent || 999) - (b.bc_percent || 999);
+      if (curSort === 'cont') return (b.contract_years || 0) - (a.contract_years || 0);
+      if (curSort === 'pool') return (b.pool_units || 0) - (a.pool_units || 0);
       return (a.price || 0) - (b.price || 0);
     });
   }
