@@ -1,0 +1,14 @@
+AGENTS.md
+CONTEXT.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+USER.md
+memory/
+skills/
+state/
+test.py
+.DS_Store
+backup/
+pmr/backup/
