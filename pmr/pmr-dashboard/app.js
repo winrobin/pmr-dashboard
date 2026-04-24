@@ -38,7 +38,7 @@ function normalizeRegion(r) {
 }
 
   function loadData() {
-    fetch('pmr-data-latest.json?t=' + Date.now())
+    fetch('../pmr-data-latest.json?t=' + Date.now())
       .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(data => {
         allData = Array.isArray(data) ? data : (data.listings || data.data || []);
