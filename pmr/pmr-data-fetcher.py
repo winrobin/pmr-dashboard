@@ -15,7 +15,7 @@ import json, re, traceback, os
 from datetime import datetime
 from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 
-OUTPUT_PATH = "/Users/oc/.openclaw/workspace/pmr-data-latest.json"
+OUTPUT_PATH = "/Users/oc/.openclaw/workspace/pmr/pmr-data-latest.json"
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 
 # FIX #2 — QLD only, sorted longest-first so 'Surfers Paradise' is checked before 'SA' never appears
@@ -512,7 +512,7 @@ def fetch_onsite(browser):
                 if href and href != url:
                     time.sleep(random.uniform(0.5, 1.5)) # Prevent rate-limiting / heavy context creation
                     det_price, det_bc, det_pool, det_cont, det_unit = fetch_onsite_detail(browser, href, income)
-                    if det_price > 0 and det_price != income: price = det_price
+                    if det_price > 0 and det_price != income and det_price > price: price = det_price
                     if det_bc is not None: bc = det_bc
                     if det_pool: pool = det_pool
                     if det_cont: cont = det_cont
