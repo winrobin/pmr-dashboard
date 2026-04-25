@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Backup
+BACKUP=~/.openclaw/workspace/pmr/backup/$(date '+%Y%m%d_%H%M')
+mkdir -p "$BACKUP"
+cp ~/.openclaw/workspace/pmr/*.py "$BACKUP/" 2>/dev/null
+cp ~/.openclaw/workspace/pmr/*.json "$BACKUP/" 2>/dev/null
+echo "📦 Backup saved to $BACKUP"
+
+DOWNLOADS=~/Downloads
+PMR=~/.openclaw/workspace/pmr
+DASHBOARD=~/repos/pmr-dashboard        # ← 改这里
+
+for file in "$DOWNLOADS"/*.py; do
+    [ -f "$file" ] && mv "$file" "$PMR/pmr-data-fetcher.py" && echo "✅ py → pmr-data-fetcher.py"
+done
+
+for file in "$DOWNLOADS"/*.json; do
+    [ -f "$file" ] && mv "$file" "$PMR/pmr-data-latest.json" && echo "✅ json → pmr-data-latest.json"
+done
+
+for file in "$DOWNLOADS"/*.html; do
+    [ -f "$file" ] && mv "$file" "$DASHBOARD/index.html" && echo "✅ html → index.html"
+done
+
+for file in "$DOWNLOADS"/*.js; do
+    [ -f "$file" ] && mv "$file" "$DASHBOARD/app.js" && echo "✅ js → app.js"
+done
+
+echo "🎉 Deploy done"
