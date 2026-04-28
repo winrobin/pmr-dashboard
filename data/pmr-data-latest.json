@@ -1,6 +1,6 @@
 [
   {
-    "id": "accomproperties-com-au-68482",
+    "id": "accomproperties-com-au-45000",
     "name": "Trinity Beach",
     "region": "Queensland",
     "price": 2275000,
@@ -18,10 +18,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:42:20.972150"
+    "last_fetched": "2026-04-28T17:30:58.178606"
   },
   {
-    "id": "theonsitemanager-com-au-45872",
+    "id": "theonsitemanager-com-au-75241",
     "name": "Kuraby QLD #21164995",
     "region": "QLD",
     "price": 450000,
@@ -39,10 +39,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:45:30.650101"
+    "last_fetched": "2026-04-28T17:34:09.407688"
   },
   {
-    "id": "theonsitemanager-com-au-97347",
+    "id": "theonsitemanager-com-au-95353",
     "name": "Southport QLD #21174046",
     "region": "Southport",
     "price": 1699000,
@@ -60,31 +60,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:45:53.978782"
+    "last_fetched": "2026-04-28T17:34:33.190008"
   },
   {
-    "id": "theonsitemanager-com-au-95904",
-    "name": "Townsville City QLD #21172598",
-    "region": "Townsville",
-    "price": 735000,
-    "unit_price": 0,
-    "net_income": 188376,
-    "multiplier": 3.9,
-    "bc_percent": 63.4,
-    "contract_years": 20,
-    "pool_units": 21,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.theonsitemanager.com.au/permanent-management-rights/TownsvilleCity-QLD-21172598",
-    "source": "theonsitemanager.com.au",
-    "notes": "BC 63.4% healthy. 3.9x — excellent value. 20yr contract — very secure. 21 pool units — good diversification. 25.6% ROI — strong return.",
-    "risks": "",
-    "action": "",
-    "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:46:41.302725"
-  },
-  {
-    "id": "theonsitemanager-com-au-51765",
+    "id": "theonsitemanager-com-au-15318",
     "name": "Palm Beach QLD #21168643",
     "region": "QLD",
     "price": 740000,
@@ -102,10 +81,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:48:33.964050"
+    "last_fetched": "2026-04-28T17:37:14.145986"
   },
   {
-    "id": "theonsitemanager-com-au-36191",
+    "id": "theonsitemanager-com-au-96983",
     "name": "Carseldine QLD #21160415",
     "region": "QLD",
     "price": 560000,
@@ -123,10 +102,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:52:23.120310"
+    "last_fetched": "2026-04-28T17:41:07.276603"
   },
   {
-    "id": "accomproperties-com-au-51857",
+    "id": "accomproperties-com-au-73496",
     "name": "Cairns City",
     "region": "Cairns",
     "price": 2330000,
@@ -144,31 +123,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:41:57.983732"
+    "last_fetched": "2026-04-28T17:30:37.651582"
   },
   {
-    "id": "theonsitemanager-com-au-86931",
-    "name": "Brendale QLD #21173420",
-    "region": "Brendale",
-    "price": 975000,
-    "unit_price": 0,
-    "net_income": 181288,
-    "multiplier": 5.38,
-    "bc_percent": 39.7,
-    "contract_years": 25,
-    "pool_units": 42,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.theonsitemanager.com.au/permanent-management-rights/Brendale-QLD-21173420",
-    "source": "theonsitemanager.com.au",
-    "notes": "BC 39.7% healthy. 5.38x — fair. 25yr contract — very secure. 42 pool units — good diversification. 18.6% ROI — strong return.",
-    "risks": "",
-    "action": "",
-    "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:44:28.357037"
-  },
-  {
-    "id": "theonsitemanager-com-au-25507",
+    "id": "theonsitemanager-com-au-03236",
     "name": "North Lakes QLD #21172862",
     "region": "QLD",
     "price": 1150144,
@@ -186,10 +144,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:44:33.059649"
+    "last_fetched": "2026-04-28T17:33:12.305738"
   },
   {
-    "id": "theonsitemanager-com-au-18018",
+    "id": "theonsitemanager-com-au-83977",
     "name": "Torquay QLD #21172775",
     "region": "QLD",
     "price": 2204410,
@@ -207,10 +165,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:44:33.101502"
+    "last_fetched": "2026-04-28T17:33:12.346728"
   },
   {
-    "id": "theonsitemanager-com-au-48777",
+    "id": "theonsitemanager-com-au-15220",
     "name": "Griffin QLD #21172403",
     "region": "Griffin",
     "price": 1848000,
@@ -228,10 +186,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:44:42.962096"
+    "last_fetched": "2026-04-28T17:33:21.998336"
   },
   {
-    "id": "theonsitemanager-com-au-57995",
+    "id": "theonsitemanager-com-au-04181",
     "name": "West End QLD #21171961",
     "region": "QLD",
     "price": 888000,
@@ -249,10 +207,10 @@
     "risks": "BC 73.6% — leaning caretaker.",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:44:47.764188"
+    "last_fetched": "2026-04-28T17:33:26.670633"
   },
   {
-    "id": "theonsitemanager-com-au-28489",
+    "id": "theonsitemanager-com-au-24371",
     "name": "Kings Beach QLD #21171726",
     "region": "QLD",
     "price": 425000,
@@ -270,10 +228,10 @@
     "risks": "Only 8 pool units — small income base.",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:44:52.656080"
+    "last_fetched": "2026-04-28T17:33:31.463085"
   },
   {
-    "id": "theonsitemanager-com-au-69533",
+    "id": "theonsitemanager-com-au-88541",
     "name": "Currumbin QLD #21170306",
     "region": "Currumbin",
     "price": 2400681,
@@ -291,10 +249,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:44:57.783767"
+    "last_fetched": "2026-04-28T17:33:36.544240"
   },
   {
-    "id": "theonsitemanager-com-au-83324",
+    "id": "theonsitemanager-com-au-52195",
     "name": "Noosaville QLD #21172696",
     "region": "Noosa",
     "price": 1470000,
@@ -312,10 +270,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:45:11.759432"
+    "last_fetched": "2026-04-28T17:33:50.887546"
   },
   {
-    "id": "theonsitemanager-com-au-92256",
+    "id": "theonsitemanager-com-au-27419",
     "name": "Cairns City QLD #21172449",
     "region": "Cairns",
     "price": 1696284,
@@ -333,31 +291,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:45:11.800408"
+    "last_fetched": "2026-04-28T17:33:50.930745"
   },
   {
-    "id": "theonsitemanager-com-au-98855",
-    "name": "Currumbin QLD #21173776",
-    "region": "Currumbin",
-    "price": 2400681,
-    "unit_price": 0,
-    "net_income": 500142,
-    "multiplier": 4.8,
-    "bc_percent": 15.0,
-    "contract_years": null,
-    "pool_units": 22,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.theonsitemanager.com.au/resort--holiday-management-rights/Currumbin-QLD-21173776",
-    "source": "theonsitemanager.com.au",
-    "notes": "BC 15.0% healthy. 4.8x — excellent value. 22 pool units — good diversification. 20.8% ROI — strong return.",
-    "risks": "",
-    "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:45:30.861083"
-  },
-  {
-    "id": "theonsitemanager-com-au-00350",
+    "id": "theonsitemanager-com-au-75529",
     "name": "Maroochydore QLD #21172459",
     "region": "Maroochydore",
     "price": 4170160,
@@ -375,10 +312,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:45:30.978195"
+    "last_fetched": "2026-04-28T17:34:09.709846"
   },
   {
-    "id": "theonsitemanager-com-au-04088",
+    "id": "theonsitemanager-com-au-87004",
     "name": "Clifton Beach QLD #21162428",
     "region": "QLD",
     "price": 1079100,
@@ -396,10 +333,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:45:31.201985"
+    "last_fetched": "2026-04-28T17:34:09.906697"
   },
   {
-    "id": "theonsitemanager-com-au-55296",
+    "id": "theonsitemanager-com-au-80504",
     "name": "Cairns City QLD #21149675",
     "region": "Cairns",
     "price": 1406396,
@@ -417,10 +354,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:45:31.241351"
+    "last_fetched": "2026-04-28T17:34:09.946059"
   },
   {
-    "id": "theonsitemanager-com-au-63294",
+    "id": "theonsitemanager-com-au-97135",
     "name": "Hope Island QLD #21173222",
     "region": "QLD",
     "price": 328000,
@@ -438,10 +375,10 @@
     "risks": "Only 9 pool units — small income base.",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:46:07.840278"
+    "last_fetched": "2026-04-28T17:34:47.776408"
   },
   {
-    "id": "theonsitemanager-com-au-48170",
+    "id": "theonsitemanager-com-au-90314",
     "name": "Kallangur QLD #21172863",
     "region": "QLD",
     "price": 3174400,
@@ -459,10 +396,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:46:22.441470"
+    "last_fetched": "2026-04-28T17:35:01.892274"
   },
   {
-    "id": "theonsitemanager-com-au-90559",
+    "id": "theonsitemanager-com-au-81344",
     "name": "Coolangatta QLD #21171238",
     "region": "QLD",
     "price": 2342739,
@@ -480,10 +417,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:47:18.107690"
+    "last_fetched": "2026-04-28T17:35:58.441285"
   },
   {
-    "id": "theonsitemanager-com-au-54076",
+    "id": "theonsitemanager-com-au-90544",
     "name": "Thornlands QLD #21171147",
     "region": "QLD",
     "price": 1040000,
@@ -501,10 +438,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:47:22.933971"
+    "last_fetched": "2026-04-28T17:36:03.138782"
   },
   {
-    "id": "theonsitemanager-com-au-63915",
+    "id": "theonsitemanager-com-au-05377",
     "name": "Sadliers Crossing QLD #21170915",
     "region": "QLD",
     "price": 948000,
@@ -522,10 +459,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:47:41.671239"
+    "last_fetched": "2026-04-28T17:36:21.917773"
   },
   {
-    "id": "theonsitemanager-com-au-03828",
+    "id": "theonsitemanager-com-au-29985",
     "name": "Broadbeach QLD #21170768",
     "region": "Broadbeach",
     "price": 2921278,
@@ -543,10 +480,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:47:41.843150"
+    "last_fetched": "2026-04-28T17:36:22.064823"
   },
   {
-    "id": "theonsitemanager-com-au-76109",
+    "id": "theonsitemanager-com-au-82926",
     "name": "Mooloolaba QLD #21170182",
     "region": "Mooloolaba",
     "price": 2212222,
@@ -564,10 +501,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:47:46.601620"
+    "last_fetched": "2026-04-28T17:36:27.104411"
   },
   {
-    "id": "theonsitemanager-com-au-36715",
+    "id": "theonsitemanager-com-au-72487",
     "name": "Port Douglas QLD #21168404",
     "region": "QLD",
     "price": 3180283,
@@ -585,10 +522,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:48:34.098798"
+    "last_fetched": "2026-04-28T17:37:14.292417"
   },
   {
-    "id": "theonsitemanager-com-au-18493",
+    "id": "theonsitemanager-com-au-30716",
     "name": "Dinmore QLD #21167877",
     "region": "QLD",
     "price": 2740000,
@@ -606,10 +543,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:48:52.262406"
+    "last_fetched": "2026-04-28T17:37:32.929631"
   },
   {
-    "id": "theonsitemanager-com-au-04205",
+    "id": "theonsitemanager-com-au-88497",
     "name": "Richlands QLD #21166122",
     "region": "QLD",
     "price": 1059811,
@@ -627,10 +564,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:49:06.399573"
+    "last_fetched": "2026-04-28T17:37:47.570728"
   },
   {
-    "id": "theonsitemanager-com-au-08891",
+    "id": "theonsitemanager-com-au-14092",
     "name": "Burpengary QLD #21165717",
     "region": "QLD",
     "price": 1063048,
@@ -648,10 +585,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:49:15.550018"
+    "last_fetched": "2026-04-28T17:37:56.895157"
   },
   {
-    "id": "theonsitemanager-com-au-15455",
+    "id": "theonsitemanager-com-au-36997",
     "name": "Labrador QLD #21164575",
     "region": "QLD",
     "price": 940000,
@@ -669,10 +606,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:49:24.891246"
+    "last_fetched": "2026-04-28T17:38:06.653360"
   },
   {
-    "id": "theonsitemanager-com-au-36833",
+    "id": "theonsitemanager-com-au-75682",
     "name": "Trinity Beach QLD #21163169",
     "region": "QLD",
     "price": 1210111,
@@ -690,10 +627,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:49:33.774921"
+    "last_fetched": "2026-04-28T17:38:15.615546"
   },
   {
-    "id": "theonsitemanager-com-au-49810",
+    "id": "theonsitemanager-com-au-77067",
     "name": "Newstead QLD #21173980",
     "region": "QLD",
     "price": 1273405,
@@ -711,10 +648,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:50:39.426026"
+    "last_fetched": "2026-04-28T17:39:22.591338"
   },
   {
-    "id": "theonsitemanager-com-au-56654",
+    "id": "theonsitemanager-com-au-62521",
     "name": "Manoora QLD #21171293",
     "region": "QLD",
     "price": 963200,
@@ -732,10 +669,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:50:48.921382"
+    "last_fetched": "2026-04-28T17:39:32.285821"
   },
   {
-    "id": "theonsitemanager-com-au-01192",
+    "id": "theonsitemanager-com-au-19688",
     "name": "Coolum Beach QLD #21168405",
     "region": "QLD",
     "price": 1535100,
@@ -753,10 +690,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:51:07.181398"
+    "last_fetched": "2026-04-28T17:39:51.034581"
   },
   {
-    "id": "theonsitemanager-com-au-42612",
+    "id": "theonsitemanager-com-au-17909",
     "name": "Port Douglas QLD #21168044",
     "region": "QLD",
     "price": 1981054,
@@ -774,10 +711,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:51:11.932666"
+    "last_fetched": "2026-04-28T17:39:55.634809"
   },
   {
-    "id": "theonsitemanager-com-au-04370",
+    "id": "theonsitemanager-com-au-28343",
     "name": "Redbank Plains QLD #21157280",
     "region": "QLD",
     "price": 1901582,
@@ -795,10 +732,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:51:26.253582"
+    "last_fetched": "2026-04-28T17:40:09.949349"
   },
   {
-    "id": "theonsitemanager-com-au-61614",
+    "id": "theonsitemanager-com-au-72337",
     "name": "West End QLD #21135566",
     "region": "QLD",
     "price": 1595000,
@@ -816,10 +753,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:51:35.642110"
+    "last_fetched": "2026-04-28T17:40:19.448043"
   },
   {
-    "id": "theonsitemanager-com-au-40517",
+    "id": "theonsitemanager-com-au-81917",
     "name": "Cleveland QLD #21167376",
     "region": "QLD",
     "price": 850000,
@@ -837,10 +774,10 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:51:59.765740"
+    "last_fetched": "2026-04-28T17:40:42.706054"
   },
   {
-    "id": "theonsitemanager-com-au-51458",
+    "id": "theonsitemanager-com-au-88093",
     "name": "Coomera QLD #21164182",
     "region": "Coomera",
     "price": 604500,
@@ -858,10 +795,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:52:04.138401"
+    "last_fetched": "2026-04-28T17:40:47.142009"
   },
   {
-    "id": "theonsitemanager-com-au-88038",
+    "id": "theonsitemanager-com-au-44970",
     "name": "Maroochydore QLD #21162663",
     "region": "Maroochydore",
     "price": 1757500,
@@ -879,10 +816,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:52:08.794230"
+    "last_fetched": "2026-04-28T17:40:52.590368"
   },
   {
-    "id": "theonsitemanager-com-au-33197",
+    "id": "theonsitemanager-com-au-70621",
     "name": "Beaudesert QLD #21161222",
     "region": "QLD",
     "price": 1399858,
@@ -900,10 +837,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:52:13.803185"
+    "last_fetched": "2026-04-28T17:40:57.343415"
   },
   {
-    "id": "theonsitemanager-com-au-63879",
+    "id": "theonsitemanager-com-au-69699",
     "name": "Eagleby QLD #21157398",
     "region": "QLD",
     "price": 1346284,
@@ -921,10 +858,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:52:23.220416"
+    "last_fetched": "2026-04-28T17:41:07.384819"
   },
   {
-    "id": "theonsitemanager-com-au-25331",
+    "id": "theonsitemanager-com-au-79797",
     "name": "Ashmore QLD #21153087",
     "region": "QLD",
     "price": 984698,
@@ -942,10 +879,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:52:46.497587"
+    "last_fetched": "2026-04-28T17:41:31.504943"
   },
   {
-    "id": "theonsitemanager-com-au-69432",
+    "id": "theonsitemanager-com-au-53058",
     "name": "Maroochydore QLD #21151277",
     "region": "Maroochydore",
     "price": 1508291,
@@ -963,10 +900,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:52:46.576574"
+    "last_fetched": "2026-04-28T17:41:31.588202"
   },
   {
-    "id": "theonsitemanager-com-au-80838",
+    "id": "theonsitemanager-com-au-10415",
     "name": "Alexandra Headland QLD #21145851",
     "region": "QLD",
     "price": 980500,
@@ -984,10 +921,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:52:46.659550"
+    "last_fetched": "2026-04-28T17:41:31.662239"
   },
   {
-    "id": "theonsitemanager-com-au-84270",
+    "id": "theonsitemanager-com-au-76090",
     "name": "Labrador QLD #21143542",
     "region": "QLD",
     "price": 1742499,
@@ -1005,31 +942,10 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:52:46.766975"
+    "last_fetched": "2026-04-28T17:41:31.777514"
   },
   {
-    "id": "theonsitemanager-com-au-32158",
-    "name": "Alexandra Headland QLD #21139826",
-    "region": "QLD",
-    "price": 980500,
-    "unit_price": 0,
-    "net_income": 265000,
-    "multiplier": 3.7,
-    "bc_percent": 36.1,
-    "contract_years": null,
-    "pool_units": 25,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.theonsitemanager.com.au/resort--holiday-management-rights/AlexandraHeadland-QLD-21139826",
-    "source": "theonsitemanager.com.au",
-    "notes": "BC 36.1% healthy. 3.7x — excellent value. 25 pool units — good diversification. 27.0% ROI — strong return.",
-    "risks": "",
-    "action": "Confirm contract term remaining.",
-    "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:52:46.843561"
-  },
-  {
-    "id": "theonsitemanager-com-au-62757",
+    "id": "theonsitemanager-com-au-61182",
     "name": "Rainbow Beach QLD #21139588",
     "region": "QLD",
     "price": 600000,
@@ -1047,6 +963,90 @@
     "risks": "Only 9 pool units — small income base.",
     "action": "",
     "last_updated": "2026-04-28",
-    "last_fetched": "2026-04-28T16:52:51.491012"
+    "last_fetched": "2026-04-28T17:41:36.743396"
+  },
+  {
+    "id": "theonsitemanager-com-au-22057",
+    "name": "Coolum Beach QLD #21112550",
+    "region": "QLD",
+    "price": 974745,
+    "unit_price": 0,
+    "net_income": 256512,
+    "multiplier": 3.8,
+    "bc_percent": 49.2,
+    "contract_years": null,
+    "pool_units": 20,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://www.theonsitemanager.com.au/resort--holiday-management-rights/CoolumBeach-QLD-21112550",
+    "source": "theonsitemanager.com.au",
+    "notes": "BC 49.2% healthy. 3.8x — excellent value. 20 pool units — good diversification. 26.3% ROI — strong return.",
+    "risks": "",
+    "action": "Confirm contract term remaining.",
+    "last_updated": "2026-04-28",
+    "last_fetched": "2026-04-28T17:41:41.720563"
+  },
+  {
+    "id": "theonsitemanager-com-au-60202",
+    "name": "Trinity Beach QLD #21171959",
+    "region": "QLD",
+    "price": 1655209,
+    "unit_price": 0,
+    "net_income": 472917,
+    "multiplier": 3.5,
+    "bc_percent": 21.1,
+    "contract_years": null,
+    "pool_units": 28,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://www.theonsitemanager.com.au/resort--holiday-management-rights/TrinityBeach-QLD-21171959",
+    "source": "theonsitemanager.com.au",
+    "notes": "BC 21.1% healthy. 3.5x — excellent value. 28 pool units — good diversification. 28.6% ROI — strong return.",
+    "risks": "",
+    "action": "Confirm contract term remaining.",
+    "last_updated": "2026-04-28",
+    "last_fetched": "2026-04-28T17:41:51.637565"
+  },
+  {
+    "id": "theonsitemanager-com-au-56001",
+    "name": "Surfers Paradise QLD #21171951",
+    "region": "Surfers Paradise",
+    "price": 1258792,
+    "unit_price": 0,
+    "net_income": 314698,
+    "multiplier": 4.0,
+    "bc_percent": 36.7,
+    "contract_years": null,
+    "pool_units": 20,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://www.theonsitemanager.com.au/permanent-management-rights/SurfersParadise-QLD-21171951",
+    "source": "theonsitemanager.com.au",
+    "notes": "BC 36.7% healthy. 4.0x — excellent value. 20 pool units — good diversification. 25.0% ROI — strong return.",
+    "risks": "",
+    "action": "Confirm contract term remaining.",
+    "last_updated": "2026-04-28",
+    "last_fetched": "2026-04-28T17:41:51.675188"
+  },
+  {
+    "id": "theonsitemanager-com-au-66891",
+    "name": "Noosaville QLD #21169275",
+    "region": "Noosa",
+    "price": 1750100,
+    "unit_price": 0,
+    "net_income": 407000,
+    "multiplier": 4.3,
+    "bc_percent": 25.1,
+    "contract_years": null,
+    "pool_units": 23,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://www.theonsitemanager.com.au/resort--holiday-management-rights/Noosaville-QLD-21169275",
+    "source": "theonsitemanager.com.au",
+    "notes": "BC 25.1% healthy. 4.3x — excellent value. 23 pool units — good diversification. 23.3% ROI — strong return.",
+    "risks": "",
+    "action": "Confirm contract term remaining.",
+    "last_updated": "2026-04-28",
+    "last_fetched": "2026-04-28T17:42:00.811286"
   }
 ]
