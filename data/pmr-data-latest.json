@@ -1,6 +1,6 @@
 [
   {
-    "id": "theonsitemanager-com-au-50878",
+    "id": "theonsitemanager-com-au-88942",
     "name": "Coolangatta QLD #21170051",
     "region": "Gold Coast",
     "price": 3880000,
@@ -19,11 +19,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:19:22.367093",
+    "last_fetched": "2026-06-03T10:20:44.895342",
     "quality_score": 125
   },
   {
-    "id": "theonsitemanager-com-au-80134",
+    "id": "theonsitemanager-com-au-96688",
     "name": "Brisbane City QLD #21170145",
     "region": "Brisbane",
     "price": 5750000,
@@ -42,11 +42,35 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:28:56.716930",
+    "last_fetched": "2026-06-03T10:30:13.123509",
     "quality_score": 125
   },
   {
-    "id": "theonsitemanager-com-au-96447",
+    "id": "theonsitemanager-com-au-07686",
+    "name": "Bokarina QLD #21168848",
+    "region": "Bokarina",
+    "price": 2468000,
+    "unit_price": 0,
+    "price_source": "detail_total",
+    "net_income": 544482,
+    "multiplier": 4.53,
+    "bc_percent": 46.5,
+    "contract_years": 25,
+    "pool_units": 70,
+    "weekly_rent_per_unit": null,
+    "status": "active",
+    "url": "https://www.theonsitemanager.com.au/off-the-plan-management-rights/Bokarina-QLD-21168848",
+    "source": "theonsitemanager.com.au",
+    "notes": "BC 46.5% healthy. 4.53x — excellent value. 25yr contract — very secure. 70 pool units — good diversification. 22.1% ROI — strong return.",
+    "risks": "",
+    "action": "",
+    "last_updated": "2026-06-03",
+    "last_fetched": "2026-06-03T10:32:15.452130",
+    "quality_score": 125,
+    "price_drop": 427000
+  },
+  {
+    "id": "theonsitemanager-com-au-94658",
     "name": "Broadbeach QLD #21170768",
     "region": "Gold Coast",
     "price": 3100000,
@@ -65,11 +89,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:28:04.518692",
+    "last_fetched": "2026-06-03T10:29:22.260302",
     "quality_score": 120
   },
   {
-    "id": "theonsitemanager-com-au-66490",
+    "id": "theonsitemanager-com-au-67732",
     "name": "Surfers Paradise QLD #21169126",
     "region": "Gold Coast",
     "price": 1750000,
@@ -88,11 +112,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:30:25.703080",
+    "last_fetched": "2026-06-03T10:31:41.867281",
     "quality_score": 120
   },
   {
-    "id": "theonsitemanager-com-au-17095",
+    "id": "theonsitemanager-com-au-87092",
     "name": "Mackay QLD #21163584",
     "region": "Mackay",
     "price": 2530000,
@@ -111,11 +135,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:35:46.838190",
+    "last_fetched": "2026-06-03T10:37:03.650305",
     "quality_score": 120
   },
   {
-    "id": "theonsitemanager-com-au-01907",
+    "id": "theonsitemanager-com-au-39505",
     "name": "Noosa Heads QLD #21180069",
     "region": "Noosa Heads",
     "price": 2770000,
@@ -134,11 +158,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:03:21.519263",
+    "last_fetched": "2026-06-03T10:04:43.390802",
     "quality_score": 115
   },
   {
-    "id": "theonsitemanager-com-au-04523",
+    "id": "theonsitemanager-com-au-17997",
     "name": "Coolum Beach QLD #21176388",
     "region": "Coolum Beach",
     "price": 3755000,
@@ -157,11 +181,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:03:47.689480",
+    "last_fetched": "2026-06-03T10:05:07.501756",
     "quality_score": 115
   },
   {
-    "id": "theonsitemanager-com-au-90339",
+    "id": "theonsitemanager-com-au-33696",
     "name": "Currumbin QLD #21173776",
     "region": "Gold Coast",
     "price": 3200000,
@@ -180,11 +204,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:20:59.866526",
+    "last_fetched": "2026-06-03T10:22:19.351051",
     "quality_score": 115
   },
   {
-    "id": "theonsitemanager-com-au-04478",
+    "id": "theonsitemanager-com-au-07050",
     "name": "Kallangur QLD #21172863",
     "region": "QLD",
     "price": 3980000,
@@ -203,11 +227,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:24:22.781409",
+    "last_fetched": "2026-06-03T10:25:40.981183",
     "quality_score": 115
   },
   {
-    "id": "theonsitemanager-com-au-38866",
+    "id": "theonsitemanager-com-au-37092",
     "name": "Brisbane City QLD #21170918",
     "region": "Brisbane",
     "price": 2740000,
@@ -226,11 +250,11 @@
     "risks": "",
     "action": "Verify pool unit schedule.",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:27:45.409293",
+    "last_fetched": "2026-06-03T10:29:03.774656",
     "quality_score": 115
   },
   {
-    "id": "theonsitemanager-com-au-80463",
+    "id": "theonsitemanager-com-au-16862",
     "name": "Redbank Plains QLD #21170913",
     "region": "QLD",
     "price": 2135000,
@@ -249,11 +273,11 @@
     "risks": "",
     "action": "Verify pool unit schedule.",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:27:54.803214",
+    "last_fetched": "2026-06-03T10:29:12.857292",
     "quality_score": 115
   },
   {
-    "id": "theonsitemanager-com-au-36288",
+    "id": "theonsitemanager-com-au-35563",
     "name": "Surfers Paradise QLD #21170910",
     "region": "Gold Coast",
     "price": 5600000,
@@ -272,34 +296,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:27:59.594481",
+    "last_fetched": "2026-06-03T10:29:17.641027",
     "quality_score": 115
   },
   {
-    "id": "theonsitemanager-com-au-09965",
-    "name": "Bokarina QLD #21168848",
-    "region": "Bokarina",
-    "price": 2895000,
-    "unit_price": 0,
-    "price_source": "detail_total",
-    "net_income": 544482,
-    "multiplier": 5.32,
-    "bc_percent": 46.5,
-    "contract_years": 25,
-    "pool_units": 70,
-    "weekly_rent_per_unit": null,
-    "status": "active",
-    "url": "https://www.theonsitemanager.com.au/off-the-plan-management-rights/Bokarina-QLD-21168848",
-    "source": "theonsitemanager.com.au",
-    "notes": "BC 46.5% healthy. 5.32x — fair. 25yr contract — very secure. 70 pool units — good diversification. 18.8% ROI — strong return.",
-    "risks": "",
-    "action": "",
-    "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:30:58.762039",
-    "quality_score": 115
-  },
-  {
-    "id": "theonsitemanager-com-au-16056",
+    "id": "theonsitemanager-com-au-09412",
     "name": "Scarness QLD #21167741",
     "region": "QLD",
     "price": 3457000,
@@ -318,11 +319,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:32:32.990925",
+    "last_fetched": "2026-06-03T10:33:49.992373",
     "quality_score": 115
   },
   {
-    "id": "theonsitemanager-com-au-98473",
+    "id": "theonsitemanager-com-au-43562",
     "name": "Birtinya QLD #21166732",
     "region": "Birtinya",
     "price": 4648451,
@@ -341,11 +342,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:33:10.945806",
+    "last_fetched": "2026-06-03T10:34:28.140963",
     "quality_score": 115
   },
   {
-    "id": "theonsitemanager-com-au-79861",
+    "id": "theonsitemanager-com-au-24578",
     "name": "Teneriffe QLD #21162354",
     "region": "Brisbane",
     "price": 2950000,
@@ -364,11 +365,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:36:14.687186",
+    "last_fetched": "2026-06-03T10:37:31.825786",
     "quality_score": 115
   },
   {
-    "id": "theonsitemanager-com-au-98612",
+    "id": "theonsitemanager-com-au-05576",
     "name": "Currumbin QLD #21178154",
     "region": "Gold Coast",
     "price": 2770000,
@@ -387,11 +388,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:42:15.593246",
+    "last_fetched": "2026-06-03T10:43:29.894878",
     "quality_score": 115
   },
   {
-    "id": "theonsitemanager-com-au-13831",
+    "id": "theonsitemanager-com-au-81640",
     "name": "Hamilton QLD #21152825",
     "region": "Brisbane",
     "price": 5500000,
@@ -410,11 +411,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:20:13.064650",
+    "last_fetched": "2026-06-03T10:21:32.258025",
     "quality_score": 110
   },
   {
-    "id": "resortbrokers-com-au-84395",
+    "id": "resortbrokers-com-au-93966",
     "name": "Port Douglas QLD",
     "region": "QLD",
     "price": 3400000,
@@ -433,11 +434,11 @@
     "risks": "",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T09:58:27.835915",
+    "last_fetched": "2026-06-03T09:59:52.541435",
     "quality_score": 105
   },
   {
-    "id": "theonsitemanager-com-au-56895",
+    "id": "theonsitemanager-com-au-01973",
     "name": "Maroochydore QLD #21172459",
     "region": "Maroochydore",
     "price": 5500000,
@@ -456,11 +457,11 @@
     "risks": "6.59x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:46:47.010264",
+    "last_fetched": "2026-06-03T10:48:04.729696",
     "quality_score": 105
   },
   {
-    "id": "theonsitemanager-com-au-31602",
+    "id": "theonsitemanager-com-au-94831",
     "name": "Broadbeach QLD #21177520",
     "region": "Gold Coast",
     "price": 5500000,
@@ -479,11 +480,11 @@
     "risks": "7.38x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:03:36.111236",
+    "last_fetched": "2026-06-03T10:04:57.922802",
     "quality_score": 100
   },
   {
-    "id": "theonsitemanager-com-au-09534",
+    "id": "theonsitemanager-com-au-74956",
     "name": "Redcliffe QLD #21173461",
     "region": "QLD",
     "price": 2468000,
@@ -502,11 +503,11 @@
     "risks": "BC 73.9% — leaning caretaker.",
     "action": "Verify pool unit schedule.",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:23:30.480141",
+    "last_fetched": "2026-06-03T10:24:49.664756",
     "quality_score": 100
   },
   {
-    "id": "theonsitemanager-com-au-22741",
+    "id": "theonsitemanager-com-au-00684",
     "name": "Coolum Beach QLD #21173340",
     "region": "Coolum Beach",
     "price": 6945000,
@@ -525,11 +526,11 @@
     "risks": "7.39x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:23:44.849573",
+    "last_fetched": "2026-06-03T10:25:03.529945",
     "quality_score": 100
   },
   {
-    "id": "theonsitemanager-com-au-35727",
+    "id": "theonsitemanager-com-au-71057",
     "name": "Palm Beach QLD #21157911",
     "region": "Gold Coast",
     "price": 2838600,
@@ -548,11 +549,11 @@
     "risks": "BC 81.1% = caretaker trap. Minimal letting income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:38:28.411451",
+    "last_fetched": "2026-06-03T10:39:43.254390",
     "quality_score": 100
   },
   {
-    "id": "theonsitemanager-com-au-54752",
+    "id": "theonsitemanager-com-au-94633",
     "name": "Surfers Paradise QLD #21157759",
     "region": "Gold Coast",
     "price": 5100000,
@@ -571,11 +572,11 @@
     "risks": "7.83x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:38:37.839479",
+    "last_fetched": "2026-06-03T10:39:52.772311",
     "quality_score": 100
   },
   {
-    "id": "theonsitemanager-com-au-16222",
+    "id": "theonsitemanager-com-au-19708",
     "name": "Tugun QLD #21168112",
     "region": "Gold Coast",
     "price": 3880000,
@@ -594,11 +595,11 @@
     "risks": "6.87x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:48:30.279407",
+    "last_fetched": "2026-06-03T10:49:45.745741",
     "quality_score": 100
   },
   {
-    "id": "theonsitemanager-com-au-79940",
+    "id": "theonsitemanager-com-au-22082",
     "name": "Buderim QLD #21176636",
     "region": "Buderim",
     "price": 5500000,
@@ -617,11 +618,11 @@
     "risks": "7.85x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:57:21.634576",
+    "last_fetched": "2026-06-03T10:58:35.963099",
     "quality_score": 100
   },
   {
-    "id": "theonsitemanager-com-au-24865",
+    "id": "theonsitemanager-com-au-88311",
     "name": "Coolangatta QLD #21173399",
     "region": "Gold Coast",
     "price": 3880000,
@@ -640,11 +641,11 @@
     "risks": "7.02x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:58:19.627843",
+    "last_fetched": "2026-06-03T10:59:33.008367",
     "quality_score": 100
   },
   {
-    "id": "theonsitemanager-com-au-39729",
+    "id": "theonsitemanager-com-au-42016",
     "name": "Fortitude Valley QLD #21173256",
     "region": "Brisbane",
     "price": 5750000,
@@ -663,11 +664,11 @@
     "risks": "7.15x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:58:29.184500",
+    "last_fetched": "2026-06-03T10:59:42.576309",
     "quality_score": 100
   },
   {
-    "id": "theonsitemanager-com-au-03055",
+    "id": "theonsitemanager-com-au-59089",
     "name": "Main Beach QLD #21173195",
     "region": "QLD",
     "price": 5600000,
@@ -686,11 +687,11 @@
     "risks": "7.48x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:58:33.714167",
+    "last_fetched": "2026-06-03T10:59:47.508318",
     "quality_score": 100
   },
   {
-    "id": "resortbrokers-com-au-03122",
+    "id": "resortbrokers-com-au-31847",
     "name": "Noosa North Shore QLD",
     "region": "Noosa",
     "price": 3400000,
@@ -709,11 +710,11 @@
     "risks": "6.56x — overpriced for this income.",
     "action": "Confirm contract term remaining.",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T09:58:45.237477",
+    "last_fetched": "2026-06-03T10:02:54.887961",
     "quality_score": 95
   },
   {
-    "id": "theonsitemanager-com-au-91857",
+    "id": "theonsitemanager-com-au-73638",
     "name": "Brisbane City QLD #21176277",
     "region": "Brisbane",
     "price": 5500000,
@@ -732,11 +733,11 @@
     "risks": "BC 72.8% — leaning caretaker.",
     "action": "Verify pool unit schedule. Confirm contract term remaining.",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:03:52.203412",
+    "last_fetched": "2026-06-03T10:05:12.243645",
     "quality_score": 95
   },
   {
-    "id": "theonsitemanager-com-au-39092",
+    "id": "theonsitemanager-com-au-56869",
     "name": "Coolangatta QLD #21172398",
     "region": "Gold Coast",
     "price": 3525000,
@@ -755,11 +756,11 @@
     "risks": "7.05x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:25:28.659048",
+    "last_fetched": "2026-06-03T10:26:47.398416",
     "quality_score": 95
   },
   {
-    "id": "theonsitemanager-com-au-19305",
+    "id": "theonsitemanager-com-au-47819",
     "name": "Coomera QLD #21171182",
     "region": "Gold Coast",
     "price": 3880000,
@@ -778,11 +779,11 @@
     "risks": "7.54x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:27:07.242260",
+    "last_fetched": "2026-06-03T10:28:25.036375",
     "quality_score": 95
   },
   {
-    "id": "theonsitemanager-com-au-58947",
+    "id": "theonsitemanager-com-au-90501",
     "name": "Noosa Heads QLD #21167761",
     "region": "Noosa Heads",
     "price": 4200000,
@@ -801,11 +802,11 @@
     "risks": "7.24x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:44:03.211141",
+    "last_fetched": "2026-06-03T10:45:18.360079",
     "quality_score": 95
   },
   {
-    "id": "theonsitemanager-com-au-61956",
+    "id": "theonsitemanager-com-au-33477",
     "name": "Tugun QLD #21168509",
     "region": "Gold Coast",
     "price": 3800000,
@@ -824,11 +825,11 @@
     "risks": "7.2x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:48:11.839149",
+    "last_fetched": "2026-06-03T10:49:32.002037",
     "quality_score": 95
   },
   {
-    "id": "accomproperties-com-au-42777",
+    "id": "accomproperties-com-au-35008",
     "name": "Coolangatta",
     "region": "Gold Coast",
     "price": 6588600,
@@ -847,11 +848,11 @@
     "risks": "7.72x — overpriced for this income.",
     "action": "Request BC salary breakdown.",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T09:57:43.784939",
+    "last_fetched": "2026-06-03T09:59:11.795882",
     "quality_score": 90
   },
   {
-    "id": "theonsitemanager-com-au-11407",
+    "id": "theonsitemanager-com-au-86231",
     "name": "Hope Island QLD #21169125",
     "region": "Gold Coast",
     "price": 3563574,
@@ -870,11 +871,11 @@
     "risks": "BC 83.5% = caretaker trap. Minimal letting income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:30:30.710623",
+    "last_fetched": "2026-06-03T10:31:46.658274",
     "quality_score": 85
   },
   {
-    "id": "theonsitemanager-com-au-46658",
+    "id": "theonsitemanager-com-au-12235",
     "name": "Brendale QLD #21163624",
     "region": "Brisbane",
     "price": 3665000,
@@ -893,11 +894,11 @@
     "risks": "BC 100.5% = caretaker trap. Minimal letting income. 6.61x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:19:52.846712",
+    "last_fetched": "2026-06-03T10:21:13.264030",
     "quality_score": 80
   },
   {
-    "id": "theonsitemanager-com-au-33245",
+    "id": "theonsitemanager-com-au-18614",
     "name": "Coolangatta QLD #21170709",
     "region": "Gold Coast",
     "price": 6588600,
@@ -916,11 +917,11 @@
     "risks": "11.98x — overpriced for this income.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:47:24.493069",
+    "last_fetched": "2026-06-03T10:48:44.356501",
     "quality_score": 80
   },
   {
-    "id": "theonsitemanager-com-au-06265",
+    "id": "theonsitemanager-com-au-35412",
     "name": "Brisbane City QLD #21145100",
     "region": "Brisbane",
     "price": 7016000,
@@ -939,11 +940,11 @@
     "risks": "13.93x — overpriced for this income.",
     "action": "Verify pool unit schedule.",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:40:55.584295",
+    "last_fetched": "2026-06-03T10:42:09.077007",
     "quality_score": 65
   },
   {
-    "id": "theonsitemanager-com-au-09091",
+    "id": "theonsitemanager-com-au-66037",
     "name": "Trinity Beach QLD #21171959",
     "region": "QLD",
     "price": 2275000,
@@ -962,11 +963,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:21:09.041619",
+    "last_fetched": "2026-06-03T10:22:28.968502",
     "quality_score": 118
   },
   {
-    "id": "theonsitemanager-com-au-01956",
+    "id": "theonsitemanager-com-au-17141",
     "name": "Cairns City QLD #21158010",
     "region": "Cairns",
     "price": 2210000,
@@ -985,11 +986,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:21:46.675670",
+    "last_fetched": "2026-06-03T10:23:06.903120",
     "quality_score": 118
   },
   {
-    "id": "theonsitemanager-com-au-56578",
+    "id": "theonsitemanager-com-au-82957",
     "name": "Southport QLD #21174046",
     "region": "Gold Coast",
     "price": 1699000,
@@ -1008,11 +1009,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:23:02.135581",
+    "last_fetched": "2026-06-03T10:24:21.394223",
     "quality_score": 118
   },
   {
-    "id": "theonsitemanager-com-au-64064",
+    "id": "theonsitemanager-com-au-91162",
     "name": "Calamvale QLD #21168364",
     "region": "QLD",
     "price": 1140000,
@@ -1031,11 +1032,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:31:36.753015",
+    "last_fetched": "2026-06-03T10:32:53.719045",
     "quality_score": 118
   },
   {
-    "id": "theonsitemanager-com-au-86698",
+    "id": "theonsitemanager-com-au-34050",
     "name": "Buderim QLD #21160617",
     "region": "Buderim",
     "price": 1750000,
@@ -1054,11 +1055,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:51:11.187990",
+    "last_fetched": "2026-06-03T10:52:25.431325",
     "quality_score": 118
   },
   {
-    "id": "theonsitemanager-com-au-36536",
+    "id": "theonsitemanager-com-au-31684",
     "name": "Townsville City QLD #21172598",
     "region": "Townsville",
     "price": 735000,
@@ -1077,11 +1078,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:24:59.994307",
+    "last_fetched": "2026-06-03T10:26:19.104642",
     "quality_score": 114
   },
   {
-    "id": "theonsitemanager-com-au-15367",
+    "id": "theonsitemanager-com-au-74635",
     "name": "Lutwyche QLD #21166057",
     "region": "QLD",
     "price": 800000,
@@ -1100,11 +1101,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:33:49.090953",
+    "last_fetched": "2026-06-03T10:35:05.990307",
     "quality_score": 114
   },
   {
-    "id": "theonsitemanager-com-au-75763",
+    "id": "theonsitemanager-com-au-76898",
     "name": "Lutwyche QLD #21165959",
     "region": "QLD",
     "price": 835000,
@@ -1123,11 +1124,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:34:02.532698",
+    "last_fetched": "2026-06-03T10:35:19.733622",
     "quality_score": 114
   },
   {
-    "id": "theonsitemanager-com-au-39195",
+    "id": "theonsitemanager-com-au-72329",
     "name": "Labrador QLD #21164575",
     "region": "Gold Coast",
     "price": 940000,
@@ -1146,11 +1147,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:34:59.196401",
+    "last_fetched": "2026-06-03T10:36:15.861161",
     "quality_score": 114
   },
   {
-    "id": "theonsitemanager-com-au-41333",
+    "id": "theonsitemanager-com-au-58290",
     "name": "Albany Creek QLD #21105557",
     "region": "Brisbane",
     "price": 720000,
@@ -1169,11 +1170,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:41:37.565854",
+    "last_fetched": "2026-06-03T10:42:52.327092",
     "quality_score": 114
   },
   {
-    "id": "theonsitemanager-com-au-36896",
+    "id": "theonsitemanager-com-au-81371",
     "name": "Noosa Heads QLD #21151582",
     "region": "Noosa Heads",
     "price": 1350000,
@@ -1192,11 +1193,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:44:59.221020",
+    "last_fetched": "2026-06-03T10:46:16.613972",
     "quality_score": 113
   },
   {
-    "id": "theonsitemanager-com-au-20907",
+    "id": "theonsitemanager-com-au-55047",
     "name": "Thornlands QLD #21178614",
     "region": "QLD",
     "price": 496000,
@@ -1215,11 +1216,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:22:37.922087",
+    "last_fetched": "2026-06-03T10:23:58.339971",
     "quality_score": 110
   },
   {
-    "id": "theonsitemanager-com-au-18280",
+    "id": "theonsitemanager-com-au-76076",
     "name": "Marsden QLD #21164451",
     "region": "QLD",
     "price": 617000,
@@ -1238,11 +1239,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:35:13.459666",
+    "last_fetched": "2026-06-03T10:36:30.174380",
     "quality_score": 110
   },
   {
-    "id": "theonsitemanager-com-au-11418",
+    "id": "theonsitemanager-com-au-56279",
     "name": "Taigum QLD #21163937",
     "region": "QLD",
     "price": 500500,
@@ -1261,11 +1262,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:50:00.584438",
+    "last_fetched": "2026-06-03T10:51:14.614259",
     "quality_score": 110
   },
   {
-    "id": "theonsitemanager-com-au-69858",
+    "id": "theonsitemanager-com-au-92271",
     "name": "Cairns QLD #21148568",
     "region": "Cairns",
     "price": 1145000,
@@ -1284,11 +1285,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:40:16.634446",
+    "last_fetched": "2026-06-03T10:41:31.088767",
     "quality_score": 109
   },
   {
-    "id": "theonsitemanager-com-au-51270",
+    "id": "theonsitemanager-com-au-96211",
     "name": "Port Douglas QLD #21161604",
     "region": "QLD",
     "price": 1300000,
@@ -1307,11 +1308,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:44:40.756278",
+    "last_fetched": "2026-06-03T10:45:57.729299",
     "quality_score": 109
   },
   {
-    "id": "resortbrokers-com-au-36416",
+    "id": "resortbrokers-com-au-32516",
     "name": "Beaudesert QLD",
     "region": "Beaudesert",
     "price": 1990000,
@@ -1330,11 +1331,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T09:59:44.456571",
+    "last_fetched": "2026-06-03T10:03:58.214468",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-37027",
+    "id": "theonsitemanager-com-au-20414",
     "name": "Port Douglas QLD #21168044",
     "region": "QLD",
     "price": 2650000,
@@ -1353,11 +1354,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:19:43.071560",
+    "last_fetched": "2026-06-03T10:21:03.538973",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-55996",
+    "id": "theonsitemanager-com-au-01096",
     "name": "Maroochydore QLD #21162663",
     "region": "Maroochydore",
     "price": 2500000,
@@ -1376,11 +1377,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:21:41.917409",
+    "last_fetched": "2026-06-03T10:23:02.350224",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-35180",
+    "id": "theonsitemanager-com-au-93401",
     "name": "Cairns City QLD #21172449",
     "region": "Cairns",
     "price": 2330000,
@@ -1399,11 +1400,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:25:14.176683",
+    "last_fetched": "2026-06-03T10:26:33.290614",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-35216",
+    "id": "theonsitemanager-com-au-67864",
     "name": "Griffin QLD #21172403",
     "region": "Brisbane",
     "price": 1848000,
@@ -1422,11 +1423,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:25:23.986843",
+    "last_fetched": "2026-06-03T10:26:42.794883",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-28504",
+    "id": "theonsitemanager-com-au-83149",
     "name": "Wynnum QLD #21171302",
     "region": "Brisbane",
     "price": 1290000,
@@ -1445,11 +1446,11 @@
     "risks": "",
     "action": "Verify pool unit schedule.",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:26:58.281259",
+    "last_fetched": "2026-06-03T10:28:15.768252",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-54928",
+    "id": "theonsitemanager-com-au-45041",
     "name": "Wynnum QLD #21169267",
     "region": "Brisbane",
     "price": 1750000,
@@ -1468,11 +1469,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:30:02.930093",
+    "last_fetched": "2026-06-03T10:31:18.968793",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-60667",
+    "id": "theonsitemanager-com-au-41472",
     "name": "Dinmore QLD #21167877",
     "region": "QLD",
     "price": 2740000,
@@ -1491,11 +1492,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:32:28.231848",
+    "last_fetched": "2026-06-03T10:33:45.551204",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-94762",
+    "id": "theonsitemanager-com-au-99589",
     "name": "Trinity Beach QLD #21163169",
     "region": "QLD",
     "price": 1820000,
@@ -1514,11 +1515,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:36:04.922146",
+    "last_fetched": "2026-06-03T10:37:22.401101",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-53707",
+    "id": "theonsitemanager-com-au-63714",
     "name": "Kallangur QLD #21158943",
     "region": "QLD",
     "price": 1820000,
@@ -1537,11 +1538,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:38:04.666032",
+    "last_fetched": "2026-06-03T10:39:19.589291",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-79957",
+    "id": "theonsitemanager-com-au-74108",
     "name": "Redbank Plains QLD #21157280",
     "region": "QLD",
     "price": 2135000,
@@ -1560,11 +1561,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:38:56.836287",
+    "last_fetched": "2026-06-03T10:40:11.550376",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-47871",
+    "id": "theonsitemanager-com-au-52917",
     "name": "Marsden QLD #21142073",
     "region": "QLD",
     "price": 2158000,
@@ -1583,11 +1584,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:41:00.507223",
+    "last_fetched": "2026-06-03T10:42:13.831155",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-42220",
+    "id": "theonsitemanager-com-au-55009",
     "name": "Surfers Paradise QLD #21162639",
     "region": "Gold Coast",
     "price": 1750000,
@@ -1606,11 +1607,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:44:31.451948",
+    "last_fetched": "2026-06-03T10:45:47.522082",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-65196",
+    "id": "theonsitemanager-com-au-95341",
     "name": "Maroochydore QLD #21151277",
     "region": "Maroochydore",
     "price": 1750000,
@@ -1629,11 +1630,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:45:04.144185",
+    "last_fetched": "2026-06-03T10:46:21.532839",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-10382",
+    "id": "theonsitemanager-com-au-96372",
     "name": "Cairns City QLD #21149675",
     "region": "Cairns",
     "price": 2050000,
@@ -1652,11 +1653,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:53:43.856795",
+    "last_fetched": "2026-06-03T10:54:57.876076",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-94124",
+    "id": "theonsitemanager-com-au-35158",
     "name": "Scarborough QLD #21176498",
     "region": "QLD",
     "price": 2550000,
@@ -1675,11 +1676,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:57:36.305399",
+    "last_fetched": "2026-06-03T10:58:49.993243",
     "quality_score": 108
   },
   {
-    "id": "theonsitemanager-com-au-64791",
+    "id": "theonsitemanager-com-au-97080",
     "name": "Caloundra QLD #21158736",
     "region": "Caloundra",
     "price": 425000,
@@ -1698,11 +1699,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:51:39.711436",
+    "last_fetched": "2026-06-03T10:52:54.036791",
     "quality_score": 105
   },
   {
-    "id": "theonsitemanager-com-au-09348",
+    "id": "theonsitemanager-com-au-33942",
     "name": "Palm Beach QLD #21175206",
     "region": "Gold Coast",
     "price": 1090000,
@@ -1721,11 +1722,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:03:56.988778",
+    "last_fetched": "2026-06-03T10:05:17.321876",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-99000",
+    "id": "theonsitemanager-com-au-87775",
     "name": "Ascot QLD #21174079",
     "region": "Brisbane",
     "price": 835000,
@@ -1744,11 +1745,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:04:16.258820",
+    "last_fetched": "2026-06-03T10:19:22.367098",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-04847",
+    "id": "theonsitemanager-com-au-62902",
     "name": "Brendale QLD #21173420",
     "region": "Brisbane",
     "price": 975000,
@@ -1767,11 +1768,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:23:35.207011",
+    "last_fetched": "2026-06-03T10:24:54.182235",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-35522",
+    "id": "theonsitemanager-com-au-23034",
     "name": "Sadliers Crossing QLD #21170915",
     "region": "QLD",
     "price": 948000,
@@ -1790,11 +1791,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:27:50.072611",
+    "last_fetched": "2026-06-03T10:29:08.422142",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-60886",
+    "id": "theonsitemanager-com-au-80327",
     "name": "Upper Coomera QLD #21169183",
     "region": "Gold Coast",
     "price": 1747000,
@@ -1813,11 +1814,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:30:16.558714",
+    "last_fetched": "2026-06-03T10:31:32.647424",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-15908",
+    "id": "theonsitemanager-com-au-28836",
     "name": "Carseldine QLD #21160415",
     "region": "QLD",
     "price": 1107061,
@@ -1836,11 +1837,11 @@
     "risks": "",
     "action": "Verify pool unit schedule.",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:37:22.592907",
+    "last_fetched": "2026-06-03T10:38:37.758524",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-61129",
+    "id": "theonsitemanager-com-au-89504",
     "name": "West End QLD #21135566",
     "region": "Brisbane",
     "price": 1595000,
@@ -1859,11 +1860,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:41:24.323182",
+    "last_fetched": "2026-06-03T10:42:38.560858",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-41829",
+    "id": "theonsitemanager-com-au-78979",
     "name": "Chermside QLD #21084521",
     "region": "QLD",
     "price": 1582000,
@@ -1882,11 +1883,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:41:42.158277",
+    "last_fetched": "2026-06-03T10:42:56.923058",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-98499",
+    "id": "theonsitemanager-com-au-73436",
     "name": "Port Douglas QLD #21173011",
     "region": "QLD",
     "price": 1615000,
@@ -1905,11 +1906,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:42:39.348768",
+    "last_fetched": "2026-06-03T10:43:53.715714",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-94185",
+    "id": "theonsitemanager-com-au-09083",
     "name": "Alexandra Headland QLD #21164138",
     "region": "QLD",
     "price": 1675000,
@@ -1928,11 +1929,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:44:22.176694",
+    "last_fetched": "2026-06-03T10:45:37.675138",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-31634",
+    "id": "theonsitemanager-com-au-28033",
     "name": "Alexandra Headland QLD #21145851",
     "region": "QLD",
     "price": 1675000,
@@ -1951,11 +1952,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:45:27.536645",
+    "last_fetched": "2026-06-03T10:46:44.703751",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-98070",
+    "id": "theonsitemanager-com-au-77711",
     "name": "West End QLD #21169266",
     "region": "Brisbane",
     "price": 1513000,
@@ -1974,11 +1975,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:47:57.533660",
+    "last_fetched": "2026-06-03T10:49:17.785888",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-09660",
+    "id": "theonsitemanager-com-au-99579",
     "name": "Brisbane City QLD #21163696",
     "region": "Brisbane",
     "price": 1300000,
@@ -1997,11 +1998,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:50:09.957015",
+    "last_fetched": "2026-06-03T10:51:24.190490",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-78080",
+    "id": "theonsitemanager-com-au-85876",
     "name": "Townsville City QLD #21161944",
     "region": "Townsville",
     "price": 817500,
@@ -2020,11 +2021,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:50:47.869462",
+    "last_fetched": "2026-06-03T10:52:02.296244",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-05884",
+    "id": "theonsitemanager-com-au-54583",
     "name": "Chermside QLD #21151482",
     "region": "QLD",
     "price": 960991,
@@ -2043,11 +2044,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:53:24.818114",
+    "last_fetched": "2026-06-03T10:54:38.139885",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-11723",
+    "id": "theonsitemanager-com-au-10647",
     "name": "Everton Hills QLD #21147697",
     "region": "Brisbane",
     "price": 1100000,
@@ -2066,11 +2067,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:54:26.586948",
+    "last_fetched": "2026-06-03T10:55:39.749417",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-96875",
+    "id": "theonsitemanager-com-au-07867",
     "name": "Rainbow Beach QLD #21139588",
     "region": "Rainbow Beach",
     "price": 600000,
@@ -2089,11 +2090,11 @@
     "risks": "Only 9 pool units — small income base.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:55:31.583872",
+    "last_fetched": "2026-06-03T10:56:45.272281",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-27653",
+    "id": "theonsitemanager-com-au-55340",
     "name": "Maroochydore QLD #21114010",
     "region": "Maroochydore",
     "price": 1152751,
@@ -2112,11 +2113,11 @@
     "risks": "Only 8 pool units — small income base.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:56:05.405305",
+    "last_fetched": "2026-06-03T10:57:21.199953",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-98827",
+    "id": "theonsitemanager-com-au-51703",
     "name": "Strathpine QLD #21176554",
     "region": "QLD",
     "price": 610000,
@@ -2135,11 +2136,11 @@
     "risks": "Only 7 pool units — small income base.",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:57:26.161530",
+    "last_fetched": "2026-06-03T10:58:40.673541",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-84858",
+    "id": "theonsitemanager-com-au-51183",
     "name": "Mooloolaba QLD #21176438",
     "region": "Mooloolaba",
     "price": 1650000,
@@ -2158,11 +2159,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:57:55.646531",
+    "last_fetched": "2026-06-03T10:59:09.568621",
     "quality_score": 104
   },
   {
-    "id": "theonsitemanager-com-au-35367",
+    "id": "theonsitemanager-com-au-55206",
     "name": "Airlie Beach QLD #21172726",
     "region": "QLD",
     "price": 2250000,
@@ -2181,11 +2182,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:04:57.908767",
+    "last_fetched": "2026-06-03T10:20:07.915563",
     "quality_score": 103
   },
   {
-    "id": "theonsitemanager-com-au-78730",
+    "id": "theonsitemanager-com-au-83054",
     "name": "Port Douglas QLD #21161699",
     "region": "QLD",
     "price": 1595000,
@@ -2204,11 +2205,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:20:02.331674",
+    "last_fetched": "2026-06-03T10:21:22.923599",
     "quality_score": 103
   },
   {
-    "id": "theonsitemanager-com-au-41333",
+    "id": "theonsitemanager-com-au-81533",
     "name": "Clifton Beach QLD #21166421",
     "region": "QLD",
     "price": 1795000,
@@ -2227,11 +2228,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:21:27.782718",
+    "last_fetched": "2026-06-03T10:22:48.217284",
     "quality_score": 103
   },
   {
-    "id": "theonsitemanager-com-au-71787",
+    "id": "theonsitemanager-com-au-28216",
     "name": "Varsity Lakes QLD #21172261",
     "region": "Gold Coast",
     "price": 2450000,
@@ -2250,11 +2251,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:25:38.220045",
+    "last_fetched": "2026-06-03T10:26:56.570034",
     "quality_score": 103
   },
   {
-    "id": "theonsitemanager-com-au-38563",
+    "id": "theonsitemanager-com-au-31100",
     "name": "Hervey Bay QLD #21171599",
     "region": "Hervey Bay",
     "price": 2150000,
@@ -2273,11 +2274,11 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:26:39.548749",
+    "last_fetched": "2026-06-03T10:27:57.084742",
     "quality_score": 103
   },
   {
-    "id": "theonsitemanager-com-au-52185",
+    "id": "theonsitemanager-com-au-56275",
     "name": "Cairns North QLD #21171890",
     "region": "Cairns",
     "price": 2250000,
@@ -2296,7 +2297,7 @@
     "risks": "",
     "action": "",
     "last_updated": "2026-06-03",
-    "last_fetched": "2026-06-03T10:43:07.196206",
+    "last_fetched": "2026-06-03T10:44:21.502060",
     "quality_score": 103
   }
 ]
