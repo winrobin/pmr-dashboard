@@ -38,26 +38,12 @@ function normalizeRegion(r) {
 }
 
   function loadData() {
-    fetch('data/pmr-data-latest.json?t=' + Date.now())
+    fetch('pmr-data-latest.json?t=' + Date.now())
       .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(data => {
         allData = Array.isArray(data) ? data : (data.listings || data.data || []);
         const dt = document.getElementById('dt');
-        // FIX: show actual data fetch time from JSON, not browser time
-        const lastFetched = allData[0] && allData[0].last_fetched
-          ? new Date(allData[0].last_fetched)
-          : null;
-        if (dt) {
-          if (lastFetched) {
-            dt.textContent = 'Updated: ' + lastFetched.toLocaleString('en-AU', {
-              timeZone: 'Australia/Brisbane',
-              day: 'numeric', month: 'short', year: 'numeric',
-              hour: '2-digit', minute: '2-digit'
-            });
-          } else {
-            dt.textContent = new Date().toLocaleDateString('en-AU');
-          }
-        }
+        if (dt) dt.textContent = new Date().toLocaleDateString('en-AU');
         const fr = document.getElementById('freshness');
         if (fr) fr.textContent = allData.length + ' listings';
         buildRegions();
