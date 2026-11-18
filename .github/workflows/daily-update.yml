@@ -77,8 +77,8 @@ jobs:
               data = json.load(f)
           records = data if isinstance(data, list) else data.get('listings') or data.get('data') or []
           print(f'{len(records)} records')
-          if len(records) < 50:
-              print('Too few records — refusing to commit a broken scrape.')
+          if len(records) < 200:
+              print('Too few records — the API should return ~490 Queensland listings; refusing to commit a partial scrape.')
               sys.exit(1)
           "
 
@@ -103,7 +103,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add pmr-data-latest.json data/pmr-data-latest.json index.html
+          git add pmr-data-latest.json data/pmr-data-latest.json pmr-data-meta.json index.html
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
