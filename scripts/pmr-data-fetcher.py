@@ -1,74 +1,65 @@
 #!/usr/bin/env python3
 """
 pmr-data-fetcher.py — rebuilt refresh program for the PMR Dashboard.
-
-Replaces the lost original fetcher (which lived only in
-~/.openclaw/workspace/pmr on the PC). Written from the live pages
-themselves, checked 18 Nov 2026.
+Version 3 — API-first (18 Nov 2026).
 
 WHAT IT DOES
-  1. Discovers listings from The Onsite Manager index
-     https://www.theonsitemanager.com.au/management-rights
-     (528 listings, 493 in Queensland, 22 pages x 24, ?page=N),
-     plus the region pages /management-rights/<gold-coast|brisbane|
-     sunshine-coast|cairns|townsville|north-queensland>.
-     The index is client-rendered, so discovery scans the raw HTML /
-     embedded script JSON for listing URLs — it does not rely on the
-     rendered cards.
-  2. Fetches each detail page and parses the h2 sections
-     "Financial Overview" / "Caretaking" / "Letting Business" /
-     "Included Real Estate" as label/value pairs. There is NO
-     "Key-facts" table on these pages — that was the old fetcher's
-     mistake, and why Urangan was marked "Test listing".
-  3. Writes pmr-data-latest.json (bare JSON array, same 21 fields as
-     the old file, so index.html/app.js keep working) plus
-     pmr-data-meta.json with generated_at, counts and sources.
+  1. Fetches listings from the broker's own public JSON API, named
+     in the site's robots.txt — no API key or sign-in needed:
+       GET https://www.theonsitemanager.com.au/api/v1/listings.php
+           ?class=Management%20Rights&page=N&limit=100
+     Response: {"success":true, "data":[...],
+                "pagination":{"total":528,"page":1,"limit":100,"pages":6}}
+     Loop page=1..pages. limit=100 is the largest usable page size
+     (above 100 it falls back to 20). This replaces v2's HTML crawl,
+     which only ever saw the first page of the client-rendered index
+     (?page=N returns the same first-page HTML) and found just 98
+     listings on its first live run, out of ~528.
+  2. Keeps only Queensland listings (state == "QLD", ~493 of 528).
+     Removed listings simply stop appearing in the API, so they
+     drop out automatically — no "Listing No Longer Available"
+     page to detect.
+  3. Maps API fields to the dashboard's 21-field schema and writes
+     pmr-data-latest.json (bare JSON array) plus pmr-data-meta.json
+     with generated_at, counts and sources.
+
+API FIELDS (verified live 18 Nov 2026)
+  pageId (stable ID), suburb, state, postcode, region (hub slug),
+  price (numeric total, e.g. 400000), priceView (display string,
+  e.g. "$3.832M + RE", "All offers considered"),
+  takings (net income), takingsBasis ("actual"/"projected"),
+  mr_remuneration (BC salary), mr_unitsLettingPool (pool),
+  mr_unitValue (included real estate / unit value),
+  mr_unitsTotal (units in complex), mr_agreementRemaining
+  (contract years remaining), timestamp (last updated),
+  category, status, title, description, listingAgentName.
+  Listing URL: /management-rights/{pageId}/{slugified-title}
+  (detail pages use /<type>-management-rights/<Suburb>-<STATE>-<id>;
+  parse by pageId, not the suburb slug — Urangan #21189761
+  redirects to HerveyBay-QLD-21189761.)
 
 PRICE — THE IMPORTANT BIT
-  "Total Purchase Price:" can be a plain amount ($4,275,000) or a
-  composite ("$153K MR & $722K Unit = Total $875K").
-  "Included Real Estate:" is the value of the unit/office on title.
-  business_price = total - included_real_estate.
+  business_price = price - mr_unitValue.
   The broker's own "Multiplier:" is business_price / net_income:
     Maroochydore: ($4,275,000 - $225,000) / $899,963 = 4.5x
     Urangan:      ($875,000 - $722,000) / $102,136  = 1.5x
-  So this fetcher stores:
-    price             = total purchase price (as before, for compat)
-    unit_price        = Included Real Estate value (was always 0 before)
-    business_price    = total - unit_price
-    multiplier        = business_price / net_income  (the broker's figure)
-    multiplier_total  = total / net_income, for reference
-  Urangan's old stored $980,000 / 9.6x is therefore corrected to
-  $875,000 total / $153,000 business, 1.5x business multiplier.
-  Non-numeric prices ("All offers considered", "Expressions Of
-  Interest", "$3.832M + RE", bare digits like "400000") are handled:
-  $X.XXXM is expanded, bare digits are taken as dollars, and
-  text-only prices are kept with price=None and status="unverified"
-  — the record is flagged, not deleted.
+  Stored: price = total, unit_price = mr_unitValue,
+  business_price, multiplier = business_price / net_income,
+  multiplier_total = total / net_income.
+  Non-numeric priceView ("All offers considered", "Expressions Of
+  Interest", "$3.832M + RE") is parsed the same way as v2; a
+  record with no usable price or net income is kept with
+  status="unverified", never deleted, and never allowed to top
+  the recommendations (see enrich()).
 
-LABELS (exact, as seen live 18 Nov 2026)
-  Financial Overview: "Total Purchase Price:", "Net Income:"
-    (suffix "(actual)" or "(projected)"), "Included Real Estate:",
-    "Multiplier:"
-  Caretaking: "Remuneration:" (= BC salary — NOT "BC Salary", which
-    is index-only), "Agreement Term:", "Agreement Remaining:",
-    "Agreement Age:" (reported as-is; Urangan says 17yr although
-    25-22=3 — do not recompute it)
-  Letting Business: "Letting Pool:", "Owner Occupiers:",
-    "Outside Agents:", "Units In Complex:"
-  Listing Details: "Listing ID:", "Date Listed:", "Last Update:"
-    (Maroochydore also has "Date updated: 15 Nov 2026 23:00:05")
-  Parse by the numeric listing ID in the URL, not the suburb slug:
-  Urangan #21189761 redirects to HerveyBay-QLD-21189761.
-
-UNIFIED RATING BANDS (same as the dashboard preview)
+UNIFIED RATING BANDS (same as the dashboard)
   BC%      good <=70, caution 70-80, risk >80
   Mult     excellent 3-5x, fair 5-6.5x, overpriced >6.5x
   Contract good >=20yr, adequate 10-19, risk <10 (lenders need >=15yr)
   Pool     good >=30, adequate 15-29, risk <15
 
 USAGE
-  pip install requests beautifulsoup4
+  pip install requests
   python3 pmr-data-fetcher.py [--limit N] [--dry-run] [--delay SECONDS]
   # in GitHub Actions this is run from the repo root; output goes to
   # ./pmr-data-latest.json and ./pmr-data-meta.json
@@ -80,39 +71,28 @@ import sys
 import time
 import argparse
 from datetime import datetime, timezone, timedelta
-from urllib.parse import urljoin
 
 import requests
-from bs4 import BeautifulSoup
 
-BASE = "https://www.theonsitemanager.com.au"
-INDEX = BASE + "/management-rights"
-REGIONS = ["gold-coast", "brisbane", "sunshine-coast", "cairns",
-           "townsville", "north-queensland", "queensland"]
+API = "https://www.theonsitemanager.com.au/api/v1/listings.php"
 HEADERS = {
-    "User-Agent": "PMR-Dashboard-Fetcher/2.0 (contact: winrobin.github.io/pmr-dashboard)",
-    "Accept": "text/html,application/xhtml+xml",
+    "User-Agent": "PMR-Dashboard-Fetcher/3.0 (contact: winrobin.github.io/pmr-dashboard)",
+    "Accept": "application/json",
 }
-# Listing URLs: /<type>-management-rights/<Suburb>-<STATE>-<id>
-LISTING_RE = re.compile(
-    r"/[a-z0-9-]+-management-rights/[A-Za-z]+-[A-Z]{2,3}-(\d+)", re.I)
 NON_NUMERIC_PRICE = re.compile(
     r"all offers|expression[s]? of interest|present your offer|"
     r"price on application|poa|by negotiation", re.I)
 
 
 def parse_money(text):
-    """Parse a money string to int dollars, or None if not numeric.
-
-    Handles: $4,275,000 / 400000 / $3.832M / $153K / $722,000
-    Returns None for text prices (EOI, All offers considered, ...).
-    """
+    """Parse a money string to int dollars, or None if not numeric."""
     if text is None:
         return None
+    if isinstance(text, (int, float)):
+        return int(text) if text else None
     s = str(text).strip()
     if not s or NON_NUMERIC_PRICE.search(s):
         return None
-    # $3.832M + RE  -> 3832000 ; $153K -> 153000
     m = re.search(r"\$?\s*([\d,.]+)\s*([MK])\b", s, re.I)
     if m:
         val = float(m.group(1).replace(",", ""))
@@ -120,19 +100,12 @@ def parse_money(text):
     nums = re.findall(r"[\d,]+", s.replace("$", ""))
     if not nums:
         return None
-    # take the largest number in the string (avoids "3 bed" style noise)
     return int(max(nums, key=lambda n: int(n.replace(",", ""))).replace(",", ""))
 
 
 def parse_composite_price(text):
-    """Parse 'Total Purchase Price:' which may be composite.
-
-    Returns (total, business_price, unit_price) — any may be None.
-    Examples:
-      "$4,275,000" -> (4275000, None, None)  [unit filled separately]
-      "$153K MR & $722K Unit = Total $875K" -> (875000, 153000, 722000)
-      "$3.832M + RE" -> (3832000, None, None)
-    """
+    """Parse a composite total like '$153K MR & $722K Unit = Total $875K'.
+    Returns (total, business_price, unit_price) — any may be None."""
     if text is None:
         return None, None, None
     s = str(text)
@@ -142,7 +115,6 @@ def parse_composite_price(text):
         total = parse_money(m.group(0).replace("Total", ""))
     if total is None:
         total = parse_money(s)
-    # $153K MR ... $722K Unit
     mr = re.search(r"\$?\s*([\d,.]+)\s*K?\s*MR\b", s, re.I)
     unit = re.search(r"\$?\s*([\d,.]+)\s*K?\s*Unit\b", s, re.I)
     business = parse_money(mr.group(0)) if mr else None
@@ -150,213 +122,102 @@ def parse_composite_price(text):
     return total, business, unit_val
 
 
-def parse_years(text):
-    if text is None:
-        return None
-    m = re.search(r"(\d+)", str(text))
-    return int(m.group(1)) if m else None
-
-
 def parse_int(text):
     if text is None:
         return None
+    if isinstance(text, (int, float)):
+        return int(text)
     m = re.search(r"(\d+)", str(text).replace(",", ""))
     return int(m.group(1)) if m else None
 
 
-def section_fields(soup, heading):
-    """Label/value pairs under an h2 with the given heading text.
-
-    The pages render each fact as a label element followed by its
-    value (with an optional subtext line). We walk the siblings
-    after the h2 until the next h2/h3/h4 and pair them up.
-    Returns dict label -> value string.
-    """
-    out = {}
-    h = soup.find(lambda t: t.name in ("h2", "h3") and
-                  t.get_text(strip=True).lower().startswith(heading.lower()))
-    if not h:
-        return out
-    for sib in h.find_next_siblings():
-        if sib.name in ("h2", "h3", "h4"):
-            break
-        text = sib.get_text(" ", strip=True)
-        if not text:
-            continue
-        # "Label: value" or label/value in adjacent elements
-        if ":" in text:
-            label, _, value = text.partition(":")
-            label = label.strip()
-            value = value.strip()
-            # value may be empty here and live in the next sibling
-            if label and label not in out:
-                out[label] = value
-    return out
-
-
-def fetch(session, url, delay=0.6):
-    r = session.get(url, headers=HEADERS, timeout=30, allow_redirects=True)
+def fetch_api_page(session, page, limit=100, delay=0.3):
+    """One page of the listings API. Returns (records, pagination)."""
+    r = session.get(API, params={"class": "Management Rights",
+                                 "page": page, "limit": limit},
+                    headers=HEADERS, timeout=30)
     r.raise_for_status()
     time.sleep(delay)
-    return r
+    payload = r.json()
+    if not payload.get("success", True):
+        raise ValueError(f"API error on page {page}: {payload}")
+    return payload.get("data", []), payload.get("pagination", {})
 
 
-def discover_listing_urls(session, max_pages=30, delay=0.6):
-    """Crawl index + region pages, return {listing_id: url}."""
-    found = {}
-    pages = [INDEX] + [f"{INDEX}/{slug}" for slug in REGIONS]
-    for start in pages:
-        for page in range(1, max_pages + 1):
-            url = start if page == 1 else f"{start}?page={page}"
-            try:
-                r = fetch(session, url, delay=delay)
-            except Exception as e:
-                print(f"  discover {url}: {e}", file=sys.stderr)
-                break
-            html = r.text
-            ids_before = len(found)
-            for m in LISTING_RE.finditer(html):
-                lid = m.group(1)
-                # reconstruct a canonical URL from the matched path
-                path = m.group(0)
-                found.setdefault(lid, urljoin(BASE, path))
-            # stop paging this section when a page adds nothing new
-            if len(found) == ids_before and page > 1:
-                break
-            # "Page X of Y" — stop early if we passed the last page
-            if "Page 1 of" in html and page == 1:
-                mm = re.search(r"Page 1 of (\d+)", html)
-                if mm:
-                    max_pages = min(max_pages, int(mm.group(1)))
-    return found
+def discover_records(session, delay=0.3):
+    """Fetch every page of the API. Returns all raw records."""
+    all_records, page = [], 1
+    while True:
+        data, pagination = fetch_api_page(session, page, delay=delay)
+        all_records.extend(data)
+        pages = pagination.get("pages") or 1
+        total = pagination.get("total")
+        print(f"  API page {page}/{pages}: {len(data)} records "
+              f"(total {total})")
+        if page >= pages or not data:
+            break
+        page += 1
+    return all_records
 
 
-def parse_detail(session, url, lid, delay=0.6):
-    """Parse one detail page into a record dict (old 21-field schema).
-
-    Returns None if the listing has been removed: the page then shows
-    "Listing No Longer Available" / "may have been sold, leased, or
-    removed" and no Financial Overview section. Removed listings must
-    NOT be carried forward — that is how a sold Brisbane City listing
-    ($1,600,000, net ~$1,500,000, 1.07x, ROI 93.8%) stayed at #1 in
-    the preview months after it left the broker site (checked
-    18 Nov 2026: ID 21176277 is "Listing No Longer Available", and no
-    Brisbane City listing at $1,600,000 appears live or sold-included).
-    """
-    r = fetch(session, url, delay=delay)
-    if "Listing No Longer Available" in r.text or \
-            "may have been sold, leased, or removed" in r.text:
-        return None
-    soup = BeautifulSoup(r.text, "html.parser")
-    fin = section_fields(soup, "Financial Overview")
-    care = section_fields(soup, "Caretaking")
-    letting = section_fields(soup, "Letting Business")
-    included = section_fields(soup, "Included Real Estate")
-
-    total, business, unit_from_total = parse_composite_price(
-        fin.get("Total Purchase Price"))
-    unit_price = parse_money(included.get("Included Real Estate"))
-    if unit_price is None:
-        unit_price = parse_money(fin.get("Included Real Estate"))
-    if unit_price is None:
-        unit_price = unit_from_total
-    if business is None and total is not None and unit_price:
-        business = total - unit_price
+def map_record(api):
+    """Map one API record to the dashboard's 21-field schema."""
+    lid = str(api.get("pageId") or api.get("id"))
+    suburb = (api.get("suburb") or "").strip()
+    state = (api.get("state") or "QLD").strip()
+    price = parse_int(api.get("price"))
+    price_view = api.get("priceView") or ""
+    unit_price = parse_int(api.get("mr_unitValue")) or 0
+    if price is None:
+        # priceView may be composite ("$153K MR & $722K Unit = Total $875K")
+        # or an abbreviated million ("$3.832M + RE")
+        total, business, unit_from_view = parse_composite_price(price_view)
+        price = total
+        if unit_price == 0 and unit_from_view:
+            unit_price = unit_from_view
+    business = None
+    if price is not None and unit_price:
+        business = price - unit_price
     if business is None:
-        business = total
-
-    net = parse_money(fin.get("Net Income"))
-    # Net Income suffix: "(actual)" or "(projected)"
-    ni_kind = None
-    if fin.get("Net Income"):
-        mm = re.search(r"\((actual|projected)\)", fin["Net Income"], re.I)
-        ni_kind = mm.group(1).lower() if mm else None
-
-    bc_salary = parse_money(care.get("Remuneration"))
-    contract = parse_years(care.get("Agreement Remaining")) or \
-        parse_years(care.get("Agreement Term"))
-    pool = parse_int(letting.get("Letting Pool"))
-
-    # Name / region from the URL slug + Location section
-    loc = section_fields(soup, "Location")
-    name = None
-    region = None
-    m = re.search(r"/([A-Za-z]+)-([A-Z]{2,3})-(\d+)", url)
-    if m:
-        suburb = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", m.group(1))
-        region = suburb
-        name = f"{suburb} {m.group(2)} #{lid}"
-    if loc:
-        loc_text = " ".join(loc.values()) or " ".join(loc.keys())
-        if loc_text:
-            region = loc_text.split(",")[0].strip() or region
-
-    # Last updated: "Last Update:" in Listing Details, or "Date updated:"
-    last_updated = None
-    details = section_fields(soup, "Listing Details")
-    if details.get("Last Update"):
-        last_updated = details["Last Update"].split("(")[0].strip()
-    if not last_updated:
-        dm = re.search(r"Date updated:\s*([0-9]{1,2} [A-Za-z]{3} \d{4})", r.text)
-        if dm:
-            last_updated = dm.group(1)
-
-    # Price source: detail_total when we have a structured total
-    price_source = "detail_total" if total is not None else None
-    source = "theonsitemanager.com.au"
-
+        business = price
+    net = parse_int(api.get("takings"))
+    bc_salary = parse_int(api.get("mr_remuneration"))
+    contract = parse_int(api.get("mr_agreementRemaining"))
+    pool = parse_int(api.get("mr_unitsLettingPool"))
+    # last updated: API timestamp (ISO or "15 Nov 2026 23:00:05")
+    last_updated = api.get("timestamp")
+    if last_updated:
+        last_updated = str(last_updated)
+    url = api.get("url") or (
+        f"https://www.theonsitemanager.com.au/management-rights/{lid}/"
+        f"{(api.get('title') or suburb).strip().lower().replace(' ', '-')}")
     return {
         "id": f"theonsitemanager-com-au-{lid}",
-        "name": name or f"QLD #{lid}",
-        "region": region or "QLD",
-        "price": total,
-        "unit_price": unit_price or 0,
-        "price_source": price_source,
+        "name": f"{suburb} {state} #{lid}" if suburb else f"QLD #{lid}",
+        "region": suburb or "QLD",
+        "price": price,
+        "unit_price": unit_price,
+        "price_source": "api_price" if price is not None else None,
         "net_income": net,
-        "multiplier": None,  # filled in enrich()
-        "bc_percent": None,  # filled in enrich()
+        "multiplier": None,
+        "bc_percent": None,
         "contract_years": contract,
         "pool_units": pool,
         "weekly_rent_per_unit": None,
         "status": "active",
-        "url": r.url,  # final URL after redirects (Hervey Bay, not Urangan)
-        "source": source,
+        "url": url,
+        "source": "theonsitemanager.com.au",
         "notes": "",
         "risks": "",
         "action": "",
         "last_updated": last_updated,
-        "last_fetched": None,  # filled in enrich()
-        "quality_score": None,  # filled in enrich()
-        # extra fields the dashboard can use (ignored by the old app.js)
+        "last_fetched": None,
+        "quality_score": None,
         "business_price": business,
-        "ni_kind": ni_kind,
+        "ni_kind": (api.get("takingsBasis") or "").lower() or None,
         "_bc_salary": bc_salary,
-        "_outside_agents": parse_int(letting.get("Outside Agents")),
+        "_price_view": price_view,
     }
-
-
-def band_bc(bc):
-    if bc is None:
-        return None
-    return "good" if bc <= 70 else "caution" if bc <= 80 else "risk"
-
-
-def band_mult(m):
-    if m is None:
-        return None
-    return "excellent" if m <= 5 else "fair" if m <= 6.5 else "overpriced"
-
-
-def band_contract(years):
-    if years is None:
-        return None
-    return "good" if years >= 20 else "adequate" if years >= 10 else "risk"
-
-
-def band_pool(pool):
-    if pool is None:
-        return None
-    return "good" if pool >= 30 else "adequate" if pool >= 15 else "risk"
 
 
 def enrich(rec, now_iso, today):
@@ -365,6 +226,7 @@ def enrich(rec, now_iso, today):
     business = rec.get("business_price") or price
     net = rec.get("net_income")
     bc_salary = rec.pop("_bc_salary", None)
+    rec.pop("_price_view", None)
 
     if price and net:
         rec["multiplier"] = round(business / net, 2) if business else None
@@ -384,7 +246,6 @@ def enrich(rec, now_iso, today):
     if not rec.get("last_updated"):
         rec["last_updated"] = today
 
-    # --- notes, using the unified bands (see guide-threshold-patch.md)
     parts = []
     if rec["bc_percent"] is not None:
         parts.append(f"BC {rec['bc_percent']}% "
@@ -413,31 +274,32 @@ def enrich(rec, now_iso, today):
         risks.append("Contract under 15yr — most lenders require 15yr+.")
     if rec.get("pool_units") is not None and rec["pool_units"] < 15:
         risks.append(f"Only {rec['pool_units']} pool units — small income base.")
-    if rec.get("_outside_agents"):
-        risks.append(f"{rec['_outside_agents']} unit(s) with outside agents — income leakage to recover.")
-    rec.pop("_outside_agents", None)
     rec["risks"] = " ".join(risks)
-    if rec.get("pool_units") == 0:
-        rec["action"] = "Verify pool unit schedule."
-    elif not price or not net:
+
+    # --- unverified, not deleted. A record with no usable price or
+    # net income (e.g. price not published) is unverified, NOT active
+    # — v2 counted such records active, which hid them from the
+    # dashboard's unverified flagging.
+    if not price or not net:
+        rec["status"] = "unverified"
         rec["action"] = "Verify details with broker — price/income not published."
+        if not rec["notes"]:
+            rec["notes"] = "Details unavailable — verify with broker."
+    elif rec.get("pool_units") == 0:
+        rec["action"] = "Verify pool unit schedule."
 
     # --- implausible figures: do not let a bad parse top the rankings
-    # A genuine management-rights ROI over ~40% (multiplier under ~2.5x
-    # on the total price) is almost always a mis-parsed net income or
-    # an EOI figure used as a price — e.g. the Brisbane City record
-    # at $1,600,000 / net $1,500,000, 1.07x, ROI 93.8%, which was also
-    # no longer on the broker site. Flag it, cap its score, and keep
-    # it out of recommendations until a human verifies it.
+    # ROI over ~40% is almost always a mis-parsed net income or an
+    # EOI figure used as a price (e.g. the Brisbane City record at
+    # $1,600,000 / net $1,500,000, 1.07x, ROI 93.8%, which was also
+    # no longer on the broker site). Flag it and keep it out of
+    # recommendations until a human verifies it.
     if roi is not None and roi > 40:
         rec["status"] = "unverified"
         rec["notes"] = (rec["notes"] + " Figures look implausible "
                         f"(ROI {roi:.1f}%) — verify with broker before relying on this.").strip()
         rec["action"] = "Verify figures with broker — ROI over 40% is not credible."
-    else:
-        rec["status"] = "active"
 
-    # --- quality score: completeness + bands (old file used 0-125)
     score = 0
     for field in ("price", "net_income", "bc_percent", "contract_years", "pool_units"):
         if rec.get(field) is not None:
@@ -456,7 +318,7 @@ def main():
     ap = argparse.ArgumentParser(description="Refresh PMR listings data")
     ap.add_argument("--limit", type=int, default=0, help="max listings to fetch (0 = all)")
     ap.add_argument("--dry-run", action="store_true", help="discover only, do not write files")
-    ap.add_argument("--delay", type=float, default=0.6, help="seconds between requests")
+    ap.add_argument("--delay", type=float, default=0.3, help="seconds between requests")
     ap.add_argument("--out", default="pmr-data-latest.json")
     args = ap.parse_args()
 
@@ -466,51 +328,36 @@ def main():
     today = now.strftime("%Y-%m-%d")
 
     session = requests.Session()
-    print("Discovering listings from the index + region pages…")
-    urls = discover_listing_urls(session, delay=args.delay)
-    print(f"Found {len(urls)} listing URLs")
+    print("Fetching listings from the broker API…")
+    raw = discover_records(session, delay=args.delay)
+    print(f"API returned {len(raw)} records")
+    qld = [r for r in raw if (r.get("state") or "").upper() == "QLD"]
+    print(f"Queensland: {len(qld)} records")
     if args.dry_run:
-        for lid, url in sorted(urls.items())[:20]:
-            print(f"  {lid} {url}")
+        for r in qld[:20]:
+            print(f"  {r.get('pageId')} {r.get('suburb')} "
+                  f"{r.get('priceView')} net {r.get('takings')}")
         return 0
 
     records, seen = [], set()
-    items = sorted(urls.items())
+    items = qld
     if args.limit:
         items = items[:args.limit]
-    for i, (lid, url) in enumerate(items, 1):
-        try:
-            rec = parse_detail(session, url, lid, delay=args.delay)
-        except Exception as e:
-            print(f"  [{i}/{len(items)}] {lid} FAILED: {e}", file=sys.stderr)
-            continue
-        if rec is None:
-            # listing removed from the broker site — drop it, do not
-            # carry it forward from the old data
-            print(f"  [{i}/{len(items)}] {lid} removed from broker site, dropped")
-            continue
+    for api in items:
+        lid = str(api.get("pageId") or api.get("id"))
         if lid in seen:
             continue
         seen.add(lid)
-        # skip category/landing pages and non-QLD listings
-        if not rec.get("price") and not rec.get("net_income") and not rec.get("name"):
-            continue
-        if "/management-rights/" in url and re.search(r"-(\d+)$", url) is None:
-            continue
-        records.append(enrich(rec, now_iso, today))
-        if i % 25 == 0:
-            print(f"  [{i}/{len(items)}] fetched, {len(records)} kept")
+        records.append(enrich(map_record(api), now_iso, today))
 
-    # sort best multiplier first (business multiplier, missing last)
     records.sort(key=lambda r: (r.get("multiplier") is None,
                                 r.get("multiplier") or 999))
-    # strip internal helpers, keep the old 21 fields + the new extras
     with open(args.out, "w") as f:
         json.dump(records, f, indent=2)
     meta = {
         "generated_at": now_iso,
         "generated_at_brisbane": now.strftime("%Y-%m-%d %H:%M:%S %Z"),
-        "source": "theonsitemanager.com.au",
+        "source": "theonsitemanager.com.au api/v1/listings.php",
         "total_records": len(records),
         "active": sum(1 for r in records if r["status"] == "active"),
         "unverified": sum(1 for r in records if r["status"] == "unverified"),
