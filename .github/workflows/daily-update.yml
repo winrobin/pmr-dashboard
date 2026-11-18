@@ -1,0 +1,112 @@
+# Daily PMR update — GitHub Actions (remote, replaces the PC / OpenClaw run)
+#
+# Place this file at: .github/workflows/daily-update.yml
+# in the winrobin/pmr-dashboard repo, on the main branch.
+#
+# BEFORE IT WILL WORK:
+# 1. Add the fetcher to the repo at scripts/pmr-data-fetcher.py
+#    (it currently lives only on the PC, in ~/.openclaw/workspace/pmr —
+#    it is NOT in the repo, so this workflow cannot run without it).
+#    It must write pmr-data-latest.json to the directory it is run from,
+#    as it did on the PC.
+# 2. Confirm which branch GitHub Pages serves the site from:
+#    GitHub repo > Settings > Pages.
+#    This workflow commits and pushes to `main`. If Pages serves from
+#    `gh-pages` instead, change the push step at the bottom to gh-pages
+#    (and tell Muse — the checkout/push logic needs adjusting).
+# 3. If the fetcher needs pip packages, add them to requirements.txt
+#    in the repo root. The workflow installs it if the file exists.
+#
+# What it does, daily at 09:00 Brisbane time (23:00 UTC, previous day —
+# Brisbane is UTC+10 with no daylight saving):
+# - runs the fetcher
+# - validates the JSON (must load, and have at least 50 records,
+#   so a broken/empty scrape is never committed)
+# - copies the fresh file to BOTH pmr-data-latest.json (root — the file
+#   the site actually loads) and data/pmr-data-latest.json
+#   (the old update-site.sh only updated data/, which the site ignores —
+#   that is why data/ went stale on 19 Jul 2026)
+# - updates the <!-- Last updated: ... --> comment in index.html
+#   to the run time in Brisbane time
+# - commits only if something changed, with the same style of message
+#   the PC used: "Auto-update PMR data YYYY-MM-DD HH:MM"
+# - can also be run manually at any time from the Actions tab
+#   (Actions > Daily PMR update > Run workflow)
+#
+# GitHub Actions scheduled runs can start a little late; the time above
+# is approximate, not exact to the minute.
+
+name: Daily PMR update
+
+on:
+  schedule:
+    - cron: '0 23 * * *' # 09:00 AEST (Brisbane) daily
+  workflow_dispatch: # manual run from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install fetcher dependencies (if requirements.txt exists)
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            echo "No requirements.txt — using standard library only."
+          fi
+
+      - name: Run fetcher
+        run: python3 scripts/pmr-data-fetcher.py
+
+      - name: Validate the fresh data file
+        run: |
+          python3 -c "
+          import json, sys
+          with open('pmr-data-latest.json') as f:
+              data = json.load(f)
+          records = data if isinstance(data, list) else data.get('listings') or data.get('data') or []
+          print(f'{len(records)} records')
+          if len(records) < 50:
+              print('Too few records — refusing to commit a broken scrape.')
+              sys.exit(1)
+          "
+
+      - name: Sync both copies of the data file
+        run: cp pmr-data-latest.json data/pmr-data-latest.json
+
+      - name: Update Last updated comment in index.html
+        run: |
+          python3 -c "
+          import re
+          from datetime import datetime, timezone, timedelta
+          now = datetime.now(timezone(timedelta(hours=10))).strftime('%Y-%m-%d %H:%M:%S')
+          with open('index.html') as f:
+              html = f.read()
+          html2, n = re.subn(r'<!-- Last updated: .*? -->', f'<!-- Last updated: {now} -->', html)
+          print(f'Updated {n} Last updated comment(s) to {now}')
+          with open('index.html', 'w') as f:
+              f.write(html2)
+          "
+
+      - name: Commit and push if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pmr-data-latest.json data/pmr-data-latest.json index.html
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-update PMR data $(TZ=Australia/Brisbane date '+%Y-%m-%d %H:%M')"
+            git push origin main
+          fi
