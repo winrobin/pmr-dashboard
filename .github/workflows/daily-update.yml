@@ -40,7 +40,7 @@ name: Daily PMR update
 
 on:
   schedule:
-    - cron: '0 23 * * *' # 09:00 AEST (Brisbane) daily
+    - cron: '17 23 * * *' # 09:00 AEST (Brisbane) daily
   workflow_dispatch: # manual run from the Actions tab
 
 permissions:
