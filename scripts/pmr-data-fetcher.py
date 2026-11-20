@@ -33,10 +33,29 @@ API FIELDS (verified live 18 Nov 2026)
   mr_unitsTotal (units in complex), mr_agreementRemaining
   (contract years remaining), timestamp (last updated),
   category, status, title, description, listingAgentName.
-  Listing URL: /management-rights/{pageId}/{slugified-title}
-  (detail pages use /<type>-management-rights/<Suburb>-<STATE>-<id>;
-  parse by pageId, not the suburb slug — Urangan #21189761
-  redirects to HerveyBay-QLD-21189761.)
+  Listing URL (new format, verified live 20 Nov 2026): the broker
+  rebuilt its site and old /management-rights/{pageId}/{slug}
+  URLs now redirect to the broker homepage, which broke every
+  View link on the dashboard. Detail pages now live at
+    /{category-slug}/{Suburb}-{STATE}-{pageId}
+  e.g. /permanent-management-rights/CARRARA-QLD-21205549 and
+  /resort--holiday-management-rights/AirlieBeach-QLD-21205437.
+  The API returns no url field, so the fetcher builds it from
+  category + suburb + state + pageId. Category mapping (each
+  verified against a live detail page):
+    Permanent -> permanent-management-rights
+    Resort / Holiday, Holiday, Resort -> resort--holiday-management-rights
+      (the site groups all three under "Resort and holiday")
+    Caretaking -> caretaking-management-rights
+    Corporate -> corporate-management-rights
+    Retirement -> retirement-management-rights
+    Off The Plan -> off-the-plan-management-rights (no QLD record
+      uses it — all 19 are SHARJAH — so this is a fallback only)
+  Robustness, verified live: the broker routes by pageId — a
+  wrong category segment still lands on the right listing, and
+  the suburb slug is case-insensitive (carrara-qld works as well
+  as CARRARA-QLD). The suburb slug is the API suburb with
+  whitespace removed, case preserved.
 
 PRICE — THE IMPORTANT BIT
   business_price = price - mr_unitValue.
@@ -160,6 +179,40 @@ def discover_records(session, delay=0.3):
     return all_records
 
 
+# Broker detail-page URL segments, verified live 20 Nov 2026
+# (see module docstring). The site groups Resort / Holiday,
+# Holiday and Resort under one "Resort and holiday" type.
+CATEGORY_SLUGS = {
+    "Permanent": "permanent-management-rights",
+    "Resort / Holiday": "resort--holiday-management-rights",
+    "Holiday": "resort--holiday-management-rights",
+    "Resort": "resort--holiday-management-rights",
+    "Caretaking": "caretaking-management-rights",
+    "Corporate": "corporate-management-rights",
+    "Retirement": "retirement-management-rights",
+    "Off The Plan": "off-the-plan-management-rights",
+}
+
+
+def build_listing_url(api, lid):
+    """Build the broker's new-format detail URL for one API record.
+
+    https://www.theonsitemanager.com.au/{category-slug}/
+        {Suburb}-{STATE}-{pageId}
+    The API returns no url field. The broker routes by pageId, so
+    the suburb slug (API suburb, whitespace removed, case kept)
+    is cosmetic, but the /{segment}/{slug}-{state}-{id} shape is
+    required — the old /management-rights/{id}/{slug} shape
+    redirects to the broker homepage.
+    """
+    segment = CATEGORY_SLUGS.get((api.get("category") or "").strip(),
+                                 "permanent-management-rights")
+    suburb = re.sub(r"\s+", "", (api.get("suburb") or "QLD").strip())
+    state = (api.get("state") or "QLD").strip().upper()
+    return (f"https://www.theonsitemanager.com.au/{segment}/"
+            f"{suburb}-{state}-{lid}")
+
+
 def map_record(api):
     """Map one API record to the dashboard's 21-field schema."""
     lid = str(api.get("pageId") or api.get("id"))
@@ -188,9 +241,7 @@ def map_record(api):
     last_updated = api.get("timestamp")
     if last_updated:
         last_updated = str(last_updated)
-    url = api.get("url") or (
-        f"https://www.theonsitemanager.com.au/management-rights/{lid}/"
-        f"{(api.get('title') or suburb).strip().lower().replace(' ', '-')}")
+    url = build_listing_url(api, lid)
     return {
         "id": f"theonsitemanager-com-au-{lid}",
         "name": f"{suburb} {state} #{lid}" if suburb else f"QLD #{lid}",
