@@ -11,9 +11,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#f7f5f0; --surface:#ffffff; --surface2:#efece4; --ink:#17201d; --ink2:#4c5a54; --ink3:#7c8a83;
-    --line:#ddd8cb; --teal:#0d4f4a; --teal-ink:#0a3d39; --amber:#b97a16; --amber-bg:#fdf3e0;
-    --good:#177245; --good-bg:#e5f3ea; --warn:#a3540a; --warn-bg:#fbeedd; --risk:#b3261e; --risk-bg:#fbeae8; --star:#d9930d;
+    --bg:#f7f5f0; --surface:#ffffff; --surface2:#efece4; --ink:#17201d; --ink2:#4c5a54; --ink3:#5c6b64;
+    --line:#ddd8cb; --teal:#0d4f4a; --teal-ink:#0a3d39; --amber:#8a5c0d; --amber-bg:#fdf3e0;
+    --good:#177245; --good-bg:#e5f3ea; --warn:#a3540a; --warn-bg:#fbeedd; --risk:#b3261e; --risk-bg:#fbeae8; --star:#8a5c0d;
     --chip:#e9e5d9; --shadow:0 1px 2px rgba(23,32,29,.06),0 4px 14px rgba(23,32,29,.05);
     color-scheme:light;
   }
@@ -32,6 +32,25 @@
   button,[role="button"],select,summary,input:not([type="checkbox"],[type="radio"]){min-height:2.25rem}
   button{font:inherit;cursor:pointer}
   a{color:var(--teal)}
+  /* ---------- Round 18: shared utilities — one-off inline styles now
+     live here, so a colour or spacing change has one place to land.
+     Dynamic values (bar widths driven by data) stay inline. */
+  .muted{color:var(--ink3)}
+  .muted2{color:var(--ink2)}
+  .spacer-h{height:22px}
+  .badge-new{background:#15803d;color:#fff;font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;margin-left:6px;vertical-align:2px}
+  /* Round 19: badges live in one .badges row, in one order (NEW, then
+     unverified, then duplicate). On desktop the row flows inline after
+     the suburb, exactly as before; on a phone it is its own row. */
+  .badges{display:inline}
+  .bg-good{background:var(--good)} .bg-warn{background:var(--warn)} .bg-risk{background:var(--risk)}
+  .link-plain{text-decoration:none}
+  .sec-sub{font-size:.6em;color:var(--ink2)}
+  .g-intro .zh{display:block;margin-top:3px}
+  .note-sm{color:var(--ink2);font-size:13px}
+  .note-md{color:var(--ink2);font-size:13.5px}
+  .empty-note{color:var(--ink2);margin:0}
+  .verdicts .dotv-good{background:var(--good)} .verdicts .dotv-warn{background:var(--warn)} .verdicts .dotv-risk{background:var(--risk)} .verdicts .dotv-neutral{background:var(--ink3)}
   .wrap{max-width:1180px;margin:0 auto;padding:0 20px 64px}
   @media (max-width:640px){.wrap{padding:0 14px 48px}}
   section,footer{scroll-margin-top:132px}
@@ -49,6 +68,11 @@
   .brand-text span{display:block;font-size:11px;color:var(--ink2);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:2px}
   .navlinks{display:flex;align-items:center;gap:2px;margin-left:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   .navlinks::-webkit-scrollbar{display:none}
+  /* Round 12: when more links sit past the right edge, fade the last
+     ~26px so it is obvious the nav scrolls — and show the › button. */
+  .navlinks.has-more{-webkit-mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 26px),transparent 100%);mask-image:linear-gradient(to right,#000 0,#000 calc(100% - 26px),transparent 100%)}
+  .nav-next{display:none;flex:none;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink2);font-size:20px;line-height:1;align-items:center;justify-content:center;padding:0 0 2px}
+  @media (max-width:760px){.nav-next.show{display:grid}}
   .navlinks a{color:var(--ink2);text-decoration:none;font-size:13.5px;font-weight:600;padding:7px 10px;border-radius:999px;white-space:nowrap}
   .navlinks a:hover{background:var(--surface2);color:var(--ink)}
   .nav-updated{margin-left:auto;flex:none;display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink2);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 11px 6px 9px;white-space:nowrap}
@@ -156,6 +180,15 @@
   .calc.is-collapsed .calc-head p{display:none}
   .calc.is-collapsed .calc-summary{display:block}
   .calc-backrow{margin-top:12px}
+  /* Round 15: slim live-results bar, phones only. While the calculator is
+     open and its results panel is scrolled out of view, the deal's numbers
+     stay pinned to the bottom of the screen — no more scrolling up and
+     down between the inputs and the tiles. */
+  .calc-livebar{position:fixed;left:12px;right:12px;bottom:12px;z-index:45;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.22);padding:10px 12px;font-size:13.5px;font-variant-numeric:tabular-nums}
+  .calc-livebar[hidden]{display:none}
+  .calc-livebar .clb-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .calc-livebar.above-tray{bottom:76px}
+  @media (min-width:821px){.calc-livebar{display:none}}
   @media (max-width:820px){
     .calc-head{padding:13px 14px 0}
     .calc-summary{margin:10px 14px 13px}
@@ -180,6 +213,7 @@
   .btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:8px 13px;font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:7px}
   .btn[aria-pressed="true"]{background:var(--amber-bg);border-color:var(--amber);color:var(--ink)}
   .btn .cnt{background:var(--amber);color:#fff;border-radius:999px;font-size:12px;padding:1px 7px;font-weight:700}
+  @media (prefers-color-scheme: dark){.btn .cnt{color:#0c1713}} /* Round 17: white on light-amber failed contrast in dark mode */
   .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
   .pill{border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:999px;padding:7px 13px;font-size:13.5px;font-weight:600;min-height:2.25rem}
   .pill[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
@@ -197,6 +231,15 @@
      all; on a phone it becomes a collapsible panel — see the mobile block. */
   .filter-more{display:contents}
   .btn .cnt[hidden]{display:none}
+  /* Round 13: the Done button lives at the bottom of the phone filter
+     panel — it closes the panel and jumps to the results. Desktop never
+     sees it (the panel is display:contents there, so a button inside it
+     would sit in the toolbar flow). */
+  .filter-done{display:none}
+  @media (max-width:820px){
+    .filter-done{display:block;width:100%;margin-top:12px;background:var(--teal);border-color:var(--teal);color:#fff;justify-content:center;font-size:15px}
+  }
+  @media (max-width:820px) and (prefers-color-scheme: dark){.filter-done{color:#0c1713}}
   .showing{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin:14px 2px 8px}
   .showing .count{font-weight:800;font-size:16px}
   .showing .hint{color:var(--ink3);font-size:13px}
@@ -272,8 +315,26 @@
   .legend-note{font-size:13px;color:var(--ink2);margin:10px 0 2px;line-height:1.55}
   .legend-note strong{color:var(--ink)}
 
+  /* ---------- Round 20: market snapshot ---------- */
+  .snapshot{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:18px 20px 14px}
+  .snapshot h2{font-family:"Newsreader",Georgia,serif;font-size:19px;font-weight:600;margin:0 0 10px}
+  .snapshot h2 .zh{font-size:.62em;color:var(--ink2);font-weight:500}
+  .snap-grid{display:flex;flex-wrap:wrap;gap:8px}
+  .snap-chip{border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:var(--surface2);font-size:13.5px;line-height:1.45}
+  .snap-chip b{display:block;font-size:16px;font-variant-numeric:tabular-nums}
+  .snap-chip .sc-lab{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3)}
+  .snap-note{font-size:13px;color:var(--ink2);margin:10px 0 2px;line-height:1.55}
+  @media (max-width:640px){.snapshot{padding:16px 14px 12px}.snap-grid{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.snap-grid::-webkit-scrollbar{display:none}.snap-chip{flex:0 0 auto}}
+
   /* ---------- mobile cards ---------- */
   @media (max-width:820px){
+    /* Round 17: touch targets — 44px minimum on phones for every control
+       (was 36px), and key numbers at least 17px. */
+    button,[role="button"],select,summary,input:not([type="checkbox"],[type="radio"]){min-height:2.75rem}
+    .navlinks a{padding:10px 12px}
+    td.mrow span b{font-size:17px}
+    td.c-roi .roi{font-size:15px}
+    .calc-livebar{font-size:14px}
     thead{display:none}
     .tablebox{background:transparent;border:0;box-shadow:none;border-radius:0;overflow:visible}
     table,tbody{display:block;width:100%}
@@ -290,12 +351,26 @@
     td.c-place .grp{font-size:13px;margin-top:2px}
     td.c-price{display:inline-block;width:auto;font-size:19px;margin-top:10px;letter-spacing:-.01em}
     td.c-roi{display:inline-block;width:auto;margin-left:10px;vertical-align:2px}
+    /* Round 14: the score is the #1 screening signal, so on a phone it
+       rides next to the price as a chip (tappable — opens the detail row
+       with the breakdown) instead of hiding in the metrics grid. The
+       metrics grid drops its duplicate Score cell. */
+    td.c-score{display:inline-block;width:auto;margin-left:8px;vertical-align:3px}
+    td.c-score .score-chip{background:var(--teal);color:#fff;border-radius:8px;padding:5px 9px;font-size:15px;min-height:0}
+    td.c-score .score-chip:hover{background:var(--teal)}
+    td.c-score .score-chip .sc-lab{font-size:11px;font-weight:600;opacity:.85;margin-right:2px}
+    /* Round 19: badges get their own row on a phone, in the fixed order
+       NEW → unverified → duplicate; the View and Select actions sit side
+       by side instead of stacking. */
+    .badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+    .badges .badge-new,.badges .dup{margin-left:0}
+    td.c-src{display:inline-block;width:auto;margin-top:12px}
+    td.c-sel{display:inline-block;width:auto;margin-top:12px;margin-left:8px}
     td.num{text-align:left}
     td.mrow{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:12px;color:var(--ink2);font-size:13.5px;padding:0}
     td.mrow span{background:var(--surface2);padding:9px 10px 8px;display:block}
     td.mrow span b{color:var(--ink);font-weight:700;font-size:14.5px}
     td.mrow .lab{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink3);display:block;margin-bottom:2px;font-weight:700}
-    td.c-src{margin-top:12px}
     td.c-src .srclink{display:inline-flex;align-items:center;gap:4px;background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:13px;text-decoration:none}
     tr.detail{margin-top:-6px}
     tr.detail td{background:var(--surface);border:1px solid var(--line);border-top:0;border-radius:0 0 16px 16px;padding:14px 16px;box-shadow:var(--shadow)}
@@ -320,6 +395,7 @@
     .hint-d{display:none}
   }
   @media (min-width:821px){ .mrow{display:none} }
+  @media (max-width:820px) and (prefers-color-scheme: dark){ td.c-score .score-chip{color:#0c1713} }
 
   /* ---------- recommendations ---------- */
   .reco{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px 22px 18px;margin-top:26px}
@@ -337,8 +413,20 @@
   .reco-card .rc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
   .reco-card .rc-sub{font-weight:800;font-size:16.5px;line-height:1.15}
   .reco-card .rc-reg{font-size:12.5px;color:var(--ink2)}
-  .score{flex:none;text-align:center;background:var(--teal);color:#fff;border-radius:10px;padding:6px 10px;line-height:1}
+  .score{flex:none;text-align:center;background:var(--teal);color:#fff;border-radius:10px;padding:6px 10px;line-height:1;border:0;font:inherit;cursor:pointer}
   @media (prefers-color-scheme: dark){.score{color:#0c1713}}
+  /* Round 11: score breakdown — one row per component with a bar. */
+  .score-toggle{background:none;border:0;padding:0;font:inherit;color:var(--teal);font-weight:700;text-decoration:underline dotted;cursor:pointer;text-align:left}
+  .score-cell{background:none;border:0;font:inherit;font-weight:700;color:var(--ink);cursor:pointer;padding:6px 8px;min-height:2.75rem;border-radius:8px}
+  .score-cell:hover{background:var(--surface2)}
+  .score-break{margin-top:10px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+  .sb-row{display:flex;align-items:center;gap:10px;padding:7px 10px;border-bottom:1px solid var(--line);font-size:13px}
+  .sb-row:last-child{border-bottom:0}
+  .sb-row .sb-lab{flex:0 0 108px;font-weight:700}
+  .sb-row .sb-bar{flex:1;height:8px;border-radius:99px;background:var(--chip);overflow:hidden}
+  .sb-row .sb-bar i{display:block;height:100%;background:var(--teal)}
+  .sb-row .sb-pts{flex:none;font-variant-numeric:tabular-nums;font-weight:700}
+  .sb-row .sb-note{font-size:12.5px;color:var(--ink2);flex:1}
   .score b{display:block;font-size:19px;font-variant-numeric:tabular-nums}
   .score span{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
   .reco-card .rc-nums{font-variant-numeric:tabular-nums;font-size:13.5px;color:var(--ink2)}
@@ -377,7 +465,26 @@
   .cmp-table thead th{background:var(--surface2);text-align:right}
   .cmp-table thead th:first-child{text-align:left}
   .cmp-table td.best{background:var(--good-bg);font-weight:800}
-  @media (max-width:820px){ .c-sel{margin-top:10px} }
+  /* Round 16: compare as swipeable cards on phones — the wide table stays
+     for desktop, but on a phone the same comparison is one card per
+     listing, swiped sideways, with the next card peeking to say so. */
+  .cmp-cards{display:none}
+  @media (max-width:820px){
+    .cmp-scroll{display:none}
+    .cmp-cards{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:2px 2px 8px}
+    .cmp-card{flex:0 0 78%;scroll-snap-align:start;background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:14px}
+    .cmp-card .cc-head{margin-bottom:6px}
+    .cmp-card .cc-sub{font-weight:800;font-size:16.5px;line-height:1.15}
+    .cmp-card .cc-reg{font-size:12.5px;color:var(--ink2)}
+    .cc-rows{margin-top:4px}
+    .cc-row{display:flex;justify-content:space-between;gap:10px;padding:7px 8px;border-bottom:1px solid var(--line);font-size:13.5px;font-variant-numeric:tabular-nums}
+    .cc-rows .cc-row:last-child{border-bottom:0}
+    .cc-row .cc-lab{color:var(--ink2);font-weight:700}
+    .cc-row .cc-val{font-weight:700;text-align:right}
+    .cc-row.best{background:var(--good-bg)}
+    .cc-row.best .cc-val{font-weight:800}
+    .cc-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  }
 
   /* ---------- refresh program ---------- */
   .refresh{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px 22px 16px}
@@ -459,6 +566,7 @@
       <a href="#guide">Guide · 指南</a>
       <a href="#about">About</a>
     </div>
+    <button class="nav-next" id="navNext" type="button" aria-label="Show more navigation links">›</button>
     <div class="nav-updated" title="When the listings data was last fetched"><i aria-hidden="true"></i><span>Updated <b data-last-updated>—</b></span></div>
   </div>
 </nav>
@@ -480,7 +588,7 @@
       </div>
       <div class="updated" role="status">
         <span class="dot" aria-hidden="true"></span>
-        <span><strong>Listings data last updated</strong> <span class="when" id="lastUpdated" data-last-updated>—</span> <span style="color:var(--ink3)">· 最后更新</span></span>
+        <span><strong>Listings data last updated</strong> <span class="when" id="lastUpdated" data-last-updated>—</span> <span class="muted">· 最后更新</span></span>
         <span class="src-note" id="srcNote">Source: pmr-data-latest.json · loading the latest data…</span>
         <span class="next-refresh" id="nextRefresh"></span>
       </div>
@@ -490,16 +598,16 @@
     <section class="legend" id="ratings" aria-labelledby="legendTitle">
       <h2 id="legendTitle">How the ratings work <span class="zh">评级标准</span></h2>
       <div class="legend-grid">
-        <div class="lrow"><span class="lm">BC %</span><span class="band"><i style="background:var(--good)"></i>Good · 70% or under</span><span class="band"><i style="background:var(--warn)"></i>Caution · 70–80%</span><span class="band"><i style="background:var(--risk)"></i>Risk · over 80%</span></div>
-        <div class="lrow"><span class="lm">Multiplier</span><span class="band"><i style="background:var(--good)"></i>Excellent · 3–5×</span><span class="band"><i style="background:var(--warn)"></i>Fair · 5–6.5×</span><span class="band"><i style="background:var(--risk)"></i>Overpriced · over 6.5×</span></div>
-        <div class="lrow"><span class="lm">Contract</span><span class="band"><i style="background:var(--good)"></i>Good · 20 yrs or more</span><span class="band"><i style="background:var(--warn)"></i>Adequate · 10–19 yrs</span><span class="band"><i style="background:var(--risk)"></i>Risk · under 10 yrs</span></div>
-        <div class="lrow"><span class="lm">Pool units</span><span class="band"><i style="background:var(--good)"></i>Good · 30 or more</span><span class="band"><i style="background:var(--warn)"></i>Adequate · 15–29</span><span class="band"><i style="background:var(--risk)"></i>Risk · under 15</span></div>
+        <div class="lrow"><span class="lm">BC %</span><span class="band"><i class="bg-good"></i>Good · 70% or under</span><span class="band"><i class="bg-warn"></i>Caution · 70–80%</span><span class="band"><i class="bg-risk"></i>Risk · over 80%</span></div>
+        <div class="lrow"><span class="lm">Multiplier</span><span class="band"><i class="bg-good"></i>Excellent · 3–5×</span><span class="band"><i class="bg-warn"></i>Fair · 5–6.5×</span><span class="band"><i class="bg-risk"></i>Overpriced · over 6.5×</span></div>
+        <div class="lrow"><span class="lm">Contract</span><span class="band"><i class="bg-good"></i>Good · 20 yrs or more</span><span class="band"><i class="bg-warn"></i>Adequate · 10–19 yrs</span><span class="band"><i class="bg-risk"></i>Risk · under 10 yrs</span></div>
+        <div class="lrow"><span class="lm">Pool units</span><span class="band"><i class="bg-good"></i>Good · 30 or more</span><span class="band"><i class="bg-warn"></i>Adequate · 15–29</span><span class="band"><i class="bg-risk"></i>Risk · under 15</span></div>
       </div>
       <p class="legend-note">These same bands drive the colours in the listings table, the deal calculator and the quick filters below — one set of numbers everywhere. On contract term: <strong>most lenders want at least 15 years remaining</strong>, so a contract in the adequate band can still be hard to finance once it drops under 15 years.</p>
     </section>
   </header>
 
-  <div style="height:22px" aria-hidden="true"></div>
+  <div class="spacer-h" aria-hidden="true"></div>
   <section class="calc" id="calculator" aria-labelledby="calcTitle">
     <div class="calc-head">
       <div>
@@ -552,7 +660,7 @@
             <span class="oval" id="offerLabel">At asking price</span>
           </div>
           <input id="calcOffer" type="range" min="0" max="30" step="1" value="0" aria-describedby="offerLabel" />
-          <div class="hintline" id="offerDetail" style="font-size:12.5px;color:var(--ink3)">Slide to test a lower offer — the results on the right switch to the offer price.</div>
+          <div class="hintline" id="offerDetail">Slide to test a lower offer — the results on the right switch to the offer price.</div>
         </div>
       </div>
       <div class="calc-results" aria-live="polite">
@@ -573,6 +681,7 @@
         <div class="calc-backrow"><a class="mini-btn" href="#listings">↓ Back to Browse listings · 返回浏览房源</a></div>
       </div>
     </div>
+    <div class="calc-livebar" id="calcLivebar" hidden><span class="clb-text" id="calcLivebarText"></span><button class="mini-btn" id="calcLivebarBtn" type="button">Results ↑</button></div>
   </section>
 
   <section class="reco" id="recommendations" aria-labelledby="recoTitle">
@@ -592,6 +701,12 @@
     </div>
     <div class="reco-grid" id="recoGrid" aria-live="polite"></div>
     <p class="calc-note" id="recoNote"></p>
+  </section>
+
+  <section class="snapshot" id="snapshot" aria-labelledby="snapshotTitle">
+    <h2 id="snapshotTitle">Market at a glance <span class="zh">市场一览</span></h2>
+    <div class="snap-grid" id="snapGrid"></div>
+    <p class="snap-note" id="snapNote"></p>
   </section>
 
   <section id="listings" aria-labelledby="listingsTitle">
@@ -620,7 +735,7 @@
           <option value="units-desc">Pool units · most</option>
           <option value="score-desc">Recommendation score · highest</option>
         </select>
-        <a class="btn row1-calc" href="#calculator" style="text-decoration:none">Calculator</a>
+        <a class="btn row1-calc link-plain" href="#calculator">Calculator</a>
         <button class="btn" id="filtersBtn" aria-expanded="false" aria-controls="filterMore filters">Filters <span class="cnt" id="filterCnt" hidden>0</span></button>
         <button class="btn" id="watchBtn" aria-pressed="false">★ Watchlist <span class="cnt" id="watchCnt">0</span></button>
         <button class="btn" id="resetBtn">Reset</button>
@@ -665,6 +780,7 @@
         <label class="check"><input type="checkbox" id="cYrs" /> Contract 20 yrs+</label>
         <label class="check"><input type="checkbox" id="cBc" /> BC ≤ 70%</label>
       </div>
+      <button class="btn filter-done" id="filterDone" type="button">Done — show listings</button>
       </div>
     </div>
   </div>
@@ -689,9 +805,10 @@
   </div>
 
   <div class="compare" id="compare" aria-labelledby="compareTitle">
-    <h3 id="compareTitle">Compare selected listings <span style="font-size:.6em;color:var(--ink2)">对比所选房源</span></h3>
+    <h3 id="compareTitle">Compare selected listings <span class="sec-sub">对比所选房源</span></h3>
     <p>Best value in each row is highlighted. Scores use the same bands as the recommendations above. Remove a listing here or with its Select button in the table.</p>
     <div class="cmp-scroll"><table class="cmp-table" id="cmpTable" aria-label="Comparison of selected listings"></table></div>
+    <div class="cmp-cards" id="cmpCards" aria-label="Comparison of selected listings, as cards"></div>
   </div>
   </section>
 
@@ -862,7 +979,7 @@ jobs:
 
   <section class="guide" id="guide" aria-labelledby="guideTitle">
     <h2 id="guideTitle">Buyer&rsquo;s guide <span class="zh">物业管理权买家指南</span></h2>
-    <p class="g-intro">The full bilingual guide to Queensland property management rights — what PMR is, how the money works, how to read the metrics, due diligence, financing, red flags, licences and the documents you will need. Every rating in this guide uses the same canonical bands as the listings, calculator and recommendations on this page. <span style="display:block;margin-top:3px">昆士兰物业管理权完整双语指南——什么是PMR、收入如何构成、如何解读关键指标、尽职调查、融资、风险警示、牌照与所需文件。本指南的所有评级均与本页房源、计算器和推荐使用同一套标准。</span></p>
+    <p class="g-intro">The full bilingual guide to Queensland property management rights — what PMR is, how the money works, how to read the metrics, due diligence, financing, red flags, licences and the documents you will need. Every rating in this guide uses the same canonical bands as the listings, calculator and recommendations on this page. <span class="zh">昆士兰物业管理权完整双语指南——什么是PMR、收入如何构成、如何解读关键指标、尽职调查、融资、风险警示、牌照与所需文件。本指南的所有评级均与本页房源、计算器和推荐使用同一套标准。</span></p>
     <div class="g-bands" role="note" aria-label="Canonical rating bands">
       <span><b class="r-good">Good 良好</b> · BC% ≤70% · Multiplier 3–5× · Contract 20+ yrs · Pool 30+</span>
       <span><b class="r-warn">Caution 注意</b> · BC% 70–80% · Multiplier 5–6.5× · Contract 10–19 yrs · Pool 15–29</span>
@@ -894,7 +1011,7 @@ jobs:
           <tr><td><strong>Multiplier</strong> <span class="zh">典型倍数</span></td><td>4–6× typical <span class="zh">4–6倍</span></td><td>5–8× typical <span class="zh">5–8倍</span></td></tr>
         </tbody>
       </table></div>
-      <p style="color:var(--ink2);font-size:13.5px">The multiplier ranges above are typical asking ranges by complex type; the rating bands used to judge any individual deal are the canonical ones at the top of this guide — excellent 3–5×, fair 5–6.5×, overpriced over 6.5×. <span class="zh">上表倍数为不同类型综合体的典型要价范围；评判单个交易的标准为本指南顶部的统一标准——极佳3–5倍、合理5–6.5倍、过高为6.5倍以上。</span></p>
+      <p class="note-md">The multiplier ranges above are typical asking ranges by complex type; the rating bands used to judge any individual deal are the canonical ones at the top of this guide — excellent 3–5×, fair 5–6.5×, overpriced over 6.5×. <span class="zh">上表倍数为不同类型综合体的典型要价范围；评判单个交易的标准为本指南顶部的统一标准——极佳3–5倍、合理5–6.5倍、过高为6.5倍以上。</span></p>
     </article>
 
     <article class="g-sec" id="guide-2">
@@ -1164,7 +1281,7 @@ jobs:
         <li>If buying MR+Unit: separate residential loan approval for the unit. <span class="zh">如购买MR+公寓：公寓的独立住宅贷款批准。</span></li>
       </ul>
       <div class="g-callout"><strong>Timeline tip:</strong> allow 90–120 days from signing to settlement for PMR. The BC consent vote, OFT licence processing and finance approval all take time and cannot happen in parallel. Work backward from your target settlement date to ensure nothing holds you up. <span class="zh"><strong>时间线建议：</strong>PMR从签约到交割预留90–120天。BC同意投票、OFT牌照审批和融资批准都需要时间，且不能并行处理。从你的目标交割日期倒推，确保没有任何环节拖慢进度。</span></div>
-      <p style="color:var(--ink2);font-size:13px">Guide adapted from the live PMR Dashboard guide at <a href="https://winrobin.github.io/pmr-dashboard/" target="_blank" rel="noopener">winrobin.github.io/pmr-dashboard</a>, with all thresholds aligned to the canonical rating bands used across this dashboard. <span class="zh">本指南改编自线上PMR Dashboard指南，所有阈值均已与本仪表盘统一使用的评级标准对齐。</span></p>
+      <p class="note-sm">Guide adapted from the live PMR Dashboard guide at <a href="https://winrobin.github.io/pmr-dashboard/" target="_blank" rel="noopener">winrobin.github.io/pmr-dashboard</a>, with all thresholds aligned to the canonical rating bands used across this dashboard. <span class="zh">本指南改编自线上PMR Dashboard指南，所有阈值均已与本仪表盘统一使用的评级标准对齐。</span></p>
     </article>
   </section>
 
@@ -1176,7 +1293,7 @@ jobs:
       </div>
       <div>
         <h3>Last updated</h3>
-        <p><strong data-last-updated>—</strong><br /><span style="color:var(--ink3)">Newest fetch recorded in the data file — not today’s date. Most listings in this file were fetched 17 Aug 2026.</span></p>
+        <p><strong data-last-updated>—</strong><br /><span class="muted">Newest fetch recorded in the data file — not today’s date. Most listings in this file were fetched 17 Aug 2026.</span></p>
       </div>
       <div>
         <h3>Original listings</h3>
@@ -1286,36 +1403,48 @@ function applyCorrections(list){
    or 0 (under 10); a pool under 15 units scores 0; unknown figures score
    low (2–3) on top of the completeness dock. Unverified listings are
    capped at 40. */
+/* Round 11: scoreListing also returns the per-component breakdown
+   (parts: [{label, pts, max}]) so the 0–100 can be shown as it was built.
+   The weights are the canonical ones: multiplier 25, ROI 25, BC 15,
+   contract 15, pool 10, completeness 10. */
 function scoreListing(l){
-  var s=0, why=[];
-  if(l.mult==null){ s+=5; }
-  else if(l.mult>=3 && l.mult<=5){ s+=25; why.push("excellent multiplier "+l.mult.toFixed(2)+"×"); }
-  else if(l.mult>5 && l.mult<=6.5){ s+=16; why.push("fair multiplier "+l.mult.toFixed(2)+"×"); }
-  else if(l.mult<3){ s+=10; why.push("multiplier under 3× — verify the figures"); }
-  else { s+=4; }
+  var s=0, why=[], parts=[];
+  var pMult, pRoi, pBc, pYrs, pUnits, pComp;
+  if(l.mult==null){ pMult=5; }
+  else if(l.mult>=3 && l.mult<=5){ pMult=25; why.push("excellent multiplier "+l.mult.toFixed(2)+"×"); }
+  else if(l.mult>5 && l.mult<=6.5){ pMult=16; why.push("fair multiplier "+l.mult.toFixed(2)+"×"); }
+  else if(l.mult<3){ pMult=10; why.push("multiplier under 3× — verify the figures"); }
+  else { pMult=4; }
+  s+=pMult; parts.push({label:"Multiplier", pts:pMult, max:25});
   var roi = Math.min(l.roi||0, 40);
-  if(roi>=25){ s+=25; why.push("very strong ROI "+l.roi.toFixed(1)+"%"); }
-  else if(roi>=20){ s+=20; why.push("strong ROI "+l.roi.toFixed(1)+"%"); }
-  else if(roi>=17){ s+=14; }
-  else if(roi>=15){ s+=8; }
-  else { s+=3; }
-  if(l.bc==null){ s+=5; }
-  else if(l.bc<=50){ s+=15; why.push("income not dependent on BC salary ("+l.bc.toFixed(1)+"%)"); }
-  else if(l.bc<=70){ s+=12; }
-  else if(l.bc<=80){ s+=6; }
-  else { s+=2; }
+  if(roi>=25){ pRoi=25; why.push("very strong ROI "+l.roi.toFixed(1)+"%"); }
+  else if(roi>=20){ pRoi=20; why.push("strong ROI "+l.roi.toFixed(1)+"%"); }
+  else if(roi>=17){ pRoi=14; }
+  else if(roi>=15){ pRoi=8; }
+  else { pRoi=3; }
+  s+=pRoi; parts.push({label:"ROI", pts:pRoi, max:25});
+  if(l.bc==null){ pBc=5; }
+  else if(l.bc<=50){ pBc=15; why.push("income not dependent on BC salary ("+l.bc.toFixed(1)+"%)"); }
+  else if(l.bc<=70){ pBc=12; }
+  else if(l.bc<=80){ pBc=6; }
+  else { pBc=2; }
+  s+=pBc; parts.push({label:"BC %", pts:pBc, max:15});
   /* Round 7: steepen the penalty for a short contract and a thin pool. */
-  if(l.yrs==null){ s+=3; }
-  else if(l.yrs>=20){ s+=15; why.push(l.yrs+"-year contract remaining"); }
-  else if(l.yrs>=15){ s+=10; }
-  else if(l.yrs>=10){ s+=2; }
-  else { s+=0; }
-  if(l.units==null){ s+=2; }
-  else if(l.units>=30){ s+=10; why.push("pool of "+l.units+" units"); }
-  else if(l.units>=15){ s+=7; }
-  else { s+=0; }
+  if(l.yrs==null){ pYrs=3; }
+  else if(l.yrs>=20){ pYrs=15; why.push(l.yrs+"-year contract remaining"); }
+  else if(l.yrs>=15){ pYrs=10; }
+  else if(l.yrs>=10){ pYrs=2; }
+  else { pYrs=0; }
+  s+=pYrs; parts.push({label:"Contract", pts:pYrs, max:15});
+  if(l.units==null){ pUnits=2; }
+  else if(l.units>=30){ pUnits=10; why.push("pool of "+l.units+" units"); }
+  else if(l.units>=15){ pUnits=7; }
+  else { pUnits=0; }
+  s+=pUnits; parts.push({label:"Pool", pts:pUnits, max:10});
   var have = [l.mult,l.bc,l.yrs,l.units].filter(function(x){return x!=null;}).length;
-  s += Math.round(have/4*10);
+  pComp = Math.round(have/4*10);
+  s += pComp;
+  parts.push({label:"Completeness", pts:pComp, max:10});
   /* Round 5 (plan): completeness feeds the score transparently — say
      which figures are missing so the penalty is visible, not silent. */
   if(have<4){
@@ -1327,13 +1456,24 @@ function scoreListing(l){
     why.push("completeness "+have+"/4 — missing: "+miss.join(", "));
   }
   if(l.unverified) s = Math.min(s, 40);
-  return { score: Math.max(0, Math.min(100, Math.round(s))), why: why };
+  return { score: Math.max(0, Math.min(100, Math.round(s))), why: why, parts: parts };
+}
+/* Round 11: the score breakdown as HTML — one row per component with a
+   small bar, plus the unverified-cap note when the 40 cap applied. */
+function scoreBreakHtml(l){
+  if(!l.parts) return "";
+  var rows = l.parts.map(function(p){
+    var pct = p.max? Math.round(p.pts/p.max*100) : 0;
+    return '<div class="sb-row"><span class="sb-lab">'+esc(p.label)+'</span><span class="sb-bar"><i style="width:'+pct+'%"></i></span><span class="sb-pts">'+p.pts+' / '+p.max+'</span></div>';
+  }).join("");
+  if(l.unverified) rows += '<div class="sb-row"><span class="sb-lab">Unverified cap</span><span class="sb-note">Figures need verifying — score capped at 40</span><span class="sb-pts">≤ 40</span></div>';
+  return '<div class="score-break" role="group" aria-label="How the recommendation score was built">'+rows+'</div>';
 }
 /* Corrections + scoring in one pass, applied to the fallback snapshot at
    startup and to the fetched live data when it arrives. */
 function prepareListings(list){
   var out = applyCorrections(list);
-  out.forEach(function(l){ var r=scoreListing(l); l.score=r.score; l.why=r.why; });
+  out.forEach(function(l){ var r=scoreListing(l); l.score=r.score; l.why=r.why; l.parts=r.parts; });
   return out;
 }
 var REGION_MED = {}; /* Round 8: median multiplier per region — declared here so the startup call below isn't clobbered by a later `var` */
@@ -1341,7 +1481,7 @@ LISTINGS = prepareListings(LISTINGS);
 
 var state = { q:"", group:"All", sort:"score-desc", sortDir:null, maxPrice:"", priceRange:"", minNet:"", maxMult:"", minYrs:"", minUnits:"",
               minRoi:"", maxBc:"", minScore:"", srcFilter:"", preset:"",
-              cMult:false, cRoi:false, cYrs:false, cBc:false, watchOnly:false, openId:null };
+              cMult:false, cRoi:false, cYrs:false, cBc:false, watchOnly:false, openId:null, openScore:null };
 var watch = {}; // in-memory for this visit only
 var selected = {}; // listings ticked for side-by-side comparison, this visit only
 var COLS = [
@@ -1452,6 +1592,7 @@ function renderPills(){
 pillsEl.addEventListener("click", function(e){
   var b = e.target.closest("[data-group]"); if(!b) return;
   state.group = b.getAttribute("data-group"); renderPills(); render();
+  closeFilterPanelOnPhone(); /* Round 13: a region pick is a decision — show the results, not the panel */
 });
 
 /* table head */
@@ -1512,7 +1653,21 @@ function applyPreset(name){
   document.getElementById("cYrs").checked=state.cYrs; document.getElementById("cBc").checked=state.cBc;
   document.querySelectorAll("[data-preset]").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-preset")===state.preset); });
   render();
+  closeFilterPanelOnPhone(); /* Round 13: a preset is a decision — show the results, not the panel */
 }
+/* Round 13: on phones the filter panel is a full-height sheet; after a
+   region or preset pick there is nothing left to do in it, so close it.
+   Desktop is untouched (the panel is display:contents there). */
+function closeFilterPanelOnPhone(){
+  if(!(window.matchMedia && window.matchMedia("(max-width: 820px)").matches)) return;
+  var fm = document.getElementById("filterMore"); if(fm) fm.classList.remove("open");
+  var f = document.getElementById("filters"); if(f) f.classList.remove("open");
+  var btn = document.getElementById("filtersBtn"); if(btn) btn.setAttribute("aria-expanded","false");
+}
+document.getElementById("filterDone").addEventListener("click", function(){
+  closeFilterPanelOnPhone();
+  var t = document.getElementById("listings"); if(t && t.scrollIntoView) t.scrollIntoView({behavior:"smooth", block:"start"});
+});
 document.querySelectorAll("[data-preset]").forEach(function(b){
   b.addEventListener("click", function(){ applyPreset(b.getAttribute("data-preset")); });
 });
@@ -1543,7 +1698,7 @@ watchBtn.addEventListener("click", function(){
 function resetAll(){
   state = { q:"", group:"All", sort:"score-desc", sortDir:null, maxPrice:"", priceRange:"", minNet:"", maxMult:"", minYrs:"", minUnits:"",
             minRoi:"", maxBc:"", minScore:"", srcFilter:"", preset:"",
-            cMult:false, cRoi:false, cYrs:false, cBc:false, watchOnly:false, openId:null };
+            cMult:false, cRoi:false, cYrs:false, cBc:false, watchOnly:false, openId:null, openScore:null };
   document.getElementById("q").value=""; document.getElementById("sort").value="score-desc";
   ["fRange","fPrice","fNet","fMult","fYrs","fUnits","fRoi","fBc","fScore","fSrc"].forEach(function(id){ document.getElementById(id).value=""; });
   ["cMult","cRoi","cYrs","cBc"].forEach(function(id){ document.getElementById(id).checked=false; });
@@ -1628,10 +1783,16 @@ function render(){
      pills, quick picks and checkboxes sit inside the collapsible panel —
      it is still obvious that filters are on while the panel is closed. */
   var fc = (state.group!=="All" ? 1 : 0)
+    + (state.q ? 1 : 0) /* Round 13: a search term is a filter too */
+    + (state.watchOnly ? 1 : 0)
     + ["priceRange","maxPrice","minNet","maxMult","minYrs","minUnits","minRoi","maxBc","minScore","srcFilter"].filter(function(k){ return !!state[k]; }).length
     + ["cMult","cRoi","cYrs","cBc"].filter(function(k){ return !!state[k]; }).length;
   var fcEl = document.getElementById("filterCnt");
   if(fcEl){ fcEl.textContent = fc; fcEl.hidden = fc===0; }
+  /* Round 13: the Done button in the phone filter panel shows how many
+     listings the current filters leave, so the panel answers before it closes. */
+  var doneEl = document.getElementById("filterDone");
+  if(doneEl) doneEl.textContent = "Done — show "+rows.length+" listing"+(rows.length===1?"":"s");
   document.getElementById("empty").hidden = rows.length>0;
   var tb = document.getElementById("tbody");
   var html = "";
@@ -1640,7 +1801,7 @@ function render(){
     var picked = !!selected[l.id];
     html += '<tr class="listing'+(picked? " is-selected":"")+'" data-id="'+esc(l.id)+'">'
       + '<td class="c-star"><button class="starbtn" data-star="'+esc(l.id)+'" aria-pressed="'+starred+'" aria-label="'+(starred? "Remove ":"Add ")+esc(l.suburb)+' '+(starred? "from":"to")+' watchlist">'+(starred? "★":"☆")+'</button></td>'
-      + '<td class="c-place"><span class="suburb">'+esc(l.suburb)+'</span>'+(isNewListing(l)? '<span style="background:#22c55e;color:#fff;font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;margin-left:6px;vertical-align:2px">NEW</span>':"")+(l.dup? '<span class="dup">possible duplicate</span>':"")+(l.unverified? '<span class="dup">unverified — check with broker</span>':"")+'<div class="grp">'+esc(l.group)+'</div></td>'
+      + '<td class="c-place"><span class="suburb">'+esc(l.suburb)+'</span>'+((isNewListing(l)||l.unverified||l.dup)? '<div class="badges">'+(isNewListing(l)? '<span class="badge-new">NEW</span>':"")+(l.unverified? '<span class="dup">unverified — check with broker</span>':"")+(l.dup? '<span class="dup">possible duplicate</span>':"")+'</div>' : "")+'<div class="grp">'+esc(l.group)+'</div></td>'
       + '<td class="num c-price price">'+fmtFull(l.price)+'</td>'
       + '<td class="num hide-m">'+(l.net==null? '<span class="nd">income not disclosed</span>' : fmtFull(l.net))+'</td>'
       + '<td class="num hide-m '+multClass(l.mult)+'">'+(l.mult==null? "—" : l.mult.toFixed(2)+"×")+'</td>'
@@ -1648,10 +1809,10 @@ function render(){
       + '<td class="num hide-m '+yrsClass(l.yrs)+'">'+(l.yrs==null? "—" : l.yrs+" yrs")+'</td>'
       + '<td class="num hide-m '+unitsClass(l.units)+'">'+(l.units==null? "—" : l.units)+'</td>'
       + '<td class="num c-roi"><span class="roi '+roiClass(l.roi)+'">'+(l.roi==null?"—":l.roi.toFixed(1)+"%")+'</span></td>'
-      + '<td class="num hide-m"><strong>'+(l.score!=null? l.score : "—")+'</strong></td>'
+      + '<td class="num hide-m c-score"><button class="score-cell score-chip" data-score="'+esc(l.id)+'" aria-label="Show how the '+l.score+' score was built for '+esc(l.suburb)+'"><span class="sc-lab">Score</span> '+(l.score!=null? l.score : "—")+'</button></td>'
       + '<td class="c-src"><a class="srclink" href="'+esc(l.url)+'" target="_blank" rel="noopener" data-norow>View ↗</a></td>'
       + '<td class="c-sel"><button class="selbtn" data-select="'+esc(l.id)+'" aria-pressed="'+picked+'" aria-label="'+(picked? "Remove ":"Select ")+esc(l.suburb)+' for comparison">'+(picked? "✓ Selected":"Select")+'</button></td>'
-      + '<td class="mrow" aria-hidden="true"><span><span class="lab">Net</span><b>'+(l.net==null?"income not disclosed":fmt$(l.net))+'</b></span><span><span class="lab">Mult.</span><b class="'+multClass(l.mult)+'">'+(l.mult==null?"—":l.mult.toFixed(2)+"×")+'</b></span><span><span class="lab">BC</span><b class="'+bcClass(l.bc)+'">'+(l.bc==null?"—":l.bc.toFixed(1)+"%")+'</b></span><span><span class="lab">Contract</span><b class="'+yrsClass(l.yrs)+'">'+(l.yrs==null?"—":l.yrs+" yrs")+'</b></span><span><span class="lab">Pool</span><b class="'+unitsClass(l.units)+'">'+(l.units==null?"—":l.units)+'</b></span><span><span class="lab">Score</span><b>'+(l.score!=null? l.score+" / 100":"—")+'</b></span></td>'
+      + '<td class="mrow" aria-hidden="true"><span><span class="lab">Net</span><b>'+(l.net==null?"income not disclosed":fmt$(l.net))+'</b></span><span><span class="lab">Mult.</span><b class="'+multClass(l.mult)+'">'+(l.mult==null?"—":l.mult.toFixed(2)+"×")+'</b></span><span><span class="lab">BC</span><b class="'+bcClass(l.bc)+'">'+(l.bc==null?"—":l.bc.toFixed(1)+"%")+'</b></span><span><span class="lab">Contract</span><b class="'+yrsClass(l.yrs)+'">'+(l.yrs==null?"—":l.yrs+" yrs")+'</b></span><span><span class="lab">Pool</span><b class="'+unitsClass(l.units)+'">'+(l.units==null?"—":l.units)+'</b></span></td>'
       + '</tr>';
     if(state.openId===l.id){
       html += '<tr class="detail"><td colspan="12"><div class="detailbox">'
@@ -1661,7 +1822,7 @@ function render(){
         + '<div class="meta"><b>Full price</b>'+fmtFull(l.price)+(l.up!=null && l.up>0 ? " (business "+fmtFull(l.bp!=null? l.bp : l.price-l.up)+" + unit "+fmtFull(l.up)+")" : "")+' · net '+(l.net==null?"income not disclosed":fmtFull(l.net))+'</div>'
         + (l.missing && l.missing.length? '<div class="meta"><b>Not disclosed by broker</b>'+esc(l.missing.join(", "))+'</div>' : "")
         + regionMedLine(l)
-        + '<div class="meta"><b>Recommendation score</b>'+(l.score!=null? l.score+" / 100":"—")+(l.why && l.why.length? " — "+esc(l.why.join("; ")) : "")+'</div>'
+        + '<div class="meta"><b>Recommendation score</b><button class="score-toggle" data-scorebreak="'+esc(l.id)+'" aria-expanded="'+(state.openScore===l.id)+'">'+(l.score!=null? l.score+" / 100":"—")+' — tap for breakdown '+(state.openScore===l.id? "▴":"▾")+'</button>'+(l.why && l.why.length? " — "+esc(l.why.join("; ")) : "")+(state.openScore===l.id? scoreBreakHtml(l) : "")+'</div>'
         + '<div class="meta"><b>Analyse</b><button class="btn calc-load-btn" data-calc="'+esc(l.id)+'">Open in calculator ↑</button></div>'
         + '</div></td></tr>';
     }
@@ -1686,11 +1847,12 @@ function renderSelection(){
   var picks = selectedListings();
   var tray = document.getElementById("tray");
   tray.classList.toggle("show", picks.length>0);
+  updateCalcLivebar(); /* Round 15: the tray showing moves the live bar up */
   document.getElementById("trayCount").textContent = picks.length+" selected for comparison";
   if(picks.length) document.getElementById("trayNames").textContent = picks.map(function(l){return l.suburb;}).join(" · ");
   var box = document.getElementById("compare");
   box.classList.toggle("show", picks.length>=2);
-  if(picks.length<2){ document.getElementById("cmpTable").innerHTML=""; return; }
+  if(picks.length<2){ document.getElementById("cmpTable").innerHTML=""; var _cc=document.getElementById("cmpCards"); if(_cc) _cc.innerHTML=""; return; }
   function best(key, mode){
     var vals = picks.map(function(l){return l[key];}).filter(function(v){return v!=null;});
     if(!vals.length) return null;
@@ -1721,6 +1883,24 @@ function renderSelection(){
     return "<td><a href='"+esc(l.url)+"' target='_blank' rel='noopener'>View ↗</a> · <button class='mini-btn' data-calc='"+esc(l.id)+"'>Calculator</button></td>";
   }).join("")+"</tr></tbody>";
   document.getElementById("cmpTable").innerHTML = html;
+  /* Round 16: the same comparison as swipeable cards (phones). The best
+     value per row uses the same best() as the table, so the two can never
+     disagree. Remove / Calculator ride on the #compare delegation below. */
+  var cardsEl = document.getElementById("cmpCards");
+  if(cardsEl){
+    cardsEl.innerHTML = picks.map(function(l){
+      var rowsHtml = rowsDef.map(function(rd){
+        var b = rd[2]? best(rd[2], rd[3]) : null;
+        var isBest = rd[2] && l[rd[2]]!=null && l[rd[2]]===b && picks.length>1;
+        return "<div class='cc-row"+(isBest?" best":"")+"'><span class='cc-lab'>"+rd[0]+"</span><span class='cc-val'>"+rd[1](l)+"</span></div>";
+      }).join("");
+      return "<article class='cmp-card'><div class='cc-head'><div class='cc-sub'>"+esc(l.suburb)+"</div><div class='cc-reg'>"+esc(l.group)+"</div></div>"
+        + "<div class='cc-rows'>"+rowsHtml+"</div>"
+        + "<div class='cc-actions'><a class='mini-btn' href='"+esc(l.url)+"' target='_blank' rel='noopener'>View ↗</a>"
+        + "<button class='mini-btn' data-calc='"+esc(l.id)+"'>Calculator</button>"
+        + "<button class='mini-btn' data-unsel='"+esc(l.id)+"'>Remove</button></div></article>";
+    }).join("");
+  }
 }
 document.getElementById("trayClear").addEventListener("click", function(){ selected={}; render(); });
 document.getElementById("trayCompare").addEventListener("click", function(){
@@ -1734,6 +1914,7 @@ document.getElementById("compare").addEventListener("click", function(e){
 });
 
 /* ---------- recommendations ---------- */
+var recoScoreOpen = null; /* Round 11: which reco card's score breakdown is open */
 function renderReco(){
   var budget = document.getElementById("rBudget").value;
   var goal = document.getElementById("rGoal").value;
@@ -1758,15 +1939,16 @@ function renderReco(){
   var top = pool.slice(0,6);
   var grid = document.getElementById("recoGrid");
   if(!top.length){
-    grid.innerHTML = '<p style="color:var(--ink2);margin:0">No listings match that budget, region and score together — try a higher budget or a lower minimum score.</p>';
+    grid.innerHTML = '<p class="empty-note">No listings match that budget, region and score together — try a higher budget or a lower minimum score.</p>';
   } else {
     grid.innerHTML = top.map(function(l, i){
       var picked = !!selected[l.id];
       return '<article class="reco-card">'
         + '<div class="rc-top"><div><div class="rc-sub">#'+(i+1)+" "+esc(l.suburb)+'</div><div class="rc-reg">'+esc(l.group)+(l.unverified? " · unverified":"")+'</div></div>'
-        + '<div class="score"><b>'+l.score+'</b><span>Score</span></div></div>'
+        + '<button class="score reco-score" data-openscore="'+esc(l.id)+'" aria-expanded="'+(recoScoreOpen===l.id)+'" aria-label="Show how the '+l.score+' score was built for '+esc(l.suburb)+'"><b>'+l.score+'</b><span>Score</span></button></div>'
         + '<div class="rc-nums"><b>'+fmtFull(l.price)+'</b> · net '+(l.net==null?"income not disclosed":fmtFull(l.net))+'<br />'+(l.mult==null?"—":l.mult.toFixed(2)+"×")+' · ROI <b>'+(l.roi==null?"—":l.roi.toFixed(1)+"%")+'</b> · BC '+(l.bc==null?"—":l.bc.toFixed(1)+"%")+' · '+(l.yrs==null?"—":l.yrs+" yrs")+' · pool '+(l.units==null?"—":l.units)+'</div>'
         + '<p class="rc-why">'+(l.why && l.why.length? "Why: "+esc(l.why.join("; ")) + "." : "Solid all-round figures on the standard bands.")+'</p>'
+        + (recoScoreOpen===l.id? scoreBreakHtml(l) : "")
         + '<div class="rc-actions"><button class="mini-btn" data-recoselect="'+esc(l.id)+'" aria-pressed="'+picked+'">'+(picked? "✓ Selected":"Select to compare")+'</button>'
         + '<button class="mini-btn" data-recocalc="'+esc(l.id)+'">Calculator</button>'
         + '<a class="mini-btn" href="'+esc(l.url)+'" target="_blank" rel="noopener">View ↗</a></div>'
@@ -1779,6 +1961,8 @@ function renderReco(){
   document.getElementById(id).addEventListener("change", renderReco);
 });
 document.getElementById("recoGrid").addEventListener("click", function(e){
+  var os = e.target.closest("[data-openscore]");
+  if(os){ recoScoreOpen = recoScoreOpen===os.getAttribute("data-openscore")? null : os.getAttribute("data-openscore"); renderReco(); return; }
   var s = e.target.closest("[data-recoselect]");
   if(s){ toggleSelect(s.getAttribute("data-recoselect")); renderReco(); return; }
   var c = e.target.closest("[data-recocalc]");
@@ -1822,9 +2006,25 @@ document.getElementById("tbody").addEventListener("click", function(e){
     render(); return;
   }
   if(e.target.closest("a")) return;
+  /* Round 11: tapping a listing's score opens its detail row with the
+     score breakdown shown; tapping again hides the breakdown. */
+  var scoreBtn = e.target.closest("[data-score]");
+  if(scoreBtn){
+    var sid = scoreBtn.getAttribute("data-score");
+    if(state.openId===sid && state.openScore===sid){ state.openScore=null; }
+    else { state.openId=sid; state.openScore=sid; }
+    render(); return;
+  }
+  var scoreBreak = e.target.closest("[data-scorebreak]");
+  if(scoreBreak){
+    var bid = scoreBreak.getAttribute("data-scorebreak");
+    state.openScore = state.openScore===bid? null : bid;
+    render(); return;
+  }
   var tr = e.target.closest("tr.listing"); if(!tr) return;
   var id = tr.getAttribute("data-id");
-  state.openId = state.openId===id? null : id;
+  if(state.openId===id){ state.openId=null; state.openScore=null; }
+  else { state.openId=id; state.openScore=null; }
   render();
 });
 
@@ -1907,8 +2107,20 @@ function syncBc(source){
 }
 
 function verdictItem(level, text){
-  var color = level==="good" ? "var(--good)" : (level==="warn" ? "var(--warn)" : (level==="risk" ? "var(--risk)" : "var(--ink3)"));
-  return '<li><span class="dotv" style="background:'+color+'"></span><span>'+esc(text)+'</span></li>';
+  return '<li><span class="dotv dotv-'+level+'"></span><span>'+esc(text)+'</span></li>';
+}
+
+/* Round 15: the one-line deal summary, shared by the collapsed summary
+   and the phone live-results bar. Returns null when no deal is worked out. */
+function calcDealLine(mult, roi, bcPct, net){
+  var dealName = "Your deal";
+  if(calcListingEl.value && calcListingEl.selectedIndex>0){
+    dealName = calcListingEl.options[calcListingEl.selectedIndex].textContent.split("·")[0].trim();
+  }
+  if(mult==null || roi==null) return null;
+  return "<b>"+esc(dealName)+":</b> "+mult.toFixed(2)+"× · ROI "+roi.toFixed(1)+"%"
+    + (bcPct!=null ? " · BC "+bcPct.toFixed(1)+"%" : "")
+    + (net ? " · "+fmtFull(Math.round(net/12))+"/mo" : "");
 }
 
 function updateCalc(){
@@ -2060,18 +2272,14 @@ function updateCalc(){
   // the current deal stays visible without the calculator eating the screen
   var sumEl = document.getElementById("calcSummary");
   if(sumEl){
-    var dealName = "Your deal";
-    if(calcListingEl.value && calcListingEl.selectedIndex>0){
-      dealName = calcListingEl.options[calcListingEl.selectedIndex].textContent.split("·")[0].trim();
-    }
-    if(mult!=null && roi!=null){
-      sumEl.innerHTML = "<b>"+esc(dealName)+":</b> "+mult.toFixed(2)+"× · ROI "+roi.toFixed(1)+"%"
-        + (bcPct!=null ? " · BC "+bcPct.toFixed(1)+"%" : "")
-        + (net ? " · "+fmtFull(Math.round(net/12))+"/mo" : "")
-        + " &nbsp;<span class='cs-open'>Show calculator ▼</span>";
-    } else {
-      sumEl.innerHTML = "No deal worked out yet. &nbsp;<span class='cs-open'>Show calculator ▼</span>";
-    }
+    var line = calcDealLine(mult, roi, bcPct, net);
+    sumEl.innerHTML = line ? line + " &nbsp;<span class='cs-open'>Show calculator ▼</span>" : "No deal worked out yet. &nbsp;<span class='cs-open'>Show calculator ▼</span>";
+  }
+  // Round 15: the same line feeds the phone live-results bar
+  var lbText = document.getElementById("calcLivebarText");
+  if(lbText){
+    var lbLine = calcDealLine(mult, roi, bcPct, net);
+    lbText.innerHTML = lbLine ? lbLine : "No deal worked out yet.";
   }
 }
 
@@ -2083,7 +2291,35 @@ function setCalcExpanded(expanded){
   sec.classList.toggle("is-collapsed", !expanded);
   btn.setAttribute("aria-expanded", expanded ? "true" : "false");
   btn.textContent = expanded ? "Hide calculator ▲" : "Show calculator ▼";
+  calcLivebarState.expanded = expanded; /* Round 15 */
+  updateCalcLivebar();
 }
+
+/* Round 15: live-results bar visibility. Shown only on phones, only while
+   the calculator is expanded, and only while the results panel is not
+   itself on screen (an IntersectionObserver watches it). */
+var calcLivebarState = {expanded:false, resultsVisible:false};
+function updateCalcLivebar(){
+  var bar = document.getElementById("calcLivebar"); if(!bar) return;
+  var phone = window.matchMedia && window.matchMedia("(max-width: 820px)").matches;
+  var show = phone && calcLivebarState.expanded && !calcLivebarState.resultsVisible;
+  bar.hidden = !show;
+  var tray = document.getElementById("tray");
+  bar.classList.toggle("above-tray", !!tray && tray.classList.contains("show"));
+}
+if("IntersectionObserver" in window){
+  var _clbObs = new IntersectionObserver(function(entries){
+    calcLivebarState.resultsVisible = !!(entries[0] && entries[0].isIntersecting);
+    updateCalcLivebar();
+  }, {threshold: 0.15});
+  var _cr = document.querySelector(".calc-results");
+  if(_cr) _clbObs.observe(_cr);
+}
+document.getElementById("calcLivebarBtn").addEventListener("click", function(){
+  var r = document.querySelector(".calc-results");
+  if(r && r.scrollIntoView) r.scrollIntoView({behavior:"smooth", block:"start"});
+});
+window.addEventListener("resize", updateCalcLivebar);
 
 [calcPriceEl, calcOfferEl].forEach(function(el){ el.addEventListener("input", updateCalc); });
 [calcPriceEl, calcNetEl, calcBcAmtEl, calcBcPctEl, calcYrsEl, calcUnitsEl, calcOfferEl, calcUnitEl].forEach(function(el){ el.addEventListener("input", function(){ calcDirty = true; }); });
@@ -2202,6 +2438,26 @@ function regionMedLine(l){
   var rel = l.mult < rm ? "below" : (l.mult > rm ? "above" : "at");
   return '<div class="meta"><b>Multiplier vs region</b>'+l.mult.toFixed(2)+'× vs '+esc(l.group)+' median '+rm.toFixed(2)+'× — '+rel+' the regional median</div>';
 }
+/* Round 20: market at a glance — one chip per region (count + median
+   multiplier), plus the NEW count and the median ROI, all from the same
+   listings in memory. Medians use verified listings with a positive
+   multiplier only, the same rule as the stats strip. */
+function renderSnapshot(){
+  var grid = document.getElementById("snapGrid"); if(!grid) return;
+  var chips = GROUPS.filter(function(g){ return g!=="All"; }).map(function(g){
+    var n = LISTINGS.filter(function(l){ return l.group===g; }).length;
+    var med = REGION_MED[g];
+    return '<div class="snap-chip"><span class="sc-lab">'+esc(g)+'</span><b>'+n+' listings</b>median '+(med!=null? med.toFixed(2)+"×" : "—")+'</div>';
+  });
+  var news = LISTINGS.filter(function(l){ return isNewListing(l); }).length;
+  var rois = LISTINGS.filter(function(l){ return !l.unverified && l.roi!=null; }).map(function(l){ return l.roi; });
+  var medRoi = median(rois);
+  chips.push('<div class="snap-chip"><span class="sc-lab">New · 3 days</span><b>'+news+' new</b>first seen in the last 3 days</div>');
+  chips.push('<div class="snap-chip"><span class="sc-lab">Median ROI</span><b>'+(medRoi!=null? medRoi.toFixed(1)+"%" : "—")+'</b>verified listings</div>');
+  grid.innerHTML = chips.join("");
+  var note = document.getElementById("snapNote");
+  if(note) note.textContent = "Medians are from verified listings with a positive multiplier; counts cover every genuine listing in the file. A regional median is the going rate for that area — a multiplier below it is relatively cheap for that region, not cheap in absolute terms.";
+}
 function numOr(v){ var n = (v==null || v==="") ? null : +v; return (n==null || isNaN(n)) ? null : n; }
 function normalizeRecord(r){
   var price = numOr(r.price);
@@ -2285,6 +2541,7 @@ function refreshDataViews(){
   renderPills();
   render();
   renderReco();
+  renderSnapshot(); /* Round 20: market at a glance from the fresh data */
   renderCalcOptions();
   if(!calcDirty) prefillCalc();
   updateCalc();
@@ -2321,9 +2578,42 @@ function fetchJson(url){
   attempt();
 })();
 
+/* ---------- top nav: phone affordance (Round 12) ----------
+   On a phone only ~2 of the 8 nav links fit, and the old nav gave no hint
+   the rest were a swipe away. The fade + › button say so; tapping ›
+   scrolls one screen of links, and tapping a link centres it in the nav. */
+function updateNavAffordance(){
+  var nl = document.querySelector(".navlinks"); if(!nl) return;
+  var maxScroll = nl.scrollWidth - nl.clientWidth;
+  var more = maxScroll > 4 && nl.scrollLeft < maxScroll - 4;
+  nl.classList.toggle("has-more", more);
+  var btn = document.getElementById("navNext");
+  if(btn) btn.classList.toggle("show", more && window.matchMedia && window.matchMedia("(max-width: 760px)").matches);
+}
+(function(){
+  var nl = document.querySelector(".navlinks"); if(!nl) return;
+  var btn = document.getElementById("navNext");
+  if(btn) btn.addEventListener("click", function(){
+    try{ nl.scrollBy({left: 180, behavior:"smooth"}); }catch(e){ nl.scrollLeft += 180; }
+    setTimeout(updateNavAffordance, 350);
+  });
+  nl.addEventListener("scroll", updateNavAffordance, {passive:true});
+  nl.addEventListener("click", function(e){
+    var a = e.target.closest("a"); if(!a) return;
+    var target = a.offsetLeft - nl.clientWidth/2 + a.offsetWidth/2;
+    try{ nl.scrollTo({left: target, behavior:"smooth"}); }catch(err){ nl.scrollLeft = target; }
+    setTimeout(updateNavAffordance, 350);
+  });
+  window.addEventListener("resize", updateNavAffordance);
+  window.addEventListener("load", updateNavAffordance);
+  setTimeout(updateNavAffordance, 600); /* after webfonts settle — link widths move */
+  updateNavAffordance();
+})();
+
 renderPills();
 render();
 renderReco();
+renderSnapshot(); /* Round 20 */
 setHeadTop();
 </script>
 </body>
