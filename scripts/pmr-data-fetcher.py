@@ -332,17 +332,29 @@ def enrich(rec, now_iso, today):
 
     parts = []
     if rec["bc_percent"] is not None:
-        parts.append(f"BC {rec['bc_percent']}% "
-                     f"{'healthy' if rec['bc_percent'] <= 70 else 'caution' if rec['bc_percent'] <= 80 else 'high'}.")
+        if rec["bc_percent"] > 100:
+            parts.append(f"BC {rec['bc_percent']}% — implausible: the body-corporate salary exceeds the net income, so verify the figures.")
+        else:
+            parts.append(f"BC {rec['bc_percent']}% "
+                         f"{'healthy' if rec['bc_percent'] <= 70 else 'caution' if rec['bc_percent'] <= 80 else 'high'}.")
     if rec["multiplier"] is not None:
-        parts.append(f"{rec['multiplier']}x — "
-                     f"{'excellent value' if rec['multiplier'] <= 5 else 'fair' if rec['multiplier'] <= 6.5 else 'overpriced'}.")
+        if rec["multiplier"] < 0:
+            parts.append(f"{rec['multiplier']}x — meaningless: the included unit is worth more than the asking price, so verify the figures.")
+        else:
+            parts.append(f"{rec['multiplier']}x — "
+                         f"{'excellent value' if rec['multiplier'] <= 5 else 'fair' if rec['multiplier'] <= 6.5 else 'overpriced'}.")
+    if not rec.get("net_income"):
+        parts.append("Net income not disclosed by the broker — multiplier and ROI can't be calculated.")
     if rec.get("contract_years") is not None:
         parts.append(f"{rec['contract_years']}yr contract — "
                      f"{'good' if rec['contract_years'] >= 20 else 'adequate' if rec['contract_years'] >= 10 else 'short'}.")
+    else:
+        parts.append("Contract years not published by the broker.")
     if rec.get("pool_units") is not None:
         parts.append(f"{rec['pool_units']} pool units — "
                      f"{'good diversification' if rec['pool_units'] >= 30 else 'adequate pool' if rec['pool_units'] >= 15 else 'thin pool'}.")
+    else:
+        parts.append("Letting pool size not published by the broker.")
     if roi is not None:
         parts.append(f"{roi:.1f}% ROI — {'strong return' if roi >= 15 else 'modest return'}.")
     if business and price and business != price:
@@ -384,18 +396,68 @@ def enrich(rec, now_iso, today):
                         f"(ROI {roi:.1f}%) — verify with broker before relying on this.").strip()
         rec["action"] = "Verify figures with broker — ROI over 40% is not credible."
 
+    # --- negative multiplier: the included unit is worth more than the
+    # asking price, so business_price is negative and the multiplier is
+    # meaningless (e.g. Caloundra #21160550: unit $750,000 > price
+    # $450,000 → −2.13x). Never rank it as "excellent value".
+    if rec["multiplier"] is not None and rec["multiplier"] < 0:
+        rec["status"] = "unverified"
+        rec["notes"] = (rec["notes"] + " Figures look implausible "
+                        "(negative multiplier — unit value exceeds asking price) — verify with broker before relying on this.").strip()
+        rec["action"] = "Verify figures with broker — negative multiplier (unit value exceeds asking price)."
+
+    # --- BC% over 100: the body-corporate salary cannot exceed the net
+    # income, so one of the two figures is a parse error (e.g. Surfers
+    # Paradise #21151694 at 107.3%; worst case #21179119 at 10600% on a
+    # $1 net income). Never treat it as merely "high".
+    if rec["bc_percent"] is not None and rec["bc_percent"] > 100:
+        rec["status"] = "unverified"
+        rec["notes"] = (rec["notes"] + " Figures look implausible "
+                        f"(BC% {rec['bc_percent']:.1f}% — BC salary exceeds net income) — verify with broker before relying on this.").strip()
+        rec["action"] = "Verify figures with broker — BC% over 100% (BC salary exceeds net income)."
+
     score = 0
     for field in ("price", "net_income", "bc_percent", "contract_years", "pool_units"):
         if rec.get(field) is not None:
             score += 20
-    if rec["multiplier"] is not None and rec["multiplier"] <= 5:
+    if rec["multiplier"] is not None and 0 < rec["multiplier"] <= 5:
         score += 15
-    elif rec["multiplier"] is not None and rec["multiplier"] <= 6.5:
+    elif rec["multiplier"] is not None and 0 < rec["multiplier"] <= 6.5:
         score += 10
     if rec.get("contract_years") and rec["contract_years"] >= 20:
         score += 10
     rec["quality_score"] = min(score, 125)
     return rec
+
+
+def mark_duplicates(records):
+    """Flag listings that share suburb + price + net income with another
+    listing — usually the same property listed twice (often with a
+    different included unit, hence a different multiplier). Every member
+    of the group is flagged; the dashboard keeps one copy and shows a
+    'possible duplicate' badge on it. Returns the number of records
+    flagged."""
+    import re
+    groups = {}
+    for r in records:
+        m = re.match(r"^(.+?) QLD", r.get("name") or "")
+        sub = m.group(1) if m else (r.get("name") or "")
+        key = (sub, r.get("price"), r.get("net_income"))
+        groups.setdefault(key, []).append(r)
+    flagged = 0
+    for members in groups.values():
+        if len(members) < 2:
+            continue
+        for r in members:
+            r["dup"] = True
+            r["dup_count"] = len(members)
+            others = ", ".join("#" + str(x["id"].split("-")[-1]) for x in members if x is not r)
+            note = (f"Possible duplicate: another listing with the same suburb, price and net income exists "
+                    f"({others}) — check they are not the same property before relying on either.")
+            if note not in (r.get("notes") or ""):
+                r["notes"] = ((r.get("notes") or "") + " " + note).strip()
+            flagged += 1
+    return flagged
 
 
 def main():
@@ -466,6 +528,9 @@ def main():
         rec["is_new"] = 0 <= age < 3
         records.append(rec)
 
+    dup_count = mark_duplicates(records)
+    print(f"Possible duplicates: {dup_count} records flagged")
+
     records.sort(key=lambda r: (r.get("multiplier") is None,
                                 r.get("multiplier") or 999))
     with open(args.out, "w") as f:
@@ -478,6 +543,7 @@ def main():
         "active": sum(1 for r in records if r["status"] == "active"),
         "unverified": sum(1 for r in records if r["status"] == "unverified"),
         "new": sum(1 for r in records if r.get("is_new")),
+        "duplicates": dup_count,
         "note": "price = total purchase price; business_price = total - unit_price; "
                 "multiplier = business_price / net_income (the broker's figure).",
     }
