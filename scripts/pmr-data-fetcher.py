@@ -77,6 +77,16 @@ UNIFIED RATING BANDS (same as the dashboard)
   Contract good >=20yr, adequate 10-19, risk <10 (lenders need >=15yr)
   Pool     good >=30, adequate 15-29, risk <15
 
+NEW BADGE (22 Nov 2026)
+  A listing shows NEW for 3 days after it first appears in our data.
+  The fetcher stores first_seen (YYYY-MM-DD) per listing, carried
+  forward from the previous pmr-data-latest.json, plus is_new
+  (first_seen within the last 3 days). The old frontend badge used
+  last_fetched, which the fetcher refreshes for every listing on
+  every run, so it showed NEW on everything. Bootstrap: on the
+  first run with this change, first_seen falls back to the broker's
+  timestamp date so existing listings are not all tagged NEW.
+
 USAGE
   pip install requests
   python3 pmr-data-fetcher.py [--limit N] [--dry-run] [--delay SECONDS]
@@ -148,6 +158,29 @@ def parse_int(text):
         return int(text)
     m = re.search(r"(\d+)", str(text).replace(",", ""))
     return int(m.group(1)) if m else None
+
+
+def parse_date(text):
+    """Parse a broker timestamp to a YYYY-MM-DD date string, or None.
+
+    The API timestamp is ISO ("2026-11-21T13:57:10+10:00") or
+    "15 Nov 2026 23:00:05". Used only to bootstrap first_seen on
+    the first run with NEW tracking, so the first run does not tag
+    all ~490 existing listings as NEW.
+    """
+    if not text:
+        return None
+    s = str(text).strip()
+    try:
+        return datetime.fromisoformat(s.replace("Z", "+00:00")).strftime("%Y-%m-%d")
+    except ValueError:
+        pass
+    for fmt in ("%d %b %Y %H:%M:%S", "%d %b %Y"):
+        try:
+            return datetime.strptime(s, fmt).strftime("%Y-%m-%d")
+        except ValueError:
+            continue
+    return None
 
 
 def fetch_api_page(session, page, limit=100, delay=0.3):
@@ -394,12 +427,44 @@ def main():
     items = qld
     if args.limit:
         items = items[:args.limit]
+    # --- NEW-badge tracking: first_seen per listing, carried forward
+    # from the previous data file so a listing is NEW for 3 days after
+    # it first appears (not 3 days after every run — last_fetched is
+    # refreshed for all listings on every run, which made the old
+    # badge show on everything).
+    prev_first_seen = {}
+    try:
+        with open(args.out) as f:
+            prev = json.load(f)
+        prev_list = prev if isinstance(prev, list) else prev.get("listings", [])
+        for r in prev_list:
+            if r.get("id") and r.get("first_seen"):
+                prev_first_seen[r["id"]] = r["first_seen"]
+    except (FileNotFoundError, json.JSONDecodeError, AttributeError):
+        prev_first_seen = {}
+    print(f"Previous data: {len(prev_first_seen)} listings with first_seen")
     for api in items:
         lid = str(api.get("pageId") or api.get("id"))
         if lid in seen:
             continue
         seen.add(lid)
-        records.append(enrich(map_record(api), now_iso, today))
+        rec = enrich(map_record(api), now_iso, today)
+        # first_seen: carried forward when seen before; otherwise the
+        # broker's own timestamp date (bootstrap only), else today.
+        # Clamp a future date to today (timezone skew in timestamps).
+        rid = rec["id"]
+        if rid in prev_first_seen:
+            rec["first_seen"] = prev_first_seen[rid]
+        else:
+            boot = parse_date(rec.get("last_updated"))
+            rec["first_seen"] = boot if boot and boot <= today else today
+        # NEW for 3 days: the day it first appears + the next 2 days.
+        try:
+            age = (now.date() - datetime.strptime(rec["first_seen"], "%Y-%m-%d").date()).days
+        except ValueError:
+            age = 99
+        rec["is_new"] = 0 <= age < 3
+        records.append(rec)
 
     records.sort(key=lambda r: (r.get("multiplier") is None,
                                 r.get("multiplier") or 999))
@@ -412,6 +477,7 @@ def main():
         "total_records": len(records),
         "active": sum(1 for r in records if r["status"] == "active"),
         "unverified": sum(1 for r in records if r["status"] == "unverified"),
+        "new": sum(1 for r in records if r.get("is_new")),
         "note": "price = total purchase price; business_price = total - unit_price; "
                 "multiplier = business_price / net_income (the broker's figure).",
     }
