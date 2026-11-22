@@ -532,13 +532,22 @@
   .g-sec ul{margin:0 0 10px;padding-left:20px;font-size:14.5px;line-height:1.65}
   .g-sec li{margin-bottom:5px}
   .g-sec li .zh{color:var(--ink2)}
-  .g-tablewrap{margin:10px 0 14px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .g-tablewrap{margin:10px 0 14px;border:1px solid var(--line);border-radius:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
   .g-table{border-collapse:collapse;width:100%;font-size:13.5px}
   .g-table th,.g-table td{border-bottom:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top;line-height:1.5}
   .g-table thead th{background:var(--surface2);font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
   .g-table tbody tr:last-child td{border-bottom:0}
   .g-table td .zh,.g-table th .zh{color:var(--ink2);font-weight:400;text-transform:none;letter-spacing:0}
-  @media (max-width:560px){.g-table{font-size:12.5px}.g-table th,.g-table td{padding:7px 8px}}
+  @media (max-width:560px){.g-table{font-size:12.5px;min-width:520px}.g-table th,.g-table td{padding:7px 8px}}
+  /* ---------- Round 22: guide presentation — collapsible sections,
+     a progress read, and tables that scroll on phones ---------- */
+  .g-sec-toggle{display:flex;justify-content:space-between;align-items:baseline;gap:10px;width:100%;background:none;border:0;padding:0;text-align:left;font:inherit;color:inherit;min-height:44px}
+  .g-sec-toggle .g-sec-chev{flex:0 0 auto;color:var(--ink3);font-size:14px;transition:transform .15s}
+  .g-sec.is-collapsed .g-sec-toggle .g-sec-chev{transform:rotate(-90deg)}
+  .g-sec.is-collapsed .g-sec-body{display:none}
+  .g-progress{margin:10px 0 0;font-size:13.5px;color:var(--ink2)}
+  .g-progbar{display:inline-block;width:120px;height:6px;background:var(--surface2);border:1px solid var(--line);border-radius:3px;vertical-align:middle;overflow:hidden}
+  .g-progbar i{display:block;height:100%;background:var(--teal)}
   .g-callout{background:var(--amber-bg);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:14px;line-height:1.6;margin:10px 0 14px}
   .g-callout .zh{color:var(--ink2)}
   .g-formula{background:var(--surface2);border:1px solid var(--line);border-radius:8px;padding:9px 13px;font-weight:700;font-size:14.5px;margin:8px 0 12px;font-variant-numeric:tabular-nums}
@@ -547,6 +556,44 @@
   ul.g-check li::before{content:"";position:absolute;left:0;top:4px;width:15px;height:15px;border:1.5px solid var(--ink3);border-radius:4px}
   .g-flag{color:var(--risk);font-weight:700}
   @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+  /* ---------- Round 21: deal sheet — one-tap per-listing summary ----------
+     Full-screen on phones, centred panel on desktop. Print rules are
+     scoped to body.ds-open so printing the ordinary page still works. */
+  .deal-sheet{position:fixed;inset:0;z-index:60;display:flex;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto}
+  .deal-sheet[hidden]{display:none}
+  .ds-backdrop{position:fixed;inset:0;background:rgba(10,20,16,.55)}
+  .ds-panel{position:relative;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 48px rgba(0,0,0,.28);width:100%;max-width:640px;padding:20px 22px 16px;margin:auto}
+  .ds-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  .ds-head h3{font-family:"Newsreader",Georgia,serif;font-size:22px;font-weight:600;margin:0;line-height:1.2}
+  .ds-head .ds-sub{color:var(--ink2);font-size:13.5px;margin-top:3px}
+  .ds-close{flex:0 0 auto;border:1px solid var(--line);background:var(--surface2);border-radius:8px;width:44px;height:44px;font-size:16px;line-height:1}
+  .ds-verdict{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:14.5px;line-height:1.55;margin:14px 0 0}
+  .ds-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;margin-top:14px}
+  .ds-row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding:7px 0;font-size:14.5px}
+  .ds-row .k{color:var(--ink2)}
+  .ds-row .v{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  .ds-row .v .sub{display:block;font-weight:400;font-size:12.5px;color:var(--ink2)}
+  .ds-risks{margin:14px 0 0;padding-left:20px;font-size:14px;line-height:1.6}
+  .ds-risks li{margin-bottom:4px}
+  .ds-risks li.ok{list-style:none;margin-left:-20px;color:var(--good)}
+  .ds-notes{margin:14px 0 0;font-size:13.5px;color:var(--ink2);line-height:1.6}
+  .ds-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  /* Round 23: watchlist note field in the detail row */
+  .watch-note{width:100%;max-width:420px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit;font-size:14px}
+  /* Round 26: days-on-market line under the suburb */
+  .days{font-size:12px;color:var(--muted);margin-top:1px}
+  @media (max-width:820px){
+    .deal-sheet{padding:0}
+    .ds-panel{border-radius:0;border:0;min-height:100%;max-width:none;padding:18px 16px 24px}
+    .ds-grid{grid-template-columns:1fr}
+  }
+  @media print{
+    body.ds-open .topnav,body.ds-open .wrap,body.ds-open .calc-livebar{display:none !important}
+    body.ds-open #dealSheet{position:static !important;background:#fff !important;padding:0 !important}
+    body.ds-open #dealSheet .ds-backdrop{display:none !important}
+    body.ds-open #dealSheet .ds-panel{box-shadow:none !important;border:0 !important;border-radius:0 !important;margin:0 !important;width:100% !important;max-width:none !important}
+    body.ds-open #dealSheet .ds-actions{display:none !important}
+  }
 </style>
 </head>
 <body>
@@ -565,6 +612,7 @@
       <a href="#ratings">Ratings</a>
       <a href="#guide">Guide · 指南</a>
       <a href="#about">About</a>
+      <a href="#listings" id="navWatch" aria-label="Watchlist — saved on this device">★ <span id="navWatchCnt">0</span></a>
     </div>
     <button class="nav-next" id="navNext" type="button" aria-label="Show more navigation links">›</button>
     <div class="nav-updated" title="When the listings data was last fetched"><i aria-hidden="true"></i><span>Updated <b data-last-updated>—</b></span></div>
@@ -713,7 +761,7 @@
   <div class="section-head">
     <div>
       <h2 id="listingsTitle">Browse listings <span class="zh">浏览房源</span></h2>
-      <p>Filter by region and price range — including the <strong>$1m – $2m</strong> range in Quick picks and Filters — search by suburb, and sort by the numbers that matter. Tap a row for its notes — tap <strong>View ↗</strong> to open the original broker listing.</p>
+      <p>Filter by region and price range — including the <strong>$1m – $2m</strong> range in Quick picks and Filters — search by suburb, region or listing ID, and sort by the numbers that matter. Tap a row for its notes — tap <strong>View ↗</strong> to open the original broker listing.</p>
     </div>
   </div>
   <div class="toolbar">
@@ -721,7 +769,7 @@
       <div class="row1">
         <div class="search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
-          <input id="q" type="search" placeholder="Search suburb…" aria-label="Search listings by suburb" />
+          <input id="q" type="search" placeholder="Search suburb, region or listing ID…" aria-label="Search listings by suburb, region or listing ID" />
         </div>
         <select id="sort" aria-label="Sort listings">
           <option value="q-desc">Best data quality</option>
@@ -734,11 +782,14 @@
           <option value="yrs-desc">Contract years · longest</option>
           <option value="units-desc">Pool units · most</option>
           <option value="score-desc">Recommendation score · highest</option>
+          <option value="days-desc">Days listed · longest first</option>
+          <option value="days-asc">Days listed · newest first</option>
         </select>
         <a class="btn row1-calc link-plain" href="#calculator">Calculator</a>
         <button class="btn" id="filtersBtn" aria-expanded="false" aria-controls="filterMore filters">Filters <span class="cnt" id="filterCnt" hidden>0</span></button>
         <button class="btn" id="watchBtn" aria-pressed="false">★ Watchlist <span class="cnt" id="watchCnt">0</span></button>
         <button class="btn" id="resetBtn">Reset</button>
+        <button class="btn" id="copyLinkBtn" type="button">Copy link</button>
       </div>
       <div class="filter-more" id="filterMore">
       <div class="pills" id="pills" role="group" aria-label="Filter by region"></div>
@@ -785,7 +836,7 @@
     </div>
   </div>
 
-  <div class="showing"><span class="count" id="showingCount">Loading listings…</span><span class="hint"><span class="hint-d">Tap a column heading to sort · </span>Tap a card for its notes · ★ watchlist for this visit · <strong>Select</strong> up to 4 listings to compare side by side below</span></div>
+  <div class="showing"><span class="count" id="showingCount">Loading listings…</span><span class="hint"><span class="hint-d">Tap a column heading to sort · </span>Tap a card for its notes · ★ watchlist — saved on this device · <strong>Select</strong> up to 4 listings to compare side by side below</span></div>
 
   <div class="tablebox">
     <table aria-label="Queensland management rights listings">
@@ -793,7 +844,7 @@
       <tbody id="tbody"></tbody>
     </table>
     <div class="empty" id="empty" hidden>
-      <p>No listings match those filters.</p>
+      <p id="emptyMsg">No listings match those filters.</p>
       <button class="btn" id="emptyReset">Clear all filters</button>
     </div>
   </div>
@@ -818,7 +869,7 @@
     <div class="pipe">
       <div class="step"><div class="sn">Step 1 · Discover</div><h3>Crawl the index</h3><p>Crawls The Onsite Manager and Resort Brokers Queensland index and region pages (527 listings nationally, 492 in QLD at last check) so new listings are found, not just old ones refreshed.</p></div>
       <div class="step"><div class="sn">Step 2 · Parse</div><h3>Handle real prices</h3><p>Parses “$3.832M + RE”, “All offers considered” and price-on-application as text prices instead of dropping or zeroing them, and splits business-only vs total price where a listing shows both.</p></div>
-      <div class="step"><div class="sn">Step 3 · Validate</div><h3>Reject junk, flag gaps</h3><p>Drops $0 category pages and any listing whose broker page now says “Listing No Longer Available”, de-duplicates the same listing scraped twice, flags any ROI over 40% as <em>unverified</em>, and keeps pages with no confirmable price flagged instead of inventing figures.</p></div>
+      <div class="step"><div class="sn">Step 3 · Validate</div><h3>Reject junk, flag gaps</h3><p>Drops $0 category pages and any listing whose broker page now says “Listing No Longer Available”, de-duplicates the same listing scraped twice, flags any ROI over 40% (on the full price) as <em>unverified</em>, and keeps pages with no confirmable price flagged instead of inventing figures.</p></div>
       <div class="step"><div class="sn">Step 4 · Publish</div><h3>Commit only if valid</h3><p>Writes <code>generated_at</code> into the JSON, copies it to both the root file and <code>data/</code>, and commits to <code>main</code> only when something actually changed and validation passed.</p></div>
     </div>
     <div class="refresh-grid">
@@ -1076,7 +1127,7 @@ jobs:
       </table></div>
       <h4>ROI <span class="zh">投资回报率</span></h4>
       <div class="g-formula">ROI = Net Income ÷ Price × 100%</div>
-      <p>Typical PMR ROI is <strong>15–25%</strong> — far above residential property (3–5%). If ROI shows as &ldquo;—&rdquo;, the price was not disclosed in the listing.<span class="zh">典型PMR回报率为<strong>15–25%</strong>，远高于住宅投资（3–5%）。如显示&ldquo;—&rdquo;表示价格未披露。</span></p>
+      <p>Typical PMR ROI is <strong>15–25%</strong> — far above residential property (3–5%). If ROI shows as &ldquo;—&rdquo;, the price was not disclosed in the listing. On this page the ROI on a listing card is net income ÷ the <strong>full asking price</strong> (business + unit). The deal calculator works on the <strong>business price only</strong>, so its ROI is higher whenever a unit is included — the two numbers are different views of the same deal, not a mistake.<span class="zh">典型PMR回报率为<strong>15–25%</strong>，远高于住宅投资（3–5%）。如显示&ldquo;—&rdquo;表示价格未披露。本页房源卡片上的ROI = 净收入 ÷ <strong>全部要价</strong>（业务+公寓）。交易计算器只按<strong>业务价格</strong>计算，因此包含公寓时它的ROI会更高——两者是同一笔交易的不同视角，不是错误。</span></p>
     </article>
 
     <article class="g-sec" id="guide-4">
@@ -1166,7 +1217,7 @@ jobs:
           <tr><td><strong>Letting Pool</strong></td><td>Units whose owners authorised you to manage rentals. <span class="zh">授权你管理出租的单元池。</span></td></tr>
           <tr><td><strong>Top-up</strong></td><td>Extending the contract term by BC vote. <span class="zh">通过BC投票延长合同年限。</span></td></tr>
           <tr><td><strong>Accommodation Module</strong></td><td>Part of the BC Act governing short-stay letting agreements. <span class="zh">物业法中规范短租协议的模块。</span></td></tr>
-          <tr><td><strong>ROI</strong></td><td>Return on Investment = NI ÷ Price. <span class="zh">投资回报率 = 净收入 ÷ 价格。</span></td></tr>
+          <tr><td><strong>ROI</strong></td><td>Return on Investment = NI ÷ full asking price (business + unit). The calculator uses the business price only, so its ROI is higher when a unit is included. <span class="zh">投资回报率 = 净收入 ÷ 全部要价（业务+公寓）；计算器只用业务价格，包含公寓时ROI更高。</span></td></tr>
           <tr><td><strong>Multiplier</strong></td><td>Price ÷ NI — years to recoup the purchase price. <span class="zh">价格 ÷ 净收入——回收购买价格的年数。</span></td></tr>
           <tr><td><strong>EOI</strong></td><td>Expression of Interest — price undisclosed. <span class="zh">意向书——价格未披露。</span></td></tr>
           <tr><td><strong>IM</strong></td><td>Information Memorandum — the full financial package from the broker. <span class="zh">信息备忘录——经纪人提供的完整财务资料包。</span></td></tr>
@@ -1309,6 +1360,21 @@ jobs:
       <span>Listings data last updated <span data-last-updated>—</span></span>
     </div>
   </footer>
+</div>
+
+<!-- Round 21: deal sheet — one-tap per-listing summary, filled by JS -->
+<div class="deal-sheet" id="dealSheet" hidden>
+  <div class="ds-backdrop" data-dsclose></div>
+  <div class="ds-panel" role="dialog" aria-modal="true" aria-labelledby="dsTitle">
+    <div class="ds-head"><div><h3 id="dsTitle"></h3><div class="ds-sub" id="dsSub"></div></div><button class="ds-close" id="dsClose" type="button" aria-label="Close deal sheet">✕</button></div>
+    <div class="ds-body" id="dsBody"></div>
+    <div class="ds-actions">
+      <button class="btn" id="dsCalc" type="button">Open in calculator ↑</button>
+      <a class="btn link-plain" id="dsView" href="#" target="_blank" rel="noopener">View broker listing ↗</a>
+      <button class="btn" id="dsCopy" type="button">Copy summary</button>
+      <button class="btn" id="dsPrint" type="button">Print</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1482,7 +1548,22 @@ LISTINGS = prepareListings(LISTINGS);
 var state = { q:"", group:"All", sort:"score-desc", sortDir:null, maxPrice:"", priceRange:"", minNet:"", maxMult:"", minYrs:"", minUnits:"",
               minRoi:"", maxBc:"", minScore:"", srcFilter:"", preset:"",
               cMult:false, cRoi:false, cYrs:false, cBc:false, watchOnly:false, openId:null, openScore:null };
-var watch = {}; // in-memory for this visit only
+var watch = {}; // watchlist — Round 23: persisted in localStorage, not just this visit
+var watchNotes = {}; // per-listing note, keyed by listing id
+var WATCH_KEY = "pmr-watchlist-v1";
+function saveWatch(){
+  try{ window.localStorage.setItem(WATCH_KEY, JSON.stringify({ids: Object.keys(watch).filter(function(k){ return watch[k]; }), notes: watchNotes})); }catch(e){}
+}
+function loadWatch(){
+  try{
+    var d = JSON.parse(window.localStorage.getItem(WATCH_KEY) || "null");
+    if(d){
+      (d.ids || []).forEach(function(id){ watch[id] = true; });
+      watchNotes = d.notes || {};
+    }
+  }catch(e){}
+}
+loadWatch();
 var selected = {}; // listings ticked for side-by-side comparison, this visit only
 var COLS = [
   {k:"star", label:"", sortable:false},
@@ -1591,7 +1672,9 @@ function renderPills(){
 }
 pillsEl.addEventListener("click", function(e){
   var b = e.target.closest("[data-group]"); if(!b) return;
-  state.group = b.getAttribute("data-group"); renderPills(); render();
+  state.group = b.getAttribute("data-group");
+
+renderPills(); render();
   closeFilterPanelOnPhone(); /* Round 13: a region pick is a decision — show the results, not the panel */
 });
 
@@ -1616,7 +1699,14 @@ thead.addEventListener("click", function(e){
 });
 
 /* controls */
-document.getElementById("q").addEventListener("input", function(e){ state.q = e.target.value.trim().toLowerCase(); render(); });
+var qTimer = null;
+document.getElementById("q").addEventListener("input", function(e){
+  /* Round 28: debounce — typing "airlie" used to re-render all 469
+     rows on every keystroke; now it waits 150ms after the last key. */
+  clearTimeout(qTimer);
+  var v = e.target.value;
+  qTimer = setTimeout(function(){ state.q = v.trim().toLowerCase(); render(); }, 150);
+});
 document.getElementById("sort").addEventListener("change", function(e){ state.sort = e.target.value; state.sortDir = null; render(); });
 document.getElementById("filtersBtn").addEventListener("click", function(){
   var f = document.getElementById("filters"); var open = f.classList.toggle("open");
@@ -1695,6 +1785,11 @@ var watchBtn = document.getElementById("watchBtn");
 watchBtn.addEventListener("click", function(){
   state.watchOnly = !state.watchOnly; watchBtn.setAttribute("aria-pressed", state.watchOnly); render();
 });
+/* Round 23: the nav watchlist link shows the saved count and turns the
+   watchlist filter on, so the shortlist is one tap away from anywhere. */
+document.getElementById("navWatch").addEventListener("click", function(){
+  if(!state.watchOnly){ state.watchOnly = true; watchBtn.setAttribute("aria-pressed","true"); render(); }
+});
 function resetAll(){
   state = { q:"", group:"All", sort:"score-desc", sortDir:null, maxPrice:"", priceRange:"", minNet:"", maxMult:"", minYrs:"", minUnits:"",
             minRoi:"", maxBc:"", minScore:"", srcFilter:"", preset:"",
@@ -1709,12 +1804,89 @@ function resetAll(){
 document.getElementById("resetBtn").addEventListener("click", resetAll);
 document.getElementById("emptyReset").addEventListener("click", resetAll);
 
+/* ---------- Round 27: shareable filtered view ----------
+   The table's filter/sort state is encoded in the URL hash
+   (#f=g=Gold+Coast&q=airlie&s=roi-desc), so a copied link
+   reproduces the exact view. The "#f=" prefix keeps it apart from
+   the page anchors (#guide, #listings, #calculator) the nav uses.
+   Writes use replaceState so filtering does not spam the back
+   button; a hashchange from a pasted link re-applies the state. */
+var HASH_FIELDS = [["g","group"],["q","q"],["s","sort"],["r","priceRange"],["p","maxPrice"],["n","minNet"],["m","maxMult"],["y","minYrs"],["u","minUnits"],["roi","minRoi"],["bc","maxBc"],["sc","minScore"],["src","srcFilter"]];
+var HASH_CHECKS = [["cm","cMult"],["cr","cRoi"],["cy","cYrs"],["cb","cBc"],["w","watchOnly"]];
+var SORT_VALUES = ["q-desc","price-asc","price-desc","net-desc","roi-desc","mult-asc","bc-desc","yrs-desc","units-desc","score-desc","days-desc","days-asc"];
+function stateToHash(){
+  var p = new URLSearchParams();
+  HASH_FIELDS.forEach(function(f){
+    var v = state[f[1]];
+    if(!v) return;
+    if(f[1]==="group" && v==="All") return; /* the default group adds nothing */
+    if(f[1]==="sort" && v==="score-desc") return; /* the default sort adds nothing */
+    p.set(f[0], v);
+  });
+  HASH_CHECKS.forEach(function(f){ if(state[f[1]]) p.set(f[0], "1"); });
+  var s = p.toString();
+  return s ? "#f=" + s : "";
+}
+function writeHash(){
+  try{
+    var h = stateToHash();
+    history.replaceState(null, "", h ? h : location.pathname + location.search);
+  }catch(e){}
+}
+function applyHash(){
+  var h = location.hash || "";
+  if(h.indexOf("#f=")!==0) return false; /* a nav anchor, not a shared view */
+  var p = new URLSearchParams(h.slice(3));
+  HASH_FIELDS.forEach(function(f){
+    var v = p.get(f[0]);
+    if(v==null) return;
+    if(f[1]==="group" && GROUPS.indexOf(v)===-1) return; /* unknown region: ignore */
+    if(f[1]==="sort" && SORT_VALUES.indexOf(v)===-1) return; /* unknown sort: ignore */
+    state[f[1]] = v;
+  });
+  HASH_CHECKS.forEach(function(f){ state[f[1]] = p.get(f[0])==="1"; });
+  state.sortDir = null; /* the sort value carries its own direction */
+  /* sync the inputs with the restored state */
+  document.getElementById("q").value = state.q;
+  document.getElementById("sort").value = state.sort;
+  [["fRange","priceRange"],["fPrice","maxPrice"],["fNet","minNet"],["fMult","maxMult"],["fYrs","minYrs"],["fUnits","minUnits"],["fRoi","minRoi"],["fBc","maxBc"],["fScore","minScore"],["fSrc","srcFilter"]].forEach(function(pair){ document.getElementById(pair[0]).value = state[pair[1]]; });
+  [["cMult","cMult"],["cRoi","cRoi"],["cYrs","cYrs"],["cBc","cBc"]].forEach(function(pair){ document.getElementById(pair[0]).checked = state[pair[1]]; });
+  watchBtn.setAttribute("aria-pressed", state.watchOnly);
+  return true;
+}
+window.addEventListener("hashchange", function(){
+  if(applyHash()){ renderPills(); render(); }
+});
+document.getElementById("copyLinkBtn").addEventListener("click", function(){
+  writeHash();
+  var url = location.href;
+  var btn = document.getElementById("copyLinkBtn");
+  function done(){ btn.textContent = "Copied ✓"; setTimeout(function(){ btn.textContent = "Copy link"; }, 1600); }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(done, function(){ fallbackCopy(url); done(); });
+  } else { fallbackCopy(url); done(); }
+  function fallbackCopy(t){
+    var ta = document.createElement("textarea");
+    ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    ta.remove();
+  }
+});
+
 /* filtering + sorting */
 function filtered(){
   var out = LISTINGS.filter(function(l){
     if(state.watchOnly && !watch[l.id]) return false;
     if(state.group!=="All" && l.group!==state.group) return false;
-    if(state.q && (l.suburb+" "+l.group).toLowerCase().indexOf(state.q)===-1) return false;
+    if(state.q){
+      /* Round 24: search matches suburb, region, listing id and the
+         broker page id in the URL — and every word must match, so
+         "gold coast 2118" narrows instead of matching nothing. */
+      var terms = state.q.split(/\s+/).filter(Boolean);
+      var hay = (l.suburb+" "+l.group+" "+l.id+" "+(l.url||"")).toLowerCase();
+      for(var ti=0; ti<terms.length; ti++){ if(hay.indexOf(terms[ti])===-1) return false; }
+    }
     if(state.priceRange){ var rp = state.priceRange.split("-"); if(l.price < +rp[0] || l.price > +rp[1]) return false; }
     if(state.maxPrice && l.price > +state.maxPrice) return false;
     if(state.minNet && l.net < +state.minNet) return false;
@@ -1735,6 +1907,7 @@ function filtered(){
   out.sort(function(a,b){
     var av = a[k], bv = b[k];
     if(k==="q"){ av=a.q; bv=b.q; }
+    if(k==="days"){ av=daysListed(a); bv=daysListed(b); } /* Round 26: days on market is computed, not stored */
     if(av==null && bv==null) return 0;
     if(av==null) return 1; if(bv==null) return -1;
     var r = (typeof av==="string")? av.localeCompare(bv) : av-bv;
@@ -1744,6 +1917,30 @@ function filtered(){
 }
 
 function roiClass(r){ return r>=20? "hi" : (r>=15? "mid":"lo"); } /* NEW badge: a listing is NEW for 3 days after it first appears in our data. The fetcher stores is_new (and first_seen) per listing; fall back to first_seen within the last 3 days when is_new is absent, and show no badge when neither field exists. The old badge used last_fetched, which the fetcher refreshes for every listing on every run, so it showed on everything. */ function isNewListing(l){   if(l.is_new===true) return true;   if(l.is_new===false) return false;   if(!l.first_seen) return false;   var d = new Date(l.first_seen+"T00:00:00");   if(isNaN(d)) return false;   var t = new Date(); t.setHours(0,0,0,0);   var age = Math.floor((t-d)/86400000);   return age>=0 && age<3; }
+/* Round 21 (shared with round 26): days on market from first_seen —
+   the fetcher bootstrapped first_seen from the broker's own timestamp,
+   so for older listings it is the broker's listed date, not ours. */
+function daysListed(l){
+  if(!l.first_seen) return null;
+  var d = new Date(l.first_seen+"T00:00:00");
+  if(isNaN(d)) return null;
+  var t = new Date(); t.setHours(0,0,0,0);
+  var n = Math.floor((t-d)/86400000);
+  return n<0 ? 0 : n;
+}
+function daysListedText(l){
+  var n = daysListed(l);
+  if(n==null) return null;
+  if(n===0) return "listed today";
+  if(n===1) return "listed 1 day ago";
+  return "listed "+n+" days ago";
+}
+/* Round 26: a friendly date for the detail row ("28 Sep 2026"). */
+function fmtDateISO(s){
+  if(!s) return "—";
+  var d = new Date(s+"T00:00:00");
+  return isNaN(d)? s : d.toLocaleDateString("en-AU",{day:"numeric",month:"short",year:"numeric"});
+}
 /* the one set of rating bands, used by the legend, table colours, filters and calculator */
 function bcClass(v){ return v==null? "" : (v<=70? "r-good" : (v<=80? "r-warn" : "r-risk")); }
 function multClass(v){ return v==null? "" : (v>6.5? "r-risk" : (v>=3 && v<=5? "r-good" : "r-warn")); }
@@ -1773,12 +1970,15 @@ function renderPresetWhy(rows){
   el.hidden = false;
 }
 
+var renderSeq = 0; /* Round 28: each render gets a sequence number so a stale chunked append can be cancelled */
 function render(){
   renderHead();
   var rows = filtered();
   renderPresetWhy(rows); /* Round 10: the active preset's top pick, in one plain-English line */
   document.getElementById("showingCount").textContent = "Showing "+rows.length+" of "+LISTINGS.length+" listings";
   document.getElementById("watchCnt").textContent = Object.keys(watch).filter(function(k){return watch[k];}).length;
+  var navWatchCnt = document.getElementById("navWatchCnt"); /* Round 23: watchlist count in the nav */
+  if(navWatchCnt) navWatchCnt.textContent = Object.keys(watch).filter(function(k){return watch[k];}).length;
   /* Active-filter count on the Filters button, so on a phone — where the
      pills, quick picks and checkboxes sit inside the collapsible panel —
      it is still obvious that filters are on while the panel is closed. */
@@ -1794,14 +1994,22 @@ function render(){
   var doneEl = document.getElementById("filterDone");
   if(doneEl) doneEl.textContent = "Done — show "+rows.length+" listing"+(rows.length===1?"":"s");
   document.getElementById("empty").hidden = rows.length>0;
+  /* Round 24: a dead search says what it tried, and what to try instead. */
+  var emptyMsg = document.getElementById("emptyMsg");
+  if(emptyMsg){
+    emptyMsg.textContent = (rows.length===0 && state.q)
+      ? "No listings match \""+state.q+"\" — try a suburb, region or listing ID (e.g. 21189761)."
+      : "No listings match those filters.";
+  }
   var tb = document.getElementById("tbody");
-  var html = "";
+  var parts = []; /* Round 28: one string per row, so the table can render in chunks */
   rows.forEach(function(l){
     var starred = !!watch[l.id];
     var picked = !!selected[l.id];
-    html += '<tr class="listing'+(picked? " is-selected":"")+'" data-id="'+esc(l.id)+'">'
+    var dl = daysListedText(l); /* Round 26: days on market, shown under the suburb and in the detail row */
+    var rowHtml = '<tr class="listing'+(picked? " is-selected":"")+'" data-id="'+esc(l.id)+'">'
       + '<td class="c-star"><button class="starbtn" data-star="'+esc(l.id)+'" aria-pressed="'+starred+'" aria-label="'+(starred? "Remove ":"Add ")+esc(l.suburb)+' '+(starred? "from":"to")+' watchlist">'+(starred? "★":"☆")+'</button></td>'
-      + '<td class="c-place"><span class="suburb">'+esc(l.suburb)+'</span>'+((isNewListing(l)||l.unverified||l.dup)? '<div class="badges">'+(isNewListing(l)? '<span class="badge-new">NEW</span>':"")+(l.unverified? '<span class="dup">unverified — check with broker</span>':"")+(l.dup? '<span class="dup">possible duplicate</span>':"")+'</div>' : "")+'<div class="grp">'+esc(l.group)+'</div></td>'
+      + '<td class="c-place"><span class="suburb">'+esc(l.suburb)+'</span>'+((isNewListing(l)||l.unverified||l.dup)? '<div class="badges">'+(isNewListing(l)? '<span class="badge-new">NEW</span>':"")+(l.unverified? '<span class="dup">unverified — check with broker</span>':"")+(l.dup? '<span class="dup">possible duplicate</span>':"")+'</div>' : "")+'<div class="grp">'+esc(l.group)+'</div>'+(dl? '<div class="days">'+esc(dl)+'</div>' : "")+'</td>'
       + '<td class="num c-price price">'+fmtFull(l.price)+'</td>'
       + '<td class="num hide-m">'+(l.net==null? '<span class="nd">income not disclosed</span>' : fmtFull(l.net))+'</td>'
       + '<td class="num hide-m '+multClass(l.mult)+'">'+(l.mult==null? "—" : l.mult.toFixed(2)+"×")+'</td>'
@@ -1815,20 +2023,38 @@ function render(){
       + '<td class="mrow" aria-hidden="true"><span><span class="lab">Net</span><b>'+(l.net==null?"income not disclosed":fmt$(l.net))+'</b></span><span><span class="lab">Mult.</span><b class="'+multClass(l.mult)+'">'+(l.mult==null?"—":l.mult.toFixed(2)+"×")+'</b></span><span><span class="lab">BC</span><b class="'+bcClass(l.bc)+'">'+(l.bc==null?"—":l.bc.toFixed(1)+"%")+'</b></span><span><span class="lab">Contract</span><b class="'+yrsClass(l.yrs)+'">'+(l.yrs==null?"—":l.yrs+" yrs")+'</b></span><span><span class="lab">Pool</span><b class="'+unitsClass(l.units)+'">'+(l.units==null?"—":l.units)+'</b></span></td>'
       + '</tr>';
     if(state.openId===l.id){
-      html += '<tr class="detail"><td colspan="12"><div class="detailbox">'
+      rowHtml += '<tr class="detail"><td colspan="12"><div class="detailbox">'
         + '<div class="notes">'+(l.notes? esc(l.notes) : "No notes recorded for this listing.")+'</div>'
         + '<div class="meta"><b>Source</b>'+esc(l.src)+'</div>'
         + '<div class="meta"><b>Listing updated</b>'+esc(l.upd||"—")+'</div>'
+        + (dl? '<div class="meta"><b>Listed</b>'+esc(dl)+' · first seen '+esc(fmtDateISO(l.first_seen))+'</div>' : "")
         + '<div class="meta"><b>Full price</b>'+fmtFull(l.price)+(l.up!=null && l.up>0 ? " (business "+fmtFull(l.bp!=null? l.bp : l.price-l.up)+" + unit "+fmtFull(l.up)+")" : "")+' · net '+(l.net==null?"income not disclosed":fmtFull(l.net))+'</div>'
         + (l.missing && l.missing.length? '<div class="meta"><b>Not disclosed by broker</b>'+esc(l.missing.join(", "))+'</div>' : "")
         + regionMedLine(l)
         + '<div class="meta"><b>Recommendation score</b><button class="score-toggle" data-scorebreak="'+esc(l.id)+'" aria-expanded="'+(state.openScore===l.id)+'">'+(l.score!=null? l.score+" / 100":"—")+' — tap for breakdown '+(state.openScore===l.id? "▴":"▾")+'</button>'+(l.why && l.why.length? " — "+esc(l.why.join("; ")) : "")+(state.openScore===l.id? scoreBreakHtml(l) : "")+'</div>'
-        + '<div class="meta"><b>Analyse</b><button class="btn calc-load-btn" data-calc="'+esc(l.id)+'">Open in calculator ↑</button></div>'
+        + '<div class="meta"><b>Analyse</b><button class="btn calc-load-btn" data-calc="'+esc(l.id)+'">Open in calculator ↑</button> <button class="btn" data-deal="'+esc(l.id)+'">Deal sheet</button></div>'
+        + (starred? '<div class="meta"><b>Your watchlist note</b><input class="watch-note" data-note="'+esc(l.id)+'" type="text" maxlength="140" placeholder="Add a note — e.g. call broker Tuesday" value="'+esc(watchNotes[l.id]||"")+'" /></div>' : "")
         + '</div></td></tr>';
     }
+    parts.push(rowHtml);
   });
-  tb.innerHTML = html;
+  /* Round 28: chunked render — the first 100 rows land in one parse so
+     the page answers at once, and the rest follow in idle slices
+     (insertAdjacentHTML appends without re-parsing what is already
+     there). A newer render cancels the old one's pending chunks. */
+  var renderToken = ++renderSeq;
+  var CHUNK = 100, ci = CHUNK;
+  tb.innerHTML = parts.slice(0, CHUNK).join("");
+  function nextChunk(){
+    if(renderToken !== renderSeq) return;
+    if(ci >= parts.length) return;
+    tb.insertAdjacentHTML("beforeend", parts.slice(ci, ci+CHUNK).join(""));
+    ci += CHUNK;
+    if(ci < parts.length) setTimeout(nextChunk, 0);
+  }
+  if(parts.length > CHUNK) setTimeout(nextChunk, 0);
   renderSelection();
+  writeHash(); /* Round 27: the URL always describes the current view */
 }
 
 /* ---------- selection & comparison ---------- */
@@ -1951,11 +2177,12 @@ function renderReco(){
         + (recoScoreOpen===l.id? scoreBreakHtml(l) : "")
         + '<div class="rc-actions"><button class="mini-btn" data-recoselect="'+esc(l.id)+'" aria-pressed="'+picked+'">'+(picked? "✓ Selected":"Select to compare")+'</button>'
         + '<button class="mini-btn" data-recocalc="'+esc(l.id)+'">Calculator</button>'
+        + '<button class="mini-btn" data-deal="'+esc(l.id)+'">Deal sheet</button>'
         + '<a class="mini-btn" href="'+esc(l.url)+'" target="_blank" rel="noopener">View ↗</a></div>'
         + '</article>';
     }).join("");
   }
-  document.getElementById("recoNote").textContent = pool.length+" listings match your budget and region; showing the top "+top.length+". Scores are a screening aid only — a listing is removed once its broker page closes, and any ROI over 40% is flagged unverified and excluded from the picks, because a return that high usually means a figure needs verifying.";
+  document.getElementById("recoNote").textContent = pool.length+" listings match your budget and region; showing the top "+top.length+". Scores are a screening aid only — a listing is removed once its broker page closes, and any ROI over 40% on the full price is flagged unverified and excluded from the picks, because a return that high usually means a figure needs verifying.";
 }
 ["rBudget","rGoal","rRegion","rMinScore"].forEach(function(id){
   document.getElementById(id).addEventListener("change", renderReco);
@@ -1967,7 +2194,142 @@ document.getElementById("recoGrid").addEventListener("click", function(e){
   if(s){ toggleSelect(s.getAttribute("data-recoselect")); renderReco(); return; }
   var c = e.target.closest("[data-recocalc]");
   if(c){ loadIntoCalculator(c.getAttribute("data-recocalc")); }
+  /* Round 21: deal sheet from a recommendation card */
+  var d = e.target.closest("[data-deal]");
+  if(d){ openDealSheet(d.getAttribute("data-deal")); }
 });
+
+/* ---------- Round 21: deal sheet — one-tap per-listing summary ----------
+   Everything the card, the detail row and the calculator each show in
+   part, in one place: both ROI bases labelled (card ROI is net ÷ full
+   price; business ROI is net ÷ business price — see the carried
+   decision in the log), the price split, the region comparison, the
+   score breakdown, the risks and a plain-English verdict. Print and
+   Copy share the same numbers, so the sheet can never disagree with
+   itself. */
+var dealSheetId = null;
+var dealSheetReturnFocus = null;
+function dealVerdict(l){
+  if(l.unverified) return "Needs verifying — one or more figures look wrong (see the risks below). Don't rely on the score or either ROI until the broker confirms the numbers.";
+  if(l.score>=85) return "Strong screening result — the numbers clear the standard bands on nearly every measure. Still verify the financials and meet the BC before offering.";
+  if(l.score>=70) return "Solid all-round — worth a closer look. The risks below are the things to check first.";
+  if(l.score>=40) return "Mixed — some numbers are strong, others are not. The risks below decide whether this one is worth pursuing.";
+  return "Weak screening result — the numbers don't clear the standard bands. Only proceed if you have a specific reason (a top-up or pool-growth story, for example).";
+}
+function dealRisks(l){
+  var r=[];
+  if(l.unverified) r.push("Figures flagged unverified — check with the broker before relying on any number here.");
+  if(l.dup) r.push("Possible duplicate — "+(l.dupCount||2)+" listings share this suburb, price and net income.");
+  if(l.missing && l.missing.length) r.push("Not disclosed by the broker: "+l.missing.join(", ")+".");
+  if(l.bc!=null && l.bc>80) r.push("BC salary is "+l.bc.toFixed(1)+"% of net — risk band (over 80%).");
+  if(l.yrs!=null && l.yrs<15) r.push("Contract has "+l.yrs+" years left — under the 15-year minimum most lenders want.");
+  if(l.units!=null && l.units<15) r.push("Pool of only "+l.units+" units — risk band (under 15).");
+  if(l.mult!=null && l.mult>6.5) r.push("Multiplier "+l.mult.toFixed(2)+"× is over 6.5× — overpriced on the standard bands.");
+  if(l.mult!=null && l.mult>0 && l.mult<3) r.push("Multiplier "+l.mult.toFixed(2)+"× is under 3× — cheaper than the excellent band; double-check the price and income figures.");
+  if(l.net==null) r.push("No net income disclosed — multiplier and ROI can't be calculated.");
+  return r;
+}
+function dealSheetRows(l){
+  var rows = [];
+  var priceLine = fmtFull(l.price);
+  var priceSub = (l.up!=null && l.up>0)
+    ? "business "+fmtFull(l.bp!=null? l.bp : l.price-l.up)+" + unit "+fmtFull(l.up)
+    : "no unit included — the full price is the business price";
+  rows.push({k:"Asking price", v:priceLine, sub:priceSub});
+  rows.push({k:"Net income / yr", v:(l.net==null? "income not disclosed" : fmtFull(l.net)), sub:(l.net!=null? fmtFull(Math.round(l.net/12))+" / month" : null)});
+  rows.push({k:"Multiplier", v:(l.mult==null? "—" : l.mult.toFixed(2)+"×"), sub:(l.mult==null? null : (l.mult<=0? "Meaningless — the included unit is worth more than the asking price" : (l.mult>6.5? "Overpriced — over 6.5×" : (l.mult>=3 && l.mult<=5? "Excellent — 3–5× band" : (l.mult<3? "Under 3× — check the figures" : "Fair — 5–6.5× band")))))});
+  rows.push({k:"ROI on full price", v:(l.roi==null? "—" : l.roi.toFixed(1)+"%"), sub:"net ÷ full asking price — the cash you actually pay"});
+  if(l.roiBus!=null) rows.push({k:"ROI on business price", v:l.roiBus.toFixed(1)+"%", sub:"net ÷ business price — the unit is an asset you keep or sell separately"});
+  rows.push({k:"BC salary", v:(l.bc==null? "—" : l.bc.toFixed(1)+"% of net"), sub:(l.bc==null? null : (l.bc>80? "Risk — over 80%" : (l.bc>70? "Caution — 70–80%" : "Good — 70% or under")) )});
+  rows.push({k:"Contract remaining", v:(l.yrs==null? "—" : l.yrs+" yrs"), sub:(l.yrs==null? null : (l.yrs>=20? "Good — 20 yrs or more" : (l.yrs>=15? "Adequate — clears the 15-year lender minimum" : "Under the 15-year lender minimum")) )});
+  rows.push({k:"Pool units", v:(l.units==null? "—" : String(l.units)), sub:(l.units==null? null : (l.units>=30? "Good — 30 or more" : (l.units>=15? "Adequate — 15–29" : "Risk — under 15")))});
+  var rm = REGION_MED[l.group];
+  if(l.mult!=null && l.mult>0 && rm!=null) rows.push({k:"Multiplier vs region", v:l.mult.toFixed(2)+"× vs "+rm.toFixed(2)+"× median", sub:l.group+" median — "+(l.mult<rm? "below" : (l.mult>rm? "above" : "at"))+" the regional median"});
+  var dl = daysListedText(l);
+  if(dl) rows.push({k:"On market", v:dl, sub:(l.first_seen? "first seen "+l.first_seen : null)});
+  rows.push({k:"Recommendation score", v:(l.score!=null? l.score+" / 100" : "—"), sub:null});
+  return rows;
+}
+function dealSheetText(l){
+  var lines = [l.suburb+" — "+l.group+" (Score "+(l.score!=null? l.score+"/100" : "—")+")"];
+  dealSheetRows(l).forEach(function(r){
+    lines.push(r.k+": "+r.v+(r.sub? " ("+r.sub+")" : ""));
+  });
+  lines.push("Verdict: "+dealVerdict(l));
+  var risks = dealRisks(l);
+  lines.push(risks.length? "Risks: "+risks.join(" ") : "Risks: none flagged on the standard bands.");
+  if(l.url) lines.push("Broker listing: "+l.url);
+  lines.push("PMR Dashboard — https://winrobin.github.io/pmr-dashboard/ · Data "+(document.getElementById("lastUpdated")? document.getElementById("lastUpdated").textContent : ""));
+  return lines.join("\n");
+}
+function openDealSheet(id){
+  var l = LISTINGS.filter(function(x){return x.id===id;})[0];
+  if(!l) return;
+  dealSheetId = id;
+  dealSheetReturnFocus = document.activeElement;
+  var sheet = document.getElementById("dealSheet");
+  document.getElementById("dsTitle").textContent = l.suburb+" — deal sheet";
+  var badges = (isNewListing(l)? "NEW · " : "")+(l.unverified? "unverified — check with broker · " : "")+(l.dup? "possible duplicate · " : "");
+  document.getElementById("dsSub").textContent = l.group+" · Score "+(l.score!=null? l.score+" / 100" : "—")+(badges? " · "+badges.replace(/ · $/,"") : "");
+  var rows = dealSheetRows(l);
+  var risks = dealRisks(l);
+  document.getElementById("dsBody").innerHTML =
+    '<p class="ds-verdict">'+esc(dealVerdict(l))+'</p>'
+    + '<div class="ds-grid">'+rows.map(function(r){
+        return '<div class="ds-row"><span class="k">'+esc(r.k)+'</span><span class="v">'+esc(r.v)+(r.sub? '<span class="sub">'+esc(r.sub)+'</span>' : "")+'</span></div>';
+      }).join("")+'</div>'
+    + (l.parts? scoreBreakHtml(l) : "")
+    + (risks.length? '<ul class="ds-risks">'+risks.map(function(r){ return '<li>'+esc(r)+'</li>'; }).join("")+'</ul>' : '<ul class="ds-risks"><li class="ok">✓ No risks flagged on the standard bands.</li></ul>')
+    + (l.notes? '<p class="ds-notes">'+esc(l.notes)+'</p>' : "")
+    + (watchNotes[l.id]? '<p class="ds-notes"><b>Your note:</b> '+esc(watchNotes[l.id])+'</p>' : "");
+  var view = document.getElementById("dsView");
+  if(l.url){ view.href = l.url; view.style.display = ""; } else { view.style.display = "none"; }
+  var copyBtn = document.getElementById("dsCopy");
+  copyBtn.textContent = "Copy summary";
+  sheet.hidden = false;
+  document.body.classList.add("ds-open");
+  var closeBtn = document.getElementById("dsClose");
+  if(closeBtn) closeBtn.focus();
+}
+function closeDealSheet(){
+  var sheet = document.getElementById("dealSheet");
+  if(!sheet || sheet.hidden) return;
+  sheet.hidden = true;
+  document.body.classList.remove("ds-open");
+  dealSheetId = null;
+  if(dealSheetReturnFocus && dealSheetReturnFocus.focus) dealSheetReturnFocus.focus();
+}
+document.getElementById("dsClose").addEventListener("click", closeDealSheet);
+document.getElementById("dealSheet").addEventListener("click", function(e){
+  if(e.target.closest("[data-dsclose]")) closeDealSheet();
+});
+document.addEventListener("keydown", function(e){
+  if(e.key==="Escape") closeDealSheet();
+});
+document.getElementById("dsCalc").addEventListener("click", function(){
+  if(!dealSheetId) return;
+  var id = dealSheetId;
+  closeDealSheet();
+  loadIntoCalculator(id);
+});
+document.getElementById("dsCopy").addEventListener("click", function(){
+  var l = LISTINGS.filter(function(x){return x.id===dealSheetId;})[0];
+  if(!l) return;
+  var text = dealSheetText(l);
+  var btn = document.getElementById("dsCopy");
+  function done(){ btn.textContent = "Copied ✓"; setTimeout(function(){ btn.textContent = "Copy summary"; }, 1500); }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, function(){ fallbackCopy(text); done(); });
+  } else { fallbackCopy(text); done(); }
+  function fallbackCopy(t){
+    var ta = document.createElement("textarea");
+    ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    ta.remove();
+  }
+});
+document.getElementById("dsPrint").addEventListener("click", function(){ window.print(); });
 
 /* ---------- refresh program downloads ---------- */
 function downloadText(filename, text, type){
@@ -1999,10 +2361,18 @@ document.getElementById("tbody").addEventListener("click", function(e){
     loadIntoCalculator(calcBtn.getAttribute("data-calc"));
     return;
   }
+  /* Round 21: deal sheet from the detail row */
+  var dealBtn = e.target.closest("[data-deal]");
+  if(dealBtn){
+    openDealSheet(dealBtn.getAttribute("data-deal"));
+    return;
+  }
   var star = e.target.closest("[data-star]");
   if(star){
     var id = star.getAttribute("data-star");
-    watch[id] = !watch[id]; if(!watch[id]) delete watch[id];
+    watch[id] = !watch[id];
+    if(!watch[id]){ delete watch[id]; delete watchNotes[id]; } /* unwatching drops its note too */
+    saveWatch(); /* Round 23: the watchlist survives a reload */
     render(); return;
   }
   if(e.target.closest("a")) return;
@@ -2026,6 +2396,16 @@ document.getElementById("tbody").addEventListener("click", function(e){
   if(state.openId===id){ state.openId=null; state.openScore=null; }
   else { state.openId=id; state.openScore=null; }
   render();
+});
+/* Round 23: watchlist notes save as you type — a data refresh or a
+   re-render must not lose them. Typing never triggers render(), so
+   focus stays in the field. */
+document.getElementById("tbody").addEventListener("input", function(e){
+  var n = e.target.closest("[data-note]");
+  if(!n) return;
+  var id = n.getAttribute("data-note");
+  if(n.value){ watchNotes[id] = n.value; } else { delete watchNotes[id]; }
+  saveWatch();
 });
 
 /* ---------- deal calculator ---------- */
@@ -2327,10 +2707,20 @@ window.addEventListener("resize", updateCalcLivebar);
 calcNetEl.addEventListener("input", function(){ syncBc("net"); updateCalc(); });
 calcBcAmtEl.addEventListener("input", function(){ syncBc("amt"); updateCalc(); });
 calcBcPctEl.addEventListener("input", function(){ syncBc("pct"); updateCalc(); });
-// Pre-fill with the first (highest quality) listing so the calculator isn't empty on arrival
+// Pre-fill with the top-scored listing (carried decision, batch 3) —
+// LISTINGS[0] is the fetcher's sort order (by multiplier), which opens
+// on the flagged Caloundra listing. The top-scored pick is a genuine
+// deal, and it is the same pick the recommendations lead with.
+function topScoredListing(){
+  var best = null;
+  LISTINGS.forEach(function(l){
+    if(!best || l.score > best.score || (l.score === best.score && (l.roi || 0) > (best.roi || 0))) best = l;
+  });
+  return best;
+}
 function prefillCalc(){
   if(LISTINGS.length){
-    var first = LISTINGS[0];
+    var first = topScoredListing() || LISTINGS[0];
     calcPriceEl.value = first.price; calcNetEl.value = first.net;
     if(first.up!=null) calcUnitEl.value = first.up; /* Round 9: prefill the unit value too */
     if(first.bc!=null){ calcBcPctEl.value = first.bc.toFixed(1); calcBcAmtEl.value = Math.round(first.net*first.bc/100); calcLastEdited="pct"; calcListingEl.value = first.id; }
@@ -2478,6 +2868,16 @@ function normalizeRecord(r){
   if(mult==null) mult = (net!=null) ? Math.round((bp!=null? bp : price)/net*100)/100 : null;
   var roi = numOr(r.roi);
   if(roi==null) roi = (net!=null) ? Math.round(net/price*1000)/10 : null;
+  /* Carried decision (batch 3): the card ROI stays net ÷ FULL price
+     (business + unit) — the cash the buyer actually pays. The calculator
+     works on the business price only, so its ROI is higher when a unit is
+     included; the two are different views, not a mistake (see guide §3).
+     Unifying on business ROI was measured and rejected: business ROI is
+     arithmetically 100 ÷ multiplier (redundant with the Mult. column),
+     the 90+ score band would jump 24 → 80 listings, the top 6 would be
+     replaced, and "best ROI" would read 84.6% — against the guide's
+     typical 15–25%. roiBus is kept for the deal sheet, labelled. */
+  var roiBus = (net!=null && bp!=null && bp>0) ? Math.round(net/bp*1000)/10 : null;
   var srcRaw = r.src || r.source || "";
   return {
     id: r.id || (suburb+"-"+price),
@@ -2488,7 +2888,7 @@ function normalizeRecord(r){
     bc: numOr(r.bc!=null ? r.bc : r.bc_percent),
     yrs: numOr(r.yrs!=null ? r.yrs : r.contract_years), // Round 5: a published 0 is a real figure (0 yrs = no tenure left, risk band) — only a missing value is null
     units: numOr(r.units!=null ? r.units : r.pool_units), // Round 5: a published 0 is real (0 pool = caretaking-only) — only a missing value is null
-    roi: roi,
+    roi: roi, roiBus: roiBus,
     url: r.url || "",
     src: String(srcRaw).replace(/\.(com\.au|net\.au|org\.au|com|au)$/,""),
     notes: r.notes || "",
@@ -2528,6 +2928,10 @@ function setDataSourceNote(mode){
   if(!el) return;
   if(mode==="live"){
     el.textContent = "Live data loaded from pmr-data-latest.json · "+LISTINGS.length+" genuine listings (scraped non-listing pages, duplicate re-scrapes and closed listings excluded)";
+  } else if(mode==="retrying"){
+    /* Round 29: the first pass found nothing — say so, and that the
+       snapshot is showing meanwhile, instead of silently falling back. */
+    el.textContent = "The live data file didn't answer the first time — trying again… (showing the built-in snapshot meanwhile)";
   } else {
     var d = new Date(LAST_FETCHED);
     var when = isNaN(d) ? "20 Oct 2026" : d.toLocaleDateString("en-AU",{day:"numeric",month:"short",year:"numeric"});
@@ -2563,9 +2967,22 @@ function fetchJson(url){
      file by absolute URL so this page still picks up fresh data when it is
      viewed somewhere the file isn't hosted alongside it. */
   var urls = ["pmr-data-latest.json", "data/pmr-data-latest.json", "https://winrobin.github.io/pmr-dashboard/pmr-data-latest.json"];
-  var i = 0;
+  var i = 0, pass = 0;
   function attempt(){
-    if(i >= urls.length){ setDataSourceNote("fallback"); return; }
+    if(i >= urls.length){
+      /* Round 29: one full retry pass before settling on the fallback
+         snapshot — a transient blip (a dropped connection, a slow
+         first paint) should not demote the page to the stale snapshot.
+         The snapshot is already showing, so the user waits on a
+         working page, not a blank one. */
+      if(pass === 0){
+        pass = 1; i = 0;
+        setDataSourceNote("retrying");
+        setTimeout(attempt, 1500);
+        return;
+      }
+      setDataSourceNote("fallback"); return;
+    }
     fetchJson(urls[i++]).then(function(payload){
       var norm = normalizePayload(payload);
       if(!norm){ attempt(); return; }
@@ -2610,6 +3027,72 @@ function updateNavAffordance(){
   updateNavAffordance();
 })();
 
+ /* ---------- Round 22: guide presentation — collapsible sections ----------
+   Ten long sections are a wall of text on a phone. Each section's h3
+   becomes a toggle (its content moves into .g-sec-body); §1 starts
+   open, the rest start collapsed. Opening a section marks it read and
+   updates the progress line ("3 of 10 sections read"), persisted in
+   localStorage so a returning reader keeps their place. TOC links open
+   their section as well as jumping to it. */
+(function guideCollapse(){
+  var secs = Array.prototype.slice.call(document.querySelectorAll(".g-sec"));
+  if(!secs.length) return;
+  var readKey = "pmr-guide-read-v1";
+  var read = {};
+  try{ read = JSON.parse(window.localStorage.getItem(readKey) || "{}") || {}; }catch(e){ read = {}; }
+  function saveRead(){ try{ window.localStorage.setItem(readKey, JSON.stringify(read)); }catch(e){} }
+  var prog = document.createElement("p");
+  prog.className = "g-progress";
+  prog.id = "guideProgress";
+  var toc = document.querySelector(".g-toc");
+  if(toc && toc.parentNode) toc.parentNode.insertBefore(prog, toc.nextSibling);
+  function renderProgress(){
+    var n = secs.filter(function(s){ return read[s.id]; }).length;
+    prog.innerHTML = "Guide progress: <b>"+n+" of "+secs.length+" sections read</b> · <span class='g-progbar'><i style='width:"+Math.round(n/secs.length*100)+"%'></i></span>";
+  }
+  function markRead(sec){
+    if(!read[sec.id]){ read[sec.id] = true; saveRead(); renderProgress(); }
+  }
+  secs.forEach(function(sec, i){
+    var h3 = sec.querySelector("h3");
+    if(!h3) return;
+    var body = document.createElement("div");
+    body.className = "g-sec-body";
+    var next;
+    while((next = h3.nextSibling)){ body.appendChild(next); }
+    sec.appendChild(body);
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "g-sec-toggle";
+    btn.setAttribute("aria-expanded", "true");
+    btn.innerHTML = "<span class='g-sec-title'>"+h3.innerHTML+"</span><span class='g-sec-chev' aria-hidden='true'>▾</span>";
+    h3.innerHTML = "";
+    h3.appendChild(btn);
+    function setOpen(open){
+      sec.classList.toggle("is-collapsed", !open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      if(open) markRead(sec);
+    }
+    btn.addEventListener("click", function(){ setOpen(sec.classList.contains("is-collapsed")); });
+    setOpen(i===0); /* §1 open, the rest collapsed */
+    if(i===0) markRead(sec);
+  });
+  renderProgress();
+  document.querySelectorAll(".g-toc a").forEach(function(a){
+    a.addEventListener("click", function(){
+      var id = a.getAttribute("href").slice(1);
+      var sec = document.getElementById(id);
+      if(sec && sec.classList.contains("is-collapsed")){
+        sec.classList.remove("is-collapsed");
+        var b = sec.querySelector(".g-sec-toggle");
+        if(b) b.setAttribute("aria-expanded","true");
+        markRead(sec);
+      }
+    });
+  });
+})();
+
+applyHash(); /* Round 27: a shared link restores its filters before the first render */
 renderPills();
 render();
 renderReco();
