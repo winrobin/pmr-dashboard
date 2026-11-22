@@ -75,6 +75,9 @@
   .updated strong{font-weight:700}
   .updated .when{font-variant-numeric:tabular-nums}
   .updated .src-note{color:var(--ink3);font-size:13px;margin-left:auto}
+  .updated .next-refresh{color:var(--ink3);font-size:13px}
+  .stale-banner{margin-top:10px;background:var(--warn-bg);border:1px solid var(--warn);border-radius:10px;padding:10px 14px;font-size:14px;color:var(--ink)}
+  .stale-banner strong{color:var(--warn)}
   @media (max-width:640px){.updated .src-note{margin-left:0}}
   .section-head{margin:28px 0 12px;display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:8px 20px}
   .section-head h2{font-family:"Newsreader",Georgia,serif;font-size:26px;font-weight:600;margin:0;line-height:1.1}
@@ -222,6 +225,7 @@
   .starbtn{background:none;border:0;font-size:21px;line-height:1;color:var(--ink3);padding:8px;min-width:2.5rem;min-height:2.5rem;border-radius:8px}
   .starbtn[aria-pressed="true"]{color:var(--star)}
   .dup{display:inline-block;font-size:11px;font-weight:700;color:var(--warn);background:var(--warn-bg);border-radius:5px;padding:1px 6px;margin-left:7px;vertical-align:2px}
+  .nd{font-size:11px;font-weight:600;color:var(--ink3)} /* Round 3: "income not disclosed" — never $0 */
   .srclink{font-size:12.5px;font-weight:600;white-space:nowrap}
   tr.detail td{background:var(--surface2);cursor:default}
   .detailbox{display:flex;flex-wrap:wrap;gap:8px 26px}
@@ -347,6 +351,8 @@
   .presets .plabel{font-size:12px;font-weight:700;color:var(--ink2);letter-spacing:.03em;margin-right:2px}
   .preset{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;min-height:2.25rem}
   .preset[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+  .preset-why{font-size:13.5px;color:var(--ink2);margin-top:8px;line-height:1.5}
+  .preset-why b{color:var(--ink)}
   @media (prefers-color-scheme: dark){.preset[aria-pressed="true"]{color:#0c1713}}
 
   /* ---------- selection & compare ---------- */
@@ -476,7 +482,9 @@
         <span class="dot" aria-hidden="true"></span>
         <span><strong>Listings data last updated</strong> <span class="when" id="lastUpdated" data-last-updated>—</span> <span style="color:var(--ink3)">· 最后更新</span></span>
         <span class="src-note" id="srcNote">Source: pmr-data-latest.json · loading the latest data…</span>
+        <span class="next-refresh" id="nextRefresh"></span>
       </div>
+      <div class="stale-banner" id="staleBanner" hidden></div>
     </div>
     <div class="stats" id="stats"></div>
     <section class="legend" id="ratings" aria-labelledby="legendTitle">
@@ -510,6 +518,11 @@
         <div class="field">
           <label for="calcPrice">Asking price</label>
           <div class="money"><i>$</i><input id="calcPrice" type="number" inputmode="numeric" min="0" step="1000" placeholder="e.g. 2,500,000" /></div>
+        </div>
+        <div class="field">
+          <label for="calcUnit">Unit value included <span>· 包含单元价值</span></label>
+          <div class="money"><i>$</i><input id="calcUnit" type="number" inputmode="numeric" min="0" step="1000" placeholder="0 if business-only" /></div>
+          <div class="hintline">If a manager's unit is included in the price, its value comes off the business price — the multiplier, ROI and payback are worked on the business portion.</div>
         </div>
         <div class="field">
           <label for="calcNet">Net income <span>/ year</span></label>
@@ -554,6 +567,7 @@
           <div class="bar" role="img" aria-label="Split of net income between body corporate salary and letting and other income" id="splitBar"><div class="b-bc" style="width:0%"></div><div class="b-let" style="width:0%"></div></div>
           <div class="svals"><span id="splitBc">BC salary —</span><span id="splitLet">Letting &amp; other —</span></div>
         </div>
+        <p class="calc-note" id="calcPriceSplit"></p>
         <ul class="verdicts" id="verdicts"></ul>
         <p class="calc-note" id="calcBench"></p>
         <div class="calc-backrow"><a class="mini-btn" href="#listings">↓ Back to Browse listings · 返回浏览房源</a></div>
@@ -564,7 +578,7 @@
   <section class="reco" id="recommendations" aria-labelledby="recoTitle">
     <div class="reco-head">
       <h2 id="recoTitle">Recommended for you <span class="zh">为你推荐</span></h2>
-      <p>Every listing is scored out of 100 on the same bands as the legend — multiplier (25), ROI (25), BC % (15), contract (15), pool (10) and data completeness (10). Tell it your budget and what matters most, and it re-ranks the whole list. Listings with missing or suspect figures are scored down, never up.</p>
+      <p>Every listing is scored out of 100 on the same bands as the legend — multiplier (25), ROI (25), BC % (15), contract (15), pool (10) and data completeness (10). Tell it your budget and what matters most, and it re-ranks the whole list. The score is risk-adjusted: a contract under 15 years (the line most lenders want) or a pool under 15 units scores near zero for that part, however good the rest looks. Listings with missing or suspect figures are scored down, never up — and unverified listings never appear in the picks at all.</p>
     </div>
     <div class="reco-controls">
       <div class="fgroup"><label for="rBudget">Your budget / price range</label>
@@ -622,6 +636,7 @@
         <button class="preset" data-preset="safe" aria-pressed="false">Safe income · BC ≤ 70%, 20 yrs+, pool 30+</button>
         <button class="preset" data-preset="entry" aria-pressed="false">Entry level · under $1.5m</button>
       </div>
+      <div class="preset-why" id="presetWhy" aria-live="polite" hidden></div>
       <div class="filters" id="filters">
         <div class="fgroup"><label for="fRange">Price range</label>
           <select id="fRange"><option value="">Any range</option><option value="1000000-2000000">$1m – $2m</option><option value="0-1000000">Under $1m</option><option value="2000000-3000000">$2m – $3m</option><option value="3000000-999999999">$3m+</option></select></div>
@@ -682,7 +697,7 @@
 
   <section class="refresh" id="refresh" aria-labelledby="refreshTitle">
     <h2 id="refreshTitle">Live data &amp; daily remote refresh <span class="zh">每日自动更新程序</span></h2>
-    <p><strong>Remote daily refresh — ready to switch on:</strong> this is the rebuilt fetcher that replaces the old PC / OpenClaw run — no PC left on, no manual upload. It runs in GitHub Actions at <strong>09:00 Brisbane time</strong>, discovers new listings instead of only re-fetching the old 109 URLs, validates everything before it can go live, and writes the same file to both places the site reads. Your live dashboard is at <a href="https://winrobin.github.io/pmr-dashboard/" target="_blank" rel="noopener">winrobin.github.io/pmr-dashboard ↗</a> — once the two files below are in that repo, it picks up fresh data every morning with no further action. Download both files below and drop them into your repo — the fetcher goes in <strong>scripts/</strong>, the workflow in <strong>.github/workflows/</strong>.</p>
+    <p><strong>Remote daily refresh — ready to switch on:</strong> this is the rebuilt fetcher that replaces the old PC / OpenClaw run — no PC left on, no manual upload. It runs in GitHub Actions at <strong>09:17 Brisbane time</strong> (usually landing around 2:00 pm — GitHub runs the queue late), discovers new listings instead of only re-fetching the old 109 URLs, validates everything before it can go live, and writes the same file to both places the site reads. Your live dashboard is at <a href="https://winrobin.github.io/pmr-dashboard/" target="_blank" rel="noopener">winrobin.github.io/pmr-dashboard ↗</a> — once the two files below are in that repo, it picks up fresh data every morning with no further action. Download both files below and drop them into your repo — the fetcher goes in <strong>scripts/</strong>, the workflow in <strong>.github/workflows/</strong>.</p>
     <div class="pipe">
       <div class="step"><div class="sn">Step 1 · Discover</div><h3>Crawl the index</h3><p>Crawls The Onsite Manager and Resort Brokers Queensland index and region pages (527 listings nationally, 492 in QLD at last check) so new listings are found, not just old ones refreshed.</p></div>
       <div class="step"><div class="sn">Step 2 · Parse</div><h3>Handle real prices</h3><p>Parses “$3.832M + RE”, “All offers considered” and price-on-application as text prices instead of dropping or zeroing them, and splits business-only vs total price where a listing shows both.</p></div>
@@ -706,7 +721,7 @@
           <li>Download the two files below. If you later find your original <code>pmr-data-fetcher.py</code>, you can swap it in — the workflow calls whatever is in <code>scripts/</code>.</li>
           <li>In GitHub: Settings → Pages — confirm the site is served from <code>main</code> (the live data file matches <code>main</code> exactly; <code>gh-pages</code> holds only a stub).</li>
           <li>Commit both files, then run it once from the Actions tab (“Run workflow”) to confirm, before relying on the daily 09:00 run.</li>
-          <li>Change the time in the workflow’s <code>cron</code> line if 09:00 Brisbane doesn’t suit.</li>
+          <li>Change the time in the workflow’s <code>cron</code> line if 09:17 Brisbane doesn’t suit.</li>
         </ul>
       </div>
     </div>
@@ -715,7 +730,7 @@
       <button class="dl-btn" id="dlWorkflow">↓ Download daily-update.yml</button>
       <button class="dl-btn alt" id="dlReadme">↓ Download setup notes (.md)</button>
     </div>
-    <div class="setup-note"><strong>How the live refresh works:</strong> this page loads <code>pmr-data-latest.json</code> fresh every time it opens, so the daily job is all it takes to keep it current: once the two files above are in your GitHub repo, GitHub Actions runs the fetcher daily at 09:00 Brisbane, commits a fresh <code>pmr-data-latest.json</code> to the live site at <a href="https://winrobin.github.io/pmr-dashboard/" target="_blank" rel="noopener">winrobin.github.io/pmr-dashboard</a>, and this dashboard picks the new file up on the next visit. If the data file can’t be loaded — you’re offline, or the file isn’t there yet — the page falls back to a built-in snapshot (data last fetched 20 Oct 2026) so it never opens empty; the “last updated” date at the top, and the source note beside it, always show which data you’re looking at.</div>
+    <div class="setup-note"><strong>How the live refresh works:</strong> this page loads <code>pmr-data-latest.json</code> fresh every time it opens, so the daily job is all it takes to keep it current: once the two files above are in your GitHub repo, GitHub Actions runs the fetcher daily at 09:17 Brisbane (usually landing around 2:00 pm), commits a fresh <code>pmr-data-latest.json</code> to the live site at <a href="https://winrobin.github.io/pmr-dashboard/" target="_blank" rel="noopener">winrobin.github.io/pmr-dashboard</a>, and this dashboard picks the new file up on the next visit. If the data file can’t be loaded — you’re offline, or the file isn’t there yet — the page falls back to a built-in snapshot (data last fetched 20 Oct 2026) so it never opens empty; the “last updated” date at the top, and the source note beside it, always show which data you’re looking at.</div>
     <details>
       <summary>Preview: pmr-data-fetcher.py — the rebuilt fetcher</summary>
       <pre><code id="fetcherCode">#!/usr/bin/env python3
@@ -818,7 +833,7 @@ if __name__ == "__main__":
       <pre><code id="workflowCode">name: Daily PMR data update
 on:
   schedule:
-    - cron: "0 23 * * *"   # 09:00 Brisbane (AEST, UTC+10) — adjust for daylight saving if needed
+    - cron: "17 23 * * *"   # 09:17 Brisbane (AEST, UTC+10) — GitHub usually lands the run around 14:00
   workflow_dispatch: {}     # lets you run it manually from the Actions tab
 permissions:
   contents: write
@@ -1205,6 +1220,50 @@ function applyCorrections(list){
       l.unverified=true;
       l.notes="Figures need verifying — an ROI of "+l.roi.toFixed(1)+"% is implausibly high for management rights, so this listing is flagged unverified and its score is capped until the numbers are confirmed with the broker. "+(l.notes||"");
     }
+    /* Round 1: a negative multiplier means the included unit is worth more
+       than the asking price, so the multiplier is meaningless — it must
+       never rank as "excellent value". The fetcher flags this from the
+       next run; this guard covers data files written before that. It runs
+       even for records already flagged unverified, because their stored
+       notes still carry the misleading "excellent value" verdict. */
+    if(l.mult!=null && l.mult<0){
+      l.unverified=true;
+      l.notes=(l.notes||"").replace(/-?\d+(?:\.\d+)?x — excellent value\.?/g,"").replace(/\s{2,}/g," ").trim();
+      if(l.notes.indexOf("Figures need verifying — the included unit")!==0){
+        l.notes="Figures need verifying — the included unit is worth more than the asking price, so the multiplier ("+l.mult.toFixed(2)+"×) is meaningless. Verify with the broker before relying on this. "+l.notes;
+      }
+    }
+    /* Round 2: BC% over 100 means the BC salary exceeds the net income,
+       which is impossible — a parse error, not a "high" salary. The fetcher
+       flags this from the next run; this guard covers old data. */
+    if(l.bc!=null && l.bc>100){
+      l.unverified=true;
+      l.notes=(l.notes||"").replace(/BC \d+(?:\.\d+)?% (?:healthy|caution|high)\./g,"").replace(/\s{2,}/g," ").trim();
+      if(l.notes.indexOf("Figures need verifying — the BC salary")!==0){
+        l.notes="Figures need verifying — the BC salary is over 100% of the net income ("+l.bc.toFixed(1)+"%), which can't be right. Verify with the broker before relying on this. "+l.notes;
+      }
+    }
+    /* Round 3: the broker didn't disclose the income, so there is no
+       multiplier or ROI to show — say so plainly, never "$0". The fetcher
+       writes this note from the next run; this guard covers old data. */
+    if(l.net==null && (l.notes||"").indexOf("not disclosed")<0){
+      l.notes=(l.notes? l.notes+" " : "")+"Net income not disclosed by the broker — multiplier and ROI can't be calculated.";
+    }
+    /* Round 5 (plan): honest completeness — name the missing figures
+       instead of hiding the gaps. A published 0 counts as present: 0 pool
+       is a caretaking-only business, 0 yrs is an expired agreement. */
+    l.missing = [];
+    if(l.net==null) l.missing.push("net income");
+    if(l.bc==null) l.missing.push("BC salary");
+    if(l.yrs==null) l.missing.push("contract years");
+    if(l.units==null) l.missing.push("pool units");
+    /* Round 4: the same suburb + price + net income appears under more
+       than one listing id — usually the same property listed twice. The
+       page keeps one copy and flags it; the fetcher writes this note (with
+       the twin ids) from the next run. */
+    if(l.dup && (l.notes||"").indexOf("Possible duplicate")<0){
+      l.notes=(l.notes? l.notes+" " : "")+"Possible duplicate: "+(l.dupCount||2)+" listings share this suburb, price and net income — check they are not the same property before relying on either.";
+    }
     if(l.id==="theonsitemanager-com-au-02227"){ // Urangan #21189761
       l.price=875000; l.net=102136; l.mult=8.57; l.bc=72.8; l.yrs=22; l.units=13; l.roi=11.7; l.q=100;
       l.notes="Corrected from the live broker page: total $875,000 ($153,000 business-only + $722,000 unit). BC 72.8% — caution band. Business-only multiplier 1.5x; 8.57x on the total price. 25yr agreement, 22 yrs remaining — good. Pool of 13 — risk band (under 15). ROI 11.7% on the total price.";
@@ -1221,6 +1280,12 @@ function applyCorrections(list){
 /* Recommendation score: 0-100 from the one canonical band set.
    Multiplier 25 + ROI 25 + BC % 15 + contract 15 + pool 10 + completeness 10.
    Missing data scores low, never high; a suspect ROI over 40% is capped. */
+/* Score out of 100 (Round 7 weights) — multiplier 25, ROI 25, BC% 15,
+   contract 15, pool 10, completeness 10. Risk-adjusted: a contract under
+   15 years (most lenders want 15+ years remaining) scores 2 (10–14 yrs)
+   or 0 (under 10); a pool under 15 units scores 0; unknown figures score
+   low (2–3) on top of the completeness dock. Unverified listings are
+   capped at 40. */
 function scoreListing(l){
   var s=0, why=[];
   if(l.mult==null){ s+=5; }
@@ -1239,17 +1304,28 @@ function scoreListing(l){
   else if(l.bc<=70){ s+=12; }
   else if(l.bc<=80){ s+=6; }
   else { s+=2; }
-  if(l.yrs==null){ s+=4; }
+  /* Round 7: steepen the penalty for a short contract and a thin pool. */
+  if(l.yrs==null){ s+=3; }
   else if(l.yrs>=20){ s+=15; why.push(l.yrs+"-year contract remaining"); }
   else if(l.yrs>=15){ s+=10; }
-  else if(l.yrs>=10){ s+=5; }
-  else { s+=1; }
-  if(l.units==null){ s+=4; }
+  else if(l.yrs>=10){ s+=2; }
+  else { s+=0; }
+  if(l.units==null){ s+=2; }
   else if(l.units>=30){ s+=10; why.push("pool of "+l.units+" units"); }
   else if(l.units>=15){ s+=7; }
-  else { s+=3; }
+  else { s+=0; }
   var have = [l.mult,l.bc,l.yrs,l.units].filter(function(x){return x!=null;}).length;
   s += Math.round(have/4*10);
+  /* Round 5 (plan): completeness feeds the score transparently — say
+     which figures are missing so the penalty is visible, not silent. */
+  if(have<4){
+    var miss = [];
+    if(l.mult==null) miss.push("multiplier");
+    if(l.bc==null) miss.push("BC%");
+    if(l.yrs==null) miss.push("contract");
+    if(l.units==null) miss.push("pool");
+    why.push("completeness "+have+"/4 — missing: "+miss.join(", "));
+  }
   if(l.unverified) s = Math.min(s, 40);
   return { score: Math.max(0, Math.min(100, Math.round(s))), why: why };
 }
@@ -1260,9 +1336,10 @@ function prepareListings(list){
   out.forEach(function(l){ var r=scoreListing(l); l.score=r.score; l.why=r.why; });
   return out;
 }
+var REGION_MED = {}; /* Round 8: median multiplier per region — declared here so the startup call below isn't clobbered by a later `var` */
 LISTINGS = prepareListings(LISTINGS);
 
-var state = { q:"", group:"All", sort:"q-desc", sortDir:null, maxPrice:"", priceRange:"", minNet:"", maxMult:"", minYrs:"", minUnits:"",
+var state = { q:"", group:"All", sort:"score-desc", sortDir:null, maxPrice:"", priceRange:"", minNet:"", maxMult:"", minYrs:"", minUnits:"",
               minRoi:"", maxBc:"", minScore:"", srcFilter:"", preset:"",
               cMult:false, cRoi:false, cYrs:false, cBc:false, watchOnly:false, openId:null };
 var watch = {}; // in-memory for this visit only
@@ -1283,37 +1360,78 @@ var COLS = [
 ];
 var GROUPS = ["All","Brisbane","Gold Coast","Sunshine Coast","Cairns & Far North","Other QLD"];
 
-function fmt$(n){ if(n==null) return "—"; if(n>=1000000){ var v=n/1000000; return "$"+(v>=10? v.toFixed(2).replace(/0+$/,"").replace(/\.$/,"") : v.toFixed(2).replace(/0+$/,"").replace(/\.$/,""))+"m"; } return "$"+Math.round(n/1000)+"k"; }
+function fmt$(n){ if(n==null) return "—"; if(n<1000) return "$"+n; /* Round 3: a $1 net income must not round to "$0k" */ if(n>=1000000){ var v=n/1000000; return "$"+(v>=10? v.toFixed(2).replace(/0+$/,"").replace(/\.$/,"") : v.toFixed(2).replace(/0+$/,"").replace(/\.$/,""))+"m"; } return "$"+Math.round(n/1000)+"k"; }
 function fmtFull(n){ return n==null? "—" : "$"+n.toLocaleString("en-AU"); }
 function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
 function median(a){ if(!a.length) return null; var s=a.slice().sort(function(x,y){return x-y;}); var m=Math.floor(s.length/2); return s.length%2? s[m] : (s[m-1]+s[m])/2; }
 
-/* last updated */
+/* last updated — Round 6: data age in hours, expected next refresh, and a
+   stale-data warning when the file is over 36h old. Brisbane is UTC+10
+   year-round (no daylight saving), so wall-clock maths uses +600 min. */
+function brisbaneWall(d){
+  return new Date(d.getTime() + (d.getTimezoneOffset() + 600) * 60000);
+}
+function ageText(ms){
+  var m = Math.floor(ms/60000);
+  if(m < 1) return "just now";
+  if(m < 60) return m + " min ago";
+  var h = Math.floor(ms/3600000);
+  if(h < 48) return h + "h ago";
+  return Math.floor(h/24) + "d ago";
+}
 function renderLastUpdated(){
   var d = new Date(LAST_FETCHED);
   var opts = {day:"numeric", month:"short", year:"numeric"};
   var time = d.toLocaleTimeString("en-AU",{hour:"numeric",minute:"2-digit"});
   var full = d.toLocaleDateString("en-AU",opts) + " · " + time;
   var short = d.toLocaleDateString("en-AU",opts);
+  var ageMs = Date.now() - d.getTime();
+  var age = isNaN(d) ? "" : " (" + ageText(ageMs) + ")";
   var els = document.querySelectorAll("[data-last-updated]");
   els.forEach(function(el){
-    el.textContent = el.closest(".nav-updated") ? short : full;
+    el.textContent = el.closest(".nav-updated") ? short : full + age;
   });
   var main = document.getElementById("lastUpdated");
-  if(main && !main.hasAttribute("data-last-updated")) main.textContent = full;
+  if(main && !main.hasAttribute("data-last-updated")) main.textContent = full + age;
+  /* Expected next refresh: the workflow is scheduled 09:17 Brisbane but
+     GitHub Actions landed around 14:00 on 19 and 21 Nov, so ~14:00 is the
+     honest expectation, not 09:17. */
+  var nextEl = document.getElementById("nextRefresh");
+  if(nextEl && !isNaN(d)){
+    var bNow = brisbaneWall(new Date());
+    var bData = brisbaneWall(d);
+    var sameDay = bNow.toDateString() === bData.toDateString();
+    nextEl.textContent = sameDay
+      ? "Next refresh tomorrow around 2:00 pm Brisbane."
+      : "Today's refresh expected around 2:00 pm Brisbane (scheduled 9:17 am; GitHub usually runs late).";
+  }
+  /* Stale-data warning: over 36h old means at least one daily refresh was
+     missed (the snapshot fallback is stale by definition). */
+  var staleEl = document.getElementById("staleBanner");
+  if(staleEl){
+    if(!isNaN(d) && ageMs > 36*3600*1000){
+      var oldBy = ageMs >= 48*3600*1000 ? Math.floor(ageMs/86400000) + " days" : Math.round(ageMs/3600000) + " hours";
+      staleEl.innerHTML = "<strong>Stale data — this data is " + oldBy + " old.</strong> The daily refresh hasn't landed since " + full + ". Listings may have sold or changed price — check the broker page before acting.";
+      staleEl.hidden = false;
+    } else {
+      staleEl.hidden = true;
+      staleEl.textContent = ""; /* don't leave yesterday's warning text sitting in a hidden element */
+    }
+  }
 }
 renderLastUpdated();
 
 /* stats */
 function renderStats(){
   var prices = LISTINGS.map(function(l){return l.price;});
-  var mults = LISTINGS.map(function(l){return l.mult;}).filter(function(x){return x!=null;});
-  var best = LISTINGS.reduce(function(a,l){return l.roi>a.roi? l:a;}, LISTINGS[0]);
+  var mults = LISTINGS.map(function(l){return (!l.unverified && l.mult!=null && l.mult>0)? l.mult : null;}).filter(function(x){return x!=null;});
+  var withRoi = LISTINGS.filter(function(l){return l.roi!=null && !l.unverified;});
+  var best = withRoi.length? withRoi.reduce(function(a,l){return l.roi>a.roi? l:a;}, withRoi[0]) : null;
   var stats = [
     {v: LISTINGS.length, l:"genuine listings tracked"},
     {v: fmt$(median(prices)), l:"median asking price"},
     {v: median(mults).toFixed(2)+"×", l:"median multiplier"},
-    {v: best.roi.toFixed(1)+"%", l:"best ROI · "+best.suburb}
+    {v: best? best.roi.toFixed(1)+"%" : "—", l:"best ROI · "+(best? best.suburb : "—")}
   ];
   document.getElementById("stats").innerHTML = stats.map(function(s){
     return '<div class="stat"><div class="v">'+esc(s.v)+'</div><div class="l">'+esc(s.l)+'</div></div>';
@@ -1321,6 +1439,7 @@ function renderStats(){
   document.querySelectorAll("[data-listing-count]").forEach(function(el){ el.textContent = LISTINGS.length; });
 }
 renderStats();
+computeRegionMeds(); /* Round 8: medians for the snapshot until live data loads */
 
 /* region pills */
 var pillsEl = document.getElementById("pills");
@@ -1422,10 +1541,10 @@ watchBtn.addEventListener("click", function(){
   state.watchOnly = !state.watchOnly; watchBtn.setAttribute("aria-pressed", state.watchOnly); render();
 });
 function resetAll(){
-  state = { q:"", group:"All", sort:"q-desc", sortDir:null, maxPrice:"", priceRange:"", minNet:"", maxMult:"", minYrs:"", minUnits:"",
+  state = { q:"", group:"All", sort:"score-desc", sortDir:null, maxPrice:"", priceRange:"", minNet:"", maxMult:"", minYrs:"", minUnits:"",
             minRoi:"", maxBc:"", minScore:"", srcFilter:"", preset:"",
             cMult:false, cRoi:false, cYrs:false, cBc:false, watchOnly:false, openId:null };
-  document.getElementById("q").value=""; document.getElementById("sort").value="q-desc";
+  document.getElementById("q").value=""; document.getElementById("sort").value="score-desc";
   ["fRange","fPrice","fNet","fMult","fYrs","fUnits","fRoi","fBc","fScore","fSrc"].forEach(function(id){ document.getElementById(id).value=""; });
   ["cMult","cRoi","cYrs","cBc"].forEach(function(id){ document.getElementById(id).checked=false; });
   document.querySelectorAll("[data-preset]").forEach(function(b){ b.setAttribute("aria-pressed","false"); });
@@ -1476,9 +1595,33 @@ function multClass(v){ return v==null? "" : (v>6.5? "r-risk" : (v>=3 && v<=5? "r
 function yrsClass(v){ return v==null? "" : (v>=20? "r-good" : (v>=10? "r-warn" : "r-risk")); }
 function unitsClass(v){ return v==null? "" : (v>=30? "r-good" : (v>=15? "r-warn" : "r-risk")); }
 
+/* Round 10: each preset's top pick gets a one-line plain-English why.
+   The top pick is the first row the preset surfaces (highest-scored under
+   the default sort). */
+function presetWhyLine(l){
+  var p = state.preset;
+  var head = "Top pick: " + l.suburb + " — ";
+  if(p==="allround") return head + "score " + l.score + "/100" + (l.why && l.why.length ? " (" + l.why.join("; ") + ")" : "") + ".";
+  if(p==="highroi") return head + "ROI " + (l.roi==null?"—":l.roi.toFixed(1)+"%") + " on " + fmtFull(l.price) + " at " + (l.mult==null?"—":l.mult.toFixed(2)+"×") + " — the strongest return in this range.";
+  if(p==="value") return head + (l.mult==null?"—":l.mult.toFixed(2)+"×") + " multiplier" + (REGION_MED[l.group]!=null ? " against the " + l.group + " median of " + REGION_MED[l.group].toFixed(2) + "×" : "") + ", ROI " + (l.roi==null?"—":l.roi.toFixed(1)+"%") + ".";
+  if(p==="safe") return head + "BC " + (l.bc==null?"—":l.bc.toFixed(1)+"%") + ", " + (l.yrs==null?"—":l.yrs+"-year") + " contract, pool of " + (l.units==null?"—":l.units) + " — income that doesn't lean on one source.";
+  if(p==="entry") return head + fmtFull(l.price) + ", score " + l.score + "/100, ROI " + (l.roi==null?"—":l.roi.toFixed(1)+"%") + " — the strongest all-round figures under $1.5m.";
+  if(p==="range12") return head + fmtFull(l.price) + ", score " + l.score + "/100 — the strongest all-round figures in the $1m–$2m range.";
+  return "";
+}
+function renderPresetWhy(rows){
+  var el = document.getElementById("presetWhy");
+  if(!el) return;
+  if(!state.preset){ el.textContent = ""; el.hidden = true; return; }
+  if(!rows.length){ el.textContent = "No listings match this preset right now — try widening the filters."; el.hidden = false; return; }
+  el.textContent = presetWhyLine(rows[0]);
+  el.hidden = false;
+}
+
 function render(){
   renderHead();
   var rows = filtered();
+  renderPresetWhy(rows); /* Round 10: the active preset's top pick, in one plain-English line */
   document.getElementById("showingCount").textContent = "Showing "+rows.length+" of "+LISTINGS.length+" listings";
   document.getElementById("watchCnt").textContent = Object.keys(watch).filter(function(k){return watch[k];}).length;
   /* Active-filter count on the Filters button, so on a phone — where the
@@ -1499,23 +1642,25 @@ function render(){
       + '<td class="c-star"><button class="starbtn" data-star="'+esc(l.id)+'" aria-pressed="'+starred+'" aria-label="'+(starred? "Remove ":"Add ")+esc(l.suburb)+' '+(starred? "from":"to")+' watchlist">'+(starred? "★":"☆")+'</button></td>'
       + '<td class="c-place"><span class="suburb">'+esc(l.suburb)+'</span>'+(isNewListing(l)? '<span style="background:#22c55e;color:#fff;font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;margin-left:6px;vertical-align:2px">NEW</span>':"")+(l.dup? '<span class="dup">possible duplicate</span>':"")+(l.unverified? '<span class="dup">unverified — check with broker</span>':"")+'<div class="grp">'+esc(l.group)+'</div></td>'
       + '<td class="num c-price price">'+fmtFull(l.price)+'</td>'
-      + '<td class="num hide-m">'+fmtFull(l.net)+'</td>'
+      + '<td class="num hide-m">'+(l.net==null? '<span class="nd">income not disclosed</span>' : fmtFull(l.net))+'</td>'
       + '<td class="num hide-m '+multClass(l.mult)+'">'+(l.mult==null? "—" : l.mult.toFixed(2)+"×")+'</td>'
       + '<td class="num hide-m '+bcClass(l.bc)+'">'+(l.bc==null? "—" : l.bc.toFixed(1)+"%")+'</td>'
       + '<td class="num hide-m '+yrsClass(l.yrs)+'">'+(l.yrs==null? "—" : l.yrs+" yrs")+'</td>'
       + '<td class="num hide-m '+unitsClass(l.units)+'">'+(l.units==null? "—" : l.units)+'</td>'
-      + '<td class="num c-roi"><span class="roi '+roiClass(l.roi)+'">'+l.roi.toFixed(1)+'%</span></td>'
+      + '<td class="num c-roi"><span class="roi '+roiClass(l.roi)+'">'+(l.roi==null?"—":l.roi.toFixed(1)+"%")+'</span></td>'
       + '<td class="num hide-m"><strong>'+(l.score!=null? l.score : "—")+'</strong></td>'
       + '<td class="c-src"><a class="srclink" href="'+esc(l.url)+'" target="_blank" rel="noopener" data-norow>View ↗</a></td>'
       + '<td class="c-sel"><button class="selbtn" data-select="'+esc(l.id)+'" aria-pressed="'+picked+'" aria-label="'+(picked? "Remove ":"Select ")+esc(l.suburb)+' for comparison">'+(picked? "✓ Selected":"Select")+'</button></td>'
-      + '<td class="mrow" aria-hidden="true"><span><span class="lab">Net</span><b>'+fmt$(l.net)+'</b></span><span><span class="lab">Mult.</span><b class="'+multClass(l.mult)+'">'+(l.mult==null?"—":l.mult.toFixed(2)+"×")+'</b></span><span><span class="lab">BC</span><b class="'+bcClass(l.bc)+'">'+(l.bc==null?"—":l.bc.toFixed(1)+"%")+'</b></span><span><span class="lab">Contract</span><b class="'+yrsClass(l.yrs)+'">'+(l.yrs==null?"—":l.yrs+" yrs")+'</b></span><span><span class="lab">Pool</span><b class="'+unitsClass(l.units)+'">'+(l.units==null?"—":l.units)+'</b></span><span><span class="lab">Score</span><b>'+(l.score!=null? l.score+" / 100":"—")+'</b></span></td>'
+      + '<td class="mrow" aria-hidden="true"><span><span class="lab">Net</span><b>'+(l.net==null?"income not disclosed":fmt$(l.net))+'</b></span><span><span class="lab">Mult.</span><b class="'+multClass(l.mult)+'">'+(l.mult==null?"—":l.mult.toFixed(2)+"×")+'</b></span><span><span class="lab">BC</span><b class="'+bcClass(l.bc)+'">'+(l.bc==null?"—":l.bc.toFixed(1)+"%")+'</b></span><span><span class="lab">Contract</span><b class="'+yrsClass(l.yrs)+'">'+(l.yrs==null?"—":l.yrs+" yrs")+'</b></span><span><span class="lab">Pool</span><b class="'+unitsClass(l.units)+'">'+(l.units==null?"—":l.units)+'</b></span><span><span class="lab">Score</span><b>'+(l.score!=null? l.score+" / 100":"—")+'</b></span></td>'
       + '</tr>';
     if(state.openId===l.id){
       html += '<tr class="detail"><td colspan="12"><div class="detailbox">'
         + '<div class="notes">'+(l.notes? esc(l.notes) : "No notes recorded for this listing.")+'</div>'
         + '<div class="meta"><b>Source</b>'+esc(l.src)+'</div>'
         + '<div class="meta"><b>Listing updated</b>'+esc(l.upd||"—")+'</div>'
-        + '<div class="meta"><b>Full price</b>'+fmtFull(l.price)+' · net '+fmtFull(l.net)+'</div>'
+        + '<div class="meta"><b>Full price</b>'+fmtFull(l.price)+(l.up!=null && l.up>0 ? " (business "+fmtFull(l.bp!=null? l.bp : l.price-l.up)+" + unit "+fmtFull(l.up)+")" : "")+' · net '+(l.net==null?"income not disclosed":fmtFull(l.net))+'</div>'
+        + (l.missing && l.missing.length? '<div class="meta"><b>Not disclosed by broker</b>'+esc(l.missing.join(", "))+'</div>' : "")
+        + regionMedLine(l)
         + '<div class="meta"><b>Recommendation score</b>'+(l.score!=null? l.score+" / 100":"—")+(l.why && l.why.length? " — "+esc(l.why.join("; ")) : "")+'</div>'
         + '<div class="meta"><b>Analyse</b><button class="btn calc-load-btn" data-calc="'+esc(l.id)+'">Open in calculator ↑</button></div>'
         + '</div></td></tr>';
@@ -1553,9 +1698,9 @@ function renderSelection(){
   }
   var rowsDef = [
     ["Price", function(l){return fmtFull(l.price);}, "price", "min"],
-    ["Net income / yr", function(l){return fmtFull(l.net);}, "net", "max"],
+    ["Net income / yr", function(l){return l.net==null?"income not disclosed":fmtFull(l.net);}, "net", "max"],
     ["Multiplier", function(l){return l.mult==null?"—":l.mult.toFixed(2)+"×";}, "mult", "min"],
-    ["ROI", function(l){return l.roi.toFixed(1)+"%";}, "roi", "max"],
+    ["ROI", function(l){return l.roi==null?"—":l.roi.toFixed(1)+"%";}, "roi", "max"],
     ["BC %", function(l){return l.bc==null?"—":l.bc.toFixed(1)+"%";}, "bc", "min"],
     ["Contract remaining", function(l){return l.yrs==null?"—":l.yrs+" yrs";}, "yrs", "max"],
     ["Pool units", function(l){return l.units==null?"—":l.units;}, "units", "max"],
@@ -1595,6 +1740,7 @@ function renderReco(){
   var region = document.getElementById("rRegion").value;
   var minScore = +document.getElementById("rMinScore").value || 0;
   var pool = LISTINGS.filter(function(l){
+    if(l.unverified) return false; /* Round 1: a listing whose figures are known-bad never appears in the picks, whatever its capped score */
     if(budget && budget.indexOf("-")!==-1){ var bp = budget.split("-"); if(l.price < +bp[0] || l.price > +bp[1]) return false; }
     else if(budget && l.price > +budget) return false;
     if(region!=="All" && l.group!==region) return false;
@@ -1602,8 +1748,8 @@ function renderReco(){
     return true;
   });
   function rankVal(l){
-    if(goal==="roi") return l.roi;
-    if(goal==="value") return -(l.mult==null? 99 : l.mult)*10 + l.score/10;
+    if(goal==="roi") return l.roi==null? -1 : l.roi;
+    if(goal==="value") return (l.mult==null || l.mult<=0)? -999 : -(l.mult)*10 + l.score/10;
     if(goal==="safe") return ((l.bc==null? 50 : 100-l.bc)) + (l.yrs||0)*2 + (l.units||0)/5 + l.score/5;
     if(goal==="entry") return -l.price/100000 + l.score/2;
     return l.score;
@@ -1619,7 +1765,7 @@ function renderReco(){
       return '<article class="reco-card">'
         + '<div class="rc-top"><div><div class="rc-sub">#'+(i+1)+" "+esc(l.suburb)+'</div><div class="rc-reg">'+esc(l.group)+(l.unverified? " · unverified":"")+'</div></div>'
         + '<div class="score"><b>'+l.score+'</b><span>Score</span></div></div>'
-        + '<div class="rc-nums"><b>'+fmtFull(l.price)+'</b> · net '+fmtFull(l.net)+'<br />'+(l.mult==null?"—":l.mult.toFixed(2)+"×")+' · ROI <b>'+l.roi.toFixed(1)+'%</b> · BC '+(l.bc==null?"—":l.bc.toFixed(1)+"%")+' · '+(l.yrs==null?"—":l.yrs+" yrs")+' · pool '+(l.units==null?"—":l.units)+'</div>'
+        + '<div class="rc-nums"><b>'+fmtFull(l.price)+'</b> · net '+(l.net==null?"income not disclosed":fmtFull(l.net))+'<br />'+(l.mult==null?"—":l.mult.toFixed(2)+"×")+' · ROI <b>'+(l.roi==null?"—":l.roi.toFixed(1)+"%")+'</b> · BC '+(l.bc==null?"—":l.bc.toFixed(1)+"%")+' · '+(l.yrs==null?"—":l.yrs+" yrs")+' · pool '+(l.units==null?"—":l.units)+'</div>'
         + '<p class="rc-why">'+(l.why && l.why.length? "Why: "+esc(l.why.join("; ")) + "." : "Solid all-round figures on the standard bands.")+'</p>'
         + '<div class="rc-actions"><button class="mini-btn" data-recoselect="'+esc(l.id)+'" aria-pressed="'+picked+'">'+(picked? "✓ Selected":"Select to compare")+'</button>'
         + '<button class="mini-btn" data-recocalc="'+esc(l.id)+'">Calculator</button>'
@@ -1627,7 +1773,7 @@ function renderReco(){
         + '</article>';
     }).join("");
   }
-  document.getElementById("recoNote").textContent = pool.length+" listings match your budget and region; showing the top "+top.length+". Scores are a screening aid only — a listing is removed once its broker page closes, and any ROI over 40% is flagged unverified and capped in scoring, because a return that high usually means a figure needs verifying.";
+  document.getElementById("recoNote").textContent = pool.length+" listings match your budget and region; showing the top "+top.length+". Scores are a screening aid only — a listing is removed once its broker page closes, and any ROI over 40% is flagged unverified and excluded from the picks, because a return that high usually means a figure needs verifying.";
 }
 ["rBudget","rGoal","rRegion","rMinScore"].forEach(function(id){
   document.getElementById(id).addEventListener("change", renderReco);
@@ -1655,7 +1801,7 @@ document.getElementById("dlWorkflow").addEventListener("click", function(){
 });
 document.getElementById("dlReadme").addEventListener("click", function(){
   downloadText("REFRESH-SETUP.md",
-    "# PMR daily refresh — setup\n\n1. Put pmr-data-fetcher.py in scripts/ and daily-update.yml in .github/workflows/.\n2. Confirm Settings > Pages serves from main.\n3. Run once from the Actions tab, then it runs daily at 09:00 Brisbane (cron 0 23 * * * UTC).\n4. The fetcher discovers listings from the broker index pages, validates (no $0 pages, listings whose broker page has closed dropped, de-duplicated, unverified flagged — including any ROI over 40% — generated_at written), and writes pmr-data-latest.json to the root AND data/.\n5. If you find your original fetcher, swap it into scripts/ — the workflow calls whatever is there.\n");
+    "# PMR daily refresh — setup\n\n1. Put pmr-data-fetcher.py in scripts/ and daily-update.yml in .github/workflows/.\n2. Confirm Settings > Pages serves from main.\n3. Run once from the Actions tab, then it runs daily at 09:17 Brisbane (cron 17 23 * * * UTC), usually landing around 2:00 pm.\n4. The fetcher discovers listings from the broker index pages, validates (no $0 pages, listings whose broker page has closed dropped, de-duplicated, unverified flagged — including any ROI over 40% — generated_at written), and writes pmr-data-latest.json to the root AND data/.\n5. If you find your original fetcher, swap it into scripts/ — the workflow calls whatever is there.\n");
 });
 
 document.getElementById("tbody").addEventListener("click", function(e){
@@ -1684,6 +1830,7 @@ document.getElementById("tbody").addEventListener("click", function(e){
 
 /* ---------- deal calculator ---------- */
 var calcPriceEl = document.getElementById("calcPrice");
+var calcUnitEl = document.getElementById("calcUnit"); /* Round 9: unit value included in the price */
 var calcNetEl = document.getElementById("calcNet");
 var calcBcAmtEl = document.getElementById("calcBcAmt");
 var calcBcPctEl = document.getElementById("calcBcPct");
@@ -1715,7 +1862,8 @@ function loadIntoCalculator(id){
   calcDirty = true;
   calcListingEl.value = id;
   calcPriceEl.value = l.price;
-  calcNetEl.value = l.net;
+  calcUnitEl.value = l.up!=null? l.up : ""; /* Round 9: a listing with no unit leaves this blank (= 0) */
+  calcNetEl.value = l.net!=null? l.net : ""; /* Round 3: a listing with no disclosed income leaves net blank, never 0 */
   calcOfferEl.value = 0;
   if(l.bc!=null && l.net){
     calcBcPctEl.value = l.bc.toFixed(1);
@@ -1768,6 +1916,14 @@ function updateCalc(){
   var net = calcNum(calcNetEl);
   var discount = parseFloat(calcOfferEl.value)||0;
   var offerPrice = price ? Math.round(price * (1 - discount/100)) : null;
+  /* Round 9: a unit included in the price is an asset, not business. The
+     multiplier, ROI and payback are worked on the business price (total
+     minus unit value) — the broker's convention, matching the listing's
+     own multiplier. A lower offer comes off the business portion: the
+     unit's value doesn't change. */
+  var unitVal = calcNum(calcUnitEl) || 0;
+  var businessPrice = price ? Math.max(0, price - unitVal) : null;
+  var offerBusiness = offerPrice!=null ? Math.max(0, offerPrice - unitVal) : null;
 
   // offer labels
   var offerLabel = document.getElementById("offerLabel");
@@ -1780,17 +1936,20 @@ function updateCalc(){
     offerDetail.textContent = "Slide to test a lower offer — the results on the right switch to the offer price.";
   } else {
     offerLabel.textContent = discount+"% off · offer "+fmtFull(offerPrice);
-    offerDetail.textContent = "Results below use the offer price of "+fmtFull(offerPrice)+" (asking "+fmtFull(price)+"). Net income stays the same.";
+    offerDetail.textContent = unitVal>0
+      ? "Results below use the offer price of "+fmtFull(offerPrice)+" (asking "+fmtFull(price)+"). The unit value ("+fmtFull(unitVal)+") is unchanged, so the business price is "+fmtFull(offerBusiness)+". Net income stays the same."
+      : "Results below use the offer price of "+fmtFull(offerPrice)+" (asking "+fmtFull(price)+"). Net income stays the same.";
   }
 
   var effectivePrice = discount>0 ? offerPrice : price;
+  var effectiveBusiness = discount>0 ? offerBusiness : businessPrice;
   var bcAmt = calcNum(calcBcAmtEl);
   var bcPctVal = parseFloat(calcBcPctEl.value);
   var bcPct = isFinite(bcPctVal) ? bcPctVal : (bcAmt!=null && net ? bcAmt/net*100 : null);
   if(bcAmt==null && bcPct!=null && net) bcAmt = Math.round(net*bcPct/100);
 
-  var mult = (effectivePrice && net) ? effectivePrice/net : null;
-  var roi = (effectivePrice && net) ? net/effectivePrice*100 : null;
+  var mult = (effectiveBusiness && net) ? effectiveBusiness/net : null;
+  var roi = (effectiveBusiness && net) ? net/effectiveBusiness*100 : null;
 
   // tiles
   var outMult = document.getElementById("outMult"), outMultNote = document.getElementById("outMultNote");
@@ -1802,13 +1961,22 @@ function updateCalc(){
     outMult.textContent = mult.toFixed(2)+"×";
     outMultNote.textContent = mult>6.5 ? "Overpriced — over 6.5×" : (mult>=3 && mult<=5 ? "Excellent — 3–5× band" : (mult<3 ? "Under 3× — check the figures" : "Fair — 5–6.5× band"));
     outMultNote.className = "ts " + (mult>6.5 ? "risk" : (mult>=3 && mult<=5 ? "good" : "warn"));
-  } else { outMult.textContent="—"; outMultNote.textContent="Price ÷ net income"; outMultNote.className="ts neutral"; }
+  } else {
+    outMult.textContent="—";
+    if(price && net && unitVal>0 && effectiveBusiness<=0){
+      outMultNote.textContent="The unit is worth more than the price — no business price left to divide by";
+      outMultNote.className="ts risk";
+    } else {
+      outMultNote.textContent = unitVal>0 ? "Business price ÷ net income" : "Price ÷ net income";
+      outMultNote.className="ts neutral";
+    }
+  }
 
   if(roi!=null){
     outRoi.textContent = roi.toFixed(1)+"%";
     outRoiNote.textContent = roi>=20 ? "Strong return" : (roi>=15 ? "Solid return" : "Modest return");
     outRoiNote.className = "ts " + (roi>=20 ? "good" : (roi>=15 ? "warn" : "neutral"));
-  } else { outRoi.textContent="—"; outRoiNote.textContent="Net income ÷ price"; outRoiNote.className="ts neutral"; }
+  } else { outRoi.textContent="—"; outRoiNote.textContent= unitVal>0 ? "Net income ÷ business price" : "Net income ÷ price"; outRoiNote.className="ts neutral"; }
 
   if(bcPct!=null){
     outBc.textContent = bcPct.toFixed(1)+"%";
@@ -1836,6 +2004,21 @@ function updateCalc(){
     document.getElementById("splitPct").textContent="";
     document.getElementById("splitBc").textContent="BC salary —";
     document.getElementById("splitLet").textContent="Letting & other —";
+  }
+
+  /* Round 9: show the price split — the unit is an asset you keep or sell
+     separately, so the multiplier, ROI and payback above are on the
+     business price only. Monthly net is net ÷ 12 and never depends on
+     the price, so it doesn't change. */
+  var splitEl = document.getElementById("calcPriceSplit");
+  if(splitEl){
+    if(unitVal>0 && price){
+      splitEl.textContent = "Business "+fmtFull(businessPrice)+" + unit "+fmtFull(unitVal)+" = total "+fmtFull(price)+". Multiplier, ROI and payback are on the business price — the unit is an asset you keep or sell separately.";
+    } else if(price){
+      splitEl.textContent = "No unit included — the full price is the business price.";
+    } else {
+      splitEl.textContent = "";
+    }
   }
 
   // verdicts — all rated against the one set of bands in the legend
@@ -1903,8 +2086,8 @@ function setCalcExpanded(expanded){
 }
 
 [calcPriceEl, calcOfferEl].forEach(function(el){ el.addEventListener("input", updateCalc); });
-[calcPriceEl, calcNetEl, calcBcAmtEl, calcBcPctEl, calcYrsEl, calcUnitsEl, calcOfferEl].forEach(function(el){ el.addEventListener("input", function(){ calcDirty = true; }); });
-[calcYrsEl, calcUnitsEl].forEach(function(el){ el.addEventListener("input", updateCalc); });
+[calcPriceEl, calcNetEl, calcBcAmtEl, calcBcPctEl, calcYrsEl, calcUnitsEl, calcOfferEl, calcUnitEl].forEach(function(el){ el.addEventListener("input", function(){ calcDirty = true; }); });
+[calcYrsEl, calcUnitsEl, calcUnitEl].forEach(function(el){ el.addEventListener("input", updateCalc); });
 calcNetEl.addEventListener("input", function(){ syncBc("net"); updateCalc(); });
 calcBcAmtEl.addEventListener("input", function(){ syncBc("amt"); updateCalc(); });
 calcBcPctEl.addEventListener("input", function(){ syncBc("pct"); updateCalc(); });
@@ -1913,6 +2096,7 @@ function prefillCalc(){
   if(LISTINGS.length){
     var first = LISTINGS[0];
     calcPriceEl.value = first.price; calcNetEl.value = first.net;
+    if(first.up!=null) calcUnitEl.value = first.up; /* Round 9: prefill the unit value too */
     if(first.bc!=null){ calcBcPctEl.value = first.bc.toFixed(1); calcBcAmtEl.value = Math.round(first.net*first.bc/100); calcLastEdited="pct"; calcListingEl.value = first.id; }
     if(first.yrs!=null) calcYrsEl.value = first.yrs;
     if(first.units!=null) calcUnitsEl.value = first.units;
@@ -1983,39 +2167,79 @@ function suburbFromName(name){
   var s = String(name||"").replace(/\s+QLD\s+#.*$/,"").replace(/\s+QLD\s*$/,"").trim();
   return s || "Unknown";
 }
+/* Round 8: suburb -> metro region map (Greater Brisbane = Brisbane + Ipswich + Logan + Moreton Bay + Redland).
+   The broker API's region field is useless ("" or "Queensland"), and the old map only covered the 60
+   fallback-snapshot suburbs, so most live listings fell through to "Other QLD". Any suburb not listed
+   here is genuinely outside the four metros and correctly lands in "Other QLD". */
+var SUBURB_REGION = {};
+["Acacia Ridge", "Albany Creek", "Albion", "Algester", "Annerley", "Ascot", "Auchenflower", "Banyo", "Bongaree", "Boondall", "Bracken Ridge", "Brassall", "Brendale", "Brisbane", "Brisbane City", "Browns Plains", "Bulimba", "Burpengary", "Calamvale", "Cannon Hill", "Capalaba", "Carina", "Carina Heights", "Carindale", "Carseldine", "Chermside", "Cleveland", "Darra", "Deception Bay", "Eagleby", "East Brisbane", "Eastern Heights", "Eight Mile Plains", "Everton Park", "Fairfield", "Forest Lake", "Fortitude Valley", "Goodna", "Griffin", "Hawthorne", "Heathwood", "Kallangur", "Kangaroo Point", "Kenmore", "Kingston", "Kuraby", "Logan Central", "Loganlea", "Lota", "Lutwyche", "Mango Hill", "Manly West", "Marsden", "Milton", "Mitchelton", "Moorooka", "Morayfield", "Mount Gravatt East", "Mount Ommaney", "Murarrie", "Murrumba Downs", "New Farm", "Newstead", "North Lakes", "Nundah", "Ormiston", "Oxley", "Pallara", "Redbank Plains", "Redcliffe", "Richlands", "Riverhills", "Robertson", "Sadliers Crossing", "Scarborough", "Sherwood", "Sinnamon Park", "South Brisbane", "Spring Hill", "Springfield", "St Lucia", "Stafford", "Stones Corner", "Strathpine", "Stretton", "Taigum", "Taringa", "Teneriffe", "The Gap", "Thorneside", "Thornlands", "Upper Mount Gravatt", "Victoria Point", "Wakerley", "West End", "Windsor", "Woody Point", "Woolloongabba", "Wulkuraka", "Wynnum", "Wynnum West", "Zillmere"].forEach(function(s){ SUBURB_REGION[s] = "Brisbane"; });
+["Ashmore", "Benowa", "Biggera Waters", "Broadbeach", "Bundall", "Burleigh Heads", "Burleigh Waters", "Carrara", "Clear Island Waters", "Coolangatta", "Coombabah", "Coomera", "Currumbin", "Elanora", "Helensvale", "Highland Park", "Hope Island", "Labrador", "Main Beach", "Mermaid Beach", "Mermaid Waters", "Merrimac", "Miami", "Mudgeeraba", "Nerang", "Pacific Pines", "Palm Beach", "Pimpama", "Robina", "Runaway Bay", "Southport", "Surfers Paradise", "Tugun", "Upper Coomera", "Varsity Lakes"].forEach(function(s){ SUBURB_REGION[s] = "Gold Coast"; });
+["Alexandra Headland", "Birtinya", "Bokarina", "Buderim", "Caloundra", "Coolum Beach", "Currimundi", "Golden Beach", "Kings Beach", "Maroochydore", "Montville", "Mooloolaba", "Mountain Creek", "Noosa Heads", "Noosa North Shore", "Noosaville", "Parrearra", "Pelican Waters", "Peregian Springs", "Sunrise Beach", "Sunshine Beach", "Twin Waters"].forEach(function(s){ SUBURB_REGION[s] = "Sunshine Coast"; });
+["Cairns Beaches", "Cairns City", "Cairns North", "Clifton Beach", "Kewarra Beach", "Manoora", "Palm Cove", "Port Douglas", "Smithfield", "Trinity Beach", "Woree", "Yorkeys Knob"].forEach(function(s){ SUBURB_REGION[s] = "Cairns & Far North"; });
 function groupFor(suburb, region){
+  if(SUBURB_REGION[suburb]) return SUBURB_REGION[suburb];
   if(SUBURB_GROUP[suburb]) return SUBURB_GROUP[suburb];
   if(region && REGION_GROUP[region]) return REGION_GROUP[region];
   return "Other QLD";
+}
+
+/* Round 8: median multiplier per region, computed from the listings in
+   memory (verified records with a positive multiplier only — the same rule
+   as the stats strip), so a 5x means something different per region.
+   Recomputed whenever fresh data loads. Exposed as window.REGION_MED. */
+function computeRegionMeds(){
+  REGION_MED = {};
+  GROUPS.forEach(function(g){
+    if(g==="All") return;
+    var ms = LISTINGS.filter(function(l){ return l.group===g && !l.unverified && l.mult!=null && l.mult>0; }).map(function(l){ return l.mult; });
+    REGION_MED[g] = ms.length? median(ms) : null;
+  });
+  window.REGION_MED = REGION_MED;
+}
+function regionMedLine(l){
+  var rm = REGION_MED[l.group];
+  if(l.mult==null || rm==null) return "";
+  var rel = l.mult < rm ? "below" : (l.mult > rm ? "above" : "at");
+  return '<div class="meta"><b>Multiplier vs region</b>'+l.mult.toFixed(2)+'× vs '+esc(l.group)+' median '+rm.toFixed(2)+'× — '+rel+' the regional median</div>';
 }
 function numOr(v){ var n = (v==null || v==="") ? null : +v; return (n==null || isNaN(n)) ? null : n; }
 function normalizeRecord(r){
   var price = numOr(r.price);
   var net = numOr(r.net!=null ? r.net : r.net_income);
-  if(price==null || price<=0 || net==null) return null; // no usable price or income — can't be screened or ranked (this drops the $0 scraped index/category pages)
-  if(r.status && String(r.status).toLowerCase()!=="active") return null; // sold, removed or otherwise no longer available
+  if(price==null || price<=0) return null; // $0 scraped index/category pages — not listings
+  if(net!=null && net<=0) net = null; // 0 means "income not disclosed", not $0 income — never divide by it
+  /* Unverified records stay visible but flagged — never silently dropped.
+     Only a status that is neither active nor unverified (a genuinely
+     closed/removed record) is dropped. */
+  var st = r.status ? String(r.status).toLowerCase() : "active";
+  if(st!=="active" && st!=="unverified") return null;
   var suburb = r.suburb || suburbFromName(r.name);
+  /* Round 9: carry the business/unit split — the broker's multiplier is
+     business price ÷ net, so the calculator and the card must know both. */
+  var bp = numOr(r.bp!=null ? r.bp : r.business_price);
+  var up = numOr(r.up!=null ? r.up : r.unit_price);
   var mult = numOr(r.mult!=null ? r.mult : r.multiplier);
-  if(mult==null) mult = Math.round(price/net*100)/100;
+  if(mult==null) mult = (net!=null) ? Math.round((bp!=null? bp : price)/net*100)/100 : null;
   var roi = numOr(r.roi);
-  if(roi==null) roi = Math.round(net/price*1000)/10;
+  if(roi==null) roi = (net!=null) ? Math.round(net/price*1000)/10 : null;
   var srcRaw = r.src || r.source || "";
   return {
     id: r.id || (suburb+"-"+price),
     suburb: suburb,
     group: r.group || groupFor(suburb, r.region),
     price: price, net: net, mult: mult,
+    bp: bp, up: up,
     bc: numOr(r.bc!=null ? r.bc : r.bc_percent),
-    yrs: numOr(r.yrs!=null ? r.yrs : r.contract_years) || null, // 0 in the data file means "not recorded", not a real figure
-    units: numOr(r.units!=null ? r.units : r.pool_units) || null,
+    yrs: numOr(r.yrs!=null ? r.yrs : r.contract_years), // Round 5: a published 0 is a real figure (0 yrs = no tenure left, risk band) — only a missing value is null
+    units: numOr(r.units!=null ? r.units : r.pool_units), // Round 5: a published 0 is real (0 pool = caretaking-only) — only a missing value is null
     roi: roi,
     url: r.url || "",
     src: String(srcRaw).replace(/\.(com\.au|net\.au|org\.au|com|au)$/,""),
     notes: r.notes || "",
     upd: r.upd || r.last_updated || "",
     q: numOr(r.q!=null ? r.q : r.quality_score),
-    dup: false,
-    unverified: r.unverified===true || r.verified===false, is_new: r.is_new, first_seen: r.first_seen || null
+    dup: r.dup===true, dupCount: numOr(r.dup_count),
+    unverified: st==="unverified" || r.unverified===true || r.verified===false, is_new: r.is_new, first_seen: r.first_seen || null
   };
 }
 function completenessOf(l){ return [l.bc,l.yrs,l.units].filter(function(x){return x!=null;}).length * 1000 + (l.q||0); }
@@ -2031,7 +2255,12 @@ function normalizePayload(payload){
     if(!l) return;
     var key = l.suburb+"|"+l.price+"|"+l.net;
     if(byKey[key]){
-      if(completenessOf(l) > completenessOf(byKey[key])) byKey[key] = l; // same listing scraped from two sites — keep the fuller copy
+      /* Round 4: same suburb + price + net income under another id — the
+         survivor is flagged "possible duplicate", never silently chosen. */
+      var kept = byKey[key];
+      var n = (kept.dupCount||1) + 1;
+      kept.dup = true; kept.dupCount = n;
+      if(completenessOf(l) > completenessOf(kept)){ l.dup = true; l.dupCount = n; byKey[key] = l; } // same listing scraped from two sites — keep the fuller copy
     } else { byKey[key] = l; order.push(key); }
   });
   var list = order.map(function(k){ return byKey[k]; });
@@ -2050,6 +2279,7 @@ function setDataSourceNote(mode){
   }
 }
 function refreshDataViews(){
+  computeRegionMeds(); /* Round 8: medians from the fresh data */
   renderLastUpdated();
   renderStats();
   renderPills();
