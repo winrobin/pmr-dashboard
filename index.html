@@ -1469,7 +1469,7 @@ function filtered(){
   return out;
 }
 
-function roiClass(r){ return r>=20? "hi" : (r>=15? "mid":"lo"); }
+function roiClass(r){ return r>=20? "hi" : (r>=15? "mid":"lo"); } /* NEW badge: a listing is NEW for 3 days after it first appears in our data. The fetcher stores is_new (and first_seen) per listing; fall back to first_seen within the last 3 days when is_new is absent, and show no badge when neither field exists. The old badge used last_fetched, which the fetcher refreshes for every listing on every run, so it showed on everything. */ function isNewListing(l){   if(l.is_new===true) return true;   if(l.is_new===false) return false;   if(!l.first_seen) return false;   var d = new Date(l.first_seen+"T00:00:00");   if(isNaN(d)) return false;   var t = new Date(); t.setHours(0,0,0,0);   var age = Math.floor((t-d)/86400000);   return age>=0 && age<3; }
 /* the one set of rating bands, used by the legend, table colours, filters and calculator */
 function bcClass(v){ return v==null? "" : (v<=70? "r-good" : (v<=80? "r-warn" : "r-risk")); }
 function multClass(v){ return v==null? "" : (v>6.5? "r-risk" : (v>=3 && v<=5? "r-good" : "r-warn")); }
@@ -1497,7 +1497,7 @@ function render(){
     var picked = !!selected[l.id];
     html += '<tr class="listing'+(picked? " is-selected":"")+'" data-id="'+esc(l.id)+'">'
       + '<td class="c-star"><button class="starbtn" data-star="'+esc(l.id)+'" aria-pressed="'+starred+'" aria-label="'+(starred? "Remove ":"Add ")+esc(l.suburb)+' '+(starred? "from":"to")+' watchlist">'+(starred? "★":"☆")+'</button></td>'
-      + '<td class="c-place"><span class="suburb">'+esc(l.suburb)+'</span>'+(l.dup? '<span class="dup">possible duplicate</span>':"")+(l.unverified? '<span class="dup">unverified — check with broker</span>':"")+'<div class="grp">'+esc(l.group)+'</div></td>'
+      + '<td class="c-place"><span class="suburb">'+esc(l.suburb)+'</span>'+(isNewListing(l)? '<span style="background:#22c55e;color:#fff;font-size:10px;font-weight:700;padding:1px 5px;border-radius:4px;margin-left:6px;vertical-align:2px">NEW</span>':"")+(l.dup? '<span class="dup">possible duplicate</span>':"")+(l.unverified? '<span class="dup">unverified — check with broker</span>':"")+'<div class="grp">'+esc(l.group)+'</div></td>'
       + '<td class="num c-price price">'+fmtFull(l.price)+'</td>'
       + '<td class="num hide-m">'+fmtFull(l.net)+'</td>'
       + '<td class="num hide-m '+multClass(l.mult)+'">'+(l.mult==null? "—" : l.mult.toFixed(2)+"×")+'</td>'
@@ -2015,7 +2015,7 @@ function normalizeRecord(r){
     upd: r.upd || r.last_updated || "",
     q: numOr(r.q!=null ? r.q : r.quality_score),
     dup: false,
-    unverified: r.unverified===true || r.verified===false
+    unverified: r.unverified===true || r.verified===false, is_new: r.is_new, first_seen: r.first_seen || null
   };
 }
 function completenessOf(l){ return [l.bc,l.yrs,l.units].filter(function(x){return x!=null;}).length * 1000 + (l.q||0); }
