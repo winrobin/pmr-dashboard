@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-22T19:43:55.018466+10:00",
-  "generated_at_brisbane": "2026-11-22 19:43:55 UTC+10:00",
+  "generated_at": "2026-11-23T13:42:48.374741+10:00",
+  "generated_at_brisbane": "2026-11-23 13:42:48 UTC+10:00",
   "source": "theonsitemanager.com.au api/v1/listings.php",
   "total_records": 490,
   "active": 453,
   "unverified": 37,
-  "new": 12,
+  "new": 2,
   "duplicates": 38,
   "note": "price = total purchase price; business_price = total - unit_price; multiplier = business_price / net_income (the broker's figure)."
 }
